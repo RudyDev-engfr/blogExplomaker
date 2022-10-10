@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["next", "next/core-web-vitals", "plugin:react/recommended", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "mui-unused-classes"],
+  "rules": {
+    "no-unused-vars": ["warn"],
+    "consistent-return": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "no-nested-ternary": 0,
+    "react/prop-types": [0],
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": "error",
+    "no-debugger": "warn",
+    "new-cap": "off",
+    "react/react-in-jsx-scope": 0,
+    "@next/next/no-img-element": 0,
+    "jsx-a11y/media-has-caption": 0,
+    "mui-unused-classes/unused-classes": 1
+  }
+}

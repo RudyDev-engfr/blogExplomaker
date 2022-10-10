@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "explomaker-3010b"
+  },
+  "targets": {
+    "explomaker-3010b": {
+      "hosting": {
+        "blog": [
+          "blog-explomaker"
+        ]
+      }
+    }
+  }
+}

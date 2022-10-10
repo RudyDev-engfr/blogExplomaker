@@ -1,0 +1,15 @@
+* {
+  scrollbar-color: #009d8c #f7f7f7;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  width: 8px; /* width of the entire scrollbar */
+}
+*::-webkit-scrollbar-track {
+  background: #f7f7f7; /* color of the tracking area */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #009d8c; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 1px solid #f7f7f7; /* creates padding around scroll thumb */
+}
