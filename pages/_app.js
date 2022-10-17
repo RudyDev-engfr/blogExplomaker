@@ -5,6 +5,9 @@ import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { useLoadScript } from '@react-google-maps/api'
 
+import algoliasearch from 'algoliasearch'
+import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
+
 import theme from '../styles/theme'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
@@ -13,6 +16,7 @@ import SessionContextProvider from '../contexts/session'
 
 import '../styles/firebaseui-styling.global.css'
 import '../styles/global.css'
+import '../styles/algolia.css'
 
 const mapsLibraries = ['places']
 
@@ -22,6 +26,7 @@ const MyApp = props => {
     googleMapsApiKey: 'AIzaSyCKC9_XX60E1at2qp_90SU07-d-22pDydM',
     libraries: mapsLibraries,
   })
+  const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -41,12 +46,15 @@ const MyApp = props => {
         <GlobalClassGenerator>
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <SessionContextProvider>
-                <Nav />
-                <Component {...pageProps} />
-                <Footer />
-              </SessionContextProvider>
+              <InstantSearch searchClient={searchClient} indexName="SearchFront">
+                <Configure hitsPerPage={900} />
+                <CssBaseline />
+                <SessionContextProvider>
+                  <Nav />
+                  <Component {...pageProps} />
+                  <Footer />
+                </SessionContextProvider>
+              </InstantSearch>
             </ThemeProvider>
           </StyledEngineProvider>
         </GlobalClassGenerator>

@@ -29,6 +29,8 @@
     "react-dom": "17.0.2",
     "react-firebaseui": "^5.0.2",
     "react-gutenberg": "^0.5.2",
+    "react-instantsearch-dom": "^6.36.0",
+    "react-instantsearch-hooks-web": "^6.36.0",
     "react-material-ui-carousel": "^2.3.7-mui5",
     "react-multi-carousel": "^2.6.5",
     "react-player": "^2.9.0",

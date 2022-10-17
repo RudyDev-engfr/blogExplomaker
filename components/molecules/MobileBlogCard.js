@@ -135,7 +135,7 @@ const MobileBlogCard = ({
             justifyContent="space-between"
           >
             <Typography className={classes.cardTitle} dangerouslySetInnerHTML={{ __html: title }} />
-            {!isResult && (
+            {/* {!isResult && (
               <Box display="flex">
                 <Box display="flex" alignItems="center" marginRight="10px">
                   <Favorite className={classes.cardIcons} />
@@ -146,9 +146,9 @@ const MobileBlogCard = ({
                   <Typography className={classes.cardCounts}>{commentsCount}</Typography>
                 </Box>
               </Box>
-            )}
+            )} */}
           </Box>
-          {isResult && (
+          {/* {isResult && (
             <Box className={classes.resultSocialInteraction}>
               <Box display="flex" justifyContent="space-between">
                 <Typography className={classes.cardCounts}>{publishDate}</Typography>
@@ -183,7 +183,7 @@ const MobileBlogCard = ({
                 </Box>
               </Box>
             </Box>
-          )}
+          )} */}
           {subtitle && (
             <Box>
               <Typography className={classes.cardSubtitle}>{subtitle}</Typography>
