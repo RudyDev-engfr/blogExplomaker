@@ -38,20 +38,26 @@ const useStyles = makeStyles({
     width: '100%',
     display: 'none',
   },
+  leMachinTruc: {
+    border: 'unset',
+  },
 })
 
-const SearchField = ({ isNavbar = false, placeholder, className, rootInput }) => {
+const SearchField = ({
+  isNavbar = false,
+  placeholder,
+  className,
+  rootInput,
+  needBorder = true,
+}) => {
   const classes = useStyles()
   const router = useRouter()
 
-  const { searchValue, setSearchValue, needFetch, setNeedFetch } = useContext(SessionContext)
+  const { searchValue, setSearchValue } = useContext(SessionContext)
 
   const handleSubmit = event => {
     event.preventDefault()
-    router.push(`/results/${searchValue}`)
-    if (!needFetch) {
-      setNeedFetch(true)
-    }
+    router.push(`/results?SearchFront%5Bquery%5D=${searchValue}`)
   }
 
   return (
@@ -70,13 +76,14 @@ const SearchField = ({ isNavbar = false, placeholder, className, rootInput }) =>
             hiddenLabel
             margin="none"
             className={className}
-            InputProps={{ classes: { root: rootInput } }}
+            InputProps={{
+              classes: { root: rootInput },
+            }}
           />
           <Button
             variant="contained"
             startIcon={<SearchIcon />}
             classes={{ root: classes.searchButton, sizeMedium: classes.sizeMediumButton }}
-            disabled={searchValue.length < 3}
             type="submit"
           >
             Rechercher

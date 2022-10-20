@@ -121,7 +121,13 @@ const MobileBlogCard = ({
               [classes.resultImageContainer]: isResult,
             })}
           >
-            <Image layout="fill" src={encodeURI(srcImg)} className={classes.cardImage} />
+            <Image
+              layout="fill"
+              src={encodeURI(srcImg)}
+              className={classes.cardImage}
+              objectFit="cover"
+              objectPosition="center"
+            />
           </Box>
         </CardMedia>
         <CardContent

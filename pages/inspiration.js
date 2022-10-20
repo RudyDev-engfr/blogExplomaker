@@ -221,6 +221,7 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
               placeholder="Pays, Région, Ville ..."
               className={classes.headerInspiration}
               rootInput={classes.rootInput}
+              needBorder={false}
             />
           </Box>
         </Box>
@@ -322,9 +323,9 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
             </Box>
           </Box>
         </Paper>
-        {/* Fin de partie 3 */}
-        {/* Partie 4 liste de continents */}
       </Box>
+      {/* Fin de partie 3 */}
+      {/* Partie 4 liste de continents */}
       <Box
         sx={{
           backgroundColor: theme.palette.grey.f7,
@@ -363,6 +364,8 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
           </Box>
         </Box>
       </Box>
+      {/* fin de Partie 4 liste de continents */}
+      {/* Partie 5 liste des */}
     </Box>
   )
 }

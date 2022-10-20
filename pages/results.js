@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 
+import algoliasearch from 'algoliasearch'
+
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -9,10 +11,10 @@ import { useTheme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import SearchIcon from '@mui/icons-material/Search'
 
-import { SearchBox } from 'react-instantsearch-hooks-web'
+import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-hooks-web'
+import { history } from 'instantsearch.js/es/lib/routers'
 
 import Search from '../components/molecules/Search'
-import { SessionContext } from '../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -78,55 +80,73 @@ const Results = () => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const router = useRouter()
+  const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
+
   const [currentFilterModalState, setCurrentFilterModalState] = useState('')
 
   return (
     <>
-      {/* Partie 1 */}
-      <Box className={classes.fullWidthContainer} paddingTop="82px">
-        <Box className={classes.mainContainer}>
-          <Box className={classes.resultHeaderContainer}>
-            <Box marginBottom="40px" maxWidth="784px">
-              <Typography variant="h1" color={theme.palette.secondary.contrastText}>
-                Recherche
-              </Typography>
-              <Typography color={theme.palette.secondary.contrastText} sx={{ fontSize: '17px' }}>
-                Recherche un pays, une ville, un lieu d’intérêt, une passion, un sport ou un critère
-                de voyage. Entre tes mots-clés et on te présente une sélection de destinations et
-                d’articles associés.
-              </Typography>
-            </Box>
-            <Box>
-              <Typography className={classes.resultsLabel}>Saisis ta recherche</Typography>
-              <Box display="flex">
-                <SearchBox
-                  searchAsYouType
-                  classNames={{
-                    root: classes.searboxRoot,
-                    input: classes.searchInput,
-                    submit: classes.searchSubmit,
-                    reset: classes.searchReset,
-                  }}
-                  submitIconComponent={SubmitIcon}
-                />
-                <Button
-                  variant="contained"
-                  startIcon={<SearchIcon />}
-                  sx={{ borderRadius: '29px' }}
-                >
-                  Rechercher
-                </Button>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName="SearchFront"
+        routing={{
+          router: history({
+            onUpdate: url => router.push(url),
+          }),
+        }}
+      >
+        <Configure hitsPerPage={900} />
+
+        {/* Partie 1 */}
+        <Box className={classes.fullWidthContainer} paddingTop="82px">
+          <Box className={classes.mainContainer}>
+            <Box className={classes.resultHeaderContainer}>
+              <Box marginBottom="40px" maxWidth="784px">
+                <Typography variant="h1" color={theme.palette.secondary.contrastText}>
+                  Recherche
+                </Typography>
+                <Typography color={theme.palette.secondary.contrastText} sx={{ fontSize: '17px' }}>
+                  Recherche un pays, une ville, un lieu d’intérêt, une passion, un sport ou un
+                  critère de voyage. Entre tes mots-clés et on te présente une sélection de
+                  destinations et d’articles associés.
+                </Typography>
+              </Box>
+              <Box>
+                <Typography className={classes.resultsLabel}>Saisis ta recherche</Typography>
+                <Box display="flex">
+                  <SearchBox
+                    searchAsYouType
+                    classNames={{
+                      root: classes.searboxRoot,
+                      input: classes.searchInput,
+                      submit: classes.searchSubmit,
+                      reset: classes.searchReset,
+                    }}
+                    submitIconComponent={SubmitIcon}
+                  />
+                  <Button
+                    variant="contained"
+                    startIcon={<SearchIcon />}
+                    sx={{ borderRadius: '29px' }}
+                  >
+                    Rechercher
+                  </Button>
+                </Box>
               </Box>
             </Box>
           </Box>
         </Box>
-      </Box>
-      {/* fin de partie 1 */}
-      {/* Partie 2 */}
+        {/* fin de partie 1 */}
+        {/* Partie 2 */}
 
-      <Search modalState={currentFilterModalState} modalStateSetter={setCurrentFilterModalState} />
+        <Search
+          modalState={currentFilterModalState}
+          modalStateSetter={setCurrentFilterModalState}
+        />
 
-      {/* fin de partie 2 */}
+        {/* fin de partie 2 */}
+      </InstantSearch>
     </>
   )
 }

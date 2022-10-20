@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { ThemeProvider } from '@mui/material/styles'
 import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { useLoadScript } from '@react-google-maps/api'
-
-import algoliasearch from 'algoliasearch'
-import { Configure, InstantSearch } from 'react-instantsearch-hooks-web'
 
 import theme from '../styles/theme'
 import Nav from '../components/Nav'
@@ -26,7 +24,6 @@ const MyApp = props => {
     googleMapsApiKey: 'AIzaSyCKC9_XX60E1at2qp_90SU07-d-22pDydM',
     libraries: mapsLibraries,
   })
-  const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -46,15 +43,12 @@ const MyApp = props => {
         <GlobalClassGenerator>
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <InstantSearch searchClient={searchClient} indexName="SearchFront" routing>
-                <Configure hitsPerPage={900} />
-                <CssBaseline />
-                <SessionContextProvider>
-                  <Nav />
-                  <Component {...pageProps} />
-                  <Footer />
-                </SessionContextProvider>
-              </InstantSearch>
+              <CssBaseline />
+              <SessionContextProvider>
+                <Nav />
+                <Component {...pageProps} />
+                <Footer />
+              </SessionContextProvider>
             </ThemeProvider>
           </StyledEngineProvider>
         </GlobalClassGenerator>
