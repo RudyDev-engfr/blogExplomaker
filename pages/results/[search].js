@@ -1,19 +1,26 @@
 import { useState, useEffect, useContext } from 'react'
+import { useRouter } from 'next/router'
+
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
-import { useRouter } from 'next/router'
+import SearchIcon from '@mui/icons-material/Search'
 
-import SearchField from '../../components/atoms/SearchField'
+import { SearchBox } from 'react-instantsearch-hooks-web'
+
 import Search from '../../components/molecules/Search'
 import { SessionContext } from '../../contexts/session'
+
+import BKG from '../../images/BKG.png'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
     padding: '60px 0',
-    backgroundColor: theme.palette.primary.ultraDark,
+    background: `url(../../images/BKG.png)`,
+    backgroundSize: 'cover',
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100vw',
       margin: '0',
@@ -31,14 +38,50 @@ const useStyles = makeStyles(theme => ({
     fontSize: '22px',
     fontWeight: '500',
   },
+  searboxRoot: {
+    marginRight: '15px',
+  },
+  searchInput: {
+    minWidth: '400px',
+    minHeight: '45px',
+    borderRadius: '50px',
+    border: 'none',
+    padding: '15px',
+    fontSize: '17px',
+  },
+  searchSubmit: {
+    display: 'none',
+  },
+  searchReset: {
+    display: 'none',
+  },
 }))
+
+function SubmitIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18">
+      <g
+        fill="none"
+        fillRule="evenodd"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.67"
+        transform="translate(1 1)"
+      >
+        <circle cx="7.11" cy="7.11" r="7.11" />
+        <path d="M16 16l-3.87-3.87" />
+      </g>
+    </svg>
+  )
+}
 
 const Results = () => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
-  const { search } = router.query
+  const { search: querySearch } = router.query
 
   const { setSearchValue, needFetch, setNeedFetch } = useContext(SessionContext)
 
@@ -46,24 +89,20 @@ const Results = () => {
   const [currentFilterModalState, setCurrentFilterModalState] = useState('')
 
   useEffect(() => {
-    if (typeof search !== 'undefined' && search !== '') {
-      setSearchValue(search)
-      setNeedFetch(true)
+    if (typeof querySearch !== 'undefined' && querySearch !== '') {
+      setSearchValue(querySearch)
+      // setNeedFetch(true)
       setIsShowingResults(true)
     }
-  }, [search])
+  }, [querySearch])
 
   return (
     <>
       {/* Partie 1 */}
-      <Box
-        className={classes.fullWidthContainer}
-        paddingTop="82px"
-        backgroundColor={theme.palette.grey.e5}
-      >
+      <Box className={classes.fullWidthContainer} paddingTop="82px">
         <Box className={classes.mainContainer}>
           <Box className={classes.resultHeaderContainer}>
-            <Box marginBottom="40px">
+            <Box marginBottom="40px" maxWidth="784px">
               <Typography variant="h1" color={theme.palette.secondary.contrastText}>
                 Recherche
               </Typography>
@@ -75,7 +114,25 @@ const Results = () => {
             </Box>
             <Box>
               <Typography className={classes.resultsLabel}>Saisis ta recherche</Typography>
-              <SearchField />
+              <Box display="flex">
+                <SearchBox
+                  searchAsYouType
+                  classNames={{
+                    root: classes.searboxRoot,
+                    input: classes.searchInput,
+                    submit: classes.searchSubmit,
+                    reset: classes.searchReset,
+                  }}
+                  submitIconComponent={SubmitIcon}
+                />
+                <Button
+                  variant="contained"
+                  startIcon={<SearchIcon />}
+                  sx={{ borderRadius: '29px' }}
+                >
+                  Rechercher
+                </Button>
+              </Box>
             </Box>
           </Box>
         </Box>

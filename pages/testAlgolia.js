@@ -5,6 +5,8 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { makeStyles } from '@mui/styles'
 
+import qs from 'qs'
+
 import { RefinementList, SearchBox, useHits } from 'react-instantsearch-hooks-web'
 import { Panel } from 'react-instantsearch-dom'
 
@@ -28,6 +30,7 @@ const NewSearch = () => {
   const [isShowingArticles, setIsShowingArticles] = useState(false)
   const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
   const [currentHitsArray, setcurrentHitsArray] = useState([])
+
   const transformItems = useCallback(
     spotsAndArticles =>
       spotsAndArticles.map(spotOrArticle => ({
@@ -54,6 +57,9 @@ const NewSearch = () => {
       </Panel>
       <Panel header="Envies">
         <RefinementList attribute="envies" searchable={false} limit={10} />
+      </Panel>
+      <Panel header="En direction de">
+        <RefinementList attribute="en_direction_de" searchable={false} limit={10} />
       </Panel>
       <ArticlesList
         data={currentHitsArray.filter(hit => hit.resultats === 'Articles')}

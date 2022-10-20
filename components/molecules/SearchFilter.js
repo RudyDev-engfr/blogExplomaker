@@ -9,6 +9,8 @@ import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import makeStyles from '@mui/styles/makeStyles'
+import { DynamicWidgets, HierarchicalMenu, RefinementList } from 'react-instantsearch-hooks-web'
+import AlgoliaPanel from '../atoms/AlgoliaPanel'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -18,26 +20,21 @@ const useStyles = makeStyles(theme => ({
     transform: 'translate(-50%, -50%)',
     width: 600,
   },
-  filterTitle: {
+  modalTitle: {
+    fontFamily: 'Rubik',
+  },
+  filterCheckbox: {},
+  filterList: {
+    listStyleType: 'none',
+  },
+  panelHeader: {
     fontSize: '18px',
     color: theme.palette.primary.main,
     fontWeight: '500',
     lineHeight: '21px',
   },
-  modalTitle: {
-    fontFamily: 'Rubik',
-  },
 }))
-const SearchFilter = ({
-  modalState,
-  modalStateSetter,
-  setIsSpotsShowing,
-  setIsArticlesShowing,
-  isSpotsShowing,
-  isArticlesShowing,
-  enviesSport,
-  currentArticles,
-}) => {
+const SearchFilter = ({ modalState, modalStateSetter, currentArticles }) => {
   const classes = useStyles()
 
   const handleSubmit = event => {
@@ -45,7 +42,7 @@ const SearchFilter = ({
   }
 
   return (
-    <Modal open={modalState === 'login'} disableScrollLock>
+    <Modal open={modalState === 'filter'} disableScrollLock>
       {/* TODO filtrer les articles par meta 
       .filter(currentArticle =>
       currentArticle.meta.some(currentMeta => enviesSport.includes(currentMeta))
@@ -67,60 +64,54 @@ const SearchFilter = ({
           <Box p={5} display="flex" justifyContent="space-between">
             <Box>
               <Box className={classes.results}>
-                <Typography className={classes.filterTitle} mb={2}>
-                  Résulats
-                </Typography>
-                <Box display="flex" flexDirection="column" justifyContent="space-enenly" mb={7}>
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Spots"
-                    onChange={event => setIsSpotsShowing(event.target.checked)}
-                    checked={isSpotsShowing}
-                    margin="none"
-                    sx={{ height: '27px' }}
+                <AlgoliaPanel header="Résultats" headerClassName={classes.panelHeader}>
+                  <RefinementList
+                    attribute="resultats"
+                    classNames={{
+                      checkbox: classes.filterCheckbox,
+                      item: classes.filterItem,
+                      list: classes.filterList,
+                    }}
                   />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Articles"
-                    onChange={event => setIsArticlesShowing(event.target.checked)}
-                    checked={isArticlesShowing}
-                    margin="none"
-                    sx={{ height: '27px' }}
-                  />
-                </Box>
+                </AlgoliaPanel>
               </Box>
               <Box className={classes.travelType}>
-                <Typography className={classes.filterTitle} mb={2}>
-                  Type de séjour
-                </Typography>
+                <AlgoliaPanel header="Tu es un voyageur" headerClassName={classes.panelHeader}>
+                  <RefinementList
+                    attribute="tu_es_un_voyageur"
+                    classNames={{
+                      checkbox: classes.filterCheckbox,
+                      item: classes.filterItem,
+                      list: classes.filterList,
+                    }}
+                  />
+                </AlgoliaPanel>
               </Box>
             </Box>
             <Box className={classes.articleType}>
-              <Typography className={classes.filterTitle} mb={2}>
-                Type d&rsquo;article
-              </Typography>
-              <Box>
-                {enviesSport
-                  .filter(({ value }) =>
-                    currentArticles.some(({ meta }) => meta.includes(parseInt(value, 10)))
-                  )
-                  .map(({ label }) => (
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={label}
-                      onChange={event => setIsArticlesShowing(event.target.checked)}
-                      checked={isArticlesShowing}
-                      margin="none"
-                      sx={{ height: '27px' }}
-                    />
-                  ))}
-              </Box>
+              {/* <DynamicWidgets> */}
+              <AlgoliaPanel header="Type de séjour" headerClassName={classes.panelHeader}>
+                <RefinementList
+                  attribute="type_de_sejour"
+                  classNames={{
+                    checkbox: classes.filterCheckbox,
+                    item: classes.filterItem,
+                    list: classes.filterList,
+                  }}
+                />
+              </AlgoliaPanel>
+              {/* </DynamicWidgets> */}
             </Box>
           </Box>
           <Divider />
           <Box p={4} display="flex" justifyContent="space-between">
             <Button sx={{ textTransform: 'none' }}>Tout effacer</Button>
-            <Button type="submit" onClick={() => modalStateSetter('')} variant="contained">
+            <Button
+              type="submit"
+              onClick={() => modalStateSetter('')}
+              variant="contained"
+              sx={{ borderRadius: '29px' }}
+            >
               Voir les résultats
             </Button>
           </Box>

@@ -46,7 +46,7 @@ const MyApp = props => {
         <GlobalClassGenerator>
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <InstantSearch searchClient={searchClient} indexName="SearchFront">
+              <InstantSearch searchClient={searchClient} indexName="SearchFront" routing>
                 <Configure hitsPerPage={900} />
                 <CssBaseline />
                 <SessionContextProvider>

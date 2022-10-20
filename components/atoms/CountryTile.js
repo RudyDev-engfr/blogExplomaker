@@ -159,7 +159,7 @@ const CountryTile = ({
           />
           <Box position="relative" height="100%" width="100%">
             <Image
-              src={srcImg}
+              src={encodeURI(srcImg)}
               alt={altImg}
               layout="fill"
               objectFit="cover"

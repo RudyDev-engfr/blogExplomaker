@@ -220,7 +220,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
               <Image src={logoFull} width="180" />
             </Box>
           </Link>
-          <SearchField isNavbar />
+          {router.pathname.indexOf('/results') === -1 && <SearchField isNavbar />}
           <Box className={classes.headerInnerRight}>
             <Box>
               <Link href="/" passHref>

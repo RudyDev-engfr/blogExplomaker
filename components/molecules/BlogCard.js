@@ -263,7 +263,7 @@ const BlogCard = ({
               [classes.smallSizeMediaImg]: isSmallSize,
             })}
           >
-            <Image src={srcImg} alt={altImg} layout="fill" objectFit="cover" />
+            <Image src={encodeURI(srcImg)} alt={altImg} layout="fill" objectFit="cover" />
           </Box>
         </CardMedia>
         <CardContent

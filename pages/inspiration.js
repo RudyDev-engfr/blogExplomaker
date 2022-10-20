@@ -266,6 +266,7 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
               data={currentSpotlightArticles}
               isShowingAllArticles={isShowingAllArticles}
               isSmallSize
+              numberOfArticles={3}
             />
             <Box display="flex" justifyContent="center">
               {!isShowingAllArticles ? (
