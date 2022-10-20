@@ -18,10 +18,6 @@ const ArticlesList = ({
 }) => {
   const classes = useStyles()
 
-  useEffect(() => {
-    console.log('data', data)
-  }, [])
-
   return (
     <Box display="flex" justifyContent="space-between" flexWrap="wrap">
       {isAlgolia
