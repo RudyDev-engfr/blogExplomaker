@@ -58,25 +58,22 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.secondary.contrastText,
     },
   },
-  sortAdornment: {
-    fontSize: '14px',
-  },
-  inputSort: {
-    fontSize: '14px',
-  },
+  // sortAdornment: {
+  //   fontSize: '14px',
+  // },
+  // inputSort: {
+  //   fontSize: '14px',
+  // },
 }))
 
 const Search = ({ modalState, modalStateSetter }) => {
   const classes = useStyles()
 
   const [currentSpots, setCurrentSpots] = useState([])
-  const [isSpotsShowing, setIsSpotsShowing] = useState(true)
   const [currentArticles, setCurrentArticles] = useState([])
-  const [isArticlesShowing, setIsArticlesShowing] = useState(true)
-  const [enviesSport, setEnviesSport] = useState([])
   const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
   const [isShowingAllArticles, setIsShowingAllArticles] = useState(false)
-  const [currentSort, setCurrentSort] = useState('pertinence')
+  // const [currentSort, setCurrentSort] = useState('pertinence')
 
   const transformItems = useCallback(
     spotsAndArticles =>
@@ -86,8 +83,8 @@ const Search = ({ modalState, modalStateSetter }) => {
     []
   )
   const { hits } = useHits({ transformItems })
-  console.log('hits', hits)
-  console.log(typeof hits)
+  // console.log('hits', hits)
+  // console.log(typeof hits)
   useEffect(() => {
     const hitsKeys = Object.keys(hits)
     const hitsArray = hitsKeys.map(key => hits[key])

@@ -11,10 +11,8 @@ import SearchIcon from '@mui/icons-material/Search'
 
 import { SearchBox } from 'react-instantsearch-hooks-web'
 
-import Search from '../../components/molecules/Search'
-import { SessionContext } from '../../contexts/session'
-
-import BKG from '../../images/BKG.png'
+import Search from '../components/molecules/Search'
+import { SessionContext } from '../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -80,21 +78,7 @@ const Results = () => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const router = useRouter()
-  const { search: querySearch } = router.query
-
-  const { setSearchValue, needFetch, setNeedFetch } = useContext(SessionContext)
-
-  const [isShowingResults, setIsShowingResults] = useState(false)
   const [currentFilterModalState, setCurrentFilterModalState] = useState('')
-
-  useEffect(() => {
-    if (typeof querySearch !== 'undefined' && querySearch !== '') {
-      setSearchValue(querySearch)
-      // setNeedFetch(true)
-      setIsShowingResults(true)
-    }
-  }, [querySearch])
 
   return (
     <>
@@ -140,12 +124,7 @@ const Results = () => {
       {/* fin de partie 1 */}
       {/* Partie 2 */}
 
-      {isShowingResults && (
-        <Search
-          modalState={currentFilterModalState}
-          modalStateSetter={setCurrentFilterModalState}
-        />
-      )}
+      <Search modalState={currentFilterModalState} modalStateSetter={setCurrentFilterModalState} />
 
       {/* fin de partie 2 */}
     </>
