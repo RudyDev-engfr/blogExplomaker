@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import algoliasearch from 'algoliasearch'
@@ -15,6 +15,7 @@ import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-hooks-w
 import { history } from 'instantsearch.js/es/lib/routers'
 
 import Search from '../components/molecules/Search'
+import GoTopBtn from '../components/GoTopBtn'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -84,6 +85,25 @@ const Results = () => {
   const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
 
   const [currentFilterModalState, setCurrentFilterModalState] = useState('')
+  const [showGoTop, setShowGoTop] = useState(false)
+  const refScrollUp = useRef(null)
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleVisibleButton = () => {
+    if (window.pageYOffset > 50) {
+      setShowGoTop(true)
+    } else {
+      setShowGoTop(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleVisibleButton)
+
+    return () => {
+      window.removeEventListener('scroll', handleVisibleButton)
+    }
+  }, [handleVisibleButton])
 
   return (
     <>
@@ -97,7 +117,19 @@ const Results = () => {
         }}
       >
         <Configure hitsPerPage={900} />
-
+        <Box ref={refScrollUp} />
+        {!matchesXs && (
+          <GoTopBtn
+            show={showGoTop}
+            scrollUp={() =>
+              refScrollUp.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'start',
+              })
+            }
+          />
+        )}
         {/* Partie 1 */}
         <Box className={classes.fullWidthContainer} paddingTop="82px">
           <Box className={classes.mainContainer}>

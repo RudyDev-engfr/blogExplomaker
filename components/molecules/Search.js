@@ -7,6 +7,8 @@ import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
@@ -68,11 +70,15 @@ const useStyles = makeStyles(theme => ({
 
 const Search = ({ modalState, modalStateSetter }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
+  const { setCurrentHitsArray } = useContext(SessionContext)
   const [currentSpots, setCurrentSpots] = useState([])
   const [currentArticles, setCurrentArticles] = useState([])
   const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
   const [isShowingAllArticles, setIsShowingAllArticles] = useState(false)
+
   // const [currentSort, setCurrentSort] = useState('pertinence')
 
   const transformItems = useCallback(
@@ -91,6 +97,7 @@ const Search = ({ modalState, modalStateSetter }) => {
     if (typeof hitsArray !== 'undefined') {
       setCurrentSpots(hitsArray.filter(hit => hit.resultats === 'Destinations'))
       setCurrentArticles(hitsArray.filter(hit => hit.resultats === 'Articles'))
+      setCurrentHitsArray(hitsArray)
     }
   }, [hits])
 

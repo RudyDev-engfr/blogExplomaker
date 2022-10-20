@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     height: '40px',
     backgroundColor: theme.palette.primary.ultraLight,
     borderRadius: '5px',
-    zIndex: '1',
+    zIndex: '10',
     [theme.breakpoints.down('xl')]: {
       right: '8%',
     },

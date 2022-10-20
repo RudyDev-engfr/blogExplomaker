@@ -8,6 +8,7 @@ const SessionContextProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState('')
   const [needFetch, setNeedFetch] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState('')
+  const [currentHitsArray, setCurrentHitsArray] = useState()
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(user))
@@ -95,6 +96,8 @@ const SessionContextProvider = ({ children }) => {
         setIsAuthModalOpen,
         needFetch,
         setNeedFetch,
+        currentHitsArray,
+        setCurrentHitsArray,
       }}
     >
       {children}

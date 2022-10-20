@@ -12,7 +12,7 @@ const SpotList = ({ data, isShowingAllSpots, isAlgolia = false, numberOfSpots = 
     <>
       {isAlgolia
         ? data
-            .filter((spot, index) => (isShowingAllSpots ? true : index <= numberOfSpots - 1))
+            .filter((spot, index) => (isShowingAllSpots ? index <= 15 : index <= numberOfSpots - 1))
             .map(({ country, titre, picture, slug, color }) => (
               <CountryTile
                 countryTitle={titre}
