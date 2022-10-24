@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -23,8 +24,10 @@ const ContinentCard = ({
   isHovering,
   setIsHovering,
   index,
+  url,
 }) => {
   const classes = useStyles()
+  const router = useRouter()
   return (
     <>
       <Paper
@@ -32,6 +35,7 @@ const ContinentCard = ({
         className={classes.mainContainer}
         onMouseEnter={() => setIsHovering(index)}
         onMouseLeave={() => setIsHovering(false)}
+        onClick={() => router.push(`results?${url}`)}
       >
         <Image
           src={isHovering === index ? continentHoverImg : continentImg}

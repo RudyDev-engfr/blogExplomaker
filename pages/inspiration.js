@@ -177,41 +177,49 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       name: 'Europe',
       img: europa,
       hoverImg: europaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Europe',
     },
     {
       name: 'Afrique',
       img: africa,
       hoverImg: africaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Afrique',
     },
     {
       name: 'Asie',
       img: asia,
       hoverImg: asiaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Asie',
     },
     {
       name: 'Océanie',
       img: oceania,
       hoverImg: oceaniaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Océanie',
     },
     {
       name: 'Amérique centrale',
       img: centralAmerica,
       hoverImg: centralAmericaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Amérique%20Centrale',
     },
     {
       name: 'Amérique du Nord',
       img: northAmerica,
       hoverImg: northAmericaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Amérique%20du%20Nord',
     },
     {
       name: 'Amérique du Sud',
       img: southAmerica,
       hoverImg: southAmericaWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Amérique%20du%20Sud',
     },
     {
       name: 'Moyen-Orient',
       img: middleEast,
       hoverImg: middleEastWhite,
+      url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Moyen%20Orient',
     },
   ]
   useEffect(() => {
@@ -364,7 +372,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             Inspiration par continent
           </Typography>
           <Box className={classes.continentGrid}>
-            {continentArray.map(({ name, img, hoverImg }, index) => (
+            {continentArray.map(({ name, img, hoverImg, url }, index) => (
               <ContinentCard
                 continentTitle={name}
                 continentImg={img}
@@ -373,6 +381,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 isHovering={isHovering}
                 index={index}
                 key={name}
+                url={url}
               />
             ))}
           </Box>
