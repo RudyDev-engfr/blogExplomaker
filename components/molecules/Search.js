@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useCallback } from 'react'
 
-import { useHits } from 'react-instantsearch-hooks-web'
+import { RefinementList, useHits } from 'react-instantsearch-hooks-web'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'

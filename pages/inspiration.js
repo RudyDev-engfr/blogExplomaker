@@ -34,6 +34,7 @@ import middleEastWhite from '../images/whiteContinent/middleEast.svg'
 import oceaniaWhite from '../images/whiteContinent/oceania.svg'
 
 import ContinentCard from '../components/atoms/ContinentCard'
+import ThematicCard from '../components/atoms/ThematicCard'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -107,34 +108,20 @@ const useStyles = makeStyles(theme => ({
     justifyItems: 'center',
     gridGap: '30px',
   },
+  thematicGridContainer: {
+    display: 'grid',
+    gridTemplate: '1fr 1fr / 1fr 1fr 1fr 1fr',
+    gridGap: '30px',
+  },
 }))
 
 export async function getStaticProps() {
-  const doc = await database.ref().child(`page_structure`).get()
+  const doc = await database.ref().child(`page_structure/inspiration`).get()
   const dictionary = await database.ref().child(`dictionary`).get()
-  let spotlight
-  let monthDestination
-  let favoritesArticles
+  let dataset
   let metaContinentRef
   if (doc.exists()) {
-    const spotlightDoc = await database.ref().child(`page_structure/inspiration/spotLight`).get()
-    if (spotlightDoc.exists()) {
-      spotlight = spotlightDoc.val()
-    }
-    const monthDestinationsDoc = await database
-      .ref()
-      .child(`page_structure/inspiration/monthDestination`)
-      .get()
-    if (monthDestinationsDoc.exists()) {
-      monthDestination = monthDestinationsDoc.val()
-    }
-    const favoritesArticlesDoc = await database
-      .ref()
-      .child(`page_structure/inspiration/favoritesArticles`)
-      .get()
-    if (favoritesArticlesDoc.exists()) {
-      favoritesArticles = favoritesArticlesDoc.val()
-    }
+    dataset = doc.val()
   }
 
   if (dictionary.exists()) {
@@ -145,18 +132,45 @@ export async function getStaticProps() {
   }
 
   return {
-    props: { spotlight, monthDestination, favoritesArticles, metaContinentRef },
-    revalidate: 1,
+    props: { dataset, metaContinentRef },
+    revalidate: 5000,
   }
 }
 
-const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaContinentRef }) => {
+const Inspiration = ({ dataset, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
+  const { spotLight: spotlight, monthDestination, favoritesArticles, popularThemes } = dataset
   const [isShowingAllArticles, setIsShowingAllArticles] = useState(false)
   const [currentSpotlightArticles, setCurrentSpotlightArticles] = useState([])
+  const [currentPopularThemes, setCurrentPopularThemes] = useState([])
   const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+
+  useEffect(() => {
+    // if (typeof popularTheme !== 'undefined') {
+    console.log('le theme populaire', popularThemes)
+    const popularThemeKeys = Object.keys(popularThemes)
+    console.log('les Clés', popularThemeKeys)
+    const tempPopularThemeArray = popularThemeKeys.map(currentKey => popularThemes[currentKey])
+    console.log('transformation tableau', tempPopularThemeArray)
+    // const definitiveThemeArray = tempPopularThemeArray.map(currentTheme => {
+    //   // eslint-disable-next-line no-undef
+    //   const definitiveTheme = structuredClone(currentTheme)
+    //   definitiveTheme.picture.src.original = `https://storage.googleapis.com/stateless-www-explomaker-fr/${currentTheme.picture.src.original}`
+    //   return definitiveTheme
+    // })
+    setCurrentPopularThemes(tempPopularThemeArray)
+    // }
+  }, [popularThemes])
+
+  useEffect(() => {
+    console.log('inspiration', dataset)
+  }, [])
+
+  useEffect(() => {
+    console.log('final theme', currentPopularThemes)
+  }, [currentPopularThemes])
 
   const continentArray = [
     {
@@ -227,7 +241,7 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
         </Box>
       </Box>
       <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
-        <Paper elevation={0} className={classes.headingPaper}>
+        <Paper className={classes.headingPaper}>
           {/* Partie 1 Tile + text */}
           <Box display="flex" marginBottom="60px">
             <Box marginRight="50px">
@@ -365,7 +379,40 @@ const Inspiration = ({ spotlight, monthDestination, favoritesArticles, metaConti
         </Box>
       </Box>
       {/* fin de Partie 4 liste de continents */}
-      {/* Partie 5 liste des */}
+      {/* Partie 5 liste des thématiques */}
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ width: '1140px' }}>
+          <Typography
+            variant="h6"
+            color="primary.ultraDark"
+            fontWeight="400"
+            sx={{ marginBottom: '10px' }}
+          >
+            Thématiques
+          </Typography>
+          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+            Thématiques les plus populaires
+          </Typography>
+          <Box className={classes.thematicGridContainer}>
+            {currentPopularThemes.map(({ name: thematicName, picture, target_url: link }) => (
+              <ThematicCard
+                key={thematicName}
+                title={thematicName}
+                srcImg={picture.src.original}
+                link={link}
+              />
+            ))}
+          </Box>
+        </Box>
+      </Box>
     </Box>
   )
 }
