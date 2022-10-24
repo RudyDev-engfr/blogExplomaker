@@ -31,7 +31,7 @@ const ContinentCard = ({
   return (
     <>
       <Paper
-        elevation="1"
+        elevation={1}
         className={classes.mainContainer}
         onMouseEnter={() => setIsHovering(index)}
         onMouseLeave={() => setIsHovering(false)}

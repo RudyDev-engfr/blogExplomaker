@@ -23,7 +23,7 @@ import ArticlesList from './ArticlesList'
 
 const useStyles = makeStyles(theme => ({
   greyBackgroundContainer: {
-    backgroundColor: theme.palette.grey.e5,
+    backgroundColor: theme.palette.grey.f7,
   },
   mainContainer: {
     maxWidth: '1140px',
@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.grey.grey33,
     border: '1px solid #DFDFDF',
     borderRadius: '5px',
+    fontSize: '14px',
+    padding: '6px 13px',
+    height: '32px',
     backgroundColor: theme.palette.secondary.contrastText,
     '&::before': {
       '&:hover': {
@@ -76,8 +79,8 @@ const Search = ({ modalState, modalStateSetter }) => {
   const { setCurrentHitsArray } = useContext(SessionContext)
   const [currentSpots, setCurrentSpots] = useState([])
   const [currentArticles, setCurrentArticles] = useState([])
-  const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
-  const [isShowingAllArticles, setIsShowingAllArticles] = useState(false)
+  const [isShowingMoreSpots, setIsShowingMoreSpots] = useState(false)
+  const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
 
   // const [currentSort, setCurrentSort] = useState('pertinence')
 
@@ -147,7 +150,7 @@ const Search = ({ modalState, modalStateSetter }) => {
                   </MenuItem>
                 </TextField> */}
                 <Button
-                  startIcon={<Image src={union} width={20} height={20} quality={100} />}
+                  startIcon={<Image src={union} width={13.33} height={13.33} quality={100} />}
                   onClick={() => modalStateSetter('filter')}
                   disableRipple
                   classes={{ root: classes.filterButton }}
@@ -169,9 +172,15 @@ const Search = ({ modalState, modalStateSetter }) => {
               )}
               {currentSpots.length > 4 && (
                 <Button
-                  sx={{ textTransform: 'none' }}
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
                   variant="contained"
-                  onClick={() => setIsShowingAllSpots(true)}
+                  onClick={() => setIsShowingMoreSpots(true)}
                 >
                   Voir tout
                 </Button>
@@ -179,7 +188,7 @@ const Search = ({ modalState, modalStateSetter }) => {
             </Box>
             <Box className={classes.spotResultContainer}>
               {currentSpots.length > 0 && (
-                <SpotList data={currentSpots} isShowingAllSpots={isShowingAllSpots} isAlgolia />
+                <SpotList data={currentSpots} isShowingAllSpots={isShowingMoreSpots} isAlgolia />
               )}
             </Box>
             <Box
@@ -195,9 +204,15 @@ const Search = ({ modalState, modalStateSetter }) => {
               )}
               {currentArticles.length > 9 && (
                 <Button
-                  sx={{ textTransform: 'none' }}
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
                   variant="contained"
-                  onClick={() => setIsShowingAllArticles(true)}
+                  onClick={() => setIsShowingMoreArticles(true)}
                 >
                   Voir tout
                 </Button>
@@ -207,9 +222,9 @@ const Search = ({ modalState, modalStateSetter }) => {
               {currentArticles.length > 0 && (
                 <ArticlesList
                   data={currentArticles}
-                  isShowingAllArticles={isShowingAllArticles}
+                  isShowingMoreArticles={isShowingMoreArticles}
                   isAlgolia
-                  numberOfArticles={3}
+                  numberOfArticles={9}
                 />
               )}
             </Box>

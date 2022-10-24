@@ -15,6 +15,7 @@ import SessionContextProvider from '../contexts/session'
 import '../styles/firebaseui-styling.global.css'
 import '../styles/global.css'
 import '../styles/algolia.css'
+import Loader from '../components/atoms/Loader'
 
 const mapsLibraries = ['places']
 
@@ -55,7 +56,7 @@ const MyApp = props => {
       </>
     )
   }
-  return <h2>{loadError || 'Loading...'}</h2>
+  return <h2>{loadError || <Loader />}</h2>
 }
 
 export default MyApp

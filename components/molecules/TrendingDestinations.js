@@ -134,7 +134,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
               }) => (
                 <CountryTile
                   countryTitle={title}
-                  category={continent[0]}
+                  category={continent}
                   srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureTitled.src.original}`}
                   altImg=""
                   key={`trendingDestination-${slug}`}

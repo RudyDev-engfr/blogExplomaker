@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 })
 const ArticlesList = ({
   data,
-  isShowingAllArticles,
+  isShowingMoreArticles,
   isSmallSize = false,
   numberOfArticles = 2,
   isAlgolia = false,
@@ -23,7 +23,7 @@ const ArticlesList = ({
       {isAlgolia
         ? data
             .filter((article, index) =>
-              isShowingAllArticles ? true : index <= numberOfArticles - 1
+              isShowingMoreArticles ? index <= 29 : index <= numberOfArticles - 1
             )
             .map(
               ({
@@ -49,7 +49,7 @@ const ArticlesList = ({
             )
         : data
             .filter((article, index) =>
-              isShowingAllArticles ? true : index <= numberOfArticles - 1
+              isShowingMoreArticles ? true : index <= numberOfArticles - 1
             )
             .map(({ title, picture: pictureMain, target_url: targetUrl }) => (
               <MobileBlogCard

@@ -141,36 +141,19 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
   const { spotLight: spotlight, monthDestination, favoritesArticles, popularThemes } = dataset
-  const [isShowingAllArticles, setIsShowingAllArticles] = useState(false)
+  const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
   const [currentSpotlightArticles, setCurrentSpotlightArticles] = useState([])
   const [currentPopularThemes, setCurrentPopularThemes] = useState([])
-  const [isShowingAllSpots, setIsShowingAllSpots] = useState(false)
+  const [isShowingMoreSpots, setIsShowingMoreSpots] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
-    // if (typeof popularTheme !== 'undefined') {
-    console.log('le theme populaire', popularThemes)
-    const popularThemeKeys = Object.keys(popularThemes)
-    console.log('les Clés', popularThemeKeys)
-    const tempPopularThemeArray = popularThemeKeys.map(currentKey => popularThemes[currentKey])
-    console.log('transformation tableau', tempPopularThemeArray)
-    // const definitiveThemeArray = tempPopularThemeArray.map(currentTheme => {
-    //   // eslint-disable-next-line no-undef
-    //   const definitiveTheme = structuredClone(currentTheme)
-    //   definitiveTheme.picture.src.original = `https://storage.googleapis.com/stateless-www-explomaker-fr/${currentTheme.picture.src.original}`
-    //   return definitiveTheme
-    // })
-    setCurrentPopularThemes(tempPopularThemeArray)
-    // }
+    if (typeof popularThemes !== 'undefined') {
+      const popularThemeKeys = Object.keys(popularThemes)
+      const tempPopularThemeArray = popularThemeKeys.map(currentKey => popularThemes[currentKey])
+      setCurrentPopularThemes(tempPopularThemeArray)
+    }
   }, [popularThemes])
-
-  useEffect(() => {
-    console.log('inspiration', dataset)
-  }, [])
-
-  useEffect(() => {
-    console.log('final theme', currentPopularThemes)
-  }, [currentPopularThemes])
 
   const continentArray = [
     {
@@ -223,7 +206,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
     },
   ]
   useEffect(() => {
-    if (typeof spotlight !== 'undefined') {
+    if (typeof spotlight !== 'undefined' || spotlight !== {}) {
       const ArticlesKeys = Object.keys(spotlight.linked_posts)
       const tempArticlesArray = ArticlesKeys.map(currentKey => spotlight.linked_posts[currentKey])
       setCurrentSpotlightArticles(tempArticlesArray)
@@ -249,7 +232,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
         </Box>
       </Box>
       <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
-        <Paper className={classes.headingPaper}>
+        <Paper elevation={0} className={classes.headingPaper}>
           {/* Partie 1 Tile + text */}
           <Box display="flex" marginBottom="60px">
             <Box marginRight="50px">
@@ -287,16 +270,16 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             </Typography>
             <ArticlesList
               data={currentSpotlightArticles}
-              isShowingAllArticles={isShowingAllArticles}
+              isShowingMoreArticles={isShowingMoreArticles}
               isSmallSize
               numberOfArticles={3}
             />
             <Box display="flex" justifyContent="center">
-              {!isShowingAllArticles ? (
+              {!isShowingMoreArticles ? (
                 <Button
                   variant="contained"
                   className={classes.buttonPrimary}
-                  onClick={() => setIsShowingAllArticles(true)}
+                  onClick={() => setIsShowingMoreArticles(true)}
                   sx={{ width: '13%' }}
                 >
                   Voir tout
@@ -305,7 +288,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 <Button
                   variant="contained"
                   className={classes.buttonPrimary}
-                  onClick={() => setIsShowingAllArticles(false)}
+                  onClick={() => setIsShowingMoreArticles(false)}
                   sx={{ width: '13%' }}
                 >
                   Voir moins
@@ -320,14 +303,14 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               Spots en {spotlight.title}
             </Typography>
             <Box className={classes.spotResultContainer}>
-              <SpotList data={spotlight.unmissable} isShowingAllSpots={isShowingAllSpots} />
+              <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
             </Box>
             <Box display="flex" justifyContent="center">
-              {!isShowingAllSpots ? (
+              {!isShowingMoreSpots ? (
                 <Button
                   variant="contained"
                   className={classes.buttonPrimary}
-                  onClick={() => setIsShowingAllSpots(true)}
+                  onClick={() => setIsShowingMoreSpots(true)}
                   sx={{ width: '13%' }}
                 >
                   Voir tout
@@ -336,7 +319,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 <Button
                   variant="contained"
                   className={classes.buttonPrimary}
-                  onClick={() => setIsShowingAllSpots(false)}
+                  onClick={() => setIsShowingMoreSpots(false)}
                   sx={{ width: '13%' }}
                 >
                   Voir moins
