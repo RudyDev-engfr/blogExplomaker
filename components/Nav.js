@@ -228,7 +228,7 @@ const Nav = () => {
                 <Button
                   disableElevation
                   className={classes.createAccountBtn}
-                  onClick={() => setIsAuthModalOpen('signUp')}
+                  onClick={() => setIsAuthModalOpen('signup')}
                 >
                   Créer mon compte
                 </Button>

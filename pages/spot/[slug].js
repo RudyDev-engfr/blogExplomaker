@@ -834,11 +834,13 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
 
   useEffect(() => {
-    const trendingDestinationsKeys = Object.keys(trendingDestinations)
-    const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
-      currentKey => trendingDestinations[currentKey]
-    )
-    setTrendingDestinationsItems(tempTrendingDestinationsArray)
+    if (typeof trendingDestinations !== 'undefined') {
+      const trendingDestinationsKeys = Object.keys(trendingDestinations)
+      const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
+        currentKey => trendingDestinations[currentKey]
+      )
+      setTrendingDestinationsItems(tempTrendingDestinationsArray)
+    }
   }, [])
 
   useEffect(() => {
