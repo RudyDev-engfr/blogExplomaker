@@ -1,6 +1,8 @@
 * {
   scrollbar-color: #009d8c #f7f7f7;
   scrollbar-width: thin;
+  padding: 0;
+  margin: 0;
 }
 *::-webkit-scrollbar {
   width: 8px; /* width of the entire scrollbar */

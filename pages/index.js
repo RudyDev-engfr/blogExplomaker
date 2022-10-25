@@ -441,6 +441,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '20px',
+    fontSize: '2.125rem',
   },
   stroke: {
     margin: '0 30px',
@@ -1570,7 +1571,16 @@ const Home = ({ dataset }) => {
                       <Box key={`hotArticles${title}`}>
                         <Button
                           className={classes.buttonBlogList}
-                          endIcon={<ArrowRightAlt sx={{ color: 'rgba(0, 0, 0, 0.87)' }} />}
+                          endIcon={
+                            <ArrowRightAlt
+                              sx={{
+                                color: '#DFDFDF',
+                                fontSize: '2.125rem',
+                                width: '34px',
+                                height: '34px',
+                              }}
+                            />
+                          }
                           sx={{
                             borderRadius:
                               index === 0
@@ -1584,7 +1594,7 @@ const Home = ({ dataset }) => {
                             <Box marginBottom="10px">
                               <Typography
                                 className={classes.newsLabel}
-                                dangerouslySetInnerHTML={{ __html: subType }}
+                                dangerouslySetInnerHTML={{ __html: subType[0].name }}
                               />
                             </Box>
                             <Typography

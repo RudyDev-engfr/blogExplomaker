@@ -3,8 +3,8 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    width: '100%',
-    height: '100vh',
+    width: 'calc(100vw + 8px)',
+    height: 'calc(100vh + 16px)',
     backgroundColor: '#009d8c',
     display: 'flex',
     justifyContent: 'center',
