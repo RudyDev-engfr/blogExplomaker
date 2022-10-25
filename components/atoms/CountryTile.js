@@ -138,7 +138,7 @@ const CountryTile = ({
   categoryColor = 1,
   srcImg,
   altImg,
-  link,
+  link = 'polynesie-francaise',
   likesCounter = '0',
   commentsCounter = '0',
 }) => {
