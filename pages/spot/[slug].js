@@ -795,6 +795,14 @@ export async function getStaticProps({ params }) {
   let homePage
   if (doc.exists()) {
     dataset = doc.val()
+    if (
+      dataset.publication.website === 'false' ||
+      typeof dataset.publication.website === 'undefined'
+    ) {
+      return {
+        notFound: true,
+      }
+    }
     const dictionaryDoc = await database.ref().child(`dictionary`).get()
     if (dictionaryDoc.exists()) {
       dictionary = dictionaryDoc.val()
@@ -802,12 +810,6 @@ export async function getStaticProps({ params }) {
     const homePageDoc = await database.ref().child(`page_structure/accueil`).get()
     if (homePageDoc.exists()) {
       homePage = homePageDoc.val()
-    }
-  }
-
-  if (!dataset?.publication?.website) {
-    return {
-      notFound: true,
     }
   }
 
@@ -983,20 +985,20 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   const reasonsCarousel = [
     {
-      cardTitle: dataset.reasons[0].title,
-      cardText: dataset.reasons[0].description,
-      cardTitle2: dataset.reasons[1].title,
-      cardText2: dataset.reasons[1].description,
+      cardTitle: dataset?.reasons[0].title,
+      cardText: dataset?.reasons[0].description,
+      cardTitle2: dataset?.reasons[1].title,
+      cardText2: dataset?.reasons[1].description,
     },
     {
-      cardTitle: dataset.reasons[2].title,
-      cardText: dataset.reasons[2].description,
-      cardTitle2: dataset.reasons[3].title,
-      cardText2: dataset.reasons[3].description,
+      cardTitle: dataset?.reasons[2].title,
+      cardText: dataset?.reasons[2].description,
+      cardTitle2: dataset?.reasons[3].title,
+      cardText2: dataset?.reasons[3].description,
     },
     {
-      cardTitle: dataset.reasons[4].title,
-      cardText: dataset.reasons[4].description,
+      cardTitle: dataset?.reasons[4].title,
+      cardText: dataset?.reasons[4].description,
     },
   ]
 

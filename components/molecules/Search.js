@@ -167,10 +167,10 @@ const Search = ({ modalState, modalStateSetter }) => {
             >
               {currentSpots.length > 0 && (
                 <Typography variant="h3" component="h2">
-                  Spots({currentSpots.length})
+                  Spots({currentSpots.length > 16 && '16+'})
                 </Typography>
               )}
-              {currentSpots.length > 4 && (
+              {currentSpots.length > 4 && !isShowingMoreSpots && (
                 <Button
                   sx={{
                     textTransform: 'none',
@@ -182,13 +182,28 @@ const Search = ({ modalState, modalStateSetter }) => {
                   variant="contained"
                   onClick={() => setIsShowingMoreSpots(true)}
                 >
-                  Voir tout
+                  Voir plus
+                </Button>
+              )}
+              {isShowingMoreSpots && (
+                <Button
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
+                  variant="contained"
+                  onClick={() => setIsShowingMoreSpots(false)}
+                >
+                  Voir moins
                 </Button>
               )}
             </Box>
             <Box className={classes.spotResultContainer}>
               {currentSpots.length > 0 && (
-                <SpotList data={currentSpots} isShowingAllSpots={isShowingMoreSpots} isAlgolia />
+                <SpotList data={currentSpots} isShowingMoreSpots={isShowingMoreSpots} isAlgolia />
               )}
             </Box>
             <Box
@@ -202,7 +217,7 @@ const Search = ({ modalState, modalStateSetter }) => {
                   Articles({currentArticles.length})
                 </Typography>
               )}
-              {currentArticles.length > 9 && (
+              {currentArticles.length > 9 && !isShowingMoreArticles && (
                 <Button
                   sx={{
                     textTransform: 'none',
@@ -214,7 +229,22 @@ const Search = ({ modalState, modalStateSetter }) => {
                   variant="contained"
                   onClick={() => setIsShowingMoreArticles(true)}
                 >
-                  Voir tout
+                  Voir plus
+                </Button>
+              )}
+              {isShowingMoreArticles && (
+                <Button
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
+                  variant="contained"
+                  onClick={() => setIsShowingMoreArticles(false)}
+                >
+                  Voir moins
                 </Button>
               )}
             </Box>

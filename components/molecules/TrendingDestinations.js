@@ -137,6 +137,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
                   category={continent}
                   srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureTitled.src.original}`}
                   altImg=""
+                  link={slug}
                   key={`trendingDestination-${slug}`}
                   categoryColor={color}
                 />
@@ -203,6 +204,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
                     categoryColor={color}
                     srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureTitled.src.original}`}
                     altImg=""
+                    link={slug}
                     key={`trendingDestination-${slug}`}
                   />
                 )
