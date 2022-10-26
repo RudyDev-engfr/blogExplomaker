@@ -833,15 +833,15 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [showGoTop, setShowGoTop] = useState(false)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
 
-  useEffect(() => {
-    if (typeof trendingDestinations !== 'undefined') {
-      const trendingDestinationsKeys = Object.keys(trendingDestinations)
-      const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
-        currentKey => trendingDestinations[currentKey]
-      )
-      setTrendingDestinationsItems(tempTrendingDestinationsArray)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (typeof trendingDestinations !== 'undefined') {
+  //     const trendingDestinationsKeys = Object.keys(trendingDestinations)
+  //     const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
+  //       currentKey => trendingDestinations[currentKey]
+  //     )
+  //     setTrendingDestinationsItems(tempTrendingDestinationsArray)
+  //   }
+  // }, [])
 
   useEffect(() => {
     const tempTimeline = []
@@ -2213,10 +2213,10 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       {/* Partie 6 */}
       <Box marginBottom="150px">
         <Box className={classes.mainContainer}>
-          <TrendingDestinations
+          {/* <TrendingDestinations
             trendingDestinationsItems={trendingDestinationsItems}
             dotListClass={classes.customTrendingDestinationsDotBox}
-          />
+          /> */}
         </Box>
       </Box>
       {/* fin de la Partie 6 */}
