@@ -1074,12 +1074,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   return (
     <>
-      <Head
+      {/* <Head
         title={dataset?.title}
         description={dataset?.catch_sentence}
         url={`https://explomaker.fr/spot/${slug}`}
         thumbnail={`https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset?.picture_main.src.thumbnail}`}
-      />
+      /> */}
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn
