@@ -796,8 +796,8 @@ export async function getStaticProps({ params }) {
   if (doc.exists()) {
     dataset = doc.val()
     if (
-      dataset.publication.website === 'false' ||
-      typeof dataset.publication.website === 'undefined'
+      dataset?.publication?.website === 'false' ||
+      typeof dataset?.publication?.website === 'undefined'
     ) {
       return {
         notFound: true,
