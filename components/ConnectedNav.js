@@ -225,12 +225,12 @@ const ConnectedNav = ({ isBgTransparent }) => {
             <Box>
               <Link href="/" passHref>
                 <Button disableRipple className={classes.navLink}>
-                  Accueil
+                  L&apos;app
                 </Button>
               </Link>
-              <Link href="https://app.explomaker.fr" passHref>
+              <Link href="/inspiration" passHref>
                 <Button disableRipple className={classes.navLink}>
-                  Séjours
+                  Inspiration
                 </Button>
               </Link>
             </Box>
@@ -261,7 +261,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                     }}
                     anchorPosition={{ left: 100, top: 100 }}
                   >
-                    <Link href="/inspiration" passHref>
+                    <Link href="https://app.explomaker.fr" passHref>
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"

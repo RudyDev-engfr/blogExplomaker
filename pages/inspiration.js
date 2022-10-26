@@ -148,7 +148,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
-    if (typeof popularThemes !== 'undefined') {
+    if (typeof popularThemes !== 'undefined' || popularThemes !== {}) {
       const popularThemeKeys = Object.keys(popularThemes)
       const tempPopularThemeArray = popularThemeKeys.map(currentKey => popularThemes[currentKey])
       setCurrentPopularThemes(tempPopularThemeArray)

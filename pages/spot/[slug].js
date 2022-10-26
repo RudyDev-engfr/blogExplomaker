@@ -796,8 +796,8 @@ export async function getStaticProps({ params }) {
   if (doc.exists()) {
     dataset = doc.val()
     if (
-      dataset.publication.website === 'false' ||
-      typeof dataset.publication.website === 'undefined'
+      dataset?.publication?.website === 'false' ||
+      typeof dataset?.publication?.website === 'undefined'
     ) {
       return {
         notFound: true,
@@ -833,13 +833,15 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [showGoTop, setShowGoTop] = useState(false)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
 
-  useEffect(() => {
-    const trendingDestinationsKeys = Object.keys(trendingDestinations)
-    const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
-      currentKey => trendingDestinations[currentKey]
-    )
-    setTrendingDestinationsItems(tempTrendingDestinationsArray)
-  }, [])
+  // useEffect(() => {
+  //   if (typeof trendingDestinations !== 'undefined') {
+  //     const trendingDestinationsKeys = Object.keys(trendingDestinations)
+  //     const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
+  //       currentKey => trendingDestinations[currentKey]
+  //     )
+  //     setTrendingDestinationsItems(tempTrendingDestinationsArray)
+  //   }
+  // }, [])
 
   useEffect(() => {
     const tempTimeline = []
@@ -1072,12 +1074,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   return (
     <>
-      <Head
+      {/* <Head
         title={dataset?.title}
         description={dataset?.catch_sentence}
         url={`https://explomaker.fr/spot/${slug}`}
         thumbnail={`https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset?.picture_main.src.thumbnail}`}
-      />
+      /> */}
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn
@@ -1456,7 +1458,9 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                             {!isShowingMap && typeof picture !== 'undefined' && (
                               <Box position="relative">
                                 <Image
-                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture.src?.original}`}
+                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                    picture.src?.original
+                                  )}`}
                                   layout="fill"
                                   quality={100}
                                   className={classes.countryGalleryImg}
@@ -1559,7 +1563,9 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           {!isShowingMap && (
                             <Box position="relative">
                               <Image
-                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture?.src.original}`}
+                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                  picture?.src.original
+                                )}`}
                                 layout="fill"
                                 quality={100}
                                 className={classes.countryGalleryImg}
@@ -1705,9 +1711,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     key={id}
                   >
                     <Image
-                      src={encodeURI(
-                        `https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`
-                      )}
+                      src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`}
                       layout="fill"
                     />
                   </Box>
@@ -2211,10 +2215,10 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       {/* Partie 6 */}
       <Box marginBottom="150px">
         <Box className={classes.mainContainer}>
-          <TrendingDestinations
+          {/* <TrendingDestinations
             trendingDestinationsItems={trendingDestinationsItems}
             dotListClass={classes.customTrendingDestinationsDotBox}
-          />
+          /> */}
         </Box>
       </Box>
       {/* fin de la Partie 6 */}

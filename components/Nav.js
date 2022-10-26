@@ -208,9 +208,9 @@ const Nav = () => {
               </Link>
               <SearchField isNavbar />
               <Box className={classes.headerInnerRight}>
-                <Link href="/" passHref>
+                <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>
-                    Accueil
+                    Inspiration
                   </Button>
                 </Link>
                 <Link href="https://app.explomaker.fr" passHref>
@@ -228,7 +228,7 @@ const Nav = () => {
                 <Button
                   disableElevation
                   className={classes.createAccountBtn}
-                  onClick={() => setIsAuthModalOpen('signUp')}
+                  onClick={() => setIsAuthModalOpen('signup')}
                 >
                   Créer mon compte
                 </Button>
