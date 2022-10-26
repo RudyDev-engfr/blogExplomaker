@@ -1457,12 +1457,14 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           <Box className={classes.mobileCountryGalleryImgContainer}>
                             {!isShowingMap && typeof picture !== 'undefined' && (
                               <Box position="relative">
-                                <Image
-                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture.src?.original}`}
+                                {/* <Image
+                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                    picture.src?.original
+                                  )}`}
                                   layout="fill"
                                   quality={100}
                                   className={classes.countryGalleryImg}
-                                />
+                                /> */}
                               </Box>
                             )}
                           </Box>
@@ -1560,12 +1562,14 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         <Box className={classes.countryGalleryImgContainer}>
                           {!isShowingMap && (
                             <Box position="relative">
-                              <Image
-                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture?.src.original}`}
+                              {/* <Image
+                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                  picture?.src.original
+                                )}`}
                                 layout="fill"
                                 quality={100}
                                 className={classes.countryGalleryImg}
-                              />
+                              /> */}
                             </Box>
                           )}
                         </Box>
@@ -1661,7 +1665,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
           },
         }}
       >
-        {/* {matchesXs ? (
+        {matchesXs ? (
           <>
             <MultiCarousel
               itemClass={classes.mobileCarouselItem}
@@ -1706,12 +1710,10 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     position="relative"
                     key={id}
                   >
-                    <Image
-                      src={encodeURI(
-                        `https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`
-                      )}
+                    {/* <Image
+                      src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`}
                       layout="fill"
-                    />
+                    /> */}
                   </Box>
                 )
               })}
@@ -1781,18 +1783,18 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         borderRadius: '20px 20px 0px 0px',
                       }}
                     >
-                      <Image
+                      {/* <Image
                         src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`}
                         width={960}
                         height={640}
-                      />
+                      /> */}
                     </Box>
                   </Box>
                 )
               })}
             </Carousel>
           </>
-        )} */}
+        )}
       </Box>
       {/* Fin du carousel de photos */}
       {/* Partie 3 */}
@@ -2089,7 +2091,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Button>
             </Box>
             <Box className={classes.imageContainerCTA2}>
-              <Image src={planningImg} width={537} quality={100} />
+              {/* <Image src={planningImg} width={537} quality={100} /> */}
             </Box>
           </Box>
         </Box>
