@@ -1661,7 +1661,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
           },
         }}
       >
-        {matchesXs ? (
+        {/* {matchesXs ? (
           <>
             <MultiCarousel
               itemClass={classes.mobileCarouselItem}
@@ -1792,7 +1792,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               })}
             </Carousel>
           </>
-        )}
+        )} */}
       </Box>
       {/* Fin du carousel de photos */}
       {/* Partie 3 */}
