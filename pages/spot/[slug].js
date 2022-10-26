@@ -14,7 +14,7 @@ import Language from '@mui/icons-material/Language'
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt'
 import PinDropOutlined from '@mui/icons-material/PinDropOutlined'
 import CameraAltOutlined from '@mui/icons-material/CameraAltOutlined'
-// import { Marker } from '@react-google-maps/api'
+import { Marker } from '@react-google-maps/api'
 import clsx from 'clsx'
 import Carousel from 'react-material-ui-carousel'
 import MultiCarousel from 'react-multi-carousel'
@@ -25,7 +25,7 @@ import 'react-multi-carousel/lib/styles.css'
 import BlogCard from '../../components/molecules/BlogCard'
 import GoTopBtn from '../../components/GoTopBtn'
 import IndicatorBox from '../../components/atoms/IndicatorBox'
-// import Map from '../../components/Map'
+import Map from '../../components/Map'
 import { database } from '../../lib/firebase'
 
 import MobileBlogCard from '../../components/molecules/MobileBlogCard'
@@ -1087,9 +1087,564 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
+      {/* Partie 1 */}
+      <Box mb="90px">
+        <Box position="relative" className={classes.headerMapBox}>
+          <Map
+            latitude={dataset.gps.lat}
+            longitude={dataset.gps.lng}
+            zoom={matchesXs ? 2 : 3}
+            isDraggable={false}
+            markers={[
+              <Marker
+                position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
+                icon="../../images/googleMapsIcons/activePin.svg"
+                clickable={false}
+              />,
+            ]}
+          />
+        </Box>
+        <Box className={classes.mainContainer}>
+          <Paper elevation={0} className={classes.headingPaper}>
+            <BackButton className={classes.backButtonTop} />
+            <Box>
+              <Typography variant="h1" className={classes.spotTitle}>
+                {dataset.title}
+              </Typography>
+              <Typography
+                variant="h2"
+                className={clsx(classes.spotSubtitle, { [classes.ultraDark]: !matchesXs })}
+                dangerouslySetInnerHTML={{ __html: dataset.catch_sentence }}
+              />
+            </Box>
+            <Box
+              display="flex"
+              alignItems={matchesXs ? 'center' : 'stretch'}
+              flexWrap={matchesXs ? 'wrap' : 'nowrap'}
+              justifyContent={matchesXs ? 'center' : 'flex-start'}
+              width="100%"
+            >
+              {matchesXs ? (
+                <Box className={classes.mobileCountryAside}>
+                  <Box width="100%" height="220px" marginBottom="30px">
+                    <Map
+                      latitude={dataset.gps.lat}
+                      longitude={dataset.gps.lng}
+                      zoom={7}
+                      isCornerRounded
+                      isDraggable={false}
+                      markers={[
+                        <Marker
+                          position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
+                          icon="../../images/googleMapsIcons/activePin.svg"
+                          clickable={false}
+                        />,
+                      ]}
+                    />
+                  </Box>{' '}
+                  <Box className={classes.flagSquared}>
+                    <Typography className={classes.flagSquaredFlag}>🇩🇪</Typography>
+                  </Box>
+                  <Box>
+                    <Typography className={classes.mobileCountryAsideTitle}>
+                      {dataset.title}({dataset.gps.country_short})
+                    </Typography>
+                    {/* TODO rendre dynamique */}
+                    <Box display="flex" flexDirection="column" width="330px" padding="20px">
+                      <Box display="flex" alignItems="center">
+                        <Typography variant="h3" className={classes.asideLabel}>
+                          Capitale
+                        </Typography>
+                        <Typography variant="h3" className={classes.asideInfo}>
+                          Berlin {/* TODO rendre dynamique capitale */}
+                        </Typography>
+                      </Box>
+                      <Box display="flex" alignItems="center">
+                        <Typography variant="h3" className={classes.asideLabel}>
+                          Population
+                        </Typography>
+                        <Typography variant="h3" className={classes.asideInfo}>
+                          83,02 millions{/* TODO rendre dynamique population */}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              ) : (
+                <Box className={classes.countryAside}>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    marginBottom="30px"
+                  >
+                    <Box className={classes.flagRound}>
+                      <Typography className={classes.flagRoundFlag}>🇩🇪</Typography>
+                    </Box>
+                    {/* TODO remplacer par le flag_round de la DB */}
+                    <Typography variant="h2" className={classes.countryAsideTitle}>
+                      {dataset.title}({dataset.gps.country_short})
+                      {/* TODO {dataset.gps.country}
+                  {dataset.gps.country_short} */}
+                    </Typography>
+                  </Box>
+                  <Box
+                    width={matchesXs ? '100%' : '330px'}
+                    height="330px"
+                    className={classes.mapAsideContainer}
+                  >
+                    <Map
+                      latitude={dataset.gps.lat}
+                      longitude={dataset.gps.lng}
+                      zoom={7}
+                      isAside
+                      isDraggable={false}
+                      markers={[
+                        <Marker
+                          position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
+                          icon="../../images/googleMapsIcons/activePin.svg"
+                          clickable={false}
+                        />,
+                      ]}
+                    />
+                    {/* TODO remplacer par le doigt */}
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    width="330px"
+                    padding="20px"
+                    className={classes.countryBottomInfo}
+                  >
+                    <Box display="flex" alignItems="center">
+                      <Typography variant="h3" className={classes.asideLabel}>
+                        Capitale
+                      </Typography>
+                      <Typography variant="h3" className={classes.asideInfo}>
+                        Berlin {/* TODO rendre dynamique capitale */}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center">
+                      <Typography variant="h3" className={classes.asideLabel}>
+                        Population
+                      </Typography>
+                      <Typography variant="h3" className={classes.asideInfo}>
+                        83,02 millions{/* TODO rendre dynamique population */}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              )}
+              <Box className={clsx(classes.contentInfo, classes.mobileSizing)}>
+                {dataset.few_words && (
+                  <Box marginBottom="60px">
+                    <Typography variant="h2" className={classes.fewWordsTitle}>
+                      En quelques mots
+                    </Typography>
+                    <Typography
+                      dangerouslySetInnerHTML={{ __html: dataset.few_words }}
+                      className={clsx(classes.fewWordsText)}
+                    />
+                  </Box>
+                )}
+                {dataset.visa && dataset.country_short !== 'FR' && (
+                  <Box>
+                    <Box>
+                      <Typography variant="h2" className={classes.practicalInfo}>
+                        Infos pratiques
+                      </Typography>
+                    </Box>
+                    <Box className={classes.practicalInfoContainer}>
+                      {practicalInfoItems.map(
+                        ({ title, smallInfoText, verySmallText, moneyCode, Icon }) => (
+                          <Box className={classes.infoBox} key={title}>
+                            <Box className={classes.infoIconBox}>
+                              <Icon className={classes.infoIcon} />
+                            </Box>
+                            <Box>
+                              <Typography className={classes.greenLabel}>{title}</Typography>
+                              <Typography className={classes.smallInfoTextStyle}>
+                                {smallInfoText.substring(0, 20)}
+                                {smallInfoText.length > 30 && '...'}
+                                {moneyCode && `(${moneyCode})`}
+                              </Typography>
+                              {verySmallText && (
+                                <Typography className={classes.verySmallTextStyle}>
+                                  1 EURO = {verySmallText} {moneyCode}
+                                </Typography>
+                              )}
+                            </Box>
+                          </Box>
+                        )
+                      )}
+                    </Box>
+                  </Box>
+                )}
+              </Box>
+            </Box>
+          </Paper>
+          <Box
+            display="flex"
+            className={clsx(classes.mobileSizing, classes.tagsAndPeriodContainer)}
+          >
+            {!matchesXs && (
+              <Box className={clsx(classes.tagsContainer, classes.mobileSizing)}>
+                <Box>
+                  <Box marginBottom="25px">
+                    <Typography
+                      variant="h2"
+                      className={clsx(classes.secondTitle, classes.mobileAlignCenter)}
+                    >
+                      Tags associés
+                    </Typography>
+                  </Box>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexWrap="wrap"
+                    justifyContent={matchesXs ? 'center' : 'flex-start'}
+                  >
+                    {associatedTags.map(({ label, colorClass }) => (
+                      <Typography className={clsx(colorClass, classes.tagRounded)} key={label}>
+                        {label}
+                      </Typography>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+            )}
+            {dataset.periode_visite && (
+              <Box className={clsx(classes.bestPeriodContainer, classes.mobileSizing)}>
+                <Box marginBottom="25px">
+                  <Typography
+                    variant="h2"
+                    className={classes.secondTitle}
+                    align={matchesXs ? 'center' : 'left'}
+                  >
+                    Meilleures périodes
+                  </Typography>
+                </Box>
+                <Box display="flex" marginBottom="25px" flexWrap={matchesXs ? 'wrap' : 'nowrap'}>
+                  {timeline.map(({ month, visitMarker }, index, currentArray) => (
+                    <Box className={classes.bestPeriodBox} key={month}>
+                      <Box
+                        className={clsx(
+                          { [classes.perfectTimeline]: visitMarker === 0 },
+                          { [classes.correctTimeline]: visitMarker === 1 },
+                          { [classes.notRecommandedTimeline]: visitMarker === 2 },
+                          { [classes.timelineStart]: index === 0 || (matchesXs && index === 6) },
+                          {
+                            [classes.timelineEnd]:
+                              index === currentArray.length - 1 || (matchesXs && index === 5),
+                          },
+                          classes.timeline
+                        )}
+                      />
+                      <Typography className={classes.timelineMonth}>{month}</Typography>
+                    </Box>
+                  ))}
+                </Box>
+                <Box display="flex" justifyContent="space-evenly">
+                  {legendTimeline.map(({ color, label }) => (
+                    <Box display="flex" alignItems="center" key={label}>
+                      <Box
+                        className={clsx(
+                          { [classes.primaryMain]: color === theme.palette.primary.main },
+                          { [classes.primaryMainTransparent]: color === 'rgba(0, 157, 140, 0.6)' },
+                          { [classes.greyDf]: color === theme.palette.grey.df },
+                          classes.roundedLegendTimeline
+                        )}
+                      />
+                      <Typography className={clsx(classes.capitalize, classes.smallInfoTextStyle)}>
+                        {label}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </Box>
+          {!matchesXs && (
+            <Box className={classes.interactionBox}>
+              <ButtonLike isSpots spotSlug={dataset.slug} />
+              <ButtonBookmark spotSlug={dataset.slug} />
+            </Box>
+          )}
+          <Box paddingTop="50px">
+            <Box
+              padding={matchesXs ? '30px' : '40px'}
+              className={clsx({ [classes.boxCTA]: !matchesXs, [classes.mobileBoxCTA]: matchesXs })}
+            >
+              <Box marginBottom={matchesXs ? '15px' : '10px'}>
+                <Typography className={classes.boxCTATitle}>
+                  Envie de partir en {dataset.title} ?
+                </Typography>
+              </Box>
+              <Box marginBottom="25px">
+                <Typography className={classes.boxCTAText}>
+                  Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet qui
+                  t’accompagne avant, pendant et après ton séjour.
+                </Typography>
+              </Box>
+              <Button variant="contained" className={classes.boxCTAButton}>
+                Créer mon séjour
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+      {/* Fin de la partie 1 */}
       {/* Partie 2 */}
       <Box marginBottom="100px">
-        <Box />
+        <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
+          {dataset.unmissable && (
+            <Box display={matchesXs ? 'block' : 'flex'} alignItems="center" flexDirection="column">
+              <Box>
+                <Typography variant="h3" color="primary" className={classes.globalSubtitle}>
+                  L&rsquo;{dataset.title} en images
+                </Typography>
+                {/* TODO rendre Dynamique */}
+              </Box>
+
+              <Box marginBottom="30px">
+                <Typography
+                  variant="h1"
+                  component="h2"
+                  align="left"
+                  className={classes.unmissableBigTitle}
+                >
+                  Présentation des incontournables 😍
+                </Typography>
+              </Box>
+              {matchesXs ? (
+                <Box>
+                  <Box position="relative" marginBottom="25px">
+                    {/* Mobile ver */}
+                    <Box>
+                      <Box marginBottom="5px">
+                        <Typography variant="h3" className={classes.carouselNumbers}>
+                          {currentGalleryTile < 9
+                            ? `0${currentGalleryTile + 1}`
+                            : currentGalleryTile + 1}
+                          <Box component="span" className={classes.carouselSize}>
+                            /{' '}
+                            {dataset.unmissable.length <= 10
+                              ? `0${dataset.unmissable.length}`
+                              : dataset.unmissable.length}
+                          </Box>
+                        </Typography>
+                      </Box>
+                      <Box marginBottom="10px">
+                        <Typography
+                          variant="h1"
+                          component="h3"
+                          dangerouslySetInnerHTML={{
+                            __html: dataset.unmissable[currentGalleryTile].title,
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                    <Carousel
+                      index={currentGalleryTile}
+                      onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
+                      animation="slide"
+                      indicators={false}
+                      autoPlay={false}
+                      navButtonsAlwaysInvisible
+                    >
+                      {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
+                        <Box display="block" alignItems="center" key={postSlug} width="100%">
+                          <Box className={classes.mobileCountryGalleryImgContainer}>
+                            {!isShowingMap && typeof picture !== 'undefined' && (
+                              <Box position="relative">
+                                <Image
+                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture.src?.original}`}
+                                  layout="fill"
+                                  quality={100}
+                                  className={classes.countryGalleryImg}
+                                />
+                              </Box>
+                            )}
+                          </Box>
+                        </Box>
+                      ))}
+                    </Carousel>
+                    {isShowingMap && (
+                      <Box height="200px" width="100%" position="relative">
+                        <Map
+                          latitude={dataset.gps.lat}
+                          longitude={dataset.gps.lng}
+                          zoom={5}
+                          isCornerRounded
+                          isDraggable={false}
+                          className={classes.mapCarousel}
+                          markers={dataset.unmissable.map(({ gps }, markerIndex) => (
+                            <Marker
+                              position={{ lat: gps.lat, lng: gps.lng }}
+                              key={uuidv4()}
+                              icon={
+                                markerIndex === currentGalleryTile
+                                  ? '../../images/googleMapsIcons/activePin.svg'
+                                  : '../../images/googleMapsIcons/inactivePin.svg'
+                              }
+                              onClick={() => setCurrentGalleryTile(markerIndex)}
+                            />
+                          ))}
+                        />
+                      </Box>
+                    )}
+                    <Button
+                      className={classes.mapAndImageButton}
+                      onClick={() => setIsShowingMap(!isShowingMap)}
+                      startIcon={isShowingMap ? <CameraAltOutlined /> : <PinDropOutlined />}
+                    >
+                      {isShowingMap ? 'photos' : 'carte'}
+                    </Button>
+                  </Box>
+                  <Box>
+                    <Typography
+                      className={classes.countryGalleryText}
+                      dangerouslySetInnerHTML={{
+                        __html: dataset.unmissable[currentGalleryTile].few_words,
+                      }}
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box position="relative" alignSelf="flex-end">
+                  {/* Desktop ver */}
+                  <Carousel
+                    index={currentGalleryTile}
+                    onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
+                    animation="slide"
+                    indicators={matchesXs}
+                    autoPlay={false}
+                    NavButton={() =>
+                      !matchesXs && (
+                        <Box className={classes.buttonsSpot}>
+                          <Button
+                            className={classes.carouselArrow}
+                            onClick={() => {
+                              let nextIndex
+                              if (currentGalleryTile > 0) {
+                                nextIndex = currentGalleryTile - 1
+                              } else {
+                                nextIndex = dataset.unmissable.length - 1
+                              }
+                              setCurrentGalleryTile(nextIndex)
+                            }}
+                          >
+                            <ArrowRightAlt
+                              style={{ transform: 'rotate(180deg)' }}
+                              fontSize="large"
+                            />
+                          </Button>
+                          <Button
+                            className={classes.carouselArrow}
+                            onClick={() =>
+                              setCurrentGalleryTile(
+                                currentGalleryTile < dataset.unmissable.length - 1
+                                  ? currentGalleryTile + 1
+                                  : 0
+                              )
+                            }
+                          >
+                            <ArrowRightAlt fontSize="large" />
+                          </Button>
+                        </Box>
+                      )
+                    }
+                  >
+                    {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
+                      <Box display="block" alignItems="center" key={postSlug}>
+                        <Box className={classes.countryGalleryImgContainer}>
+                          {!isShowingMap && (
+                            <Box position="relative">
+                              <Image
+                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${picture?.src.original}`}
+                                layout="fill"
+                                quality={100}
+                                className={classes.countryGalleryImg}
+                              />
+                            </Box>
+                          )}
+                        </Box>
+                      </Box>
+                    ))}
+                  </Carousel>
+                  <Paper className={classes.countryGalleryCard}>
+                    <Box marginBottom="5px">
+                      <Typography variant="h3" className={classes.carouselNumbers}>
+                        {currentGalleryTile < 9
+                          ? `0${currentGalleryTile + 1}`
+                          : currentGalleryTile + 1}
+                        <Box component="span" className={classes.carouselSize}>
+                          /{' '}
+                          {dataset.unmissable.length <= 10
+                            ? `0${dataset.unmissable.length}`
+                            : dataset.unmissable.length}
+                        </Box>
+                      </Typography>
+                    </Box>
+                    <Box marginBottom="10px">
+                      <Typography
+                        variant="h1"
+                        component="h3"
+                        dangerouslySetInnerHTML={{
+                          __html: dataset.unmissable[currentGalleryTile].title,
+                        }}
+                      />
+                    </Box>
+                    <Typography
+                      className={classes.countryGalleryText}
+                      dangerouslySetInnerHTML={{
+                        __html: dataset.unmissable[currentGalleryTile].few_words,
+                      }}
+                    />
+                    {!matchesXs && (
+                      <IndicatorBox
+                        currentArray={dataset.unmissable}
+                        setter={setCurrentGalleryTile}
+                        currentActiveIndex={currentGalleryTile}
+                      />
+                    )}
+                  </Paper>
+                  <Box height="583px" width="810px" position="absolute" top="20px" left="20px">
+                    {isShowingMap && (
+                      <Map
+                        latitude={dataset.gps.lat}
+                        longitude={dataset.gps.lng}
+                        zoom={7}
+                        isAside
+                        isDraggable={false}
+                        className={classes.mapCarousel}
+                        markers={dataset.unmissable.map(({ gps }, markerIndex) => (
+                          <Marker
+                            position={{ lat: gps.lat, lng: gps.lng }}
+                            key={uuidv4()}
+                            icon={
+                              markerIndex === currentGalleryTile
+                                ? '../../images/googleMapsIcons/activePin.svg'
+                                : '../../images/googleMapsIcons/inactivePin.svg'
+                            }
+                            onClick={() => setCurrentGalleryTile(markerIndex)}
+                          />
+                        ))}
+                      />
+                    )}
+                    <Button
+                      className={classes.mapAndImageButton}
+                      onClick={() => setIsShowingMap(!isShowingMap)}
+                      startIcon={isShowingMap ? <CameraAltOutlined /> : <PinDropOutlined />}
+                    >
+                      Voir {isShowingMap ? 'photos' : 'carte'}
+                    </Button>
+                  </Box>
+                </Box>
+              )}
+            </Box>
+          )}
+        </Box>
       </Box>
       {/* fin de la partie 2 */}
       {/* carousel de photos */}
