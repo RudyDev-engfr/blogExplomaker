@@ -9,7 +9,6 @@ import { useLoadScript } from '@react-google-maps/api'
 import theme from '../styles/theme'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import ErrorBoundary from '../components/ErrorBoundary'
 import GlobalClassGenerator from '../styles/GlobalClassGenerator'
 import SessionContextProvider from '../contexts/session'
 
@@ -44,16 +43,14 @@ const MyApp = props => {
         </Head>
         <GlobalClassGenerator>
           <StyledEngineProvider injectFirst>
-            <ErrorBoundary>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <SessionContextProvider>
-                  <Nav />
-                  <Component {...pageProps} />
-                  <Footer />
-                </SessionContextProvider>
-              </ThemeProvider>
-            </ErrorBoundary>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <SessionContextProvider>
+                <Nav />
+                <Component {...pageProps} />
+                <Footer />
+              </SessionContextProvider>
+            </ThemeProvider>
           </StyledEngineProvider>
         </GlobalClassGenerator>
       </>
