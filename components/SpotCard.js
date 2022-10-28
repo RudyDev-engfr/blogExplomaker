@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography'
 import makeStyles from '@mui/styles/makeStyles'
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt'
 import Link from 'next/link'
+import { useTheme } from '@mui/styles'
+import { useMediaQuery } from '@mui/material'
 
 const useStyles = makeStyles(theme => ({
   spotCard: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       maxWidth: '80%',
       position: 'relative',
-      top: '-40px',
+      top: '-95px',
     },
   },
   cardTitle: {
@@ -34,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     left: '40px',
     textTransform: 'uppercase',
     [theme.breakpoints.down('sm')]: {
-      left: '70px',
+      left: 'unset',
     },
   },
   spotList: {
@@ -52,15 +54,27 @@ const useStyles = makeStyles(theme => ({
 
 const SpotCard = ({ data }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const { continent, titre: title, introduction, links } = data
 
   return (
     <Paper elevation={2} className={classes.spotCard}>
-      <Box>
+      <Box display={matchesXs && 'flex'} justifyContent={matchesXs && 'center'}>
         <Typography className={classes.cardTitle}>{continent}</Typography>
       </Box>
       <Box marginBottom="12px">
-        <Typography variant="h1" component="h2">
+        <Typography
+          variant="h1"
+          component="h2"
+          sx={{
+            [theme.breakpoints.down('sm')]: {
+              fontSize: '28px',
+              lineHeight: '32px',
+              fontWeight: '500',
+            },
+          }}
+        >
           {title}
         </Typography>
       </Box>

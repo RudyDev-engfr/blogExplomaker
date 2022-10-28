@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton'
 import Rating from '@mui/material/Rating'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material'
+import { FormControl, FormLabel, InputLabel, useTheme } from '@mui/material'
 import ButtonBase from '@mui/material/ButtonBase'
 import makeStyles from '@mui/styles/makeStyles'
 import AccountBalanceWallet from '@mui/icons-material/AccountBalanceWallet'
@@ -34,6 +34,7 @@ import clsx from 'clsx'
 import Carousel from 'react-material-ui-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import ReactPlayer from 'react-player/lazy'
+import { format, parse } from 'date-fns'
 
 import BlogCard from '../components/molecules/BlogCard'
 import SpotCard from '../components/SpotCard'
@@ -177,6 +178,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50px',
     boxShadow: '0 3px 15px 0 #009D8C33',
     textTransform: 'none',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '250px',
+      width: '250px',
+    },
   },
   buttonAdd: {
     display: 'flex',
@@ -334,6 +339,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.grey['4f'],
     textAlign: 'center',
     whiteSpace: 'pre-line',
+    [theme.breakpoints.down('sm')]: {
+      margin: 'auto',
+      paddingLeft: '30px',
+      paddingRight: '30px',
+    },
   },
   textCenter: {
     textAlign: 'center',
@@ -344,6 +354,9 @@ const useStyles = makeStyles(theme => ({
   },
   mediumSize: {
     width: '58%',
+    [theme.breakpoints.down('sm')]: {
+      width: '250px',
+    },
   },
   rotate45Deg: {
     transform: 'rotate(45deg)',
@@ -389,7 +402,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'start',
     marginBottom: '50px',
     [theme.breakpoints.down('sm')]: {
-      gridTemplate: '1fr / repeat(auto-fill, 360px)',
+      gridTemplate: 'repeat(3, 1fr) / 360px',
     },
   },
   workingEmoji: {
@@ -465,6 +478,7 @@ const useStyles = makeStyles(theme => ({
     top: '30%',
     [theme.breakpoints.down('sm')]: {
       width: '80px',
+      top: '20%',
     },
   },
   destinationBox: {
@@ -524,6 +538,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       maxWidth: '275px',
       marginBottom: '20px',
+      backgroundColor: theme.palette.secondary.contrastText,
     },
   },
   fs34: {
@@ -739,14 +754,14 @@ const Home = ({ dataset }) => {
         <Box className={classes.greenBackgroundContainer}>
           <Box className={classes.mainContainer}>
             {matchesXs && (
-              <Box display="flex" justifyContent="center" position="relative" top="100px">
-                <Image src={logoFull} width="180" />
+              <Box display="flex" justifyContent="center" position="relative" top="65px">
+                <Image src={logoFull} width={250} height={60} />
               </Box>
             )}
             <Box
               display="flex"
               className={classes.secondaryContainer}
-              marginTop="180px"
+              marginTop="120px"
               marginBottom="130px"
               flexWrap="wrap"
               justifyContent={matchesXs ? 'center' : 'space-between'}
@@ -773,14 +788,21 @@ const Home = ({ dataset }) => {
                   </Typography>
                 </Box>
                 <Box>
-                  <Box marginBottom="20px">
-                    <Button
-                      variant="contained"
-                      className={clsx(classes.buttonPrimary, classes.v5MuiBUttonFix)}
-                      fullWidth
-                    >
-                      Crée ton séjour
-                    </Button>
+                  <Box
+                    marginBottom="20px"
+                    sx={{
+                      [theme.breakpoints.down('sm')]: { display: 'flex', justifyContent: 'center' },
+                    }}
+                  >
+                    <Link href="https://app.explomaker.fr" passHref>
+                      <Button
+                        variant="contained"
+                        className={clsx(classes.buttonPrimary, classes.v5MuiBUttonFix)}
+                        fullWidth={!matchesXs}
+                      >
+                        Crée ton séjour
+                      </Button>
+                    </Link>
                   </Box>
                   <Box display="flex" justifyContent="space-evenly" flexWrap="wrap">
                     <Box display="flex" alignItems="center">
@@ -942,16 +964,18 @@ const Home = ({ dataset }) => {
                     seule et même interface.
                   </Typography>
                 </Box>
-                <Button
-                  variant="contained"
-                  className={clsx(
-                    classes.buttonPrimary,
-                    classes.mediumSize,
-                    classes.v5MuiBUttonFix
-                  )}
-                >
-                  Crée ton séjour
-                </Button>
+                <Link href="https://app.explomaker.fr" passHref>
+                  <Button
+                    variant="contained"
+                    className={clsx(
+                      classes.buttonPrimary,
+                      classes.mediumSize,
+                      classes.v5MuiBUttonFix
+                    )}
+                  >
+                    Crée ton séjour
+                  </Button>
+                </Link>
               </Box>
             </Box>
           </Box>
@@ -1242,7 +1266,7 @@ const Home = ({ dataset }) => {
                     Adapté à tous tes projets de voyage
                   </Typography>
                 </Box>
-                <Box>
+                <Box marginBottom={matchesXs && '80px'}>
                   {matchesXs ? (
                     <Carousel
                       navButtonsAlwaysInvisible
@@ -1394,7 +1418,16 @@ const Home = ({ dataset }) => {
                     Ton voyage, de A à Z !
                   </Typography>
                 </Box>
-                <Box marginBottom="50px" className={classes.mobileSizing}>
+                <Box
+                  marginBottom="50px"
+                  className={classes.mobileSizing}
+                  sx={{
+                    [theme.breakpoints.down('sm')]: {
+                      display: 'flex',
+                      justifyContent: 'center',
+                    },
+                  }}
+                >
                   <Typography
                     variant="h1"
                     component="h2"
@@ -1423,17 +1456,19 @@ const Home = ({ dataset }) => {
                     </Box>
                   ))}
                 </Box>
-                <Button
-                  variant="contained"
-                  className={clsx(
-                    classes.buttonPrimary,
-                    classes.smallSize,
-                    classes.mobileButton,
-                    classes.v5MuiBUttonFix
-                  )}
-                >
-                  Crée ton séjour
-                </Button>
+                <Link href="https://app.explomaker.fr" passHref>
+                  <Button
+                    variant="contained"
+                    className={clsx(
+                      classes.buttonPrimary,
+                      classes.smallSize,
+                      classes.mobileButton,
+                      classes.v5MuiBUttonFix
+                    )}
+                  >
+                    Crée ton séjour
+                  </Button>
+                </Link>
               </Box>
             </Box>
           </Box>
@@ -1484,22 +1519,44 @@ const Home = ({ dataset }) => {
                         className={classes.opinionUserPicture}
                       />
                       <Box display="flex" flexDirection="column">
-                        <Box display="flex" justifyContent="space-between">
-                          <Typography
-                            variant="h3"
-                            component="h6"
-                            className={clsx(classes.grey33, classes.weight500)}
-                          >
-                            {reviews[0].nom}
-                          </Typography>
-                          <Rating value={parseFloat(reviews[0].note)} readOnly />{' '}
-                        </Box>
-                        <Typography
-                          variant="body2"
-                          className={clsx(classes.colorRed, classes.weight500)}
-                        >
-                          {reviews[0].sejour}
-                        </Typography>
+                        {matchesXs ? (
+                          <>
+                            <Typography
+                              variant="h3"
+                              component="h6"
+                              className={clsx(classes.grey33, classes.weight500)}
+                            >
+                              {reviews[0].nom}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              className={classes.colorRed}
+                              sx={{ fontSize: '17px', lineHeight: '25px' }}
+                            >
+                              {reviews[0].sejour}
+                            </Typography>
+                            <Rating value={parseFloat(reviews[0].note)} readOnly />
+                          </>
+                        ) : (
+                          <>
+                            <Box display="flex" justifyContent="space-between">
+                              <Typography
+                                variant="h3"
+                                component="h6"
+                                className={clsx(classes.grey33, classes.weight500)}
+                              >
+                                {reviews[0].nom}
+                              </Typography>
+                              <Rating value={parseFloat(reviews[0].note)} readOnly />
+                            </Box>
+                            <Typography
+                              variant="body2"
+                              className={clsx(classes.colorRed, classes.weight500)}
+                            >
+                              {reviews[0].sejour}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                     </Box>
                     <Box>
@@ -1553,14 +1610,17 @@ const Home = ({ dataset }) => {
                 alignItems="center"
                 className={clsx(classes.mobileMarginBottom, classes.mobileAlignCenter)}
               >
-                <Box className={clsx(classes.mobileAlignCenter, classes.mobileMarginBottom)}>
+                <Box className={classes.mobileAlignCenter}>
                   <BlogCard
                     bigTitle={hotArticles[0].title}
-                    category={hotArticles[0].meta[0]}
+                    category={hotArticles[0].sub_type[0].name}
                     srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${hotArticles[0].picture.src.original}`}
                     altImg=""
-                    date={hotArticles[0].creation_date}
-                    readingTime={hotArticles[0].reading_time}
+                    date={format(
+                      parse(hotArticles[0].creation_date, 'yyyy-MM-dd HH:mm:ss', new Date()),
+                      'dd MMM yyyy'
+                    )}
+                    readingTime={`${hotArticles[0].reading_time} min`}
                   />
                 </Box>
                 {/* TODO on the blog card and on the links, redirect to blog or article (?) */}
@@ -1628,7 +1688,7 @@ const Home = ({ dataset }) => {
         </Box>
         {/* Fin de la partie 9 */}
         {/* Partie 10 */}
-        <Box className={classes.whiteBackgroundContainer} padding="120px 0 60px 0">
+        <Box className={classes.whiteBackgroundContainer} padding="120px 0 0 0">
           <Box className={classes.mainContainer}>
             <Box>
               <Box
@@ -1636,7 +1696,7 @@ const Home = ({ dataset }) => {
                 alignItems="center"
                 flexDirection="column"
                 position="relative"
-                marginBottom={matchesXs ? '70px' : '150px'}
+                marginBottom={matchesXs ? '0' : '150px'}
                 className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
               >
                 <Box marginBottom="20px">
@@ -1829,7 +1889,11 @@ const Home = ({ dataset }) => {
         </Box>
         {/* Fin de partie 12 */}
         {/* Partie 13 */}
-        <Box className={classes.whiteBackgroundContainer}>
+        <Box
+          className={
+            !matchesXs ? classes.whiteBackgroundContainer : classes.greyBackgroundContainer
+          }
+        >
           <Box className={classes.mainContainer}>
             {matchesXs ? (
               <Box display="flex" justifyContent="center" position="relative">
@@ -1866,15 +1930,18 @@ const Home = ({ dataset }) => {
                   </Box>
                   <Box display="flex" alignItems="center" className={classes.mobileFlexColumn}>
                     <Box>
-                      <TextField
-                        id="email"
-                        type="email"
-                        label="Adresse email"
-                        margin="dense"
-                        InputProps={{
-                          classes: { root: classes.inputNewsletter },
-                        }}
-                      />
+                      <FormControl>
+                        <TextField
+                          id="email"
+                          type="email"
+                          label="Adresse email"
+                          margin="dense"
+                          InputProps={{
+                            classes: { root: classes.inputNewsletter },
+                          }}
+                        />
+                        <FormLabel sx={{ color: 'red !important' }} />
+                      </FormControl>
                     </Box>
                     <Button
                       variant="contained"

@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '95%',
       marginBottom: '20px',
       margin: 'auto',
-      height: 'unset',
+      height: '350px',
     },
   },
   actionArea: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'stretch',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
-      minHeight: 'unset',
+      minHeight: '350px',
     },
   },
   smallSizeActionArea: {
@@ -293,7 +293,7 @@ const BlogCard = ({
               {category}
             </Typography>
           </Box>
-          <Box marginBottom="15px">
+          <Box marginBottom="15px" paddingTop="15px">
             <Typography
               variant={isSmallSize ? 'h3' : 'body1'}
               className={clsx(
@@ -316,16 +316,16 @@ const BlogCard = ({
                 {date} | {readingTime}
               </Typography>
               <Box display="flex">
-                <Box display="flex" alignItems="center" marginRight="20px">
+                <Box display="flex" alignItems="center">
                   <Favorite className={classes.blogCardIcon} />
                   <Typography className={classes.textIcon}>12</Typography>
                 </Box>
-                <Box display="flex" alignItems="center">
+                {/* <Box display="flex" alignItems="center">
                   <Box className={classes.blogCardIcon} position="relative">
                     <Image src={commentIcon} quality={100} />
                   </Box>
                   <Typography className={classes.textIcon}>2</Typography>
-                </Box>
+                </Box> */}
               </Box>
             </Box>
           )}
