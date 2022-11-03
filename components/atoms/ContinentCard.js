@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
     },
+    [theme.breakpoints.down('sm')]: {
+      width: '150px',
+      minHeight: '145px',
+    },
   },
 }))
 const ContinentCard = ({

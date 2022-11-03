@@ -17,6 +17,8 @@ import Image from 'next/image'
 import { SessionContext } from '../../contexts/session'
 
 import commentIcon from '../../images/icons/commentIcon.svg'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +26,10 @@ const useStyles = makeStyles(theme => ({
     height: '341px',
     position: 'relative',
     cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      width: '230px',
+      height: '305px',
+    },
   },
   largeRoot: {
     width: 'calc(100vw - 60px)',
@@ -36,6 +42,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     zIndex: '2',
     bottom: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '230px',
+      height: '305px',
+    },
   },
   largeShadowVeil: {
     width: 'calc(100vw - 60px)',
@@ -86,6 +96,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '5px',
     textTransform: 'uppercase',
     zIndex: '2',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '12px',
+      lineHeight: '14px',
+    },
   },
   colorGreen: {
     color: theme.palette.primary.main,
@@ -114,6 +128,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   largeLikeContainer: {
     width: '100%',
@@ -155,6 +172,8 @@ const CountryTile = ({
 }) => {
   const router = useRouter()
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const { user, spotsBookmarkedUpdate } = useContext(SessionContext)
 
   return (
@@ -202,7 +221,7 @@ const CountryTile = ({
             {category || 'Demacia'}
           </Typography>
           <IconButton
-            sx={{ color: '#FFFFFF', padding: isLarge && '0' }}
+            sx={{ color: '#FFFFFF', padding: (isLarge || matchesXs) && '0' }}
             classes={{ root: classes.likeButton }}
             onClick={event => {
               event.stopPropagation()

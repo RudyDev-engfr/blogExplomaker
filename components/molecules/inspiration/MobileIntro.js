@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 const MobileIntro = ({ spotlight, metaContinentRef }) => {
   const classes = useStyles()
   return (
-    <Box marginBottom="80px">
+    <Box marginBottom="80px" paddingRight="30px">
       <Typography
         variant="h6"
         color="primary.ultraDark"

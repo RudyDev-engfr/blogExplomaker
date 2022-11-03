@@ -39,6 +39,8 @@ import ContinentCard from '../components/atoms/ContinentCard'
 import ThematicCard from '../components/atoms/ThematicCard'
 import DesktopIntro from '../components/molecules/inspiration/DesktopIntro'
 import MobileIntro from '../components/molecules/inspiration/MobileIntro'
+import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
+import SpotCarousel from '../components/atoms/SpotCarousel'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -63,8 +65,8 @@ const useStyles = makeStyles(theme => ({
     height: '550px',
     [theme.breakpoints.down('sm')]: {
       top: '0',
-      width: '100%',
-      maxWidth: '100%',
+      width: '100vw',
+      maxWidth: '100vw',
     },
   },
   headingPaper: {
@@ -72,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     borderRadius: '40px 40px 0 0',
     [theme.breakpoints.down('sm')]: {
-      padding: '40px 30px 0 30px',
+      padding: '40px 0px 0 30px',
     },
   },
   headerSearchbar: {
@@ -82,6 +84,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       left: 'unset',
       padding: '0 30px',
+      maxWidth: '100vw',
     },
   },
   rootInput: {
@@ -124,11 +127,24 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyItems: 'center',
     gridGap: '30px',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplate: 'repeat(4, 1fr) / repeat(2, 1fr)',
+      width: '100vw',
+      gridGap: '15px',
+    },
   },
   thematicGridContainer: {
     display: 'grid',
-    gridTemplate: '1fr 1fr / 1fr 1fr 1fr 1fr',
+    gridTemplate: '1fr 1fr / repeat(4, 1fr)',
     gridGap: '30px',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplate: 'repeat(4, 1fr) / repeat(2, 1fr)',
+      gridGap: '15px',
+      width: 'calc(100vw - 60px)',
+    },
+  },
+  carouselNotCentered: {
+    right: 'unset',
   },
 }))
 
@@ -264,69 +280,108 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           )}
           {/* fin de Partie 1 */}
           {/* Partie 2 liste de BlogCard */}
-          <Box marginBottom="60px">
-            <Typography variant="h6" color="grey.grey33">
-              Articles sur {spotlight.prefixed_title}
-            </Typography>
-            <ArticlesList
-              data={currentSpotlightArticles}
-              isShowingMoreArticles={isShowingMoreArticles}
-              isSmallSize
-              numberOfArticles={3}
-            />
-            <Box display="flex" justifyContent="center">
-              {!isShowingMoreArticles ? (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreArticles(true)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir tout
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreArticles(false)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir moins
-                </Button>
-              )}
+          {!matchesXs ? (
+            <Box marginBottom="60px">
+              <Typography variant="h6" color="grey.grey33">
+                Articles sur {spotlight.prefixed_title}
+              </Typography>
+              <ArticlesList
+                data={currentSpotlightArticles}
+                isShowingMoreArticles={isShowingMoreArticles}
+                isSmallSize
+                numberOfArticles={3}
+              />
+              <Box display="flex" justifyContent="center">
+                {!isShowingMoreArticles ? (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreArticles(true)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir tout
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreArticles(false)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir moins
+                  </Button>
+                )}
+              </Box>
             </Box>
-          </Box>
+          ) : (
+            <Box marginBottom="60px">
+              <Box marginBottom="20px">
+                <Typography variant="h6" color="grey.grey33" textAlign="center" paddingRight="30px">
+                  Articles sur {spotlight.prefixed_title}
+                </Typography>
+              </Box>
+              <Box position="relative">
+                <ArticlesCarousel
+                  currentArticles={currentSpotlightArticles}
+                  dotListClass={classes.carouselNotCentered}
+                />
+              </Box>
+            </Box>
+          )}
           {/* fin de Partie 2 */}
           {/* Partie 3 liste de spots */}
-          <Box>
-            <Typography variant="h6" color="grey.grey33" marginBottom="15px">
-              Spots en {spotlight.title}
-            </Typography>
-            <Box className={classes.spotResultContainer}>
-              <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
+          {!matchesXs ? (
+            <Box>
+              <Typography variant="h6" color="grey.grey33" marginBottom="15px">
+                Spots en {spotlight.title}
+              </Typography>
+              <Box className={classes.spotResultContainer}>
+                <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
+              </Box>
+              <Box display="flex" justifyContent="center">
+                {!isShowingMoreSpots ? (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreSpots(true)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir tout
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreSpots(false)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir moins
+                  </Button>
+                )}
+              </Box>
             </Box>
-            <Box display="flex" justifyContent="center">
-              {!isShowingMoreSpots ? (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreSpots(true)}
-                  sx={{ width: '13%' }}
+          ) : (
+            <Box marginBottom="60px">
+              <Box>
+                <Typography
+                  variant="h6"
+                  color="grey.grey33"
+                  marginBottom="15px"
+                  textAlign="center"
+                  paddingRight="30px"
                 >
-                  Voir tout
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreSpots(false)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir moins
-                </Button>
-              )}
+                  Spots en {spotlight.title}
+                </Typography>
+              </Box>
+              <Box position="relative">
+                <SpotCarousel
+                  currentSpots={spotlight.unmissable}
+                  isShowingMoreSpots={isShowingMoreSpots}
+                  dotListClass={classes.carouselNotCentered}
+                />
+              </Box>
             </Box>
-          </Box>
+          )}
         </Paper>
       </Box>
       {/* Fin de partie 3 */}
@@ -339,7 +394,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '60px 0',
+          padding: matchesXs ? '60px 0' : '30px',
         }}
       >
         <Box>
@@ -347,11 +402,14 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             variant="h6"
             color="primary.ultraDark"
             fontWeight="400"
-            sx={{ marginBottom: '10px' }}
+            sx={{ marginBottom: '10px', paddingLeft: '30px' }}
           >
             Thématiques
           </Typography>
-          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+          <Typography
+            variant="h3"
+            sx={{ fontFamily: 'rubik', marginBottom: '30px', paddingLeft: '30px' }}
+          >
             Inspiration par continent
           </Typography>
           <Box className={classes.continentGrid}>
@@ -381,7 +439,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ width: '1140px' }}>
+        <Box sx={{ width: !matchesXs ? '1140px' : 'calc(100vw - 8px)', padding: '30px' }}>
           <Typography
             variant="h6"
             color="primary.ultraDark"

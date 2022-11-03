@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { format, parse } from 'date-fns'
 import clsx from 'clsx'
 import { useTheme } from '@mui/styles'
@@ -15,13 +16,14 @@ import Favorite from '@mui/icons-material/Favorite'
 import Image from 'next/dist/client/image'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
-import { useRouter } from 'next/router'
+import { useMediaQuery } from '@mui/material'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '284px',
-    height: '263px',
+    width: '315px',
+    height: '295px',
     borderRadius: '20px',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
   },
   resultRoot: {
     width: '360px',
@@ -32,19 +34,31 @@ const useStyles = makeStyles(theme => ({
   imageContainer: {
     position: 'relative',
     width: '100%',
-    height: '153px',
+    height: '198px',
+    [theme.breakpoints.down('sm')]: {
+      height: '171px',
+      maxWidth: '285px',
+    },
   },
   resultImageContainer: {
     position: 'relative',
     width: '100%',
     minWidth: '100%',
     height: '198px',
+    [theme.breakpoints.down('sm')]: {
+      height: '171px',
+      maxWidth: '285px',
+    },
   },
 
   cardActionAreaRoot: {
     padding: '15px',
     width: '100%',
     height: '100%',
+    display: 'grid',
+    gridTemplate: '171px 95px / 1fr',
+    alignItems: 'start',
+    alignContent: 'space-between',
   },
   cardActionAreaFocusHighlight: {
     backgroundColor: theme.palette.secondary.contrastText,
@@ -53,7 +67,11 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '10px',
   },
   cardContent: {
-    padding: '10px 5px 0 5px',
+    padding: '15px 5px 0 5px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%',
   },
   cardTitle: {
     fontSize: '18px',
@@ -85,7 +103,7 @@ const useStyles = makeStyles(theme => ({
   resultCardContentRoot: {
     display: 'grid',
     height: '100%',
-    gridTemplate: 'max-content min-content/1fr',
+    gridTemplate: 'max-content min-content / 1fr',
     alignContent: 'space-between',
   },
   resultSocialInteraction: {},
@@ -118,9 +136,11 @@ const MobileBlogCard = ({
   category = 'Demacia',
   isAlgolia = false,
   targetLink,
+  readingTime,
 }) => {
   const classes = useStyles()
   const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
 
   return (
@@ -151,7 +171,12 @@ const MobileBlogCard = ({
             />
             <Box display="flex" justifyContent="center" className={classes.categoryBox}>
               <Typography
-                sx={{ fontSize: '1rem', fontWeight: '500', color: theme.palette.primary.main }}
+                sx={{
+                  fontSize: matchesXs ? '14px' : '12px',
+                  fontWeight: '500',
+                  color: theme.palette.primary.main,
+                  lineHeight: matchesXs ? '14px' : '16px',
+                }}
               >
                 {category}
               </Typography>
@@ -168,7 +193,10 @@ const MobileBlogCard = ({
             marginBottom={is360px ? '10px' : '0px'}
             justifyContent="space-between"
           >
-            <Typography className={classes.cardTitle} dangerouslySetInnerHTML={{ __html: title }} />
+            <Typography
+              className={classes.cardTitle}
+              dangerouslySetInnerHTML={{ __html: title.substring(0, 70).concat('...') }}
+            />
             {/* {!is360px && (
               <Box display="flex">
                 <Box display="flex" alignItems="center" marginRight="10px">
@@ -182,15 +210,16 @@ const MobileBlogCard = ({
               </Box>
             )} */}
           </Box>
-          {is360px && (
-            <Box className={classes.resultSocialInteraction}>
-              <Box display="flex" justifyContent="space-between">
-                <Typography className={classes.cardCounts}>
-                  {!isAlgolia
-                    ? format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')
-                    : publishDate}
-                </Typography>
-                {/* <Box width="80px" display="flex" justifyContent="space-between">
+
+          <Box className={classes.resultSocialInteraction}>
+            <Box display="flex" justifyContent="space-between">
+              <Typography className={classes.cardCounts}>
+                {!isAlgolia
+                  ? format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')
+                  : publishDate}
+                {readingTime ? (isAlgolia ? ` | ${readingTime}` : ` | ${readingTime} min`) : ''}
+              </Typography>
+              {/* <Box width="80px" display="flex" justifyContent="space-between">
                   <Box display="flex" alignItems="center" marginRight="10px">
                     <Favorite
                       className={clsx({
@@ -219,9 +248,8 @@ const MobileBlogCard = ({
                     <Typography className={classes.cardCounts}>{commentsCount}</Typography>
                   </Box>
                 </Box> */}
-              </Box>
             </Box>
-          )}
+          </Box>
           {subtitle && (
             <Box>
               <Typography className={classes.cardSubtitle}>{subtitle}</Typography>

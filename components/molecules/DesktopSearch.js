@@ -141,7 +141,7 @@ const DesktopSearch = ({
             >
               {currentSpots.length > 0 && (
                 <Typography variant="h3" component="h2">
-                  Spots({currentSpots.length > 16 && '16+'})
+                  Spots({currentSpots.length > 16 ? '16+' : currentSpots.length})
                 </Typography>
               )}
               {currentSpots.length > 4 && !isShowingMoreSpots && (
