@@ -10,6 +10,8 @@ import CardMedia from '@mui/material/CardMedia'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import makeStyles from '@mui/styles/makeStyles'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/styles'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
 import Image from 'next/image'
@@ -17,8 +19,6 @@ import Image from 'next/image'
 import { SessionContext } from '../../contexts/session'
 
 import commentIcon from '../../images/icons/commentIcon.svg'
-import { useMediaQuery } from '@mui/material'
-import { useTheme } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
   root: {

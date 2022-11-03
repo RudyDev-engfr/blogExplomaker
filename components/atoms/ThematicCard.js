@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
-      width: '150px',
+      width: '40vw',
       height: '160px',
     },
   },

@@ -7,6 +7,7 @@ import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import { useMediaQuery } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import BookmarkTwoToneIcon from '@mui/icons-material/BookmarkTwoTone'
 import Bookmark from '@mui/icons-material/Bookmark'
@@ -16,7 +17,6 @@ import Favorite from '@mui/icons-material/Favorite'
 import Image from 'next/dist/client/image'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
-import { useMediaQuery } from '@mui/material'
 
 const useStyles = makeStyles(theme => ({
   root: {

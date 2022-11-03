@@ -128,8 +128,8 @@ const useStyles = makeStyles(theme => ({
     justifyItems: 'center',
     gridGap: '30px',
     [theme.breakpoints.down('sm')]: {
-      gridTemplate: 'repeat(4, 1fr) / repeat(2, 1fr)',
-      width: '100vw',
+      gridTemplate: '1fr 1fr 1.17fr 1.17fr / repeat(2, 1fr)',
+      width: 'calc(100vw - 60px)',
       gridGap: '15px',
     },
   },
@@ -314,7 +314,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               </Box>
             </Box>
           ) : (
-            <Box marginBottom="60px">
+            <Box marginBottom="120px">
               <Box marginBottom="20px">
                 <Typography variant="h6" color="grey.grey33" textAlign="center" paddingRight="30px">
                   Articles sur {spotlight.prefixed_title}
@@ -361,7 +361,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               </Box>
             </Box>
           ) : (
-            <Box marginBottom="60px">
+            <Box marginBottom="30px">
               <Box>
                 <Typography
                   variant="h6"
@@ -394,7 +394,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: matchesXs ? '60px 0' : '30px',
+          padding: matchesXs ? '60px 30px' : '30px',
         }}
       >
         <Box>
@@ -402,14 +402,11 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             variant="h6"
             color="primary.ultraDark"
             fontWeight="400"
-            sx={{ marginBottom: '10px', paddingLeft: '30px' }}
+            sx={{ marginBottom: '10px' }}
           >
             Thématiques
           </Typography>
-          <Typography
-            variant="h3"
-            sx={{ fontFamily: 'rubik', marginBottom: '30px', paddingLeft: '30px' }}
-          >
+          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
             Inspiration par continent
           </Typography>
           <Box className={classes.continentGrid}>
@@ -423,6 +420,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 index={index}
                 key={name}
                 url={url}
+                isOversized={index > 3}
               />
             ))}
           </Box>
@@ -439,7 +437,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ width: !matchesXs ? '1140px' : 'calc(100vw - 8px)', padding: '30px' }}>
+        <Box sx={{ width: !matchesXs ? '1140px' : '100vw', padding: '30px' }}>
           <Typography
             variant="h6"
             color="primary.ultraDark"
