@@ -5,10 +5,12 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
+import { useMediaQuery } from '@mui/material'
 
 import { database } from '../lib/firebase'
 
 import headerImg from '../images/inspirationHeaderImg.png'
+import mobileHeaderImg from '../images/tom-pavlakos-NQuDiZISPtk-unsplash 1.png'
 import SearchField from '../components/atoms/SearchField'
 import CountryTile from '../components/atoms/CountryTile'
 import ArticlesList from '../components/molecules/ArticlesList'
@@ -35,6 +37,8 @@ import oceaniaWhite from '../images/whiteContinent/oceania.svg'
 
 import ContinentCard from '../components/atoms/ContinentCard'
 import ThematicCard from '../components/atoms/ThematicCard'
+import DesktopIntro from '../components/molecules/inspiration/DesktopIntro'
+import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -47,6 +51,10 @@ const useStyles = makeStyles(theme => ({
   mainContainer: {
     maxWidth: '1240px',
     margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      maxWidth: '100%',
+    },
   },
   headerMapBox: {
     position: 'relative',
@@ -55,6 +63,8 @@ const useStyles = makeStyles(theme => ({
     height: '550px',
     [theme.breakpoints.down('sm')]: {
       top: '0',
+      width: '100%',
+      maxWidth: '100%',
     },
   },
   headingPaper: {
@@ -62,31 +72,38 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     borderRadius: '40px 40px 0 0',
     [theme.breakpoints.down('sm')]: {
-      padding: '25px 10px 30px',
+      padding: '40px 30px 0 30px',
     },
   },
   headerSearchbar: {
     position: 'absolute',
     left: '35%',
     top: '30%',
+    [theme.breakpoints.down('sm')]: {
+      left: 'unset',
+      padding: '0 30px',
+    },
   },
   rootInput: {
     width: '441px',
     borderRadius: '50px',
     backgroundColor: '#FFFFFF',
+    [theme.breakpoints.down('sm')]: {
+      width: '87.5vw',
+    },
   },
   headerTitle: {
     textShadow: '#000000BF 0px 2px 6px',
     fontFamily: 'Rubik',
     marginBottom: '30px',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      fontSize: '28px',
+      fontWeight: '500',
+      lineHeight: '32px',
+    },
   },
-  fewWordsTitle: {
-    fontSize: '28px',
-    lineHeight: '32px',
-    fontWeight: '700',
-    marginBottom: '10px',
-    fontFamily: theme.typography.fontFamily,
-  },
+
   buttonPrimary: {
     padding: `${theme.spacing(2.5)} 0`,
     borderRadius: '50px',
@@ -140,6 +157,7 @@ export async function getStaticProps() {
 const Inspiration = ({ dataset, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const { spotLight: spotlight, monthDestination, favoritesArticles, popularThemes } = dataset
   const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
   const [currentSpotlightArticles, setCurrentSpotlightArticles] = useState([])
@@ -216,9 +234,14 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   return (
     <Box>
       <Box className={classes.headerMapBox}>
-        <Image src={headerImg} layout="fill" />
+        <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
         <Box className={classes.headerSearchbar}>
-          <Typography color="white" variant="h3" paddingLeft="65px" className={classes.headerTitle}>
+          <Typography
+            color="white"
+            variant="h3"
+            paddingLeft={matchesXs ? '0' : '65px'}
+            className={classes.headerTitle}
+          >
             Recherche ta destination voyage !
           </Typography>
           <Box display="flex" justifyContent="space-between">
@@ -234,34 +257,11 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
         <Paper elevation={0} className={classes.headingPaper}>
           {/* Partie 1 Tile + text */}
-          <Box display="flex" marginBottom="60px">
-            <Box marginRight="50px">
-              <CountryTile
-                countryTitle={spotlight.prefixed_title}
-                srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${spotlight.picture_titled.src.original}`}
-                altImg="test img"
-                link={spotlight.slug}
-                category={metaContinentRef[parseInt(spotlight.meta_continent[0], 10)].name}
-              />
-            </Box>
-            <Box>
-              <Typography
-                variant="h6"
-                color="primary.ultraDark"
-                fontWeight="400"
-                sx={{ marginBottom: '15px' }}
-              >
-                À la Une
-              </Typography>
-              <Typography variant="h1" sx={{ marginBottom: '20px' }}>
-                {spotlight.title}
-              </Typography>
-              <Typography variant="h2" className={classes.fewWordsTitle}>
-                En quelques mots
-              </Typography>
-              <Typography dangerouslySetInnerHTML={{ __html: spotlight.few_words }} />
-            </Box>
-          </Box>
+          {matchesXs ? (
+            <MobileIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
+          ) : (
+            <DesktopIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
+          )}
           {/* fin de Partie 1 */}
           {/* Partie 2 liste de BlogCard */}
           <Box marginBottom="60px">

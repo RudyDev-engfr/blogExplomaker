@@ -83,7 +83,7 @@ const SpotCard = ({ data }) => {
       </Box>
       {links.map(({ link /* TODO */, titre: linkTitle }) => (
         // eslint-disable-next-line @next/next/link-passhref
-        <Link key={link} href={`/spot/${link}`}>
+        <Link key={link} href={`${link}`}>
           <Box display="flex" width="100%" marginBottom="30px" component={ButtonBase}>
             <Box marginRight="25px">
               <ArrowRightAlt className={classes.arrowList} />

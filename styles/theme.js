@@ -104,6 +104,12 @@ const commonSettings = createTheme({
     overline: {
       fontFamily,
     },
+    mobileBigTitle: {
+      fontSize: '28px',
+      fontWeight: '700',
+      lineHeight: '50px',
+      fontFamily: titleFontFamily,
+    },
   },
   shadows: [
     'none',

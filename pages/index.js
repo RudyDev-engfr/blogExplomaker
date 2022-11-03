@@ -50,6 +50,7 @@ import illustrationCollab from '../images/ILLUSTRATION_COLLAB.png'
 import travelPicture from '../images/travelTile.png'
 import emma from '../images/emma.png'
 import logo from '../images/icons/logo.svg'
+import MobileBlogCard from '../components/molecules/MobileBlogCard'
 
 const tiles = [
   { Icon: HomeIcon, label: 'Logement' },
@@ -128,7 +129,7 @@ const workingItem = [
 
 const useStyles = makeStyles(theme => ({
   fullWidthContainer: {
-    borderBottom: '140px solid #008481',
+    borderBottom: `140px solid ${theme.palette.primary.ultraDark}`,
     [theme.breakpoints.down('sm')]: {
       borderBottom: '0',
     },
@@ -420,6 +421,9 @@ const useStyles = makeStyles(theme => ({
   },
   customTrendingDestinationsDotBox: {
     right: 'unset',
+    [theme.breakpoints.down('sm')]: {
+      right: '0',
+    },
   },
   newsLabel: {
     fontSize: '1.125rem',
@@ -646,27 +650,6 @@ export async function getStaticProps() {
   let dataset
   if (doc.exists()) {
     dataset = doc.val()
-    const imgRef = database.ref().child('picture_library')
-    // // const hotArticleImage = await imgRef.child(dataset.article_chauds[0].picture).get()
-    // // if (hotArticleImage.exists()) {
-    // //   dataset.article_chauds[0].picture = `https://storage.googleapis.com/stateless-www-explomaker-fr/${
-    // //     hotArticleImage.val().original
-    // //   }`
-    // // }
-    const heartStrokeImages = await Promise.all(
-      dataset.heartStrokes.map(currentHeartStroke =>
-        imgRef.child(currentHeartStroke.photo_titree).get()
-      )
-    )
-    heartStrokeImages.forEach((image, index) => {
-      if (image.exists()) {
-        dataset.heartStrokes[
-          index
-        ].photo_titree = `https://storage.googleapis.com/stateless-www-explomaker-fr/${
-          image.val().original
-        }`
-      }
-    })
   }
 
   return {
@@ -693,6 +676,7 @@ const Home = ({ dataset }) => {
   const [currentSlideSpot, setCurrentSlideSpot] = useState(0)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
   const [currentPublicPresentation, setCurrentPublicPresentation] = useState([])
+  const [currentHeartStrokes, setCurrentHeartStrokes] = useState([])
   const [showGoTop, setShowGoTop] = useState()
   const refScrollUp = useRef(null)
 
@@ -702,12 +686,23 @@ const Home = ({ dataset }) => {
       currentKey => trendingDestinations[currentKey]
     )
     setTrendingDestinationsItems(tempTrendingDestinationsArray)
+  }, [trendingDestinations])
+
+  useEffect(() => {
+    if (typeof heartStrokes !== 'undefined') {
+      const heartStrokesKeys = Object.keys(heartStrokes)
+      const tempHeartStrokes = heartStrokesKeys.map(currentKey => heartStrokes[currentKey])
+      setCurrentHeartStrokes(tempHeartStrokes)
+    }
+  }, [heartStrokes])
+
+  useEffect(() => {
     const publicPresentationKeys = Object.keys(publicPresentation)
     const tempPublicPresentation = publicPresentationKeys.map(
       currentKey => publicPresentation[currentKey]
     )
     setCurrentPublicPresentation(tempPublicPresentation)
-  }, [trendingDestinations, publicPresentation])
+  }, [publicPresentation])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleVisibleButton = () => {
@@ -1616,10 +1611,7 @@ const Home = ({ dataset }) => {
                     category={hotArticles[0].sub_type[0].name}
                     srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${hotArticles[0].picture.src.original}`}
                     altImg=""
-                    date={format(
-                      parse(hotArticles[0].creation_date, 'yyyy-MM-dd HH:mm:ss', new Date()),
-                      'dd MMM yyyy'
-                    )}
+                    date={hotArticles[0].creation_date}
                     readingTime={`${hotArticles[0].reading_time} min`}
                   />
                 </Box>
@@ -1688,7 +1680,7 @@ const Home = ({ dataset }) => {
         </Box>
         {/* Fin de la partie 9 */}
         {/* Partie 10 */}
-        <Box className={classes.whiteBackgroundContainer} padding="120px 0 0 0">
+        <Box className={classes.whiteBackgroundContainer} padding="60px 0 0 0">
           <Box className={classes.mainContainer}>
             <Box>
               <Box
@@ -1731,12 +1723,18 @@ const Home = ({ dataset }) => {
                       >
                         {trendingSpot[0].links.map(spot => (
                           <Box
-                            key={spot.picture.id}
+                            key={spot.picture.src.id}
                             minWidth="100%"
                             height="300px"
                             position="relative"
                           >
-                            <img src={spot.picture.href} alt="" className={classes.focusImg} />
+                            <img
+                              src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                spot.picture.src.original
+                              )}`}
+                              alt=""
+                              className={classes.focusImg}
+                            />
                             {/* <LinearProgress variant="determinate" value="0" /> */}
                             <Box className={classes.logoSpot}>
                               <Image src={logo} width="169" height="209" quality={100} />
@@ -1778,7 +1776,6 @@ const Home = ({ dataset }) => {
                         >
                           <ArrowRightAlt fontSize="large" />
                         </Button>
-                        {/* TODO autoplay a supprimer après avoir fini */}
                       </Box>
                       <Carousel
                         indicators={false}
@@ -1788,8 +1785,14 @@ const Home = ({ dataset }) => {
                         onChange={currentIndex => setCurrentSlideSpot(currentIndex)}
                       >
                         {trendingSpot[0].links.map(spot => (
-                          <Box key={spot.picture.id} width="810px" height="580px">
-                            <img src={spot.picture.href} alt="" className={classes.focusImg} />
+                          <Box key={spot.picture.src.id} width="810px" height="580px">
+                            <img
+                              src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                spot.picture.src.original
+                              )}`}
+                              alt=""
+                              className={classes.focusImg}
+                            />
                             <Box className={classes.logoSpot}>
                               <Image src={logo} width="169" height="209" quality={100} />
                             </Box>
@@ -1816,7 +1819,7 @@ const Home = ({ dataset }) => {
                     variant="subtitle1"
                     className={clsx(classes.mobileSubtitle, classes.ultraDark)}
                   >
-                    Destinations
+                    Articles
                   </Typography>
                 </Box>
                 <Box marginBottom="50px" className={classes.mobileSizing}>
@@ -1837,23 +1840,35 @@ const Home = ({ dataset }) => {
                 flexWrap="wrap"
                 className={classes.mobileAlignCenter}
               >
-                <BlogCard
-                  isHeartStroke
-                  bigTitle={heartStrokes[0].phrase_daccroche}
-                  category={heartStrokes[0].continent}
-                  text={`${heartStrokes[0].few_words.substring(0, 109)}...`}
-                  srcImg={heartStrokes[0].photo_titree}
-                  altImg=""
-                />
-                <BlogCard
-                  isHeartStroke
-                  bigTitle={heartStrokes[1].phrase_daccroche}
-                  category={heartStrokes[1].continent}
-                  text={`${heartStrokes[1].few_words.substring(0, 109)}...`}
-                  categoryColor="red"
-                  srcImg={heartStrokes[1].photo_titree}
-                  altImg=""
-                />
+                {currentHeartStrokes.length > 0 &&
+                  currentHeartStrokes.map(
+                    (
+                      {
+                        title,
+                        sub_type: subType,
+                        picture,
+                        creation_date: creationDate,
+                        reading_time: readingTime,
+                        target_url: targetURL,
+                      },
+                      index
+                    ) => (
+                      <Box marginBottom={matchesXs && '30px'}>
+                        <MobileBlogCard
+                          title={title.substring(0, 89)}
+                          category={subType ? subType[0].name : 'Demacia'}
+                          srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                            picture.src.original
+                          )}`}
+                          publishDate={creationDate}
+                          readingTime={readingTime}
+                          altImg={`image de la blogCard${index}`}
+                          is360px
+                          targetLink={targetURL}
+                        />
+                      </Box>
+                    )
+                  )}
               </Box>
               <Link
                 passHref
@@ -1861,14 +1876,9 @@ const Home = ({ dataset }) => {
               >
                 <Button
                   variant="contained"
-                  className={clsx(
-                    classes.buttonPrimary,
-                    classes.smallSize,
-                    classes.mobileButton,
-                    classes.v5MuiBUttonFix
-                  )}
+                  className={clsx(classes.buttonPrimary, classes.smallSize, classes.mobileButton)}
                 >
-                  Toutes les destinations
+                  Tous les articles
                 </Button>
               </Link>
             </Box>

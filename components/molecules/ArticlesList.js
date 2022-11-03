@@ -31,6 +31,7 @@ const ArticlesList = ({
                 picture,
                 url_link: targetUrl,
                 temps_de_lecture: readingTime,
+                date_de_publication: publishDate,
                 objectID,
               }) => (
                 <MobileBlogCard
@@ -40,10 +41,12 @@ const ArticlesList = ({
                   key={objectID}
                   // commentsCount={Math.floor(Math.random() * 100)}
                   // likesCount={Math.floor(Math.random() * 100)}
-                  publishDate={`17 Déc 2020 | ${readingTime}`}
-                  isResult
+                  publishDate={publishDate}
+                  readingTime={readingTime}
+                  is360px
                   className={classes.mobileBlogCardAndCountryTile}
                   isSmallSize={isSmallSize}
+                  isAlgolia
                 />
               )
             )
@@ -51,20 +54,27 @@ const ArticlesList = ({
             .filter((article, index) =>
               isShowingMoreArticles ? true : index <= numberOfArticles - 1
             )
-            .map(({ title, picture: pictureMain, target_url: targetUrl }) => (
-              <MobileBlogCard
-                srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureMain.src?.original}`}
-                link={targetUrl}
-                title={title}
-                key={targetUrl}
-                commentsCount={Math.floor(Math.random() * 100)}
-                likesCount={Math.floor(Math.random() * 100)}
-                publishDate="17 Déc 2020 | 6min"
-                isResult
-                className={classes.mobileBlogCardAndCountryTile}
-                isSmallSize={isSmallSize}
-              />
-            ))}
+            .map(
+              ({
+                title,
+                picture: pictureMain,
+                target_url: targetUrl,
+                creation_date: creationDate,
+              }) => (
+                <MobileBlogCard
+                  srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureMain.src?.original}`}
+                  link={targetUrl}
+                  title={title}
+                  key={targetUrl}
+                  commentsCount={Math.floor(Math.random() * 100)}
+                  likesCount={Math.floor(Math.random() * 100)}
+                  publishDate={creationDate ?? '17 Déc 2020 | 6min'}
+                  is360px
+                  className={classes.mobileBlogCardAndCountryTile}
+                  isSmallSize={isSmallSize}
+                />
+              )
+            )}
     </Box>
   )
 }

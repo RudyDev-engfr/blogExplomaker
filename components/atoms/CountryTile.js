@@ -25,6 +25,10 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     cursor: 'pointer',
   },
+  largeRoot: {
+    width: 'calc(100vw - 60px)',
+    position: 'relative',
+  },
   shadowVeil: {
     position: 'absolute',
     width: '262px',
@@ -32,6 +36,9 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     zIndex: '2',
     bottom: '0',
+  },
+  largeShadowVeil: {
+    width: 'calc(100vw - 60px)',
   },
   cardMedia: {
     position: 'absolute',
@@ -108,6 +115,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  largeLikeContainer: {
+    width: '100%',
+  },
   likeButton: {
     zIndex: '100',
   },
@@ -141,13 +151,20 @@ const CountryTile = ({
   link = 'polynesie-francaise',
   likesCounter = '0',
   commentsCounter = '0',
+  isLarge,
 }) => {
   const router = useRouter()
   const classes = useStyles()
   const { user, spotsBookmarkedUpdate } = useContext(SessionContext)
 
   return (
-    <Card elevation={0} className={classes.root} onClick={() => router.push(`/spot/${link}`)}>
+    <Card
+      elevation={0}
+      className={clsx(classes.root, {
+        [classes.largeRoot]: isLarge,
+      })}
+      onClick={() => router.push(`/spot/${link}`)}
+    >
       <CardActionArea className={classes.cardActionArea}>
         <CardMedia classes={{ root: classes.cardMedia }}>
           <Box
@@ -155,6 +172,7 @@ const CountryTile = ({
               [classes.shadowGreen]: categoryColor === 1,
               [classes.shadowRed]: categoryColor === 2,
               [classes.shadowBlue]: categoryColor === 3,
+              [classes.largeShadowVeil]: isLarge,
             })}
           />
           <Box position="relative" height="100%" width="100%">
@@ -169,7 +187,11 @@ const CountryTile = ({
         </CardMedia>
       </CardActionArea>
       <CardContent classes={{ root: classes.cardContent }}>
-        <Box className={classes.likeAndDestinationType}>
+        <Box
+          className={clsx(classes.likeAndDestinationType, {
+            [classes.largeLikeContainer]: isLarge,
+          })}
+        >
           <Typography
             className={clsx(classes.cardTitleSquared, {
               [classes.colorGreen]: categoryColor === 1,
@@ -180,7 +202,7 @@ const CountryTile = ({
             {category || 'Demacia'}
           </Typography>
           <IconButton
-            sx={{ color: '#FFFFFF' }}
+            sx={{ color: '#FFFFFF', padding: isLarge && '0' }}
             classes={{ root: classes.likeButton }}
             onClick={event => {
               event.stopPropagation()

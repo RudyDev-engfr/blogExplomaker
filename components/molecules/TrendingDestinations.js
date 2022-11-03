@@ -87,63 +87,67 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
         </Box>
       </Box>
       {matchesXs ? (
-        <MultiCarousel
-          itemClass={classes.mobileCarouselItem}
-          autoPlaySpeed={3000}
-          draggable
-          arrows={false}
-          focusOnSelect={false}
-          infinite
-          showDots={false}
-          renderDotsOutside
-          keyBoardControl
-          minimumTouchDrag={80}
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 640,
+        <Box position="relative">
+          <MultiCarousel
+            itemClass={classes.mobileCarouselItem}
+            autoPlaySpeed={3000}
+            draggable
+            arrows={false}
+            focusOnSelect={false}
+            infinite
+            showDots
+            dotListClass={dotListClass}
+            customDot={<TrendingDestinationsDotBox carouselArray={trendingDestinationsItems} />}
+            renderDotsOutside
+            keyBoardControl
+            minimumTouchDrag={80}
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 640,
+                },
+                items: 1,
               },
-              items: 1,
-            },
-            mobile: {
-              breakpoint: {
-                max: 640,
-                min: 0,
+              mobile: {
+                breakpoint: {
+                  max: 640,
+                  min: 0,
+                },
+                items: 1,
               },
-              items: 1,
-            },
-          }}
-          slidesToSlide={1}
-          swipeable
-          ssr
-          deviceType="mobile"
-        >
-          {trendingDestinationsItems
-            .filter(
-              ({ picture_titled: pictureTitled, title }) =>
-                pictureTitled.src.original !== '' && title !== ''
-            )
-            .map(
-              ({
-                picture_titled: pictureTitled,
-                title,
-                slug,
-                color,
-                meta_continent_text: continent,
-              }) => (
-                <CountryTile
-                  countryTitle={title}
-                  category={continent}
-                  srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureTitled.src.original}`}
-                  altImg=""
-                  link={slug}
-                  key={`trendingDestination-${slug}`}
-                  categoryColor={color}
-                />
+            }}
+            slidesToSlide={1}
+            swipeable
+            ssr
+            deviceType="mobile"
+          >
+            {trendingDestinationsItems
+              .filter(
+                ({ picture_titled: pictureTitled, title }) =>
+                  pictureTitled.src.original !== '' && title !== ''
               )
-            )}
-        </MultiCarousel>
+              .map(
+                ({
+                  picture_titled: pictureTitled,
+                  title,
+                  slug,
+                  color,
+                  meta_continent_text: continent,
+                }) => (
+                  <CountryTile
+                    countryTitle={title}
+                    category={continent}
+                    srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureTitled.src.original}`}
+                    altImg=""
+                    link={slug}
+                    key={`trendingDestination-${slug}`}
+                    categoryColor={color}
+                  />
+                )
+              )}
+          </MultiCarousel>
+        </Box>
       ) : (
         <Box position="relative">
           <MultiCarousel

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
@@ -8,6 +9,7 @@ import Favorite from '@mui/icons-material/Favorite'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/dist/client/image'
 import clsx from 'clsx'
+import { format, parse } from 'date-fns'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
 
@@ -237,8 +239,10 @@ const BlogCard = ({
   date,
   readingTime,
   categoryColor = 'green',
+  link,
 }) => {
   const classes = useStyles()
+  const router = useRouter()
 
   return (
     <Card
@@ -253,6 +257,7 @@ const BlogCard = ({
           [classes.actionArea]: !isSmallSize,
           [classes.smallSizeActionArea]: isSmallSize,
         })}
+        onClick={() => router.push(link)}
       >
         <CardMedia
           className={clsx({ [classes.media]: !isSmallSize, [classes.smallSizeMedia]: isSmallSize })}
@@ -313,7 +318,8 @@ const BlogCard = ({
               <Typography
                 className={clsx(classes.grey82, { [classes.smallSizeDate]: isSmallSize })}
               >
-                {date} | {readingTime}
+                {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
+                {`${readingTime} min`}
               </Typography>
               <Box display="flex">
                 <Box display="flex" alignItems="center">
@@ -332,7 +338,8 @@ const BlogCard = ({
           {isSmallSize && (
             <Box className={classes.smallSizeDetailsCard}>
               <Typography className={classes.grey82} gutterBottom>
-                {date} | {readingTime}
+                {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
+                {`${readingTime} min`}
               </Typography>
             </Box>
           )}

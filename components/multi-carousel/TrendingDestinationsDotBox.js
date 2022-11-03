@@ -6,8 +6,9 @@ import React from 'react'
 
 const useStyles = makeStyles(theme => ({
   indicatorsCountryGallery: {
-    height: '3px',
-    width: '47px',
+    height: '6px',
+    width: '6px',
+    borderRadius: '50px',
     backgroundColor: theme.palette.primary.ultraLight,
   },
   activeColor: {
@@ -20,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     transform: 'translateY(50px)',
     zIndex: '10',
     alignSelf: 'flex-start',
+    [theme.breakpoints.down('sm')]: {
+      alignSelf: 'center',
+    },
   },
 }))
 const TrendingDestinationsDotBox = ({ carouselArray, onClick, ...rest }) => {
@@ -32,9 +36,9 @@ const TrendingDestinationsDotBox = ({ carouselArray, onClick, ...rest }) => {
       <Box
         component={ButtonBase}
         onClick={() => onClick()}
-        height="13px"
+        height="12px"
         mx={1}
-        borderRadius="20px"
+        borderRadius="50px"
       >
         <Box
           className={clsx(classes.indicatorsCountryGallery, {
