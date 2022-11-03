@@ -8,6 +8,9 @@ import makeStyles from '@mui/styles/makeStyles'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
 
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/styles'
+
 import { SessionContext } from '../../contexts/session'
 
 const useStyles = makeStyles({
@@ -49,9 +52,12 @@ const SearchField = ({
   className,
   rootInput,
   needBorder = true,
+  needButtonOnMobile = false,
 }) => {
   const classes = useStyles()
   const router = useRouter()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
   const { searchValue, setSearchValue } = useContext(SessionContext)
 
@@ -80,14 +86,16 @@ const SearchField = ({
               classes: { root: rootInput },
             }}
           />
-          <Button
-            variant="contained"
-            startIcon={<SearchIcon />}
-            classes={{ root: classes.searchButton, sizeMedium: classes.sizeMediumButton }}
-            type="submit"
-          >
-            Rechercher
-          </Button>
+          {(needButtonOnMobile || !matchesXs) && (
+            <Button
+              variant="contained"
+              startIcon={<SearchIcon />}
+              classes={{ root: classes.searchButton, sizeMedium: classes.sizeMediumButton }}
+              type="submit"
+            >
+              Rechercher
+            </Button>
+          )}
         </Box>
       ) : (
         <Box width="340px" component="form" onSubmit={handleSubmit}>

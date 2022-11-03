@@ -1,16 +1,27 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+  useMediaQuery,
+} from '@mui/material'
 import Box from '@mui/material/Box'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   rootCard: {
     width: '262.5px',
     height: '250px',
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
+    [theme.breakpoints.down('sm')]: {
+      width: '40vw',
+      height: '160px',
+    },
   },
   cardTitle: {
     display: 'flex',
@@ -18,11 +29,16 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     width: '100%',
     height: '86px',
+    [theme.breakpoints.down('sm')]: {
+      height: '65px',
+    },
   },
-})
+}))
 const ThematicCard = ({ title, srcImg, altImg, link }) => {
   const classes = useStyles()
   const router = useRouter()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <Card className={classes.rootCard}>
@@ -43,7 +59,7 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
         </CardMedia>
         <CardContent sx={{ padding: '0' }}>
           <Box className={classes.cardTitle}>
-            <Typography>{title}</Typography>
+            <Typography textAlign={matchesXs && 'center'}>{title}</Typography>
           </Box>
         </CardContent>
       </CardActionArea>

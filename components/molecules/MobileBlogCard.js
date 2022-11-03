@@ -1,22 +1,29 @@
+import { useRouter } from 'next/router'
+import { format, parse } from 'date-fns'
+import clsx from 'clsx'
+import { useTheme } from '@mui/styles'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import { useMediaQuery } from '@mui/material'
 import Typography from '@mui/material/Typography'
+import BookmarkTwoToneIcon from '@mui/icons-material/BookmarkTwoTone'
+import Bookmark from '@mui/icons-material/Bookmark'
 import makeStyles from '@mui/styles/makeStyles'
 import Comment from '@mui/icons-material/Comment'
 import Favorite from '@mui/icons-material/Favorite'
 import Image from 'next/dist/client/image'
-import clsx from 'clsx'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '284px',
-    height: '263px',
+    width: '315px',
+    height: '295px',
     borderRadius: '20px',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
   },
   resultRoot: {
     width: '360px',
@@ -27,19 +34,31 @@ const useStyles = makeStyles(theme => ({
   imageContainer: {
     position: 'relative',
     width: '100%',
-    height: '153px',
+    height: '198px',
+    [theme.breakpoints.down('sm')]: {
+      height: '171px',
+      maxWidth: '285px',
+    },
   },
   resultImageContainer: {
     position: 'relative',
     width: '100%',
     minWidth: '100%',
     height: '198px',
+    [theme.breakpoints.down('sm')]: {
+      height: '171px',
+      maxWidth: '285px',
+    },
   },
 
   cardActionAreaRoot: {
     padding: '15px',
     width: '100%',
     height: '100%',
+    display: 'grid',
+    gridTemplate: '171px 95px / 1fr',
+    alignItems: 'start',
+    alignContent: 'space-between',
   },
   cardActionAreaFocusHighlight: {
     backgroundColor: theme.palette.secondary.contrastText,
@@ -48,7 +67,11 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '10px',
   },
   cardContent: {
-    padding: '10px 5px 0 5px',
+    padding: '15px 5px 0 5px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%',
   },
   cardTitle: {
     fontSize: '18px',
@@ -80,7 +103,7 @@ const useStyles = makeStyles(theme => ({
   resultCardContentRoot: {
     display: 'grid',
     height: '100%',
-    gridTemplate: 'max-content min-content/1fr',
+    gridTemplate: 'max-content min-content / 1fr',
     alignContent: 'space-between',
   },
   resultSocialInteraction: {},
@@ -91,6 +114,15 @@ const useStyles = makeStyles(theme => ({
     padding: '15px',
     width: '100%',
   },
+  categoryBox: {
+    backgroundColor: theme.palette.primary.ultraLight,
+    display: 'inline-block',
+    padding: '5px 8px',
+    borderRadius: '5px',
+    position: 'absolute',
+    top: '16.5px',
+    left: '15px',
+  },
 }))
 const MobileBlogCard = ({
   srcImg,
@@ -99,26 +131,35 @@ const MobileBlogCard = ({
   likesCount,
   subtitle,
   publishDate,
-  isResult = false,
+  is360px = false,
   className,
+  category = 'Demacia',
+  isAlgolia = false,
+  targetLink,
+  readingTime,
 }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const router = useRouter()
+
   return (
     <Card
       elevation={0}
-      className={clsx({ [classes.root]: !isResult, [classes.resultRoot]: isResult }, className)}
+      className={clsx({ [classes.root]: !is360px, [classes.resultRoot]: is360px }, className)}
     >
       <CardActionArea
         classes={{
-          root: isResult ? classes.resultCardActionAreaRoot : classes.cardActionAreaRoot,
+          root: is360px ? classes.resultCardActionAreaRoot : classes.cardActionAreaRoot,
           focusHighlight: classes.cardActionAreaFocusHighlight,
         }}
+        onClick={() => router.push(targetLink)}
       >
         <CardMedia>
           <Box
             className={clsx({
-              [classes.imageContainer]: !isResult,
-              [classes.resultImageContainer]: isResult,
+              [classes.imageContainer]: !is360px,
+              [classes.resultImageContainer]: is360px,
             })}
           >
             <Image
@@ -128,20 +169,35 @@ const MobileBlogCard = ({
               objectFit="cover"
               objectPosition="center"
             />
+            <Box display="flex" justifyContent="center" className={classes.categoryBox}>
+              <Typography
+                sx={{
+                  fontSize: matchesXs ? '14px' : '12px',
+                  fontWeight: '500',
+                  color: theme.palette.primary.main,
+                  lineHeight: matchesXs ? '14px' : '16px',
+                }}
+              >
+                {category}
+              </Typography>
+            </Box>
           </Box>
         </CardMedia>
         <CardContent
-          classes={{ root: isResult ? classes.resultCardContentRoot : classes.cardContentRoot }}
+          classes={{ root: is360px ? classes.resultCardContentRoot : classes.cardContentRoot }}
           className={classes.cardContent}
         >
           <Box
             width="100%"
             display="flex"
-            marginBottom={isResult ? '10px' : '0px'}
+            marginBottom={is360px ? '10px' : '0px'}
             justifyContent="space-between"
           >
-            <Typography className={classes.cardTitle} dangerouslySetInnerHTML={{ __html: title }} />
-            {/* {!isResult && (
+            <Typography
+              className={classes.cardTitle}
+              dangerouslySetInnerHTML={{ __html: title.substring(0, 70).concat('...') }}
+            />
+            {/* {!is360px && (
               <Box display="flex">
                 <Box display="flex" alignItems="center" marginRight="10px">
                   <Favorite className={classes.cardIcons} />
@@ -154,16 +210,21 @@ const MobileBlogCard = ({
               </Box>
             )} */}
           </Box>
-          {/* {isResult && (
-            <Box className={classes.resultSocialInteraction}>
-              <Box display="flex" justifyContent="space-between">
-                <Typography className={classes.cardCounts}>{publishDate}</Typography>
-                <Box width="80px" display="flex" justifyContent="space-between">
+
+          <Box className={classes.resultSocialInteraction}>
+            <Box display="flex" justifyContent="space-between">
+              <Typography className={classes.cardCounts}>
+                {!isAlgolia
+                  ? format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')
+                  : publishDate}
+                {readingTime ? (isAlgolia ? ` | ${readingTime}` : ` | ${readingTime} min`) : ''}
+              </Typography>
+              {/* <Box width="80px" display="flex" justifyContent="space-between">
                   <Box display="flex" alignItems="center" marginRight="10px">
                     <Favorite
                       className={clsx({
-                        [classes.cardIcons]: !isResult,
-                        [classes.resultCardIcons]: isResult,
+                        [classes.cardIcons]: !is360px,
+                        [classes.resultCardIcons]: is360px,
                       })}
                     />
                     <Typography className={classes.cardCounts}>{likesCount}</Typography>
@@ -171,25 +232,24 @@ const MobileBlogCard = ({
                   <Box display="flex" alignItems="center">
                     <Box
                       position="relative"
-                      width={isResult ? '16px' : '12px'}
-                      height={isResult ? '16px' : '12px'}
+                      width={is360px ? '16px' : '12px'}
+                      height={is360px ? '16px' : '12px'}
                       marginRight="4px"
                     >
                       <Image
                         src={commentIcon}
                         className={clsx({
-                          [classes.cardIcons]: !isResult,
-                          [classes.resultCardIcons]: isResult,
+                          [classes.cardIcons]: !is360px,
+                          [classes.resultCardIcons]: is360px,
                         })}
                         layout="fill"
                       />
                     </Box>
                     <Typography className={classes.cardCounts}>{commentsCount}</Typography>
                   </Box>
-                </Box>
-              </Box>
+                </Box> */}
             </Box>
-          )} */}
+          </Box>
           {subtitle && (
             <Box>
               <Typography className={classes.cardSubtitle}>{subtitle}</Typography>

@@ -10,6 +10,8 @@ import CardMedia from '@mui/material/CardMedia'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import makeStyles from '@mui/styles/makeStyles'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/styles'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
 import Image from 'next/image'
@@ -24,6 +26,14 @@ const useStyles = makeStyles(theme => ({
     height: '341px',
     position: 'relative',
     cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      width: '230px',
+      height: '305px',
+    },
+  },
+  largeRoot: {
+    width: 'calc(100vw - 60px)',
+    position: 'relative',
   },
   shadowVeil: {
     position: 'absolute',
@@ -32,6 +42,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     zIndex: '2',
     bottom: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '230px',
+      height: '305px',
+    },
+  },
+  largeShadowVeil: {
+    width: 'calc(100vw - 60px)',
   },
   cardMedia: {
     position: 'absolute',
@@ -79,6 +96,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '5px',
     textTransform: 'uppercase',
     zIndex: '2',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '12px',
+      lineHeight: '14px',
+    },
   },
   colorGreen: {
     color: theme.palette.primary.main,
@@ -107,6 +128,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+  largeLikeContainer: {
+    width: '100%',
   },
   likeButton: {
     zIndex: '100',
@@ -141,13 +168,22 @@ const CountryTile = ({
   link = 'polynesie-francaise',
   likesCounter = '0',
   commentsCounter = '0',
+  isLarge,
 }) => {
   const router = useRouter()
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const { user, spotsBookmarkedUpdate } = useContext(SessionContext)
 
   return (
-    <Card elevation={0} className={classes.root} onClick={() => router.push(`/spot/${link}`)}>
+    <Card
+      elevation={0}
+      className={clsx(classes.root, {
+        [classes.largeRoot]: isLarge,
+      })}
+      onClick={() => router.push(`/spot/${link}`)}
+    >
       <CardActionArea className={classes.cardActionArea}>
         <CardMedia classes={{ root: classes.cardMedia }}>
           <Box
@@ -155,6 +191,7 @@ const CountryTile = ({
               [classes.shadowGreen]: categoryColor === 1,
               [classes.shadowRed]: categoryColor === 2,
               [classes.shadowBlue]: categoryColor === 3,
+              [classes.largeShadowVeil]: isLarge,
             })}
           />
           <Box position="relative" height="100%" width="100%">
@@ -169,7 +206,11 @@ const CountryTile = ({
         </CardMedia>
       </CardActionArea>
       <CardContent classes={{ root: classes.cardContent }}>
-        <Box className={classes.likeAndDestinationType}>
+        <Box
+          className={clsx(classes.likeAndDestinationType, {
+            [classes.largeLikeContainer]: isLarge,
+          })}
+        >
           <Typography
             className={clsx(classes.cardTitleSquared, {
               [classes.colorGreen]: categoryColor === 1,
@@ -180,7 +221,7 @@ const CountryTile = ({
             {category || 'Demacia'}
           </Typography>
           <IconButton
-            sx={{ color: '#FFFFFF' }}
+            sx={{ color: '#FFFFFF', padding: (isLarge || matchesXs) && '0' }}
             classes={{ root: classes.likeButton }}
             onClick={event => {
               event.stopPropagation()

@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel'
 import { useTheme } from '@mui/material'
 import 'react-multi-carousel/lib/styles.css'
 import { useRouter } from 'next/dist/client/router'
+import { v4 as uuidv4 } from 'uuid'
 
 import CountryTile from '../components/atoms/CountryTile'
 import MobileBlogCard from '../components/molecules/MobileBlogCard'
@@ -100,6 +101,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                     width={230}
                     height={305}
                     sx={{ borderRadius: '20px' }}
+                    key={uuidv4()}
                   />
                 ))
               ) : (
@@ -120,7 +122,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   altImg=""
                   key={`spot/${slug}`}
                   link={slug}
-                  isResult
+                  is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
               ))
@@ -138,6 +140,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 width={262}
                 height={341}
                 sx={{ borderRadius: '20px' }}
+                key={uuidv4()}
               />
             ))
           ) : (
@@ -163,7 +166,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 altImg=""
                 key={`spot/${slug}`}
                 link={slug}
-                isResult
+                is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
             ))}
@@ -227,6 +230,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                     width={315}
                     height={293}
                     sx={{ borderRadius: '20px' }}
+                    key={uuidv4()}
                   />
                 ))
               ) : (
@@ -249,7 +253,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   commentsCount={Math.floor(Math.random() * 100)}
                   likesCount={Math.floor(Math.random() * 100)}
                   publishDate="17 Déc 2020 | 6min"
-                  isResult
+                  is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
               ))
@@ -265,6 +269,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 width={360}
                 height={321}
                 sx={{ borderRadius: '20px' }}
+                key={uuidv4()}
               />
             ))
           ) : (
@@ -290,7 +295,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 commentsCount={Math.floor(Math.random() * 100)}
                 likesCount={Math.floor(Math.random() * 100)}
                 publishDate="17 Déc 2020 | 6min"
-                isResult
+                is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
             ))}

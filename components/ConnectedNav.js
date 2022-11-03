@@ -136,12 +136,16 @@ const useStyles = makeStyles(theme => ({
 const ConnectedNav = ({ isBgTransparent }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const [tabValue, setTabValue] = React.useState(0)
   const { user, setUser } = useContext(SessionContext)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+  const handleChange = (event, newValue) => {
+    setTabValue(newValue)
   }
   const logoutHandler = () => {
     auth.signOut().then(() => {
@@ -156,7 +160,13 @@ const ConnectedNav = ({ isBgTransparent }) => {
 
   return matchesXs ? (
     <Paper variant="outlined" square className={classes.xsNav}>
-      <Tabs centered variant="fullWidth" className={classes.tabs}>
+      <Tabs
+        centered
+        variant="fullWidth"
+        className={classes.tabs}
+        value={tabValue}
+        onChange={handleChange}
+      >
         <Tab
           icon={<Image src={inspi} width={25} height={25} />}
           label={

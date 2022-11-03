@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
@@ -8,6 +9,7 @@ import Favorite from '@mui/icons-material/Favorite'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/dist/client/image'
 import clsx from 'clsx'
+import { format, parse } from 'date-fns'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '95%',
       marginBottom: '20px',
       margin: 'auto',
-      height: 'unset',
+      height: '350px',
     },
   },
   actionArea: {
@@ -42,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'stretch',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
-      minHeight: 'unset',
+      minHeight: '350px',
     },
   },
   smallSizeActionArea: {
@@ -237,8 +239,10 @@ const BlogCard = ({
   date,
   readingTime,
   categoryColor = 'green',
+  link,
 }) => {
   const classes = useStyles()
+  const router = useRouter()
 
   return (
     <Card
@@ -253,6 +257,7 @@ const BlogCard = ({
           [classes.actionArea]: !isSmallSize,
           [classes.smallSizeActionArea]: isSmallSize,
         })}
+        onClick={() => router.push(link)}
       >
         <CardMedia
           className={clsx({ [classes.media]: !isSmallSize, [classes.smallSizeMedia]: isSmallSize })}
@@ -293,7 +298,7 @@ const BlogCard = ({
               {category}
             </Typography>
           </Box>
-          <Box marginBottom="15px">
+          <Box marginBottom="15px" paddingTop="15px">
             <Typography
               variant={isSmallSize ? 'h3' : 'body1'}
               className={clsx(
@@ -313,26 +318,28 @@ const BlogCard = ({
               <Typography
                 className={clsx(classes.grey82, { [classes.smallSizeDate]: isSmallSize })}
               >
-                {date} | {readingTime}
+                {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
+                {`${readingTime} min`}
               </Typography>
               <Box display="flex">
-                <Box display="flex" alignItems="center" marginRight="20px">
+                <Box display="flex" alignItems="center">
                   <Favorite className={classes.blogCardIcon} />
                   <Typography className={classes.textIcon}>12</Typography>
                 </Box>
-                <Box display="flex" alignItems="center">
+                {/* <Box display="flex" alignItems="center">
                   <Box className={classes.blogCardIcon} position="relative">
                     <Image src={commentIcon} quality={100} />
                   </Box>
                   <Typography className={classes.textIcon}>2</Typography>
-                </Box>
+                </Box> */}
               </Box>
             </Box>
           )}
           {isSmallSize && (
             <Box className={classes.smallSizeDetailsCard}>
               <Typography className={classes.grey82} gutterBottom>
-                {date} | {readingTime}
+                {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
+                {`${readingTime} min`}
               </Typography>
             </Box>
           )}

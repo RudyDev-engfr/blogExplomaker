@@ -16,6 +16,7 @@ import Close from '@mui/icons-material/Close'
 import { useRouter } from 'next/dist/client/router'
 import { toast } from 'react-toastify'
 import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
 
 import Login from './Login'
 import { StyledFirebaseAuth } from '../../../helper/react-firebaseui'
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
   },
   carouselImg: {
     width: '100vw',
-    height: 'auto',
+    height: '100vh',
   },
   carouselDescriptionBox: {
     backgroundColor: theme.palette.primary.ultraLight,
@@ -87,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   },
   carouselContainerClass: {
     maxWidth: '100vw',
+    height: 'auto',
   },
 }))
 
@@ -147,7 +149,15 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
             >
               {imgGallery.map(({ srcImg, description }) => (
                 <>
-                  <img src={srcImg} alt="" className={classes.carouselImg} />
+                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                    <Image
+                      src={srcImg}
+                      alt=""
+                      className={classes.carouselImg}
+                      key={srcImg}
+                      layout="fill"
+                    />
+                  </Box>
                   <Box className={classes.carouselDescriptionBox}>
                     <Typography
                       dangerouslySetInnerHTML={{ __html: description }}
@@ -300,8 +310,24 @@ const SignUpModal = ({
               keyBoardControl
               arrows={false}
             >
-              {imgGallery.map(({ srcImg }) => (
-                <img src={srcImg} alt="" className={classes.carouselImg} />
+              {imgGallery.map(({ srcImg, description }) => (
+                <>
+                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                    <Image
+                      src={srcImg}
+                      alt=""
+                      className={classes.carouselImg}
+                      key={srcImg}
+                      layout="fill"
+                    />
+                  </Box>
+                  <Box className={classes.carouselDescriptionBox}>
+                    <Typography
+                      dangerouslySetInnerHTML={{ __html: description }}
+                      className={classes.carouselDescription}
+                    />
+                  </Box>
+                </>
               ))}
             </Carousel>
           </Box>
@@ -487,8 +513,24 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
               keyBoardControl
               arrows={false}
             >
-              {imgGallery.map(({ srcImg }) => (
-                <img src={srcImg} alt="" className={classes.carouselImg} />
+              {imgGallery.map(({ srcImg, description }) => (
+                <>
+                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                    <Image
+                      src={srcImg}
+                      alt=""
+                      className={classes.carouselImg}
+                      key={srcImg}
+                      layout="fill"
+                    />
+                  </Box>
+                  <Box className={classes.carouselDescriptionBox}>
+                    <Typography
+                      dangerouslySetInnerHTML={{ __html: description }}
+                      className={classes.carouselDescription}
+                    />
+                  </Box>
+                </>
               ))}
             </Carousel>
           </Box>

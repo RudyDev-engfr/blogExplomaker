@@ -16,8 +16,11 @@ import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.ultraDark,
     color: theme.palette.primary.contrastText,
+    [theme.breakpoints.down('sm')]: {
+      padding: '45px',
+    },
   },
   footerLink: {
     color: theme.palette.primary.contrastText,
@@ -49,7 +52,13 @@ const Footer = () => {
         },
       }}
     >
-      <Box component="footer" maxWidth="1200px" m="auto" py={10}>
+      <Box
+        component="footer"
+        maxWidth="1200px"
+        m="auto"
+        py={matchesXs ? 0 : 10}
+        marginBottom={matchesXs && '60px'}
+      >
         <Grid container spacing={matchesXs ? 0 : 4} mb={3}>
           <Grid item md={3} sm={6}>
             <Typography variant="h4" className={classes.footerTitle}>
@@ -66,6 +75,9 @@ const Footer = () => {
                   width: '45px',
                   backgroundColor: 'rgba(256, 256, 256, 0.1)',
                   borderRadius: '5px',
+                  [theme.breakpoints.down('sm')]: {
+                    marginBottom: '60px',
+                  },
                 }}
               />
               <Link
@@ -84,7 +96,12 @@ const Footer = () => {
             </Box>
           </Grid>
           <Grid item md={3} sm={6}>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              marginBottom={matchesXs && '60px'}
+            >
               <Typography variant="h4">Ressources</Typography>
               <Link
                 variant="body2"
@@ -130,20 +147,65 @@ const Footer = () => {
             </Box>
           </Grid>
           <Grid item md={3} sm={6}>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              marginBottom={matchesXs && '20px'}
+            >
               <Typography variant="h4" className={classes.footerTitle}>
                 <Link
-                  href="https://explomaker.fr/inspiration/"
+                  href="results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
                   className={classes.footerLink}
                   underline="none"
                 >
                   Le blog Explomaker
                 </Link>
               </Typography>
+              <Link
+                variant="body2"
+                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Actualit%C3%A9s"
+                className={classes.footerLink}
+              >
+                Actualités
+              </Link>
+              <Link
+                variant="body2"
+                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Inspiration"
+                className={classes.footerLink}
+              >
+                Inspiration
+              </Link>
+              <Link
+                variant="body2"
+                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Exploration"
+                className={classes.footerLink}
+              >
+                Exploration
+              </Link>
+              <Link
+                variant="body2"
+                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Pr%C3%A9paration+de+voyage"
+                className={classes.footerLink}
+              >
+                Préparation de voyage
+              </Link>
+              <Link
+                variant="body2"
+                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=R%C3%A9cits+de+voyages"
+                className={classes.footerLink}
+              >
+                Récits de voyages
+              </Link>
             </Box>
           </Grid>
           <Grid item md={3} sm={6}>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              marginBottom={matchesXs && '60px'}
+            >
               <Typography variant="h4" className={classes.footerTitle}>
                 Contact
               </Typography>
