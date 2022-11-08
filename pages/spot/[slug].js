@@ -1078,7 +1078,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
         title={dataset?.title}
         description={dataset?.catch_sentence}
         url={`https://explomaker.fr/spot/${slug}`}
-        thumbnail={`https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset?.picture_main.src.thumbnail}`}
+        thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
       /> */}
       <Box ref={refScrollUp} />
       {!matchesXs && (
@@ -1458,7 +1458,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                             {!isShowingMap && typeof picture !== 'undefined' && (
                               <Box position="relative">
                                 <Image
-                                  src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     picture.src?.original
                                   )}`}
                                   layout="fill"
@@ -1563,7 +1563,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           {!isShowingMap && (
                             <Box position="relative">
                               <Image
-                                src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                   picture?.src.original
                                 )}`}
                                 layout="fill"
@@ -1711,7 +1711,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     key={id}
                   >
                     <Image
-                      src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`}
+                      src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
                       layout="fill"
                     />
                   </Box>
@@ -1768,7 +1768,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     className={classes.pictureSliderContainer}
                     sx={{
                       '&::before': {
-                        background: `url(https://storage.googleapis.com/stateless-www-explomaker-fr/${src.original})`,
+                        background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.original})`,
                         backgroundSize: 'cover',
                       },
                     }}
@@ -1784,7 +1784,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       }}
                     >
                       <Image
-                        src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodedURI}`}
+                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
                         width={960}
                         height={640}
                       />

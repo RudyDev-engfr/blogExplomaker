@@ -66,7 +66,7 @@ exports.returnSearch = functions.https.onRequest(async (request, response) => {
         )
         .map(article => {
           const tempArticle = { ...article }
-          tempArticle.picture_1 = `${rootLink}${pictureLib[article.picture_1]?.original}`
+          tempArticle.picture = `${rootLink}${article.picture.src.original}`
           return tempArticle
         })
 
@@ -118,8 +118,8 @@ exports.getFavorites = functions.https.onRequest(async (request, response) => {
       const articles = tempArticles
         .filter((article: any) => currentRequest.articlesBookmarked.includes(article.slug))
         .map(article => {
-          const tempArticle = { ...article }
-          tempArticle.picture_1 = `${rootLink}${pictureLib[article.picture_1].original}`
+          const tempArticle = structuredClone(article)
+          tempArticle.picture = `${rootLink}${article.picture.src.original}`
           return tempArticle
         })
 

@@ -46,9 +46,7 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
         <CardMedia component="span">
           <Box position="relative" height="100%" width="100%">
             <Image
-              src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
-                srcImg
-              )}`}
+              src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`}
               alt={altImg}
               width={262.5}
               height={164}

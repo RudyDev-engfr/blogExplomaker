@@ -723,16 +723,16 @@ const Home = ({ dataset }) => {
 
   const travelBox = [
     {
-      srcImg: `https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset.publicPresentation.groupe_01.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_01.photo.src.original}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset.publicPresentation.groupe_02.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_02.photo.src.original}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset.publicPresentation.groupe_03.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_03.photo.src.original}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/stateless-www-explomaker-fr/${dataset.publicPresentation.groupe_04.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_04.photo.src.original}`,
     },
   ]
 
@@ -756,7 +756,7 @@ const Home = ({ dataset }) => {
             <Box
               display="flex"
               className={classes.secondaryContainer}
-              marginTop="120px"
+              marginTop="160px"
               marginBottom="130px"
               flexWrap="wrap"
               justifyContent={matchesXs ? 'center' : 'space-between'}
@@ -1294,7 +1294,7 @@ const Home = ({ dataset }) => {
                           >
                             <Image
                               src={
-                                `https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                                `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                   photo.src.original
                                 )}` ?? travelPicture
                               }
@@ -1609,7 +1609,7 @@ const Home = ({ dataset }) => {
                   <BlogCard
                     bigTitle={hotArticles[0].title}
                     category={hotArticles[0].sub_type[0].name}
-                    srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${hotArticles[0].picture.src.original}`}
+                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${hotArticles[0].picture.src.original}`}
                     altImg=""
                     date={hotArticles[0].creation_date}
                     readingTime={`${hotArticles[0].reading_time} min`}
@@ -1729,7 +1729,7 @@ const Home = ({ dataset }) => {
                             position="relative"
                           >
                             <img
-                              src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                              src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                 spot.picture.src.original
                               )}`}
                               alt=""
@@ -1787,7 +1787,7 @@ const Home = ({ dataset }) => {
                         {trendingSpot[0].links.map(spot => (
                           <Box key={spot.picture.src.id} width="810px" height="580px">
                             <img
-                              src={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                              src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                 spot.picture.src.original
                               )}`}
                               alt=""
@@ -1857,7 +1857,7 @@ const Home = ({ dataset }) => {
                         <MobileBlogCard
                           title={title.substring(0, 89)}
                           category={subType ? subType[0].name : 'Demacia'}
-                          srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+                          srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                             picture.src.original
                           )}`}
                           publishDate={creationDate}

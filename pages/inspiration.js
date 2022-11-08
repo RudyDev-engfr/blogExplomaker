@@ -420,7 +420,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 index={index}
                 key={name}
                 url={url}
-                isOversized={index > 3}
+                isOversized={matchesXs && index > 3}
               />
             ))}
           </Box>

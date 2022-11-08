@@ -19,7 +19,7 @@ const ArticlesList = ({
   const classes = useStyles()
 
   return (
-    <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+    <Box display="grid" sx={{ gridTemplate: 'repeat(auto-fill, 360px) / repeat(3, 1fr)' }}>
       {isAlgolia
         ? data
             .filter((article, index) =>
@@ -33,16 +33,18 @@ const ArticlesList = ({
                 temps_de_lecture: readingTime,
                 date_de_publication: publishDate,
                 objectID,
+                slug,
               }) => (
                 <MobileBlogCard
                   srcImg={picture}
-                  link={targetUrl}
+                  targetLink={targetUrl}
                   title={titre}
                   key={objectID}
                   // commentsCount={Math.floor(Math.random() * 100)}
                   // likesCount={Math.floor(Math.random() * 100)}
                   publishDate={publishDate}
                   readingTime={readingTime}
+                  slug={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                   isSmallSize={isSmallSize}
@@ -60,18 +62,18 @@ const ArticlesList = ({
                 picture: pictureMain,
                 target_url: targetUrl,
                 creation_date: creationDate,
+                slug,
               }) => (
                 <MobileBlogCard
-                  srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureMain.src?.original}`}
+                  srcImg={pictureMain.src?.original}
                   link={targetUrl}
                   title={title}
                   key={targetUrl}
-                  commentsCount={Math.floor(Math.random() * 100)}
-                  likesCount={Math.floor(Math.random() * 100)}
                   publishDate={creationDate ?? '17 Déc 2020 | 6min'}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                   isSmallSize={isSmallSize}
+                  slug={slug}
                 />
               )
             )}

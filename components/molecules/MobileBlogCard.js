@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { format, parse } from 'date-fns'
 import clsx from 'clsx'
@@ -7,7 +8,7 @@ import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import { useMediaQuery } from '@mui/material'
+import { IconButton, useMediaQuery } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import BookmarkTwoToneIcon from '@mui/icons-material/BookmarkTwoTone'
 import Bookmark from '@mui/icons-material/Bookmark'
@@ -17,6 +18,7 @@ import Favorite from '@mui/icons-material/Favorite'
 import Image from 'next/dist/client/image'
 
 import commentIcon from '../../images/icons/greyCommentIcon.svg'
+import { SessionContext } from '../../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,6 +41,12 @@ const useStyles = makeStyles(theme => ({
       height: '171px',
       maxWidth: '285px',
     },
+  },
+  likeButton: {
+    zIndex: '100',
+    position: 'absolute',
+    top: '16.5px',
+    right: '15px',
   },
   resultImageContainer: {
     position: 'relative',
@@ -137,11 +145,13 @@ const MobileBlogCard = ({
   isAlgolia = false,
   targetLink,
   readingTime,
+  slug,
 }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
+  const { user, articlesBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
     <Card
@@ -164,7 +174,11 @@ const MobileBlogCard = ({
           >
             <Image
               layout="fill"
-              src={encodeURI(srcImg)}
+              src={
+                srcImg.includes('http')
+                  ? encodeURI(srcImg)
+                  : `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`
+              }
               className={classes.cardImage}
               objectFit="cover"
               objectPosition="center"
@@ -181,6 +195,23 @@ const MobileBlogCard = ({
                 {category}
               </Typography>
             </Box>
+            <IconButton
+              sx={{ color: '#FFFFFF', padding: matchesXs && '0' }}
+              classes={{ root: classes.likeButton }}
+              onClick={event => {
+                event.stopPropagation()
+                if (!user?.isLoggedIn) {
+                  setIsAuthModalOpen('login')
+                }
+                articlesBookmarkedUpdate(slug)
+              }}
+            >
+              {user?.articlesBookmarked?.includes(slug) ? (
+                <Bookmark sx={{ fontSize: '26px' }} />
+              ) : (
+                <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />
+              )}
+            </IconButton>
           </Box>
         </CardMedia>
         <CardContent

@@ -58,7 +58,7 @@ const ArticlesCarousel = ({ currentArticles, dotListClass }) => {
         }) => (
           <Box display="flex" sx={{ margin: 'auto', padding: '5px' }}>
             <MobileBlogCard
-              srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+              srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                 picture.src.original
               )}`}
               title={title}
