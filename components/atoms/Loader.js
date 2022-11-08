@@ -3,13 +3,14 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    width: 'calc(100vw + 8px)',
-    height: 'calc(100vh + 16px)',
+    width: '100vw',
+    height: '100vh',
     backgroundColor: '#009d8c',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     '& svg': { height: '180px' },
+    overflow: 'hidden',
   },
 }))
 

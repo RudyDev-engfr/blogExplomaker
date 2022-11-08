@@ -175,7 +175,7 @@ const CountryTile = ({
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const { user, spotsBookmarkedUpdate } = useContext(SessionContext)
+  const { user, spotsBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
     <Card
@@ -226,6 +226,9 @@ const CountryTile = ({
             classes={{ root: classes.likeButton }}
             onClick={event => {
               event.stopPropagation()
+              if (!user?.isLoggedIn) {
+                setIsAuthModalOpen('login')
+              }
               spotsBookmarkedUpdate(link)
             }}
           >

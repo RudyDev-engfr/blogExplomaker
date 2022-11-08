@@ -756,7 +756,7 @@ const Home = ({ dataset }) => {
             <Box
               display="flex"
               className={classes.secondaryContainer}
-              marginTop="120px"
+              marginTop="160px"
               marginBottom="130px"
               flexWrap="wrap"
               justifyContent={matchesXs ? 'center' : 'space-between'}

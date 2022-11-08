@@ -151,7 +151,7 @@ const MobileBlogCard = ({
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
-  const { user, articlesBookmarkedUpdate } = useContext(SessionContext)
+  const { user, articlesBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
     <Card
@@ -200,6 +200,9 @@ const MobileBlogCard = ({
               classes={{ root: classes.likeButton }}
               onClick={event => {
                 event.stopPropagation()
+                if (!user?.isLoggedIn) {
+                  setIsAuthModalOpen('login')
+                }
                 articlesBookmarkedUpdate(slug)
               }}
             >
