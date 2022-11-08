@@ -244,19 +244,26 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             ) : !currentArticles?.length > 0 ? (
               <NoneFavorite isArticle />
             ) : (
-              currentArticles.map(({ title, picture_1: pictureMain, target_url: targetUrl }) => (
-                <MobileBlogCard
-                  srcImg={pictureMain}
-                  link={targetUrl}
-                  title={title}
-                  key={targetUrl}
-                  commentsCount={Math.floor(Math.random() * 100)}
-                  likesCount={Math.floor(Math.random() * 100)}
-                  publishDate="17 Déc 2020 | 6min"
-                  is360px
-                  className={classes.mobileBlogCardAndCountryTile}
-                />
-              ))
+              currentArticles.map(
+                ({
+                  title,
+                  picture: pictureMain,
+                  target_url: targetUrl,
+                  creation_date: publishDate,
+                }) => (
+                  <MobileBlogCard
+                    srcImg={pictureMain}
+                    link={targetUrl}
+                    title={title}
+                    key={targetUrl}
+                    commentsCount={Math.floor(Math.random() * 100)}
+                    likesCount={Math.floor(Math.random() * 100)}
+                    publishDate={publishDate}
+                    is360px
+                    className={classes.mobileBlogCardAndCountryTile}
+                  />
+                )
+              )
             )}
           </Carousel>
         </Box>
@@ -285,20 +292,29 @@ const MyArticles = ({ currentArticles, isLoading }) => {
         <NoneFavorite isArticle />
       ) : (
         <Box marginBottom="80px">
-          <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-            {currentArticles.map(({ title, picture_1: pictureMain, target_url: targetUrl }) => (
-              <MobileBlogCard
-                srcImg={pictureMain}
-                link={targetUrl}
-                title={title}
-                key={targetUrl}
-                commentsCount={Math.floor(Math.random() * 100)}
-                likesCount={Math.floor(Math.random() * 100)}
-                publishDate="17 Déc 2020 | 6min"
-                is360px
-                className={classes.mobileBlogCardAndCountryTile}
-              />
-            ))}
+          <Box display="grid" sx={{ gridTemplate: 'repeat(auto-fill, 360px) / repeat(3, 1fr)' }}>
+            {currentArticles.map(
+              ({
+                title,
+                picture: pictureMain,
+                target_url: targetUrl,
+                creation_date: publishDate,
+                slug,
+              }) => (
+                <MobileBlogCard
+                  srcImg={pictureMain}
+                  link={targetUrl}
+                  title={title}
+                  key={targetUrl}
+                  commentsCount={Math.floor(Math.random() * 100)}
+                  likesCount={Math.floor(Math.random() * 100)}
+                  publishDate={publishDate}
+                  slug={slug}
+                  is360px
+                  className={classes.mobileBlogCardAndCountryTile}
+                />
+              )
+            )}
           </Box>
         </Box>
       )}

@@ -174,7 +174,11 @@ const MobileBlogCard = ({
           >
             <Image
               layout="fill"
-              src={encodeURI(srcImg)}
+              src={
+                srcImg.includes('http')
+                  ? encodeURI(srcImg)
+                  : `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`
+              }
               className={classes.cardImage}
               objectFit="cover"
               objectPosition="center"
@@ -199,7 +203,7 @@ const MobileBlogCard = ({
                 articlesBookmarkedUpdate(slug)
               }}
             >
-              {slug && user?.articlesBookmarked?.includes(slug) ? (
+              {user?.articlesBookmarked?.includes(slug) ? (
                 <Bookmark sx={{ fontSize: '26px' }} />
               ) : (
                 <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />

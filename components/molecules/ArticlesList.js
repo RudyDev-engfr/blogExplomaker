@@ -19,7 +19,7 @@ const ArticlesList = ({
   const classes = useStyles()
 
   return (
-    <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+    <Box display="grid" sx={{ gridTemplate: 'repeat(auto-fill, 360px) / repeat(3, 1fr)' }}>
       {isAlgolia
         ? data
             .filter((article, index) =>
@@ -65,7 +65,7 @@ const ArticlesList = ({
                 slug,
               }) => (
                 <MobileBlogCard
-                  srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureMain.src?.original}`}
+                  srcImg={pictureMain.src?.original}
                   link={targetUrl}
                   title={title}
                   key={targetUrl}
