@@ -31,7 +31,7 @@ const MobileIntro = ({ spotlight, metaContinentRef }) => {
       <Box marginBottom="40px">
         <CountryTile
           countryTitle={spotlight.prefixed_title}
-          srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${spotlight.picture_titled.src.original}`}
+          srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${spotlight.picture_titled.src.original}`}
           altImg="test img"
           link={spotlight.slug}
           category={metaContinentRef[parseInt(spotlight.meta_continent[0], 10)].name}

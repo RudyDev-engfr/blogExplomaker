@@ -54,7 +54,7 @@ const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass }) => {
             <CountryTile
               countryTitle={title}
               category={country}
-              srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${encodeURI(
+              srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                 picture.src.original
               )}`}
               categoryColor={color}

@@ -33,7 +33,7 @@ const SpotList = ({ data, isShowingMoreSpots, isAlgolia = false, numberOfSpots =
               <CountryTile
                 countryTitle={title}
                 category={gps.country}
-                srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureMain?.src.original}`}
+                srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureMain?.src.original}`}
                 categoryColor={color}
                 altImg=""
                 key={`spot/${slug}`}

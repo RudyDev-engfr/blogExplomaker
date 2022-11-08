@@ -65,7 +65,7 @@ const ArticlesList = ({
                 slug,
               }) => (
                 <MobileBlogCard
-                  srcImg={`https://storage.googleapis.com/stateless-www-explomaker-fr/${pictureMain.src?.original}`}
+                  srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureMain.src?.original}`}
                   link={targetUrl}
                   title={title}
                   key={targetUrl}
