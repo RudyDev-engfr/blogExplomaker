@@ -83,6 +83,43 @@ const SessionContextProvider = ({ children }) => {
       .set({ spotsLiked: [...tempLikes] }, { merge: true })
   }
 
+  const articlesBookmarkedUpdate = slug => {
+    let tempBookmarks = user?.articlesBookmarked || []
+    const updateData = {}
+    const tempLikes = user?.spotsLiked || []
+
+    if (tempBookmarks.includes(slug)) {
+      tempBookmarks = tempBookmarks.filter(bookmark => bookmark !== slug)
+    } else {
+      if (!tempLikes.includes(slug)) {
+        tempLikes.push(slug)
+        // eslint-disable-next-line no-undef
+        updateData.articlesLiked = structuredClone(tempLikes)
+      }
+      tempBookmarks.push(slug)
+    }
+
+    updateData.articlesBookmarked = [...tempBookmarks]
+
+    firestore
+      .collection('users')
+      .doc(user.id)
+      .set({ ...updateData }, { merge: true })
+  }
+
+  const articlesLikedUpdate = slug => {
+    let tempLikes = user?.articlesLiked || []
+    if (tempLikes.includes(slug)) {
+      tempLikes = tempLikes.filter(like => like !== slug)
+    } else {
+      tempLikes.push(slug)
+    }
+    firestore
+      .collection('users')
+      .doc(user.id)
+      .set({ articlesLiked: [...tempLikes] }, { merge: true })
+  }
+
   return (
     <SessionContext.Provider
       value={{
@@ -91,7 +128,9 @@ const SessionContextProvider = ({ children }) => {
         searchValue,
         setSearchValue,
         spotsBookmarkedUpdate,
+        articlesBookmarkedUpdate,
         spotsLikedUpdate,
+        articlesLikedUpdate,
         isAuthModalOpen,
         setIsAuthModalOpen,
         needFetch,

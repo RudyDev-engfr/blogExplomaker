@@ -90,6 +90,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardTitleSquared: {
     fontSize: '14px',
+    lineHeight: '16.6px',
     fontWeight: '500',
     display: 'inline-block',
     padding: '5px 8px',

@@ -334,8 +334,9 @@ const Favorites = () => {
       fetch(fnURL, myInit)
         .then(async response => {
           const payload = await response.json()
-          setCurrentArticles(payload.articles)
+          console.log('payload', payload)
           setCurrentSpots(payload.spots)
+          setCurrentArticles(payload.articles)
           setIsLoading(false)
         })
         .catch(error => console.error(error))
@@ -345,6 +346,14 @@ const Favorites = () => {
       setIsAuthModalOpen('login')
     }
   }, [user, initializing])
+
+  useEffect(() => {
+    console.log('articles favoris', currentArticles)
+  }, [currentArticles])
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   return (
     <Box className={classes.fullWidthContainer}>

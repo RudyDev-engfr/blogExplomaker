@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
   searboxRoot: {
     marginRight: '15px',
+    position: 'relative',
   },
   searchInput: {
     minWidth: '400px',
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50px',
     border: 'none',
     padding: '15px',
+    paddingLeft: '40px',
     fontSize: '17px',
     [theme.breakpoints.down('sm')]: {
       minWidth: '80vw',
@@ -57,7 +59,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   searchSubmit: {
-    display: 'none',
+    // display: 'none',
+    position: 'absolute',
+    left: '15px',
+    top: '13px',
+    backgroundColor: theme.palette.secondary.contrastText,
+    border: 'none',
+    color: theme.palette.primary.main,
   },
   searchReset: {
     display: 'none',
@@ -72,25 +80,6 @@ const useStyles = makeStyles(theme => ({
     width: '6px',
   },
 }))
-
-function SubmitIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18">
-      <g
-        fill="none"
-        fillRule="evenodd"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.67"
-        transform="translate(1 1)"
-      >
-        <circle cx="7.11" cy="7.11" r="7.11" />
-        <path d="M16 16l-3.87-3.87" />
-      </g>
-    </svg>
-  )
-}
 
 const Results = () => {
   const classes = useStyles()
@@ -174,15 +163,8 @@ const Results = () => {
                         submit: classes.searchSubmit,
                         reset: classes.searchReset,
                       }}
-                      submitIconComponent={SubmitIcon}
+                      submitIconComponent={() => <SearchIcon />}
                     />
-                    <Button
-                      variant="contained"
-                      startIcon={<SearchIcon />}
-                      sx={{ borderRadius: '29px' }}
-                    >
-                      Rechercher
-                    </Button>
                   </Box>
                 </Box>
               </Box>
@@ -199,6 +181,7 @@ const Results = () => {
             </IconButton>
             <SearchBox
               searchAsYouType
+              autoFocus
               classNames={{
                 root: classes.searboxRoot,
                 input: classes.searchInput,
