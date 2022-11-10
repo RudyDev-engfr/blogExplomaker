@@ -66,6 +66,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.contrastText,
     border: 'none',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.grey.f2,
+      width: '20px',
+      height: '20px',
+    },
   },
   searchReset: {
     display: 'none',
@@ -189,6 +194,7 @@ const Results = () => {
                 reset: classes.searchReset,
                 loadingIcon: classes.loadingIcon,
               }}
+              submitIconComponent={() => <SearchIcon />}
             />
           </Box>
         )}

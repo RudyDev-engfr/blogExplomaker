@@ -149,7 +149,7 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
             >
               {imgGallery.map(({ srcImg, description }) => (
                 <>
-                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                  <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
                       alt=""
@@ -312,7 +312,7 @@ const SignUpModal = ({
             >
               {imgGallery.map(({ srcImg, description }) => (
                 <>
-                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                  <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
                       alt=""
@@ -515,7 +515,7 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
             >
               {imgGallery.map(({ srcImg, description }) => (
                 <>
-                  <Box position="relative" sx={{ width: '100vw', height: '100vh' }}>
+                  <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
                       alt=""

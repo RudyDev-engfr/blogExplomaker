@@ -45,6 +45,8 @@ const Search = ({ modalState, modalStateSetter }) => {
   if (matchesXs) {
     return (
       <MobileSearch
+        modalState={modalState}
+        modalStateSetter={modalStateSetter}
         currentSpots={currentSpots}
         currentArticles={currentArticles}
         isShowingMoreSpots={isShowingMoreSpots}

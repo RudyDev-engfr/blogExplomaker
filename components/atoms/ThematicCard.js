@@ -44,7 +44,7 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
     <Card className={classes.rootCard}>
       <CardActionArea onClick={() => router.push(`/results?${link}`)}>
         <CardMedia component="span">
-          <Box position="relative" height="100%" width="100%">
+          <Box sx={{ position: 'relative' }} height="100%" width="100%">
             <Image
               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`}
               alt={altImg}

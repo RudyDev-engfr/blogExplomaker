@@ -68,7 +68,7 @@ const Footer = () => {
               EXPLOMAKER est une enseigne Digital Project &amp; Transformation Consulting
               immatriculé au RCS Orléans N°833 831 779 00016
             </Typography>
-            <Box position="relative">
+            <Box sx={{ position: 'relative' }}>
               <Box
                 sx={{
                   height: '45px',

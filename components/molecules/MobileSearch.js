@@ -14,6 +14,7 @@ import 'react-multi-carousel/lib/styles.css'
 import CountryTile from '../atoms/CountryTile'
 import ArticlesList from './ArticlesList'
 import union from '../../images/icons/Union.svg'
+import MobileSearchFilter from './MobileSearchFilter'
 
 const useStyles = makeStyles(theme => ({
   filterButton: {
@@ -78,6 +79,7 @@ const MobileSearch = ({
   isShowingMoreSpots,
   setIsShowingMoreSpots,
   modalStateSetter,
+  modalState,
 }) => {
   const classes = useStyles()
   const theme = useTheme()
@@ -188,7 +190,7 @@ const MobileSearch = ({
             Articles({currentArticles.length})
           </Typography>
         )}
-        {currentArticles.length > 9 && !isShowingMoreArticles && (
+        {currentArticles.length > 5 && !isShowingMoreArticles && (
           <Button
             sx={{
               textTransform: 'none',
@@ -316,6 +318,7 @@ const MobileSearch = ({
         </Box>
         <ArticleIntegration />
       </TabPanel>
+      <MobileSearchFilter modalState={modalState} modalStateSetter={modalStateSetter} />
     </>
   )
 }
