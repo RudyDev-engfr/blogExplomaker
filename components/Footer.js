@@ -48,7 +48,8 @@ const Footer = () => {
       className={clsx(classes.footer, { [classes.page404]: router.pathname === '/404' })}
       sx={{
         [theme.breakpoints.down('sm')]: {
-          display: router.pathname === '/favorites' ? 'none' : 'block',
+          display:
+            router.pathname === '/favorites' || router.pathname === '/results' ? 'none' : 'block',
         },
       }}
     >

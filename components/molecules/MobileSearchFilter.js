@@ -114,6 +114,7 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
               lineHeight: '18px',
               borderRadius: '10px',
             }}
+            onClick={() => modalStateSetter('')}
           >
             Voir {currentHitsArray.length} résultats
           </Button>

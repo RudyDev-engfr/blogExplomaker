@@ -179,6 +179,7 @@ const Results = () => {
           <Box display="flex" sx={{ padding: '45px 20px 20px 25px' }}>
             <IconButton
               disableElevation
+              disableRipple
               className={classes.buttonBack}
               onClick={() => router.back()}
             >
