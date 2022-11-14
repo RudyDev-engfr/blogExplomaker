@@ -11,10 +11,12 @@ import { Button, useMediaQuery } from '@mui/material'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+
 import CountryTile from '../atoms/CountryTile'
 import ArticlesList from './ArticlesList'
 import union from '../../images/icons/Union.svg'
 import MobileSearchFilter from './MobileSearchFilter'
+import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDotBox'
 
 const useStyles = makeStyles(theme => ({
   filterButton: {
@@ -38,6 +40,10 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     fontWeight: '400',
   },
+  destinationsCarouselRoot: {
+    right: 'unset',
+    flexWrap: 'wrap',
+  },
 }))
 
 function TabPanel(props) {
@@ -52,7 +58,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ padding: '40px 24px 130px 24px', backgroundColor: '#e5e5e5' }}>{children}</Box>
+        <Box sx={{ padding: '40px 30px 130px 30px', backgroundColor: '#e5e5e5' }}>{children}</Box>
       )}
     </div>
   )
@@ -89,15 +95,37 @@ const MobileSearch = ({
     setValue(newValue)
   }
 
+  const AllSpotIntegration = () => (
+    <>
+      {currentSpots
+        .filter((spot, index) => index <= 19)
+        .map(({ titre: title, country, picture, color, slug }) => (
+          <Box display="flex" sx={{ margin: 'auto', marginBottom: '20px' }}>
+            <CountryTile
+              countryTitle={title}
+              category={country}
+              srcImg={encodeURI(picture)}
+              categoryColor={color}
+              altImg=""
+              key={`spot/${slug}`}
+              link={slug}
+              className={classes.mobileBlogCardAndCountryTile}
+              isLarge
+            />
+          </Box>
+        ))}
+    </>
+  )
+
   const SpotIntegration = () => (
     <>
       <Box marginBottom="22px" display="flex" justifyContent="space-between" alignItems="center">
         {currentSpots.length > 0 && (
           <Typography variant="h3" component="h2">
-            Destinations({currentSpots.length > 16 ? '16+' : currentSpots.length})
+            Destinations({currentSpots.length > 6 ? '6+' : currentSpots.length})
           </Typography>
         )}
-        {currentSpots.length > 4 && !isShowingMoreSpots && (
+        {currentSpots.length > 6 && (
           <Button
             sx={{
               textTransform: 'none',
@@ -107,78 +135,67 @@ const MobileSearch = ({
               fontWeight: '500',
             }}
             variant="contained"
-            onClick={() => setIsShowingMoreSpots(true)}
+            onClick={() => setValue(1)}
           >
-            Voir plus
-          </Button>
-        )}
-        {isShowingMoreSpots && (
-          <Button
-            sx={{
-              textTransform: 'none',
-              height: '32px',
-              borderRadius: '5px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-            variant="contained"
-            onClick={() => setIsShowingMoreSpots(false)}
-          >
-            Voir moins
+            Voir tout
           </Button>
         )}
       </Box>
-      <Carousel
-        itemClass={classes.mobileSpotsCarouselItem}
-        autoPlaySpeed={3000}
-        draggable
-        arrows={false}
-        focusOnSelect={false}
-        infinite={currentSpots.length > 1}
-        showDots={false}
-        renderDotsOutside
-        keyBoardControl
-        minimumTouchDrag={80}
-        responsive={{
-          desktop: {
-            breakpoint: {
-              max: 3000,
-              min: 640,
+      <Box sx={{ position: 'relative', marginBottom: '90px' }}>
+        <Carousel
+          itemClass={classes.mobileSpotsCarouselItem}
+          autoPlaySpeed={3000}
+          draggable
+          arrows={false}
+          focusOnSelect={false}
+          customDot={<TrendingDestinationsDotBox carouselArray={currentSpots} isResults />}
+          infinite={currentSpots.length > 1}
+          showDots
+          dotListClass={classes.destinationsCarouselRoot}
+          renderDotsOutside
+          keyBoardControl
+          minimumTouchDrag={80}
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 640,
+              },
+              items: 1,
             },
-            items: 1,
-          },
-          mobile: {
-            breakpoint: {
-              max: 640,
-              min: 0,
+            mobile: {
+              breakpoint: {
+                max: 640,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 40,
             },
-            items: 1,
-            partialVisibilityGutter: 40,
-          },
-        }}
-        slidesToSlide={1}
-        swipeable
-        ssr
-        deviceType="mobile"
-        partialVisible
-      >
-        {currentSpots
-          .filter((currentSpot, index) => (isShowingMoreSpots ? true : index <= 5))
-          .map(({ titre: title, country, picture, color, slug }) => (
-            <Box display="flex" sx={{ margin: 'auto', marginBottom: '30px' }}>
-              <CountryTile
-                countryTitle={title}
-                category={country}
-                srcImg={encodeURI(picture)}
-                categoryColor={color}
-                altImg=""
-                key={`spot/${slug}`}
-                link={slug}
-                className={classes.mobileBlogCardAndCountryTile}
-              />
-            </Box>
-          ))}
-      </Carousel>
+          }}
+          slidesToSlide={1}
+          swipeable
+          ssr
+          deviceType="mobile"
+          partialVisible
+        >
+          {currentSpots
+            .filter((currentSpot, index) => (isShowingMoreSpots ? index <= 9 : index <= 5))
+            .map(({ titre: title, country, picture, color, slug }) => (
+              <Box display="flex" sx={{ margin: 'auto', marginBottom: '10px' }}>
+                <CountryTile
+                  countryTitle={title}
+                  category={country}
+                  srcImg={encodeURI(picture)}
+                  categoryColor={color}
+                  altImg=""
+                  key={`spot/${slug}`}
+                  link={slug}
+                  className={classes.mobileBlogCardAndCountryTile}
+                />
+              </Box>
+            ))}
+        </Carousel>
+      </Box>
     </>
   )
 
@@ -190,7 +207,7 @@ const MobileSearch = ({
             Articles({currentArticles.length})
           </Typography>
         )}
-        {currentArticles.length > 5 && !isShowingMoreArticles && (
+        {currentArticles.length > 5 && (
           <Button
             sx={{
               textTransform: 'none',
@@ -200,24 +217,9 @@ const MobileSearch = ({
               fontWeight: '500',
             }}
             variant="contained"
-            onClick={() => setIsShowingMoreArticles(true)}
+            onClick={() => setValue(2)}
           >
-            Voir plus
-          </Button>
-        )}
-        {isShowingMoreArticles && (
-          <Button
-            sx={{
-              textTransform: 'none',
-              height: '32px',
-              borderRadius: '5px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-            variant="contained"
-            onClick={() => setIsShowingMoreArticles(false)}
-          >
-            Voir moins
+            Voir Tout
           </Button>
         )}
       </Box>
@@ -236,7 +238,17 @@ const MobileSearch = ({
 
   return (
     <>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100vw !important' }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: 'divider',
+          width: '100vw !important',
+          position: 'fixed',
+          top: '95px',
+          backgroundColor: theme.palette.secondary.contrastText,
+          zIndex: 900,
+        }}
+      >
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
           <Tab label="Tout" {...a11yProps(0)} classes={{ root: classes.tabRoot }} />
           <Tab
@@ -252,7 +264,13 @@ const MobileSearch = ({
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Box marginBottom="32px" display="flex" justifyContent="space-between" width="100%">
+        <Box
+          marginBottom="32px"
+          display="flex"
+          justifyContent="space-between"
+          width="100%"
+          sx={{ paddingTop: '145px' }}
+        >
           <Typography
             component="h2"
             sx={{
@@ -275,7 +293,13 @@ const MobileSearch = ({
         <ArticleIntegration />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Box marginBottom="32px" display="flex" justifyContent="space-between" width="100%">
+        <Box
+          marginBottom="32px"
+          display="flex"
+          justifyContent="space-between"
+          width="100%"
+          sx={{ paddingTop: '145px' }}
+        >
           <Typography
             component="h2"
             sx={{
@@ -294,10 +318,16 @@ const MobileSearch = ({
             classes={{ root: classes.filterButton }}
           />
         </Box>
-        <SpotIntegration currentSpots={currentSpots} />
+        <AllSpotIntegration />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Box marginBottom="32px" display="flex" justifyContent="space-between" width="100%">
+        <Box
+          marginBottom="32px"
+          display="flex"
+          justifyContent="space-between"
+          width="100%"
+          sx={{ paddingTop: '145px' }}
+        >
           <Typography
             component="h2"
             sx={{

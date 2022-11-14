@@ -176,7 +176,16 @@ const Results = () => {
             </Box>
           </Box>
         ) : (
-          <Box display="flex" sx={{ padding: '45px 20px 20px 25px' }}>
+          <Box
+            display="flex"
+            sx={{
+              position: 'fixed',
+              backgroundColor: theme.palette.secondary.contrastText,
+              width: '100vw',
+              padding: '45px 24px 0px',
+              zIndex: 900,
+            }}
+          >
             <IconButton
               disableElevation
               disableRipple

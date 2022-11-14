@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.grey['33'],
     fontWeight: '500',
     lineHeight: '21px',
+    marginBottom: '10px',
   },
 }))
 const AccordionFilter = ({ category, header, isFirstAccordion }) => {
@@ -37,7 +38,7 @@ const AccordionFilter = ({ category, header, isFirstAccordion }) => {
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <AlgoliaPanel header={header} headerClassName={classes.panelHeader} />
-          <CustomCurrentRefinements includedAttributes={[{ category }]} />
+          <CustomCurrentRefinements includedAttributes={[`${category}`]} />
         </Box>
       </AccordionSummary>
       <AccordionDetails>

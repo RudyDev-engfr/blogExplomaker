@@ -10,6 +10,7 @@ const SessionContextProvider = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState('')
   const [currentHitsArray, setCurrentHitsArray] = useState()
   // currentHitsArray is the array of results from Algolia
+  const [currentRefinementsArrayLength, setCurrentRefinementsArrayLength] = useState(0)
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(user))
@@ -138,6 +139,8 @@ const SessionContextProvider = ({ children }) => {
         setNeedFetch,
         currentHitsArray,
         setCurrentHitsArray,
+        currentRefinementsArrayLength,
+        setCurrentRefinementsArrayLength,
       }}
     >
       {children}

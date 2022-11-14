@@ -14,6 +14,15 @@ const useStyles = makeStyles(theme => ({
   activeColor: {
     backgroundColor: theme.palette.primary.main,
   },
+  activeColorResults: {
+    backgroundColor: `${theme.palette.primary.ultraDark} !important`,
+    height: '8px',
+    width: '8px',
+  },
+  passiveColorResults: {
+    backgroundColor: theme.palette.primary.main,
+    marginBottom: '5px',
+  },
   trendingDotBox: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -26,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }))
-const TrendingDestinationsDotBox = ({ carouselArray, onClick, ...rest }) => {
+const TrendingDestinationsDotBox = ({ carouselArray, isResults = false, onClick, ...rest }) => {
   const { active } = rest
   // onMove means if dragging or swiping in progress.
   // active is provided by this lib for checking if the item is active or not.
@@ -36,13 +45,16 @@ const TrendingDestinationsDotBox = ({ carouselArray, onClick, ...rest }) => {
       <Box
         component={ButtonBase}
         onClick={() => onClick()}
-        height="12px"
+        height="10px"
         mx={1}
         borderRadius="50px"
+        marginBottom="10px"
       >
         <Box
           className={clsx(classes.indicatorsCountryGallery, {
             [classes.activeColor]: active,
+            [classes.passiveColorResults]: isResults,
+            [classes.activeColorResults]: active && isResults,
           })}
         />
       </Box>

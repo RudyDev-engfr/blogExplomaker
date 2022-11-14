@@ -1,28 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Add, Close } from '@mui/icons-material'
 import Box from '@mui/material/Box'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import Modal from '@mui/material/Modal'
 import Paper from '@mui/material/Paper'
+import { ClearRefinements, CurrentRefinements } from 'react-instantsearch-hooks-web'
 import { Button, Divider, IconButton, Typography } from '@mui/material'
-import AccordionDetails from '@mui/material/AccordionDetails'
 import { makeStyles, useTheme } from '@mui/styles'
-import { CurrentRefinements, RefinementList } from 'react-instantsearch-hooks-web'
-
-import AlgoliaPanel from '../atoms/AlgoliaPanel'
-import CustomRefinementList from '../Algolia/CustomRefinementList'
 import { SessionContext } from '../../contexts/session'
-import CustomCurrentRefinements from '../Algolia/CustomCurrentRefinements'
 import AccordionFilter from './AccordionFilter'
 
 const useStyles = makeStyles(theme => ({
-  panelHeader: {
-    fontSize: '18px',
-    color: theme.palette.grey['33'],
-    fontWeight: '500',
-    lineHeight: '21px',
-  },
   paper: {
     position: 'absolute',
     top: '50%',
@@ -30,13 +19,6 @@ const useStyles = makeStyles(theme => ({
     transform: 'translate(-50%, -50%)',
     width: '100vw',
     maxHeight: '100vh',
-  },
-  filterCheckbox: {},
-  enviesFilterList: {
-    // padding: '5px',
-    marginTop: '10px',
-    marginBottom: '10px',
-    listStyleType: 'none',
   },
   headerModal: {
     position: 'relative',
@@ -48,12 +30,35 @@ const useStyles = makeStyles(theme => ({
   },
   footerModal: {
     padding: '16px 20px 30px 30px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  clearRefinementsButton: {
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    font: 'inherit',
+    cursor: 'pointer',
+    outline: 'inherit',
+    textDecoration: 'underline',
+    color: theme.palette.grey['82'],
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '16.6px',
   },
 }))
 const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
   const classes = useStyles()
   const theme = useTheme()
-  const { currentHitsArray } = useContext(SessionContext)
+  const { currentHitsArray, currentRefinementsArrayLength, setCurrentRefinementsArrayLength } =
+    useContext(SessionContext)
+
+  const transformItems = items => {
+    setCurrentRefinementsArrayLength(items.length)
+    return items
+  }
+
   const currentFilters = [
     {
       header: 'Type de résultats',
@@ -101,9 +106,35 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
           {currentFilters.map(({ header, category }, index) => (
             <AccordionFilter isFirstAccordion={index === 0} header={header} category={category} />
           ))}
+          <Box sx={{ display: 'none' }}>
+            <CurrentRefinements transformItems={transformItems} />
+          </Box>
         </Paper>
         <Divider />
         <Box className={classes.footerModal}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography
+              sx={{
+                color: theme.palette.grey['82'],
+                fontWeight: '400',
+                fontSize: '14px',
+                lineHeight: '16.6px',
+              }}
+            >
+              {`${currentRefinementsArrayLength} filtre${
+                currentRefinementsArrayLength > 1 ? 's' : ''
+              } 
+            actif${currentRefinementsArrayLength > 1 ? 's' : ''}`}
+            </Typography>
+            {currentRefinementsArrayLength >= 1 && (
+              <ClearRefinements
+                translations={{
+                  resetButtonText: 'Effacer',
+                }}
+                classNames={{ button: classes.clearRefinementsButton }}
+              />
+            )}
+          </Box>
           <Button
             variant="contained"
             sx={{
