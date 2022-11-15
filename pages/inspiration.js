@@ -320,7 +320,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   Articles sur {spotlight.prefixed_title}
                 </Typography>
               </Box>
-              <Box position="relative">
+              <Box sx={{ position: 'relative' }}>
                 <ArticlesCarousel
                   currentArticles={currentSpotlightArticles}
                   dotListClass={classes.carouselNotCentered}
@@ -373,7 +373,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   Spots en {spotlight.title}
                 </Typography>
               </Box>
-              <Box position="relative">
+              <Box sx={{ position: 'relative' }}>
                 <SpotCarousel
                   currentSpots={spotlight.unmissable}
                   isShowingMoreSpots={isShowingMoreSpots}

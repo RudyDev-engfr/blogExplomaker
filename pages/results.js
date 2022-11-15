@@ -66,6 +66,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.contrastText,
     border: 'none',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.grey.f2,
+      width: '20px',
+      height: '20px',
+    },
   },
   searchReset: {
     display: 'none',
@@ -171,9 +176,19 @@ const Results = () => {
             </Box>
           </Box>
         ) : (
-          <Box display="flex" sx={{ padding: '45px 20px 20px 25px' }}>
+          <Box
+            display="flex"
+            sx={{
+              position: 'fixed',
+              backgroundColor: theme.palette.secondary.contrastText,
+              width: '100vw',
+              padding: '45px 24px 0px',
+              zIndex: 900,
+            }}
+          >
             <IconButton
               disableElevation
+              disableRipple
               className={classes.buttonBack}
               onClick={() => router.back()}
             >
@@ -189,6 +204,7 @@ const Results = () => {
                 reset: classes.searchReset,
                 loadingIcon: classes.loadingIcon,
               }}
+              submitIconComponent={() => <SearchIcon />}
             />
           </Box>
         )}

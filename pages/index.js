@@ -51,6 +51,7 @@ import travelPicture from '../images/travelTile.png'
 import emma from '../images/emma.png'
 import logo from '../images/icons/logo.svg'
 import MobileBlogCard from '../components/molecules/MobileBlogCard'
+import MobileSearchButton from '../components/atoms/MobileSearchButton'
 
 const tiles = [
   { Icon: HomeIcon, label: 'Logement' },
@@ -745,11 +746,12 @@ const Home = ({ dataset }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
+      {matchesXs && <MobileSearchButton />}
       <Box className={classes.fullWidthContainer}>
         <Box className={classes.greenBackgroundContainer}>
           <Box className={classes.mainContainer}>
             {matchesXs && (
-              <Box display="flex" justifyContent="center" position="relative" top="65px">
+              <Box display="flex" justifyContent="center" sx={{ position: 'relative' }} top="65px">
                 <Image src={logoFull} width={250} height={60} />
               </Box>
             )}
@@ -815,7 +817,7 @@ const Home = ({ dataset }) => {
                   </Box>
                 </Box>
               </Box>
-              <Box position="relative" width="570px">
+              <Box sx={{ position: 'relative' }} width="570px">
                 <Box position="absolute" top="0" left="0">
                   <Box className={classes.videosGrid}>
                     <Box className="video1">
@@ -1052,7 +1054,7 @@ const Home = ({ dataset }) => {
                     ))}
                   </Box>
                 ) : (
-                  <Box position="relative">
+                  <Box sx={{ position: 'relative' }}>
                     <Box className={classes.buttonAdd}>
                       <Add className={classes.iconAdd} />
                     </Box>
@@ -1288,7 +1290,7 @@ const Home = ({ dataset }) => {
                             display="flex"
                             flexDirection="column"
                             alignItems="center"
-                            position="relative"
+                            sx={{ position: 'relative' }}
                             key={publicLogo}
                             minHeight="335px"
                           >
@@ -1335,7 +1337,7 @@ const Home = ({ dataset }) => {
                         onChange={currentIndex => setCurrentSlideDesktopPart6(currentIndex)}
                       >
                         {travelBox.map(({ srcImg }) => (
-                          <Box position="relative" key={srcImg}>
+                          <Box sx={{ position: 'relative' }} key={srcImg}>
                             <Image
                               src={encodeURI(srcImg)}
                               width={1140}
@@ -1687,7 +1689,7 @@ const Home = ({ dataset }) => {
                 display="flex"
                 alignItems="center"
                 flexDirection="column"
-                position="relative"
+                sx={{ position: 'relative' }}
                 marginBottom={matchesXs ? '0' : '150px'}
                 className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
               >
@@ -1714,7 +1716,7 @@ const Home = ({ dataset }) => {
                     alignItems="center"
                     className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
                   >
-                    <Box position="relative">
+                    <Box sx={{ position: 'relative' }}>
                       <Carousel
                         infinite={false}
                         navButtonsAlwaysInvisible
@@ -1726,7 +1728,7 @@ const Home = ({ dataset }) => {
                             key={spot.picture.src.id}
                             minWidth="100%"
                             height="300px"
-                            position="relative"
+                            sx={{ position: 'relative' }}
                           >
                             <img
                               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
@@ -1748,7 +1750,7 @@ const Home = ({ dataset }) => {
                 ) : (
                   /* Desktop ver */
                   <Box display="flex" alignSelf="flex-start" flexDirection="column">
-                    <Box position="relative">
+                    <Box sx={{ position: 'relative' }}>
                       <Box className={classes.buttonsSpot}>
                         <Button
                           className={classes.carouselArrow}
@@ -1906,7 +1908,7 @@ const Home = ({ dataset }) => {
         >
           <Box className={classes.mainContainer}>
             {matchesXs ? (
-              <Box display="flex" justifyContent="center" position="relative">
+              <Box display="flex" justifyContent="center" sx={{ position: 'relative' }}>
                 <Box className={classes.paperNewsletter}>
                   <Box alignSelf="stretch" className={classes.shadowBoxNewsletter} />
                   <Box marginBottom="20px">
@@ -1963,7 +1965,7 @@ const Home = ({ dataset }) => {
                 </Box>
               </Box>
             ) : (
-              <Box display="flex" justifyContent="center" position="relative">
+              <Box display="flex" justifyContent="center" sx={{ position: 'relative' }}>
                 <Paper elevation={8} className={classes.paperNewsletter}>
                   <Box alignSelf="stretch" className={classes.shadowBoxNewsletter} />
                   <Box marginBottom="20px">

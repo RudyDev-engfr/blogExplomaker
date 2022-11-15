@@ -87,7 +87,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
         </Box>
       </Box>
       {matchesXs ? (
-        <Box position="relative">
+        <Box sx={{ position: 'relative' }}>
           <MultiCarousel
             itemClass={classes.mobileCarouselItem}
             autoPlaySpeed={3000}
@@ -149,7 +149,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
           </MultiCarousel>
         </Box>
       ) : (
-        <Box position="relative">
+        <Box sx={{ position: 'relative' }}>
           <MultiCarousel
             autoPlaySpeed={3000}
             centerMode

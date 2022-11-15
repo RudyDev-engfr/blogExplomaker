@@ -244,7 +244,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                 </Button>
               </Link>
             </Box>
-            <Box position="relative" display="flex">
+            <Box sx={{ position: 'relative' }} display="flex">
               <Badge badgeContent={0} color="secondary" overlap="circular">
                 <div>
                   <Button

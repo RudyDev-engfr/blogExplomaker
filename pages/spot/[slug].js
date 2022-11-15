@@ -1089,7 +1089,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       )}
       {/* Partie 1 */}
       <Box mb="90px">
-        <Box position="relative" className={classes.headerMapBox}>
+        <Box sx={{ position: 'relative' }} className={classes.headerMapBox}>
           <Map
             latitude={dataset.gps.lat}
             longitude={dataset.gps.lng}
@@ -1418,7 +1418,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Box>
               {matchesXs ? (
                 <Box>
-                  <Box position="relative" marginBottom="25px">
+                  <Box sx={{ position: 'relative' }} marginBottom="25px">
                     {/* Mobile ver */}
                     <Box>
                       <Box marginBottom="5px">
@@ -1456,7 +1456,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         <Box display="block" alignItems="center" key={postSlug} width="100%">
                           <Box className={classes.mobileCountryGalleryImgContainer}>
                             {!isShowingMap && typeof picture !== 'undefined' && (
-                              <Box position="relative">
+                              <Box sx={{ position: 'relative' }}>
                                 <Image
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     picture.src?.original
@@ -1472,7 +1472,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       ))}
                     </Carousel>
                     {isShowingMap && (
-                      <Box height="200px" width="100%" position="relative">
+                      <Box height="200px" width="100%" sx={{ position: 'relative' }}>
                         <Map
                           latitude={dataset.gps.lat}
                           longitude={dataset.gps.lng}
@@ -1513,7 +1513,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   </Box>
                 </Box>
               ) : (
-                <Box position="relative" alignSelf="flex-end">
+                <Box sx={{ position: 'relative' }} alignSelf="flex-end">
                   {/* Desktop ver */}
                   <Carousel
                     index={currentGalleryTile}
@@ -1561,7 +1561,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       <Box display="block" alignItems="center" key={postSlug}>
                         <Box className={classes.countryGalleryImgContainer}>
                           {!isShowingMap && (
-                            <Box position="relative">
+                            <Box sx={{ position: 'relative' }}>
                               <Image
                                 src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                   picture?.src.original
@@ -1707,7 +1707,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     minWidth="300px"
                     minHeight="200px"
                     maxHeight="200px"
-                    position="relative"
+                    sx={{ position: 'relative' }}
                     key={id}
                   >
                     <Image
@@ -1912,7 +1912,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     className={classes.reasonsIntroduction}
                   />
                 </Box>
-                <Box position="relative">
+                <Box sx={{ position: 'relative' }}>
                   <MultiCarousel
                     autoPlaySpeed={3000}
                     centerMode={false}
@@ -2065,7 +2065,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             width="100%"
             alignItems="center"
             justifyContent="space-between"
-            position="relative"
+            sx={{ position: 'relative' }}
             flexWrap={matchesXs ? 'wrap' : 'no-wrap'}
           >
             <Box className={clsx(classes.textCTA2Container)}>

@@ -195,7 +195,7 @@ const CountryTile = ({
               [classes.largeShadowVeil]: isLarge,
             })}
           />
-          <Box position="relative" height="100%" width="100%">
+          <Box sx={{ position: 'relative' }} height="100%" width="100%">
             <Image
               src={encodeURI(srcImg)}
               alt={altImg}

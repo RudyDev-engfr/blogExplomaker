@@ -171,6 +171,7 @@ const MobileBlogCard = ({
               [classes.imageContainer]: !is360px,
               [classes.resultImageContainer]: is360px,
             })}
+            sx={{ position: 'relative' }}
           >
             <Image
               layout="fill"
@@ -245,10 +246,8 @@ const MobileBlogCard = ({
           <Box className={classes.resultSocialInteraction}>
             <Box display="flex" justifyContent="space-between">
               <Typography className={classes.cardCounts}>
-                {!isAlgolia
-                  ? format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')
-                  : publishDate}
-                {readingTime ? (isAlgolia ? ` | ${readingTime}` : ` | ${readingTime} min`) : ''}
+                {format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')}
+                {readingTime && ` | ${readingTime} min`}
               </Typography>
               {/* <Box width="80px" display="flex" justifyContent="space-between">
                   <Box display="flex" alignItems="center" marginRight="10px">
@@ -262,7 +261,7 @@ const MobileBlogCard = ({
                   </Box>
                   <Box display="flex" alignItems="center">
                     <Box
-                      position="relative"
+                      sx={{ position: 'relative' }}
                       width={is360px ? '16px' : '12px'}
                       height={is360px ? '16px' : '12px'}
                       marginRight="4px"
