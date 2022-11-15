@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { makeStyles, useTheme } from '@mui/styles'
@@ -7,7 +7,7 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { Button, useMediaQuery } from '@mui/material'
+import { Badge, Button, IconButton, useMediaQuery } from '@mui/material'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -17,14 +17,15 @@ import ArticlesList from './ArticlesList'
 import union from '../../images/icons/Union.svg'
 import MobileSearchFilter from './MobileSearchFilter'
 import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDotBox'
+import { SessionContext } from '../../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   filterButton: {
     color: theme.palette.grey.grey33,
     borderRadius: '5px',
     fontSize: '14px',
-    padding: '6px 13px',
     height: '32px',
+    padding: '0',
     backgroundColor: theme.palette.grey.e5,
     '&::before': {
       '&:hover': {
@@ -34,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.grey.e5,
     },
+    minWidth: 'unset',
   },
   tabRoot: {
     fontSize: '16px',
@@ -57,8 +59,11 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
+      {value === index && index !== 0 && (
         <Box sx={{ padding: '40px 30px 130px 30px', backgroundColor: '#e5e5e5' }}>{children}</Box>
+      )}
+      {value === index && index === 0 && (
+        <Box sx={{ padding: '40px 0 130px 20px', backgroundColor: '#e5e5e5' }}>{children}</Box>
       )}
     </div>
   )
@@ -90,15 +95,29 @@ const MobileSearch = ({
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const { currentRefinementsArrayLength } = useContext(SessionContext)
   const [value, setValue] = useState(0)
+  const [isLoadingMoreSpots, setIsLoadingMoreSpots] = useState(1)
+  const [isLoadingMoreArticles, setIsLoadingMoreArticles] = useState(1)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
+  useEffect(() => {
+    if (currentSpots) {
+      setIsLoadingMoreSpots(1)
+    }
+    if (currentArticles) {
+      setIsLoadingMoreArticles(1)
+    }
+  }, [currentSpots, currentArticles])
+
   const AllSpotIntegration = () => (
     <>
       {currentSpots
-        .filter((spot, index) => index <= 19)
+        .filter((spot, index) =>
+          isLoadingMoreSpots > 1 ? index <= isLoadingMoreSpots * 20 : index <= 19
+        )
         .map(({ titre: title, country, picture, color, slug }) => (
           <Box display="flex" sx={{ margin: 'auto', marginBottom: '20px' }}>
             <CountryTile
@@ -114,12 +133,36 @@ const MobileSearch = ({
             />
           </Box>
         ))}
+      {currentSpots.length > isLoadingMoreSpots * 20 + 1 && (
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Button
+            sx={{
+              textTransform: 'none',
+              height: '32px',
+              borderRadius: '5px',
+              fontSize: '14px',
+              fontWeight: '500',
+            }}
+            variant="contained"
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            onClick={() => setIsLoadingMoreSpots(prevState => (prevState += 1))}
+          >
+            Charger plus
+          </Button>
+        </Box>
+      )}
     </>
   )
 
   const SpotIntegration = () => (
     <>
-      <Box marginBottom="22px" display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        marginBottom="22px"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ paddingRight: '10px' }}
+      >
         {currentSpots.length > 0 && (
           <Typography variant="h3" component="h2">
             Destinations({currentSpots.length > 6 ? '6+' : currentSpots.length})
@@ -169,7 +212,7 @@ const MobileSearch = ({
                 min: 0,
               },
               items: 1,
-              partialVisibilityGutter: 40,
+              partialVisibilityGutter: 80,
             },
           }}
           slidesToSlide={1}
@@ -201,13 +244,18 @@ const MobileSearch = ({
 
   const ArticleIntegration = () => (
     <>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ paddingRight: '10px' }}
+      >
         {currentArticles.length > 0 && (
           <Typography variant="h3" component="h2">
             Articles({currentArticles.length})
           </Typography>
         )}
-        {currentArticles.length > 5 && (
+        {currentArticles.length > 5 && value === 0 && (
           <Button
             sx={{
               textTransform: 'none',
@@ -224,14 +272,35 @@ const MobileSearch = ({
         )}
       </Box>
       <Box className={classes.articlesResultContainer}>
-        {currentArticles.length > 0 && (
-          <ArticlesList
-            data={currentArticles}
-            isShowingMoreArticles={isShowingMoreArticles}
-            isAlgolia
-            numberOfArticles={5}
-          />
-        )}
+        <Box sx={{ marginBottom: '20px' }}>
+          {currentArticles.length > 0 && (
+            <ArticlesList
+              data={currentArticles}
+              isShowingMoreArticles={isShowingMoreArticles}
+              isAlgolia
+              numberOfArticles={value === 0 ? 5 : value === 2 && isLoadingMoreArticles * 5}
+            />
+          )}
+        </Box>
+        {currentArticles.length > 5 &&
+          value === 2 &&
+          currentArticles.length > isLoadingMoreArticles * 5 + 1 && (
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <Button
+                sx={{
+                  textTransform: 'none',
+                  height: '32px',
+                  borderRadius: '5px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                }}
+                variant="contained"
+                onClick={() => setIsLoadingMoreArticles(prevState => prevState + 1)}
+              >
+                Charger plus
+              </Button>
+            </Box>
+          )}
       </Box>
     </>
   )
@@ -269,7 +338,7 @@ const MobileSearch = ({
           display="flex"
           justifyContent="space-between"
           width="100%"
-          sx={{ paddingTop: '145px' }}
+          sx={{ paddingTop: '145px', paddingRight: '20px' }}
         >
           <Typography
             component="h2"
@@ -282,12 +351,15 @@ const MobileSearch = ({
           >
             Résultats
           </Typography>
-          <Button
-            startIcon={<Image src={union} width={20} height={20} quality={100} />}
-            onClick={() => modalStateSetter('filter')}
-            disableRipple
-            classes={{ root: classes.filterButton }}
-          />
+          <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
+            <IconButton
+              onClick={() => modalStateSetter('filter')}
+              disableRipple
+              classes={{ root: classes.filterButton }}
+            >
+              <Image src={union} width={20} height={20} quality={100} />
+            </IconButton>
+          </Badge>
         </Box>
         <SpotIntegration />
         <ArticleIntegration />
@@ -311,12 +383,14 @@ const MobileSearch = ({
           >
             Résultats
           </Typography>
-          <Button
-            startIcon={<Image src={union} width={20} height={20} quality={100} />}
-            onClick={() => modalStateSetter('filter')}
-            disableRipple
-            classes={{ root: classes.filterButton }}
-          />
+          <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
+            <Button
+              startIcon={<Image src={union} width={20} height={20} quality={100} />}
+              onClick={() => modalStateSetter('filter')}
+              disableRipple
+              classes={{ root: classes.filterButton }}
+            />
+          </Badge>
         </Box>
         <AllSpotIntegration />
       </TabPanel>
@@ -339,12 +413,14 @@ const MobileSearch = ({
           >
             Résultats
           </Typography>
-          <Button
-            startIcon={<Image src={union} width={20} height={20} quality={100} />}
-            onClick={() => modalStateSetter('filter')}
-            disableRipple
-            classes={{ root: classes.filterButton }}
-          />
+          <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
+            <Button
+              startIcon={<Image src={union} width={20} height={20} quality={100} />}
+              onClick={() => modalStateSetter('filter')}
+              disableRipple
+              classes={{ root: classes.filterButton }}
+            />
+          </Badge>
         </Box>
         <ArticleIntegration />
       </TabPanel>

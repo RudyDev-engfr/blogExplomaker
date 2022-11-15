@@ -51,6 +51,7 @@ import travelPicture from '../images/travelTile.png'
 import emma from '../images/emma.png'
 import logo from '../images/icons/logo.svg'
 import MobileBlogCard from '../components/molecules/MobileBlogCard'
+import MobileSearchButton from '../components/atoms/MobileSearchButton'
 
 const tiles = [
   { Icon: HomeIcon, label: 'Logement' },
@@ -745,6 +746,7 @@ const Home = ({ dataset }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
+      {matchesXs && <MobileSearchButton />}
       <Box className={classes.fullWidthContainer}>
         <Box className={classes.greenBackgroundContainer}>
           <Box className={classes.mainContainer}>

@@ -1,24 +1,30 @@
 import { IconButton, Modal } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import SearchIcon from '@mui/icons-material/Search'
-import { SearchBox } from 'react-instantsearch-hooks-web'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({}))
 
-const ModalSearch = ({ modalState }) => (
-  <Modal open={modalState === 'search'} disableScrollLock keepMounted>
-    <SearchBox />
-  </Modal>
-)
-const MobileSearchButton = ({ modalStateSetter, modalState }) => {
-  const classes = useStyles()
+const MobileSearchButton = () => {
+  const router = useRouter()
+  const theme = useTheme()
 
   return (
     <>
-      <IconButton variant="contained" color="primary" onClick={() => modalStateSetter('search')}>
-        <SearchIcon />
+      <IconButton
+        onClick={() => router.push('/results')}
+        sx={{
+          position: 'fixed',
+          bottom: '110px',
+          left: '45%',
+          backgroundColor: theme.palette.primary.main,
+          width: '60px',
+          height: '60px',
+          zIndex: 10,
+        }}
+      >
+        <SearchIcon sx={{ color: 'white' }} />
       </IconButton>
-      <ModalSearch modalState={modalState} />
     </>
   )
 }
