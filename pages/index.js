@@ -1472,7 +1472,7 @@ const Home = ({ dataset }) => {
         </Box>
         {/* Fin de partie 7 */}
         {/* Partie 8 */}
-        <Box className={classes.whiteBackgroundContainer}>
+        {/* <Box className={classes.whiteBackgroundContainer}>
           <Box className={classes.mainContainer}>
             <Box
               display="flex"
@@ -1564,7 +1564,7 @@ const Home = ({ dataset }) => {
               </Box>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
         {/* Fin de la partie 8 */}
         {/* Partie 9 */}
         <Box className={classes.greyBackgroundContainer}>
