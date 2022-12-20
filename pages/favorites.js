@@ -123,7 +123,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   categoryColor={color}
                   altImg=""
                   key={`spot/${slug}`}
-                  link={slug}
+                  targetLink={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
@@ -167,7 +167,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 categoryColor={color}
                 altImg=""
                 key={`spot/${slug}`}
-                link={slug}
+                targetLink={slug}
                 is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
@@ -190,7 +190,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
       <Typography variant="h2" className={classes.favoritesTitles} mb={2}>
         Mes articles
       </Typography>
-      {/* {matchesXs ? (
+      {matchesXs ? (
         <Box marginBottom="80px">
           <Carousel
             itemClass={classes.mobileSpotsCarouselItem}
@@ -315,7 +315,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             )}
           </Box>
         </Box>
-      )} */}
+      )}
     </>
   )
 }
