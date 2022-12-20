@@ -1,5 +1,6 @@
 import { Avatar, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/styles'
+import { format, parse } from 'date-fns'
 
 const SignatureProfile = ({
   avatarSrc = '../../images/emma.png',
@@ -24,7 +25,8 @@ const SignatureProfile = ({
             {profileName}
           </Typography>
           <Typography sx={{ fontSize: '17px', lineHeight: '25px', fontWeight: '400' }}>
-            {date} | {readingTime}
+            {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
+            {` ${readingTime} min`}
           </Typography>
         </Box>
       </Box>
@@ -35,6 +37,7 @@ const SignatureProfile = ({
         <Box sx={{ display: 'flex', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
           {tags.map(tag => (
             <Box
+              key={tag.name}
               sx={{
                 padding: '6px 12px',
                 backgroundColor: theme.palette.grey.f7,
@@ -45,7 +48,9 @@ const SignatureProfile = ({
                 marginBottom: '10px',
               }}
             >
-              <Typography component="span">{tag}</Typography>
+              <Typography component="span" sx={{ fontWeight: '500' }}>
+                {tag.name}
+              </Typography>
             </Box>
           ))}
         </Box>

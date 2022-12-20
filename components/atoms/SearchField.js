@@ -85,6 +85,7 @@ const SearchField = ({
             InputProps={{
               classes: { root: rootInput },
             }}
+            sx={{ marginRight: '15px' }}
           />
           {(needButtonOnMobile || !matchesXs) && (
             <Button
@@ -115,7 +116,16 @@ const SearchField = ({
               classes: { root: classes.navbarInput, filledInput: classes.filledInput },
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconButton type="submit" disabled={searchValue.length < 3}>
+                  <IconButton
+                    type="submit"
+                    onClick={() =>
+                      router.push(
+                        searchValue !== ''
+                          ? `results?SearchFront%5Bquery%5D=${searchValue}`
+                          : '/results'
+                      )
+                    }
+                  >
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>

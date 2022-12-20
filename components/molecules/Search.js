@@ -30,13 +30,13 @@ const Search = ({ modalState, modalStateSetter }) => {
     []
   )
   const { hits } = useHits({ transformItems })
-  // console.log('hits', hits)
   // console.log(typeof hits)
   useEffect(() => {
     const hitsKeys = Object.keys(hits)
     const hitsArray = hitsKeys.map(key => hits[key])
+    const finalDestinationArray = hitsArray.filter(hit => hit.resultats === 'Destinations')
     if (typeof hitsArray !== 'undefined') {
-      setCurrentSpots(hitsArray.filter(hit => hit.resultats === 'Destinations'))
+      setCurrentSpots(finalDestinationArray)
       setCurrentArticles(hitsArray.filter(hit => hit.resultats === 'Articles'))
       setCurrentHitsArray(hitsArray)
     }

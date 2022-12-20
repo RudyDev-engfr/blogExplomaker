@@ -35,6 +35,21 @@ const mapStyle = [
     ],
   },
   {
+    featureType: 'administrative.country',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        color: '#e6f5f4',
+      },
+      {
+        visibility: 'on',
+      },
+      {
+        weight: 3,
+      },
+    ],
+  },
+  {
     featureType: 'road.arterial',
     elementType: 'geometry',
     stylers: [
@@ -127,21 +142,21 @@ const mapStyle = [
       },
     ],
   },
-  {
-    featureType: 'administrative',
-    elementType: 'geometry.stroke',
-    stylers: [
-      {
-        color: '#fefefe',
-      },
-      {
-        lightness: 17,
-      },
-      {
-        weight: 1.2,
-      },
-    ],
-  },
+  // {
+  //   featureType: 'administrative',
+  //   elementType: 'geometry.stroke',
+  //   stylers: [
+  //     {
+  //       color: '#fefefe',
+  //     },
+  //     {
+  //       lightness: 17,
+  //     },
+  //     {
+  //       weight: 1.2,
+  //     },
+  //   ],
+  // },
 ]
 
 const Map = ({

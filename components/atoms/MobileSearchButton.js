@@ -16,7 +16,7 @@ const MobileSearchButton = () => {
         sx={{
           position: 'fixed',
           bottom: '110px',
-          left: '45%',
+          left: 'calc(50% - 30px)',
           backgroundColor: theme.palette.primary.main,
           width: '60px',
           height: '60px',

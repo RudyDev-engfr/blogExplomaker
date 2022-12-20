@@ -73,6 +73,10 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
       category: 'type_d_article',
     },
     { header: 'Envies', category: 'envies' },
+    { header: 'Tu es un voyageur', category: 'tu_es_un_voyageur' },
+    { header: 'Durée du séjour', category: 'duree_du_sejour' },
+    { header: 'En direction de', category: 'en_direction_de' },
+    { header: 'Avis explomaker', category: 'avis_explomaker' },
   ]
 
   return (

@@ -15,6 +15,7 @@ import MobileBlogCard from '../components/molecules/MobileBlogCard'
 import { SessionContext } from '../contexts/session'
 import NoneFavorite from '../components/molecules/NoneFavorite'
 import { useAuth } from '../lib/firebase'
+import MobileSearchButton from '../components/atoms/MobileSearchButton'
 
 const useStyles = makeStyles(theme => ({
   fullWidthContainer: {
@@ -56,6 +57,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
 
   return (
     <>
+      {matchesXs && <MobileSearchButton />}
       <Typography variant="h2" className={classes.favoritesTitles} mb={2}>
         Mes spots
       </Typography>
@@ -350,7 +352,6 @@ const Favorites = () => {
       fetch(fnURL, myInit)
         .then(async response => {
           const payload = await response.json()
-          console.log('payload', payload)
           setCurrentSpots(payload.spots)
           setCurrentArticles(payload.articles)
           setIsLoading(false)

@@ -178,20 +178,17 @@ const ConnectedNav = ({ isBgTransparent }) => {
           }
           sx={{ justifyContent: 'space-evenly' }}
         />
-        <Tab
-          icon={<Image src={logoGrey} width={25} height={25} />}
-          label={
-            <Link passHref href="https://app.explomaker.fr">
+        <Link passHref href="https://app.explomaker.fr">
+          <Tab
+            icon={<Image src={logoGrey} width={25} height={25} />}
+            label={
               <Box component="span" className={classes.icons}>
                 Séjours
               </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly' }}
-          onClick={() => {
-            window.location = 'https://explomaker-3010b.web.app/'
-          }}
-        />
+            }
+            sx={{ justifyContent: 'space-evenly' }}
+          />
+        </Link>
         <Tab
           icon={<Image src={favorite} width={25} height={25} />}
           label={
@@ -233,14 +230,14 @@ const ConnectedNav = ({ isBgTransparent }) => {
           {router.pathname.indexOf('/results') === -1 && <SearchField isNavbar />}
           <Box className={classes.headerInnerRight}>
             <Box>
-              <Link href="/" passHref>
-                <Button disableRipple className={classes.navLink}>
-                  L&apos;app
-                </Button>
-              </Link>
               <Link href="/inspiration" passHref>
                 <Button disableRipple className={classes.navLink}>
                   Inspiration
+                </Button>
+              </Link>
+              <Link href="/" passHref>
+                <Button disableRipple className={classes.navLink}>
+                  Séjours
                 </Button>
               </Link>
             </Box>
@@ -271,7 +268,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                     }}
                     anchorPosition={{ left: 100, top: 100 }}
                   >
-                    <Link href="https://app.explomaker.fr" passHref>
+                    <Link href="/results" passHref>
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"
@@ -282,7 +279,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                         >
                           <Image src={logoGrey} width={24} height={24} quality={100} />
                         </Box>
-                        Inspiration
+                        Recherche
                       </MenuItem>
                     </Link>
                     <Link href="/favorites" passHref>

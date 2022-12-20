@@ -7,6 +7,9 @@ import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import { useMediaQuery } from '@mui/material'
 
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+
 import { database } from '../lib/firebase'
 
 import headerImg from '../images/inspirationHeaderImg.png'
@@ -41,6 +44,7 @@ import DesktopIntro from '../components/molecules/inspiration/DesktopIntro'
 import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
+import MobileSearchButton from '../components/atoms/MobileSearchButton'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -79,8 +83,9 @@ const useStyles = makeStyles(theme => ({
   },
   headerSearchbar: {
     position: 'absolute',
-    left: '35%',
-    top: '30%',
+    top: '50%',
+    right: '50%',
+    transform: 'translate(50%,-100%)',
     [theme.breakpoints.down('sm')]: {
       left: 'unset',
       padding: '0 30px',
@@ -240,7 +245,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
     },
   ]
   useEffect(() => {
-    if (typeof spotlight !== 'undefined' || spotlight !== {}) {
+    if (typeof spotlight.linked_posts !== 'undefined') {
       const ArticlesKeys = Object.keys(spotlight.linked_posts)
       const tempArticlesArray = ArticlesKeys.map(currentKey => spotlight.linked_posts[currentKey])
       setCurrentSpotlightArticles(tempArticlesArray)
@@ -249,6 +254,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
 
   return (
     <Box>
+      {matchesXs && <MobileSearchButton />}
       <Box className={classes.headerMapBox}>
         <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
         <Box className={classes.headerSearchbar}>
@@ -280,54 +286,60 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           )}
           {/* fin de Partie 1 */}
           {/* Partie 2 liste de BlogCard */}
-          {!matchesXs ? (
-            <Box marginBottom="60px">
-              <Typography variant="h6" color="grey.grey33">
-                Articles sur {spotlight.prefixed_title}
-              </Typography>
-              <ArticlesList
-                data={currentSpotlightArticles}
-                isShowingMoreArticles={isShowingMoreArticles}
-                isSmallSize
-                numberOfArticles={3}
-              />
-              <Box display="flex" justifyContent="center">
-                {!isShowingMoreArticles ? (
-                  <Button
-                    variant="contained"
-                    className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreArticles(true)}
-                    sx={{ width: '13%' }}
-                  >
-                    Voir tout
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreArticles(false)}
-                    sx={{ width: '13%' }}
-                  >
-                    Voir moins
-                  </Button>
-                )}
-              </Box>
-            </Box>
-          ) : (
-            <Box marginBottom="120px">
-              <Box marginBottom="20px">
-                <Typography variant="h6" color="grey.grey33" textAlign="center" paddingRight="30px">
+          {currentSpotlightArticles.length > 0 &&
+            (!matchesXs ? (
+              <Box marginBottom="60px">
+                <Typography variant="h6" color="grey.grey33">
                   Articles sur {spotlight.prefixed_title}
                 </Typography>
-              </Box>
-              <Box sx={{ position: 'relative' }}>
-                <ArticlesCarousel
-                  currentArticles={currentSpotlightArticles}
-                  dotListClass={classes.carouselNotCentered}
+                <ArticlesList
+                  data={currentSpotlightArticles}
+                  isShowingMoreArticles={isShowingMoreArticles}
+                  isSmallSize
+                  numberOfArticles={3}
                 />
+                <Box display="flex" justifyContent="center">
+                  {!isShowingMoreArticles ? (
+                    <Button
+                      variant="contained"
+                      className={classes.buttonPrimary}
+                      onClick={() => setIsShowingMoreArticles(true)}
+                      sx={{ width: '13%' }}
+                    >
+                      Voir tout
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      className={classes.buttonPrimary}
+                      onClick={() => setIsShowingMoreArticles(false)}
+                      sx={{ width: '13%' }}
+                    >
+                      Voir moins
+                    </Button>
+                  )}
+                </Box>
               </Box>
-            </Box>
-          )}
+            ) : (
+              <Box marginBottom="120px">
+                <Box marginBottom="20px">
+                  <Typography
+                    variant="h6"
+                    color="grey.grey33"
+                    textAlign="center"
+                    paddingRight="30px"
+                  >
+                    Articles sur {spotlight.prefixed_title}
+                  </Typography>
+                </Box>
+                <Box sx={{ position: 'relative' }}>
+                  <ArticlesCarousel
+                    currentArticles={currentSpotlightArticles}
+                    dotListClass={classes.carouselNotCentered}
+                  />
+                </Box>
+              </Box>
+            ))}
           {/* fin de Partie 2 */}
           {/* Partie 3 liste de spots */}
           {!matchesXs ? (
@@ -460,6 +472,57 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             ))}
           </Box>
         </Box>
+      </Box>
+      {/* Fin de partie 5 */}
+      {/* Partie 6 */}
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Typography>Articles</Typography>
+        <Typography>Vos articles préférés de la semaine</Typography>
+        {/* <Carousel
+          itemClass={classes.mobileSpotsCarouselItem}
+          autoPlaySpeed={3000}
+          draggable
+          arrows={false}
+          focusOnSelect={false}
+          infinite={currentArticles.length > 1}
+          showDots
+          dotListClass={dotListClass}
+          customDot={<TrendingDestinationsDotBox carouselArray={currentArticles} />}
+          renderDotsOutside
+          keyBoardControl
+          minimumTouchDrag={80}
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 640,
+              },
+              items: 3,
+            },
+            mobile: {
+              breakpoint: {
+                max: 640,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 40,
+            },
+          }}
+          slidesToSlide={1}
+          swipeable
+          ssr
+          deviceType="desktop"
+          partialVisible
+        ></Carousel> */}
+        <Typography>Articles par catégorie</Typography>
       </Box>
     </Box>
   )

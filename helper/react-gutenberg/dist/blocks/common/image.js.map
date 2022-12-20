@@ -1,0 +1,1 @@
+{"version":3,"file":"image.js","sourceRoot":"","sources":["../../../src/blocks/common/image.tsx"],"names":[],"mappings":";AAAA,+BAA8B;AAG9B,MAAM,aAAa,GAAyB,KAAK,CAAC,EAAE;IAClD,MAAM;IACJ,SAAS;IACT,eAAe;IACf,SAAS,GACV,GAAG,KAAK,CAAA;IAET,OAAO,6BAAK,SAAS,EAAC,uBAAuB,EAAC,uBAAuB,EAAE,EAAE,MAAM,EAAE,SAAS,EAAE,GAAI,CAAA;AAClG,CAAC,CAAA;AAED,kBAAe,aAAa,CAAA"}

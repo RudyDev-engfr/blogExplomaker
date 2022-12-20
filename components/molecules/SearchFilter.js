@@ -172,6 +172,16 @@ const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
                 }}
               />
             </AlgoliaPanel>
+            <AlgoliaPanel header="Type d'articles" headerClassName={classes.panelHeader}>
+              <RefinementList
+                attribute="type_d_article"
+                classNames={{
+                  checkbox: classes.filterCheckbox,
+                  item: classes.filterItem,
+                  list: classes.filterList,
+                }}
+              />
+            </AlgoliaPanel>
           </Box>
           <Box sx={{ gridRow: '3 / 4', gridColumn: '3 / 4', paddingTop: '15px' }}>
             <AlgoliaPanel header="Avis Explomaker" headerClassName={classes.panelHeader}>

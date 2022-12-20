@@ -50,7 +50,12 @@ const CustomBlock = props => {
       deviceType="desktop"
     >
       {attrs.data.blog_log_list.map(image => (
-        <Image src={image} layout="fill" />
+        <Image
+          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+            image.picture_titled.src.original
+          )}`}
+          layout="fill"
+        />
       ))}
     </Carousel>
   )

@@ -9,6 +9,7 @@ const SessionContextProvider = ({ children }) => {
   const [needFetch, setNeedFetch] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState('')
   const [currentHitsArray, setCurrentHitsArray] = useState()
+
   // currentHitsArray is the array of results from Algolia
   const [currentRefinementsArrayLength, setCurrentRefinementsArrayLength] = useState(0)
 

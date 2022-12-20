@@ -8,7 +8,7 @@ import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDo
 import CountryTile from './CountryTile'
 
 const useStyles = makeStyles({})
-const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass }) => {
+const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass, infinite = true }) => {
   const classes = useStyles()
   return (
     <Carousel
@@ -17,7 +17,7 @@ const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass }) => {
       draggable
       arrows={false}
       focusOnSelect={false}
-      infinite={currentSpots.length > 1}
+      infinite={infinite}
       showDots
       renderDotsOutside
       keyBoardControl

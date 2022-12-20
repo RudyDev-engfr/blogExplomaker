@@ -46,7 +46,8 @@ const commonSettings = createTheme({
     fontFamily,
     h1: {
       fontFamily: titleFontFamily,
-      fontSize: '2.75rem',
+      fontSize: '2.75rem ',
+      lineHeight: '1.13',
       fontWeight: 700,
       color: '#333333',
     },

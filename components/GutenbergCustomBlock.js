@@ -1,9 +1,9 @@
 import loadable from '@loadable/component'
 import CustomBlock from './CustomBlock'
 
-const Employee = loadable(() => import('./CustomBlock'))
+const carousel = loadable(() => import('./CustomBlock'))
 
-const GutenbergCustomBlock = ({ blockName }) => {
+const GetCustomBlock = ({ blockName }) => {
   switch (blockName) {
     case 'meta-box/blog-log-one':
       return CustomBlock
@@ -11,4 +11,4 @@ const GutenbergCustomBlock = ({ blockName }) => {
       return null
   }
 }
-export default GutenbergCustomBlock
+export default GetCustomBlock

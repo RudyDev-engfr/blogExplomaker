@@ -1,5 +1,5 @@
 module.exports = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: ['storage.googleapis.com', 'manage.explomaker.fr'],
     remotePatterns: [

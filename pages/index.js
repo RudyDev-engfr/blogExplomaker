@@ -155,6 +155,7 @@ const useStyles = makeStyles(theme => ({
   },
   secondaryContainer: {
     padding: '30px 30px 120px',
+    flexWrap: 'no-wrap',
     [theme.breakpoints.down('sm')]: {
       padding: '0 0 20px 0',
     },
@@ -1614,54 +1615,62 @@ const Home = ({ dataset }) => {
                     srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${hotArticles[0].picture.src.original}`}
                     altImg=""
                     date={hotArticles[0].creation_date}
-                    readingTime={`${hotArticles[0].reading_time} min`}
+                    readingTime={hotArticles[0].reading_time}
                   />
                 </Box>
                 {/* TODO on the blog card and on the links, redirect to blog or article (?) */}
                 <Paper elevation={2} className={clsx(classes.mobileSizing, classes.blogList)}>
                   {hotArticles
                     .filter((article, index) => index !== 0)
-                    .map(({ title, sub_type: subType }, index, currentArray) => (
-                      <Box key={`hotArticles${title}`}>
-                        <Button
-                          className={classes.buttonBlogList}
-                          endIcon={
-                            <ArrowRightAlt
+                    .map(
+                      (
+                        { title, sub_type: subType, target_url: targetURL },
+                        index,
+                        currentArray
+                      ) => (
+                        <Box key={`hotArticles${title}`}>
+                          <Link passhref href={targetURL}>
+                            <Button
+                              className={classes.buttonBlogList}
+                              endIcon={
+                                <ArrowRightAlt
+                                  sx={{
+                                    color: '#DFDFDF',
+                                    fontSize: '2.125rem',
+                                    width: '34px',
+                                    height: '34px',
+                                  }}
+                                />
+                              }
                               sx={{
-                                color: '#DFDFDF',
-                                fontSize: '2.125rem',
-                                width: '34px',
-                                height: '34px',
+                                borderRadius:
+                                  index === 0
+                                    ? '20px 20px 0 0'
+                                    : index === currentArray.length - 1
+                                    ? '0 0 20px 20px'
+                                    : '0',
                               }}
-                            />
-                          }
-                          sx={{
-                            borderRadius:
-                              index === 0
-                                ? '20px 20px 0 0'
-                                : index === currentArray.length - 1
-                                ? '0 0 20px 20px'
-                                : '0',
-                          }}
-                        >
-                          <Box className={classes.newsTitleLabel}>
-                            <Box marginBottom="10px">
-                              <Typography
-                                className={classes.newsLabel}
-                                dangerouslySetInnerHTML={{ __html: subType[0].name }}
-                              />
-                            </Box>
-                            <Typography
-                              className={classes.newsTitle}
-                              dangerouslySetInnerHTML={{ __html: title }}
-                            />
-                          </Box>
-                        </Button>
-                        {index !== currentArray.length - 1 && (
-                          <Divider className={classes.stroke} />
-                        )}
-                      </Box>
-                    ))}
+                            >
+                              <Box className={classes.newsTitleLabel}>
+                                <Box marginBottom="10px">
+                                  <Typography
+                                    className={classes.newsLabel}
+                                    dangerouslySetInnerHTML={{ __html: subType[0].name }}
+                                  />
+                                </Box>
+                                <Typography
+                                  className={classes.newsTitle}
+                                  dangerouslySetInnerHTML={{ __html: title }}
+                                />
+                              </Box>
+                            </Button>
+                          </Link>
+                          {index !== currentArray.length - 1 && (
+                            <Divider className={classes.stroke} />
+                          )}
+                        </Box>
+                      )
+                    )}
                 </Paper>
               </Box>
               <Link component={IconButton} passhref href="/inspiration">

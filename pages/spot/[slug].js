@@ -40,6 +40,8 @@ import BackButton from '../../components/atoms/BackButton'
 import TrendingDestinationsDotBox from '../../components/multi-carousel/TrendingDestinationsDotBox'
 import TrendingDestinationsGroupButton from '../../components/multi-carousel/TrendingDestinationsGroupButton'
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
+import CountryAside from '../../components/molecules/spot/CountryAside'
+import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -55,6 +57,9 @@ const useStyles = makeStyles(theme => ({
   mobileBlogCardContainer: {
     backgroundColor: theme.palette.grey.f2,
     padding: '100px 0 50px 30px',
+  },
+  greyBackground: {
+    backgroundColor: theme.palette.grey.f2,
   },
   headingPaper: {
     padding: '30px 70px 30px 60px',
@@ -498,6 +503,8 @@ const useStyles = makeStyles(theme => ({
   countryGalleryText: {
     fontSize: '14px',
     lineHeight: '24px',
+    maxHeight: '200px',
+    overflowY: 'auto',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
     },
@@ -510,6 +517,9 @@ const useStyles = makeStyles(theme => ({
   },
   carouselSize: {
     opacity: '0.20',
+  },
+  photoCarouselSingleImage: {
+    borderRadius: '20px',
   },
   buttonsSpot: {
     position: 'absolute',
@@ -543,6 +553,8 @@ const useStyles = makeStyles(theme => ({
   },
   reasonCard: {
     maxWidth: '475px',
+    maxHeight: '400px',
+    minHeight: '400px',
     borderRadius: '20px',
     padding: '40px 30px 30px',
     position: 'relative',
@@ -985,7 +997,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     },
   ]
 
-  const reasonsCarousel = [
+  const reasonsCarousel = typeof dataset.reasons !== 'undefined' && [
     {
       cardTitle: dataset?.reasons[0].title,
       cardText: dataset?.reasons[0].description,
@@ -1087,22 +1099,25 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
+      {matchesXs && <MobileSearchButton />}
       {/* Partie 1 */}
       <Box mb="90px">
         <Box sx={{ position: 'relative' }} className={classes.headerMapBox}>
-          <Map
-            latitude={dataset.gps.lat}
-            longitude={dataset.gps.lng}
-            zoom={matchesXs ? 2 : 3}
-            isDraggable={false}
-            markers={[
-              <Marker
-                position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
-                icon="../../images/googleMapsIcons/activePin.svg"
-                clickable={false}
-              />,
-            ]}
-          />
+          {dataset.gps && (
+            <Map
+              latitude={dataset.gps?.lat}
+              longitude={dataset.gps?.lng}
+              zoom={matchesXs ? 2 : 3}
+              isDraggable={false}
+              markers={[
+                <Marker
+                  position={{ lat: dataset.gps?.lat, lng: dataset.gps?.lng }}
+                  icon="../../images/googleMapsIcons/activePin.svg"
+                  clickable={false}
+                />,
+              ]}
+            />
+          )}
         </Box>
         <Box className={classes.mainContainer}>
           <Paper elevation={0} className={classes.headingPaper}>
@@ -1171,69 +1186,79 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   </Box>
                 </Box>
               ) : (
-                <Box className={classes.countryAside}>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    marginBottom="30px"
-                  >
-                    <Box className={classes.flagRound}>
-                      <Typography className={classes.flagRoundFlag}>🇩🇪</Typography>
-                    </Box>
-                    {/* TODO remplacer par le flag_round de la DB */}
-                    <Typography variant="h2" className={classes.countryAsideTitle}>
-                      {dataset.title}({dataset.gps.country_short})
-                      {/* TODO {dataset.gps.country}
-                  {dataset.gps.country_short} */}
-                    </Typography>
-                  </Box>
-                  <Box
-                    width={matchesXs ? '100%' : '330px'}
-                    height="330px"
-                    className={classes.mapAsideContainer}
-                  >
-                    <Map
-                      latitude={dataset.gps.lat}
-                      longitude={dataset.gps.lng}
-                      zoom={7}
-                      isAside
-                      isDraggable={false}
-                      markers={[
-                        <Marker
-                          position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
-                          icon="../../images/googleMapsIcons/activePin.svg"
-                          clickable={false}
-                        />,
-                      ]}
-                    />
-                    {/* TODO remplacer par le doigt */}
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    width="330px"
-                    padding="20px"
-                    className={classes.countryBottomInfo}
-                  >
-                    <Box display="flex" alignItems="center">
-                      <Typography variant="h3" className={classes.asideLabel}>
-                        Capitale
-                      </Typography>
-                      <Typography variant="h3" className={classes.asideInfo}>
-                        Berlin {/* TODO rendre dynamique capitale */}
-                      </Typography>
-                    </Box>
-                    <Box display="flex" alignItems="center">
-                      <Typography variant="h3" className={classes.asideLabel}>
-                        Population
-                      </Typography>
-                      <Typography variant="h3" className={classes.asideInfo}>
-                        83,02 millions{/* TODO rendre dynamique population */}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
+                // <Box className={classes.countryAside}>
+                //   <Box
+                //     display="flex"
+                //     alignItems="center"
+                //     justifyContent="center"
+                //     marginBottom="30px"
+                //   >
+                //     <Box className={classes.flagRound}>
+                //       <Typography className={classes.flagRoundFlag}>🇩🇪</Typography>
+                //     </Box>
+                //     {/* TODO remplacer par le flag_round de la DB */}
+                //     <Typography variant="h2" className={classes.countryAsideTitle}>
+                //       {dataset.title}({dataset.gps.country_short})
+                //       {/* TODO {dataset.gps.country}
+                //   {dataset.gps.country_short} */}
+                //     </Typography>
+                //   </Box>
+                //   <Box
+                //     width={matchesXs ? '100%' : '330px'}
+                //     height="330px"
+                //     className={classes.mapAsideContainer}
+                //   >
+                //     <Map
+                //       latitude={dataset.gps.lat}
+                //       longitude={dataset.gps.lng}
+                //       zoom={7}
+                //       isAside
+                //       isDraggable={false}
+                //       markers={[
+                //         <Marker
+                //           position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
+                //           icon="../../images/googleMapsIcons/activePin.svg"
+                //           clickable={false}
+                //         />,
+                //       ]}
+                //     />
+                //     {/* TODO remplacer par le doigt */}
+                //   </Box>
+                //   <Box
+                //     display="flex"
+                //     flexDirection="column"
+                //     width="330px"
+                //     padding="20px"
+                //     className={classes.countryBottomInfo}
+                //   >
+                //     <Box display="flex" alignItems="center">
+                //       <Typography variant="h3" className={classes.asideLabel}>
+                //         Capitale
+                //       </Typography>
+                //       <Typography variant="h3" className={classes.asideInfo}>
+                //         Berlin {/* TODO rendre dynamique capitale */}
+                //       </Typography>
+                //     </Box>
+                //     <Box display="flex" alignItems="center">
+                //       <Typography variant="h3" className={classes.asideLabel}>
+                //         Population
+                //       </Typography>
+                //       <Typography variant="h3" className={classes.asideInfo}>
+                //         83,02 millions{/* TODO rendre dynamique population */}
+                //       </Typography>
+                //     </Box>
+                //   </Box>
+                // </Box>
+                <CountryAside
+                  srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                    dataset.picture_main.src.original
+                  )}`}
+                  flagFromDataset={dataset.flag_square?.src.original}
+                  countryName={dataset.gps?.country}
+                  countryCode={dataset.gps?.country_short}
+                  countryCapitalCity="Demacia"
+                  countryPeopleNumber="un nombre random"
+                />
               )}
               <Box className={clsx(classes.contentInfo, classes.mobileSizing)}>
                 {dataset.few_words && (
@@ -1377,7 +1402,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             >
               <Box marginBottom={matchesXs ? '15px' : '10px'}>
                 <Typography className={classes.boxCTATitle}>
-                  Envie de partir en {dataset.title} ?
+                  Envie de partir {dataset.link_words[1]} {dataset.title} ?
                 </Typography>
               </Box>
               <Box marginBottom="25px">
@@ -1400,8 +1425,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
           {dataset.unmissable && (
             <Box display={matchesXs ? 'block' : 'flex'} alignItems="center" flexDirection="column">
               <Box>
-                <Typography variant="h3" color="primary" className={classes.globalSubtitle}>
-                  L&rsquo;{dataset.title} en images
+                <Typography
+                  variant="h3"
+                  color="primary.ultraDark"
+                  className={classes.globalSubtitle}
+                >
+                  La sélection Explomaker
                 </Typography>
                 {/* TODO rendre Dynamique */}
               </Box>
@@ -1413,7 +1442,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   align="left"
                   className={classes.unmissableBigTitle}
                 >
-                  Présentation des incontournables 😍
+                  Présentation des incontournablesf
                 </Typography>
               </Box>
               {matchesXs ? (
@@ -1652,6 +1681,23 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       </Box>
       {/* fin de la partie 2 */}
       {/* carousel de photos */}
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box>
+          <Typography variant="h3" color="primary" className={classes.globalSubtitle}>
+            Panorama
+          </Typography>
+        </Box>
+        <Box marginBottom="30px">
+          <Typography
+            variant="h1"
+            component="h2"
+            align="left"
+            className={classes.unmissableBigTitle}
+          >
+            {dataset.link_words[0]} {dataset.title} en images
+          </Typography>
+        </Box>
+      </Box>
       <Box
         sx={{
           width: '100%',
@@ -1699,24 +1745,25 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               ssr
               deviceType="mobile"
             >
-              {dataset.picture_slider.map(({ src, id }, index) => {
-                const encodedURI = encodeURI(src.original)
-                return (
-                  <Box
-                    width="100%"
-                    minWidth="300px"
-                    minHeight="200px"
-                    maxHeight="200px"
-                    sx={{ position: 'relative' }}
-                    key={id}
-                  >
-                    <Image
-                      src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                      layout="fill"
-                    />
-                  </Box>
-                )
-              })}
+              {dataset.picture_slider &&
+                dataset.picture_slider.map(({ src, id }, index) => {
+                  const encodedURI = encodeURI(src.original)
+                  return (
+                    <Box
+                      width="100%"
+                      minWidth="300px"
+                      minHeight="200px"
+                      maxHeight="200px"
+                      sx={{ position: 'relative' }}
+                      key={id}
+                    >
+                      <Image
+                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                        layout="fill"
+                      />
+                    </Box>
+                  )
+                })}
             </MultiCarousel>
           </>
         ) : (
@@ -1760,38 +1807,40 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                 )
               }
             >
-              {dataset.picture_slider.map(({ src, id }, index) => {
-                const encodedURI = encodeURI(src.original)
-                return (
-                  <Box
-                    key={id}
-                    className={classes.pictureSliderContainer}
-                    sx={{
-                      '&::before': {
-                        background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.original})`,
-                        backgroundSize: 'cover',
-                      },
-                    }}
-                  >
+              {dataset.picture_slider &&
+                dataset.picture_slider.map(({ src, id }, index) => {
+                  const encodedURI = encodeURI(src.original)
+                  return (
                     <Box
+                      key={id}
+                      className={classes.pictureSliderContainer}
                       sx={{
-                        width: '960px',
-                        height: '640px',
-                        position: 'relative',
-                        zIndex: '1',
-                        boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
-                        borderRadius: '20px 20px 0px 0px',
+                        '&::before': {
+                          background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
+                          backgroundSize: 'cover',
+                        },
                       }}
                     >
-                      <Image
-                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                        width={960}
-                        height={640}
-                      />
+                      <Box
+                        sx={{
+                          width: '960px',
+                          height: '640px',
+                          position: 'relative',
+                          zIndex: '1',
+                          boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
+                          borderRadius: '20px 20px 0px 0px',
+                        }}
+                      >
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                          width={960}
+                          height={640}
+                          className={classes.photoCarouselSingleImage}
+                        />
+                      </Box>
                     </Box>
-                  </Box>
-                )
-              })}
+                  )
+                })}
             </Carousel>
           </>
         )}
@@ -1962,11 +2011,16 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           <Typography variant="h3" className={classes.reasonCardTitle}>
                             {cardTitle}
                           </Typography>
-                          <Typography
-                            className={clsx(classes.mobileAlignCenter, classes.smallInfoTextStyle)}
-                          >
-                            {cardText}
-                          </Typography>
+                          <Box sx={{ maxHeight: '275px', overflowY: 'auto' }}>
+                            <Typography
+                              className={clsx(
+                                classes.mobileAlignCenter,
+                                classes.smallInfoTextStyle
+                              )}
+                            >
+                              {cardText}
+                            </Typography>
+                          </Box>
                         </Paper>
                       </Box>
                     ))}
@@ -1980,8 +2034,9 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       {/* Partie 4 */}
       {hotArticles && (
         <Box
-          marginBottom="150px"
-          className={clsx({ [classes.mobileBlogCardContainer]: matchesXs })}
+          paddingBottom="150px"
+          paddingTop="80px"
+          className={clsx({ [classes.mobileBlogCardContainer]: matchesXs }, classes.greyBackground)}
         >
           <Box
             className={clsx(classes.mobileSizing, classes.mainContainer)}
@@ -2005,7 +2060,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                 align="left"
                 className={classes.unmissableBigTitle}
               >
-                Consulte nos articles sur l&rsquo;{dataset.title}
+                Consulte nos articles sur {dataset.link_words[0].toLowerCase()} {dataset.title}
               </Typography>
               {/* TODO rendre dynamique */}
             </Box>
@@ -2014,7 +2069,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               width="100%"
               justifyContent="space-between"
               alignItems="center"
-              marginBottom="60px"
+              paddingBottom="60px"
             >
               {/* {matchesXs ? (
                 <Carousel
@@ -2050,9 +2105,14 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                 ))
               )} */}
             </Box>
-            <Button variant="contained" className={classes.globalButton}>
-              Voir tous les articles
-            </Button>
+            <Link
+              passHref
+              href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
+            >
+              <Button variant="contained" className={classes.globalButton}>
+                Voir tous les articles
+              </Button>
+            </Link>
           </Box>
         </Box>
       )}
@@ -2076,7 +2136,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Box>
               <Box marginBottom="20px">
                 <Typography variant="h1" component="h2" className={classes.titleCTA2}>
-                  Prépare ton séjour en {dataset.title} avec Explomaker
+                  Prépare ton séjour {dataset.link_words[1]} {dataset.title} avec Explomaker
                 </Typography>
               </Box>
               {/* TODO rendre Dynamique */}
@@ -2086,9 +2146,11 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   t’accompagne avant, pendant et après ton séjour.
                 </Typography>
               </Box>
-              <Button variant="contained" className={classes.globalButton}>
-                Créer mon séjour
-              </Button>
+              <Link passHref href="https://app.explomaker.fr">
+                <Button variant="contained" className={classes.globalButton}>
+                  Créer mon séjour
+                </Button>
+              </Link>
             </Box>
             <Box className={classes.imageContainerCTA2}>
               <Image src={planningImg} width={537} quality={100} />
