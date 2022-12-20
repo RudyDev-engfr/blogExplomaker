@@ -1354,9 +1354,9 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     <Box className={classes.bestPeriodBox} key={month}>
                       <Box
                         className={clsx(
-                          { [classes.perfectTimeline]: visitMarker === 0 },
+                          { [classes.perfectTimeline]: visitMarker === 2 },
                           { [classes.correctTimeline]: visitMarker === 1 },
-                          { [classes.notRecommandedTimeline]: visitMarker === 2 },
+                          { [classes.notRecommandedTimeline]: visitMarker === 0 },
                           { [classes.timelineStart]: index === 0 || (matchesXs && index === 6) },
                           {
                             [classes.timelineEnd]:

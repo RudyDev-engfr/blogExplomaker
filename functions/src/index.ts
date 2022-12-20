@@ -21,6 +21,7 @@ exports.getFavorites = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Methods', 'POST, OPTIONS')
   response.set('Access-Control-Allow-Headers', ["*"])
 
+
   if (request.method === 'OPTIONS') {
     response.end()
   } else {
