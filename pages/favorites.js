@@ -190,7 +190,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
       <Typography variant="h2" className={classes.favoritesTitles} mb={2}>
         Mes articles
       </Typography>
-      {matchesXs ? (
+      {/* {matchesXs ? (
         <Box marginBottom="80px">
           <Carousel
             itemClass={classes.mobileSpotsCarouselItem}
@@ -258,8 +258,6 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                     link={targetUrl}
                     title={title}
                     key={targetUrl}
-                    commentsCount={Math.floor(Math.random() * 100)}
-                    likesCount={Math.floor(Math.random() * 100)}
                     publishDate={publishDate}
                     is360px
                     className={classes.mobileBlogCardAndCountryTile}
@@ -319,7 +317,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             )}
           </Box>
         </Box>
-      )}
+      )} */}
     </>
   )
 }

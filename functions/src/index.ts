@@ -36,8 +36,8 @@ exports.getFavorites = functions.https.onRequest(async (request, response) => {
       const articles = tempArticles
         .filter((article: any) => currentRequest.articlesBookmarked.includes(article.slug))
         .map(article => {
-          const tempArticle = structuredClone(article)
-          tempArticle.picture = `${rootLink}${article.picture.src.original}`
+          const tempArticle = { ...article }
+          tempArticle.picture.src.original = `${rootLink}${article.picture.src.original}`
           return tempArticle
         })
 

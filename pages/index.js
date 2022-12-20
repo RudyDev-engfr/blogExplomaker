@@ -38,7 +38,7 @@ import { format, parse } from 'date-fns'
 
 import BlogCard from '../components/molecules/BlogCard'
 import SpotCard from '../components/SpotCard'
-import { database } from '../lib/firebase'
+import { database, mailCollection } from '../lib/firebase'
 import GoTopBtn from '../components/GoTopBtn'
 import TrendingDestinations from '../components/molecules/TrendingDestinations'
 
@@ -680,7 +680,18 @@ const Home = ({ dataset }) => {
   const [currentPublicPresentation, setCurrentPublicPresentation] = useState([])
   const [currentHeartStrokes, setCurrentHeartStrokes] = useState([])
   const [showGoTop, setShowGoTop] = useState()
+  const [isEmailSent, setIsEmailSent] = useState(false)
   const refScrollUp = useRef(null)
+
+  const handleSubmit = async event => {
+    event.preventDefault()
+    console.log(event)
+    if (typeof event !== 'undefined') {
+      mailCollection.add({
+        email: event.value,
+      })
+    }
+  }
 
   useEffect(() => {
     const trendingDestinationsKeys = Object.keys(trendingDestinations)
@@ -1950,26 +1961,37 @@ const Home = ({ dataset }) => {
                     </Typography>
                   </Box>
                   <Box display="flex" alignItems="center" className={classes.mobileFlexColumn}>
-                    <Box>
-                      <FormControl>
-                        <TextField
-                          id="email"
-                          type="email"
-                          label="Adresse email"
-                          margin="dense"
-                          InputProps={{
-                            classes: { root: classes.inputNewsletter },
+                    {!isEmailSent ? (
+                      <>
+                        <Box>
+                          <FormControl>
+                            <TextField
+                              id="email"
+                              type="email"
+                              label="Adresse email"
+                              margin="dense"
+                              InputProps={{
+                                classes: { root: classes.inputNewsletter },
+                              }}
+                            />
+                            <FormLabel sx={{ color: 'red !important' }} />
+                          </FormControl>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          className={clsx(classes.buttonNewsletter, classes.v5MuiBUttonFix)}
+                          onClick={() => {
+                            mailCollection.add({ email })
+                            console.log(email)
+                            setIsEmailSent(true)
                           }}
-                        />
-                        <FormLabel sx={{ color: 'red !important' }} />
-                      </FormControl>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      className={clsx(classes.buttonNewsletter, classes.v5MuiBUttonFix)}
-                    >
-                      Je m&rsquo;inscris
-                    </Button>
+                        >
+                          Je m&rsquo;inscris
+                        </Button>
+                      </>
+                    ) : (
+                      <Typography>Merci de vous être inscrit.</Typography>
+                    )}
                   </Box>
                 </Box>
               </Box>
@@ -2000,32 +2022,47 @@ const Home = ({ dataset }) => {
                       c&rsquo;est promis !
                     </Typography>
                   </Box>
-                  <form
+                  {/* <form
                     onSubmit={event => {
-                      event.preventDefault()
+                      handleSubmit(event)
                       console.log(email)
                     }}
                     className={clsx(classes.formNewsletter, classes.mobileFlexColumn)}
-                  >
-                    <Box marginRight="15px">
-                      <TextField
-                        value={email}
-                        onChange={event => setEmail(event.target.value)}
-                        id="email"
-                        type="email"
-                        label="Adresse email"
-                        variant="filled"
-                        margin="dense"
-                        InputProps={{
-                          classes: { root: classes.inputNewsletter },
-                          disableUnderline: true,
+                  > */}
+                  {!isEmailSent ? (
+                    <>
+                      <Box marginRight="15px">
+                        <TextField
+                          value={email}
+                          onChange={event => setEmail(event.target.value)}
+                          id="email"
+                          type="email"
+                          label="Adresse email"
+                          variant="filled"
+                          margin="dense"
+                          InputProps={{
+                            classes: { root: classes.inputNewsletter },
+                            disableUnderline: true,
+                          }}
+                        />
+                      </Box>
+                      <Button
+                        variant="contained"
+                        type="submit"
+                        className={classes.buttonNewsletter}
+                        onClick={() => {
+                          mailCollection.add({ email })
+                          console.log(email)
+                          setIsEmailSent(true)
                         }}
-                      />
-                    </Box>
-                    <Button variant="contained" type="submit" className={classes.buttonNewsletter}>
-                      Je m&rsquo;inscris
-                    </Button>
-                  </form>
+                      >
+                        Je m&rsquo;inscris
+                      </Button>
+                    </>
+                  ) : (
+                    <Typography>Merci de vous être inscrit.</Typography>
+                  )}
+                  {/* </form> */}
                 </Paper>
               </Box>
             )}
