@@ -254,6 +254,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   creation_date: publishDate,
                   slug,
                   reading_time: readingTime,
+                  sub_type: category,
                 }) => (
                   <MobileBlogCard
                     srcImg={pictureMain.src.original}
@@ -264,6 +265,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                     slug={slug}
                     className={classes.mobileBlogCardAndCountryTile}
                     readingTime={readingTime}
+                    category={category[0].name}
                   />
                 )
               )
@@ -304,6 +306,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 creation_date: publishDate,
                 slug,
                 reading_time: readingTime,
+                sub_type: category,
               }) => (
                 <MobileBlogCard
                   srcImg={pictureMain.src.original}
@@ -315,6 +318,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                   readingTime={readingTime}
+                  category={category[0].name}
                 />
               )
             )}
