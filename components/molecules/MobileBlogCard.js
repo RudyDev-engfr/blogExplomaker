@@ -132,6 +132,7 @@ const useStyles = makeStyles(theme => ({
     left: '15px',
   },
 }))
+
 const MobileBlogCard = ({
   srcImg,
   title,

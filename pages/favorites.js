@@ -253,6 +253,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   target_url: targetUrl,
                   creation_date: publishDate,
                   slug,
+                  reading_time: readingTime,
                 }) => (
                   <MobileBlogCard
                     srcImg={pictureMain.src.original}
@@ -261,8 +262,8 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                     key={targetUrl}
                     publishDate={publishDate}
                     slug={slug}
-                    is360px
                     className={classes.mobileBlogCardAndCountryTile}
+                    readingTime={readingTime}
                   />
                 )
               )
@@ -302,6 +303,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 target_url: targetUrl,
                 creation_date: publishDate,
                 slug,
+                reading_time: readingTime,
               }) => (
                 <MobileBlogCard
                   srcImg={pictureMain.src.original}
@@ -312,6 +314,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   slug={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
+                  readingTime={readingTime}
                 />
               )
             )}
