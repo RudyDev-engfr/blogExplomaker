@@ -250,15 +250,15 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   picture: pictureMain,
                   target_url: targetUrl,
                   creation_date: publishDate,
+                  slug,
                 }) => (
                   <MobileBlogCard
                     srcImg={pictureMain}
-                    link={targetUrl}
+                    targetLink={targetUrl}
                     title={title}
                     key={targetUrl}
-                    commentsCount={Math.floor(Math.random() * 100)}
-                    likesCount={Math.floor(Math.random() * 100)}
                     publishDate={publishDate}
+                    slug={slug}
                     is360px
                     className={classes.mobileBlogCardAndCountryTile}
                   />
@@ -303,11 +303,9 @@ const MyArticles = ({ currentArticles, isLoading }) => {
               }) => (
                 <MobileBlogCard
                   srcImg={pictureMain}
-                  link={targetUrl}
+                  targetLink={targetUrl}
                   title={title}
                   key={targetUrl}
-                  commentsCount={Math.floor(Math.random() * 100)}
-                  likesCount={Math.floor(Math.random() * 100)}
                   publishDate={publishDate}
                   slug={slug}
                   is360px
