@@ -142,7 +142,6 @@ const MobileBlogCard = ({
   is360px = false,
   className,
   category = 'Demacia',
-  isAlgolia = false,
   targetLink,
   readingTime,
   slug,

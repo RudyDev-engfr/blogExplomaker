@@ -198,7 +198,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             draggable
             arrows={false}
             focusOnSelect={false}
-            infinite
+            infinite={user?.articlesBookmarked.length > 1}
             showDots={false}
             renderDotsOutside
             keyBoardControl
