@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 
 import SearchFilter from './SearchFilter'
-import union from '../../images/icons/Union.svg'
+import union from '../../images/icons/filtre.svg'
 import SpotList from './SpotList'
 import ArticlesList from './ArticlesList'
 

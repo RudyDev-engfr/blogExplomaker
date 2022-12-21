@@ -38,7 +38,7 @@ import { format, parse } from 'date-fns'
 
 import BlogCard from '../components/molecules/BlogCard'
 import SpotCard from '../components/SpotCard'
-import { database } from '../lib/firebase'
+import { database, mailCollection } from '../lib/firebase'
 import GoTopBtn from '../components/GoTopBtn'
 import TrendingDestinations from '../components/molecules/TrendingDestinations'
 
@@ -155,6 +155,7 @@ const useStyles = makeStyles(theme => ({
   },
   secondaryContainer: {
     padding: '30px 30px 120px',
+    flexWrap: 'no-wrap',
     [theme.breakpoints.down('sm')]: {
       padding: '0 0 20px 0',
     },
@@ -679,7 +680,18 @@ const Home = ({ dataset }) => {
   const [currentPublicPresentation, setCurrentPublicPresentation] = useState([])
   const [currentHeartStrokes, setCurrentHeartStrokes] = useState([])
   const [showGoTop, setShowGoTop] = useState()
+  const [isEmailSent, setIsEmailSent] = useState(false)
   const refScrollUp = useRef(null)
+
+  const handleSubmit = async event => {
+    event.preventDefault()
+    console.log(event)
+    if (typeof event !== 'undefined') {
+      mailCollection.add({
+        email: event.value,
+      })
+    }
+  }
 
   useEffect(() => {
     const trendingDestinationsKeys = Object.keys(trendingDestinations)
@@ -1472,7 +1484,7 @@ const Home = ({ dataset }) => {
         </Box>
         {/* Fin de partie 7 */}
         {/* Partie 8 */}
-        <Box className={classes.whiteBackgroundContainer}>
+        {/* <Box className={classes.whiteBackgroundContainer}>
           <Box className={classes.mainContainer}>
             <Box
               display="flex"
@@ -1564,7 +1576,7 @@ const Home = ({ dataset }) => {
               </Box>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
         {/* Fin de la partie 8 */}
         {/* Partie 9 */}
         <Box className={classes.greyBackgroundContainer}>
@@ -1614,54 +1626,62 @@ const Home = ({ dataset }) => {
                     srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${hotArticles[0].picture.src.original}`}
                     altImg=""
                     date={hotArticles[0].creation_date}
-                    readingTime={`${hotArticles[0].reading_time} min`}
+                    readingTime={hotArticles[0].reading_time}
                   />
                 </Box>
                 {/* TODO on the blog card and on the links, redirect to blog or article (?) */}
                 <Paper elevation={2} className={clsx(classes.mobileSizing, classes.blogList)}>
                   {hotArticles
                     .filter((article, index) => index !== 0)
-                    .map(({ title, sub_type: subType }, index, currentArray) => (
-                      <Box key={`hotArticles${title}`}>
-                        <Button
-                          className={classes.buttonBlogList}
-                          endIcon={
-                            <ArrowRightAlt
+                    .map(
+                      (
+                        { title, sub_type: subType, target_url: targetURL },
+                        index,
+                        currentArray
+                      ) => (
+                        <Box key={`hotArticles${title}`}>
+                          <Link passhref href={targetURL}>
+                            <Button
+                              className={classes.buttonBlogList}
+                              endIcon={
+                                <ArrowRightAlt
+                                  sx={{
+                                    color: '#DFDFDF',
+                                    fontSize: '2.125rem',
+                                    width: '34px',
+                                    height: '34px',
+                                  }}
+                                />
+                              }
                               sx={{
-                                color: '#DFDFDF',
-                                fontSize: '2.125rem',
-                                width: '34px',
-                                height: '34px',
+                                borderRadius:
+                                  index === 0
+                                    ? '20px 20px 0 0'
+                                    : index === currentArray.length - 1
+                                    ? '0 0 20px 20px'
+                                    : '0',
                               }}
-                            />
-                          }
-                          sx={{
-                            borderRadius:
-                              index === 0
-                                ? '20px 20px 0 0'
-                                : index === currentArray.length - 1
-                                ? '0 0 20px 20px'
-                                : '0',
-                          }}
-                        >
-                          <Box className={classes.newsTitleLabel}>
-                            <Box marginBottom="10px">
-                              <Typography
-                                className={classes.newsLabel}
-                                dangerouslySetInnerHTML={{ __html: subType[0].name }}
-                              />
-                            </Box>
-                            <Typography
-                              className={classes.newsTitle}
-                              dangerouslySetInnerHTML={{ __html: title }}
-                            />
-                          </Box>
-                        </Button>
-                        {index !== currentArray.length - 1 && (
-                          <Divider className={classes.stroke} />
-                        )}
-                      </Box>
-                    ))}
+                            >
+                              <Box className={classes.newsTitleLabel}>
+                                <Box marginBottom="10px">
+                                  <Typography
+                                    className={classes.newsLabel}
+                                    dangerouslySetInnerHTML={{ __html: subType[0].name }}
+                                  />
+                                </Box>
+                                <Typography
+                                  className={classes.newsTitle}
+                                  dangerouslySetInnerHTML={{ __html: title }}
+                                />
+                              </Box>
+                            </Button>
+                          </Link>
+                          {index !== currentArray.length - 1 && (
+                            <Divider className={classes.stroke} />
+                          )}
+                        </Box>
+                      )
+                    )}
                 </Paper>
               </Box>
               <Link component={IconButton} passhref href="/inspiration">
@@ -1941,26 +1961,37 @@ const Home = ({ dataset }) => {
                     </Typography>
                   </Box>
                   <Box display="flex" alignItems="center" className={classes.mobileFlexColumn}>
-                    <Box>
-                      <FormControl>
-                        <TextField
-                          id="email"
-                          type="email"
-                          label="Adresse email"
-                          margin="dense"
-                          InputProps={{
-                            classes: { root: classes.inputNewsletter },
+                    {!isEmailSent ? (
+                      <>
+                        <Box>
+                          <FormControl>
+                            <TextField
+                              id="email"
+                              type="email"
+                              label="Adresse email"
+                              margin="dense"
+                              InputProps={{
+                                classes: { root: classes.inputNewsletter },
+                              }}
+                            />
+                            <FormLabel sx={{ color: 'red !important' }} />
+                          </FormControl>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          className={clsx(classes.buttonNewsletter, classes.v5MuiBUttonFix)}
+                          onClick={() => {
+                            mailCollection.add({ email })
+                            console.log(email)
+                            setIsEmailSent(true)
                           }}
-                        />
-                        <FormLabel sx={{ color: 'red !important' }} />
-                      </FormControl>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      className={clsx(classes.buttonNewsletter, classes.v5MuiBUttonFix)}
-                    >
-                      Je m&rsquo;inscris
-                    </Button>
+                        >
+                          Je m&rsquo;inscris
+                        </Button>
+                      </>
+                    ) : (
+                      <Typography>Merci de vous être inscrit.</Typography>
+                    )}
                   </Box>
                 </Box>
               </Box>
@@ -1991,32 +2022,47 @@ const Home = ({ dataset }) => {
                       c&rsquo;est promis !
                     </Typography>
                   </Box>
-                  <form
+                  {/* <form
                     onSubmit={event => {
-                      event.preventDefault()
+                      handleSubmit(event)
                       console.log(email)
                     }}
                     className={clsx(classes.formNewsletter, classes.mobileFlexColumn)}
-                  >
-                    <Box marginRight="15px">
-                      <TextField
-                        value={email}
-                        onChange={event => setEmail(event.target.value)}
-                        id="email"
-                        type="email"
-                        label="Adresse email"
-                        variant="filled"
-                        margin="dense"
-                        InputProps={{
-                          classes: { root: classes.inputNewsletter },
-                          disableUnderline: true,
+                  > */}
+                  {!isEmailSent ? (
+                    <>
+                      <Box marginRight="15px">
+                        <TextField
+                          value={email}
+                          onChange={event => setEmail(event.target.value)}
+                          id="email"
+                          type="email"
+                          label="Adresse email"
+                          variant="filled"
+                          margin="dense"
+                          InputProps={{
+                            classes: { root: classes.inputNewsletter },
+                            disableUnderline: true,
+                          }}
+                        />
+                      </Box>
+                      <Button
+                        variant="contained"
+                        type="submit"
+                        className={classes.buttonNewsletter}
+                        onClick={() => {
+                          mailCollection.add({ email })
+                          console.log(email)
+                          setIsEmailSent(true)
                         }}
-                      />
-                    </Box>
-                    <Button variant="contained" type="submit" className={classes.buttonNewsletter}>
-                      Je m&rsquo;inscris
-                    </Button>
-                  </form>
+                      >
+                        Je m&rsquo;inscris
+                      </Button>
+                    </>
+                  ) : (
+                    <Typography>Merci de vous être inscrit.</Typography>
+                  )}
+                  {/* </form> */}
                 </Paper>
               </Box>
             )}

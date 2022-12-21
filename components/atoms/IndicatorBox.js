@@ -5,8 +5,9 @@ import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   indicatorsCountryGallery: {
-    height: '3px',
-    width: '47px',
+    height: '6px',
+    width: '6px',
+    borderRadius: '50px',
     backgroundColor: theme.palette.primary.ultraLight,
   },
   activeColor: {
@@ -23,9 +24,10 @@ const IndicatorBox = ({ currentArray, setter, currentActiveIndex }) => {
         <Box
           component={ButtonBase}
           onClick={() => setter(elementIndex)}
-          height="13px"
+          height="15px"
+          width="15px"
           mx={1}
-          borderRadius="20px"
+          borderRadius="50px"
           // eslint-disable-next-line react/no-array-index-key
           key={elementIndex}
         >

@@ -9,6 +9,7 @@ const SessionContextProvider = ({ children }) => {
   const [needFetch, setNeedFetch] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState('')
   const [currentHitsArray, setCurrentHitsArray] = useState()
+
   // currentHitsArray is the array of results from Algolia
   const [currentRefinementsArrayLength, setCurrentRefinementsArrayLength] = useState(0)
 
@@ -88,7 +89,7 @@ const SessionContextProvider = ({ children }) => {
   const articlesBookmarkedUpdate = slug => {
     let tempBookmarks = user?.articlesBookmarked || []
     const updateData = {}
-    const tempLikes = user?.spotsLiked || []
+    const tempLikes = user?.articlesLiked || []
 
     if (tempBookmarks.includes(slug)) {
       tempBookmarks = tempBookmarks.filter(bookmark => bookmark !== slug)

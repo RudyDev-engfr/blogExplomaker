@@ -6,6 +6,7 @@
 /helper/node_modules
 /.pnp
 .pnp.js
+/helper/react-gutenberg/node_modules
 
 # testing
 /coverage

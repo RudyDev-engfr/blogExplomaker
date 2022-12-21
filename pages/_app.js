@@ -15,6 +15,7 @@ import SessionContextProvider from '../contexts/session'
 import '../styles/firebaseui-styling.global.css'
 import '../styles/global.css'
 import '../styles/algolia.css'
+import '../helper/react-gutenberg/default.css'
 import Loader from '../components/atoms/Loader'
 
 const mapsLibraries = ['places']

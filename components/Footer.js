@@ -49,7 +49,11 @@ const Footer = () => {
       sx={{
         [theme.breakpoints.down('sm')]: {
           display:
-            router.pathname === '/favorites' || router.pathname === '/results' ? 'none' : 'block',
+            (router.pathname === '/inspiration' && matchesXs) ||
+            router.pathname === '/favorites' ||
+            router.pathname === '/results'
+              ? 'none'
+              : 'block',
         },
       }}
     >
@@ -104,40 +108,26 @@ const Footer = () => {
               marginBottom={matchesXs && '60px'}
             >
               <Typography variant="h4">Ressources</Typography>
-              <Link
-                variant="body2"
-                href="https://explomaker.fr/security/"
-                className={classes.footerLink}
-              >
-                Sécurité &amp; confidentialité
-              </Link>
               <Link variant="body2" href="https://explomaker.fr" className={classes.footerLink}>
                 Présentation de l&rsquo;app
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/blog/fonctionnement/"
+                href="https://explomaker.fr/inspiration/fonctionnemen-explomaker"
                 className={classes.footerLink}
               >
                 Fonctionnement de l&rsquo;app
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/help/debuter-avec-explomaker"
+                href="https://explomaker.fr/inspiration/guide-demarrage-explomaker"
                 className={classes.footerLink}
               >
                 Débuter avec Explomaker
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/roadmoap/"
-                className={classes.footerLink}
-              >
-                Roadmap
-              </Link>
-              <Link
-                variant="body2"
-                href="https://explomaker.fr/help"
+                href="https://app.explomaker.fr/help"
                 className={classes.footerLink}
               >
                 Aide
@@ -210,21 +200,10 @@ const Footer = () => {
               <Typography variant="h4" className={classes.footerTitle}>
                 Contact
               </Typography>
-              <Link
-                href="https://explomaker.fr/issues/"
-                variant="body2"
-                className={classes.footerLink}
-              >
+              <Link href="/contact" variant="body2" className={classes.footerLink}>
                 Une erreur sur l&rsquo;app ?
               </Link>
-              <Link href="mailto:web@explomaker.fr" variant="body2" className={classes.footerLink}>
-                web@explomaker.fr
-              </Link>
-              <Link
-                href="https://explomaker.fr/contact/"
-                variant="body2"
-                className={classes.footerLink}
-              >
+              <Link href="/contact" variant="body2" className={classes.footerLink}>
                 Contact rapide
               </Link>
             </Box>
@@ -235,7 +214,7 @@ const Footer = () => {
           <Flight fontSize="small" style={{ transform: 'rotate(45deg)' }} />
           <Copyright fontSize="small" />
           <Box ml={1}>
-            <Typography variant="caption">2021 Explomaker. Tous droits réservés.</Typography>
+            <Typography variant="caption">2023 Explomaker. Tous droits réservés.</Typography>
           </Box>
         </Box>
       </Box>

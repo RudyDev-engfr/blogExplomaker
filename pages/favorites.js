@@ -15,6 +15,7 @@ import MobileBlogCard from '../components/molecules/MobileBlogCard'
 import { SessionContext } from '../contexts/session'
 import NoneFavorite from '../components/molecules/NoneFavorite'
 import { useAuth } from '../lib/firebase'
+import MobileSearchButton from '../components/atoms/MobileSearchButton'
 
 const useStyles = makeStyles(theme => ({
   fullWidthContainer: {
@@ -56,6 +57,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
 
   return (
     <>
+      {matchesXs && <MobileSearchButton />}
       <Typography variant="h2" className={classes.favoritesTitles} mb={2}>
         Mes spots
       </Typography>
@@ -121,7 +123,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   categoryColor={color}
                   altImg=""
                   key={`spot/${slug}`}
-                  link={slug}
+                  targetLink={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
@@ -165,7 +167,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 categoryColor={color}
                 altImg=""
                 key={`spot/${slug}`}
-                link={slug}
+                targetLink={slug}
                 is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
@@ -196,7 +198,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             draggable
             arrows={false}
             focusOnSelect={false}
-            infinite
+            infinite={user?.articlesBookmarked.length > 1}
             showDots={false}
             renderDotsOutside
             keyBoardControl
@@ -348,7 +350,6 @@ const Favorites = () => {
       fetch(fnURL, myInit)
         .then(async response => {
           const payload = await response.json()
-          console.log('payload', payload)
           setCurrentSpots(payload.spots)
           setCurrentArticles(payload.articles)
           setIsLoading(false)

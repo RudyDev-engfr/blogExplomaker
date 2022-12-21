@@ -354,7 +354,7 @@ const SignUpModal = ({
                   onClick={() => {
                     redirectFunction()
                     // TODO rediriger vers Explomaker
-                    router.push('/signup/secondStep')
+                    router.push('https://app.explomaker.fr/signup/secondStep')
                   }}
                   sx={{ width: '360px' }}
                 >
@@ -412,7 +412,7 @@ const SignUpModal = ({
                 onClick={() => {
                   redirectFunction()
                   // TODO rediriger vers explomaker
-                  router.push('/signup/secondStep')
+                  router.push('https://app.explomaker.fr/signup/secondStep')
                 }}
                 sx={{ width: '360px' }}
               >

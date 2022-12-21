@@ -14,7 +14,7 @@ import 'react-multi-carousel/lib/styles.css'
 
 import CountryTile from '../atoms/CountryTile'
 import ArticlesList from './ArticlesList'
-import union from '../../images/icons/Union.svg'
+import union from '../../images/icons/filtre.svg'
 import MobileSearchFilter from './MobileSearchFilter'
 import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDotBox'
 import { SessionContext } from '../../contexts/session'
@@ -106,6 +106,7 @@ const MobileSearch = ({
   useEffect(() => {
     if (currentSpots) {
       setIsLoadingMoreSpots(1)
+      console.log('les spots que je regarde', currentSpots)
     }
     if (currentArticles) {
       setIsLoadingMoreArticles(1)
@@ -192,7 +193,7 @@ const MobileSearch = ({
           arrows={false}
           focusOnSelect={false}
           customDot={<TrendingDestinationsDotBox carouselArray={currentSpots} isResults />}
-          infinite={currentSpots.length > 1}
+          infinite={false}
           showDots
           dotListClass={classes.destinationsCarouselRoot}
           renderDotsOutside
@@ -222,21 +223,34 @@ const MobileSearch = ({
           partialVisible
         >
           {currentSpots
-            .filter((currentSpot, index) => (isShowingMoreSpots ? index <= 9 : index <= 5))
-            .map(({ titre: title, country, picture, color, slug }) => (
-              <Box display="flex" sx={{ margin: 'auto', marginBottom: '10px' }}>
-                <CountryTile
-                  countryTitle={title}
-                  category={country}
-                  srcImg={encodeURI(picture)}
-                  categoryColor={color}
-                  altImg=""
-                  key={`spot/${slug}`}
-                  link={slug}
-                  className={classes.mobileBlogCardAndCountryTile}
-                />
-              </Box>
-            ))}
+            .filter((currentSpot, index) => (isShowingMoreSpots ? index <= 9 : index <= 6))
+            .map(({ titre: title, country, picture, color, slug }, index) => {
+              if (index === 6) {
+                return (
+                  <Button
+                    variant="contained"
+                    onClick={() => setValue(1)}
+                    sx={{ width: '230px', height: '305px', borderRadius: '20px' }}
+                  >
+                    Voir tout
+                  </Button>
+                )
+              }
+              return (
+                <Box display="flex" sx={{ margin: 'auto', marginBottom: '10px' }}>
+                  <CountryTile
+                    countryTitle={title}
+                    category={country}
+                    srcImg={encodeURI(picture)}
+                    categoryColor={color}
+                    altImg=""
+                    key={`spot/${slug}`}
+                    link={slug}
+                    className={classes.mobileBlogCardAndCountryTile}
+                  />
+                </Box>
+              )
+            })}
         </Carousel>
       </Box>
     </>

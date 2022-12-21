@@ -14,6 +14,7 @@ import { useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
 import Image from 'next/image'
 
 import { SessionContext } from '../../contexts/session'
@@ -178,87 +179,90 @@ const CountryTile = ({
   const { user, spotsBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
-    <Card
-      elevation={0}
-      className={clsx(classes.root, {
-        [classes.largeRoot]: isLarge,
-      })}
-      onClick={() => router.push(`/spot/${link}`)}
-    >
-      <CardActionArea className={classes.cardActionArea}>
-        <CardMedia classes={{ root: classes.cardMedia }}>
-          <Box
-            className={clsx(classes.shadowVeil, {
-              [classes.shadowGreen]: categoryColor === 1,
-              [classes.shadowRed]: categoryColor === 2,
-              [classes.shadowBlue]: categoryColor === 3,
-              [classes.largeShadowVeil]: isLarge,
-            })}
-          />
-          <Box sx={{ position: 'relative' }} height="100%" width="100%">
-            <Image
-              src={encodeURI(srcImg)}
-              alt={altImg}
-              layout="fill"
-              objectFit="cover"
-              className={classes.tileImg}
+    <Link passHref href={`/spot/${link}`}>
+      <Card
+        elevation={0}
+        className={clsx(classes.root, {
+          [classes.largeRoot]: isLarge,
+        })}
+        // onClick={() => router.push(`/spot/${link}`)}
+      >
+        <CardActionArea className={classes.cardActionArea}>
+          <CardMedia classes={{ root: classes.cardMedia }}>
+            <Box
+              className={clsx(classes.shadowVeil, {
+                [classes.shadowGreen]: categoryColor === 1,
+                [classes.shadowRed]: categoryColor === 2,
+                [classes.shadowBlue]: categoryColor === 3,
+                [classes.largeShadowVeil]: isLarge,
+              })}
             />
-          </Box>
-        </CardMedia>
-      </CardActionArea>
-      <CardContent classes={{ root: classes.cardContent }}>
-        <Box
-          className={clsx(classes.likeAndDestinationType, {
-            [classes.largeLikeContainer]: isLarge,
-          })}
-        >
-          <Typography
-            className={clsx(classes.cardTitleSquared, {
-              [classes.colorGreen]: categoryColor === 1,
-              [classes.colorRed]: categoryColor === 2,
-              [classes.colorBlue]: categoryColor === 3,
+            <Box sx={{ position: 'relative' }} height="100%" width="100%">
+              <Image
+                src={encodeURI(srcImg)}
+                alt={altImg}
+                layout="fill"
+                objectFit="cover"
+                className={classes.tileImg}
+              />
+            </Box>
+          </CardMedia>
+        </CardActionArea>
+
+        <CardContent classes={{ root: classes.cardContent }}>
+          <Box
+            className={clsx(classes.likeAndDestinationType, {
+              [classes.largeLikeContainer]: isLarge,
             })}
           >
-            {category || 'Demacia'}
+            <Typography
+              className={clsx(classes.cardTitleSquared, {
+                [classes.colorGreen]: categoryColor === 1,
+                [classes.colorRed]: categoryColor === 2,
+                [classes.colorBlue]: categoryColor === 3,
+              })}
+            >
+              {category || 'Demacia'}
+            </Typography>
+            <IconButton
+              sx={{ color: '#FFFFFF', padding: (isLarge || matchesXs) && '0' }}
+              classes={{ root: classes.likeButton }}
+              onClick={event => {
+                event.stopPropagation()
+                if (!user?.isLoggedIn) {
+                  setIsAuthModalOpen('login')
+                }
+                spotsBookmarkedUpdate(link)
+              }}
+            >
+              {user?.spotsBookmarked?.includes(link) ? (
+                <Bookmark sx={{ fontSize: '26px' }} />
+              ) : (
+                <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />
+              )}
+            </IconButton>
+          </Box>
+          {countrySubtitle && (
+            <Typography className={classes.cardCountrySubtitle}>{countrySubtitle}</Typography>
+          )}
+          <Typography variant="h3" className={classes.countryTitleStyle}>
+            {countryTitle}
           </Typography>
-          <IconButton
-            sx={{ color: '#FFFFFF', padding: (isLarge || matchesXs) && '0' }}
-            classes={{ root: classes.likeButton }}
-            onClick={event => {
-              event.stopPropagation()
-              if (!user?.isLoggedIn) {
-                setIsAuthModalOpen('login')
-              }
-              spotsBookmarkedUpdate(link)
-            }}
-          >
-            {user?.spotsBookmarked?.includes(link) ? (
-              <Bookmark sx={{ fontSize: '26px' }} />
-            ) : (
-              <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />
-            )}
-          </IconButton>
-        </Box>
-        {countrySubtitle && (
-          <Typography className={classes.cardCountrySubtitle}>{countrySubtitle}</Typography>
-        )}
-        <Typography variant="h3" className={classes.countryTitleStyle}>
-          {countryTitle}
-        </Typography>
-        <Box className={classes.likeAndCommentsButtonsBox}>
-          <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
-            <FavoriteBorderOutlinedIcon sx={{ color: '#FFFFFF', marginRight: '4px' }} />
-            <Typography className={classes.socialInteractionCount}>{likesCounter}</Typography>
-          </Box>
-          <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
-            <Box marginRight="4px" display="flex" alignItems="center">
-              <Image width={20} height={20} src={commentIcon} />
+          <Box className={classes.likeAndCommentsButtonsBox}>
+            <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
+              <FavoriteBorderOutlinedIcon sx={{ color: '#FFFFFF', marginRight: '4px' }} />
+              <Typography className={classes.socialInteractionCount}>{likesCounter}</Typography>
             </Box>
-            <Typography className={classes.socialInteractionCount}>{commentsCounter}</Typography>
+            <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
+              <Box marginRight="4px" display="flex" alignItems="center">
+                <Image width={20} height={20} src={commentIcon} />
+              </Box>
+              <Typography className={classes.socialInteractionCount}>{commentsCounter}</Typography>
+            </Box>
           </Box>
-        </Box>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   )
 }
 
