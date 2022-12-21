@@ -3,10 +3,10 @@
 # dependencies
 /node_modules 
 /functions/node_modules
-/helper/node_modules
 /.pnp
 .pnp.js
 /helper/react-gutenberg/node_modules
+**/node_modules
 
 # testing
 /coverage

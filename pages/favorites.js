@@ -255,7 +255,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   slug,
                 }) => (
                   <MobileBlogCard
-                    srcImg={pictureMain}
+                    srcImg={pictureMain.src.original}
                     targetLink={targetUrl}
                     title={title}
                     key={targetUrl}
@@ -304,7 +304,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 slug,
               }) => (
                 <MobileBlogCard
-                  srcImg={pictureMain}
+                  srcImg={pictureMain.src.original}
                   targetLink={targetUrl}
                   title={title}
                   key={targetUrl}
