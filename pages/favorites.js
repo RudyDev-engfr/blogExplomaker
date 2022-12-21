@@ -253,15 +253,16 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   target_url: targetUrl,
                   creation_date: publishDate,
                 }) => (
-                  <MobileBlogCard
-                    srcImg={pictureMain}
-                    targetLink={targetUrl}
-                    title={title}
-                    key={targetUrl}
-                    publishDate={publishDate}
-                    is360px
-                    className={classes.mobileBlogCardAndCountryTile}
-                  />
+                  // <MobileBlogCard
+                  //   srcImg={pictureMain}
+                  //   targetLink={targetUrl}
+                  //   title={title}
+                  //   key={targetUrl}
+                  //   publishDate={publishDate}
+                  //   is360px
+                  //   className={classes.mobileBlogCardAndCountryTile}
+                  // />
+                  <Box />
                 )
               )
             )}
@@ -301,16 +302,17 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                 creation_date: publishDate,
                 slug,
               }) => (
-                <MobileBlogCard
-                  srcImg={pictureMain}
-                  targetLink={targetUrl}
-                  title={title}
-                  key={targetUrl}
-                  publishDate={publishDate}
-                  slug={slug}
-                  is360px
-                  className={classes.mobileBlogCardAndCountryTile}
-                />
+                // <MobileBlogCard
+                //   srcImg={pictureMain}
+                //   targetLink={targetUrl}
+                //   title={title}
+                //   key={targetUrl}
+                //   publishDate={publishDate}
+                //   slug={slug}
+                //   is360px
+                //   className={classes.mobileBlogCardAndCountryTile}
+                // />
+                <Box />
               )
             )}
           </Box>
