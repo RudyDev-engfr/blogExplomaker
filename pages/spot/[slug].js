@@ -274,6 +274,7 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
       padding: '0',
       top: '0',
+      paddingTop: '60px',
     },
   },
   interactionBox: {
@@ -320,8 +321,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: '16px',
       lineHeight: '24px',
       fontWeight: '400',
-      color: theme.palette.grey.grey33,
       fontFamily: 'Rubik',
+      color: theme.palette.primary.main,
     },
   },
   asideInfo: {
@@ -333,7 +334,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: '2',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
-      color: theme.palette.primary.main,
+      color: theme.palette.grey.grey33,
       fontWeight: '500',
       lineHeight: '24px',
       fontFamily: 'Rubik',
@@ -392,10 +393,9 @@ const useStyles = makeStyles(theme => ({
   },
   unmissableBigTitle: {
     [theme.breakpoints.down('sm')]: {
-      fontSize: '28px',
-      lineHeight: '34px',
-      fontWeight: '500',
-      fontFamily: 'Rubik',
+      fontSize: '38px',
+      lineHeight: '43px',
+      fontWeight: '700',
     },
   },
   roundedLegendTimeline: {
@@ -489,6 +489,10 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '44px',
     fontWeight: '500',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '22px',
+      lineHeight: '26px',
+    },
   },
   carouselSize: {
     opacity: '0.20',
@@ -688,6 +692,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       left: '10px',
       bottom: '10px',
+      right: 'unset',
+      minWidth: 'unset',
+      padding: '7px 10px',
+      textTransform: 'none',
     },
   },
   headerMapBox: {
@@ -710,6 +718,10 @@ const useStyles = makeStyles(theme => ({
   },
   customTrendingDestinationsDotBox: {
     right: 'unset',
+    flexWrap: 'wrap',
+  },
+  image: {
+    borderRadius: '20px',
   },
   // Responsive Part
   mobileAlignCenter: {
@@ -719,8 +731,9 @@ const useStyles = makeStyles(theme => ({
   },
   mobileSizing: {
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '90%',
+      maxWidth: '100vw',
       margin: 'auto',
+      padding: '0 30px',
     },
   },
   mobileCarouselItem: {
@@ -1050,7 +1063,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       )}
       {matchesXs && <MobileSearchButton />}
       {/* Partie 1 */}
-      <Box mb="90px">
+      <Box mb={!matchesXs && '90px'}>
         <Box sx={{ position: 'relative' }} className={classes.headerMapBox}>
           {dataset.gps && (
             <Map
@@ -1073,7 +1086,8 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             <BackButton className={classes.backButtonTop} />
             <Box>
               <Typography variant="h1" className={classes.spotTitle}>
-                {dataset.title}
+                {`${dataset?.link_words[0]} 
+                ${dataset.title}`}
               </Typography>
               <Typography
                 variant="h2"
@@ -1090,24 +1104,27 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             >
               {matchesXs ? (
                 <Box className={classes.mobileCountryAside}>
-                  <Box width="100%" height="220px" marginBottom="30px">
-                    <Map
-                      latitude={dataset.gps.lat}
-                      longitude={dataset.gps.lng}
-                      zoom={7}
-                      isCornerRounded
-                      isDraggable={false}
-                      markers={[
-                        <Marker
-                          position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
-                          icon="../../images/googleMapsIcons/activePin.svg"
-                          clickable={false}
-                        />,
-                      ]}
+                  <Box
+                    width="100%"
+                    height="220px"
+                    marginBottom="30px"
+                    sx={{ position: 'relative' }}
+                  >
+                    <Image
+                      src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.original}`}
+                      layout="fill"
+                      className={classes.image}
                     />
-                  </Box>{' '}
+                  </Box>
                   <Box className={classes.flagSquared}>
-                    <Typography className={classes.flagSquaredFlag}>🇩🇪</Typography>
+                    <Box sx={{ position: 'relative', width: '30px', height: '30px' }}>
+                      <Image
+                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                          dataset.flag_square.src.original
+                        )}`}
+                        layout="fill"
+                      />
+                    </Box>
                   </Box>
                   <Box>
                     <Typography className={classes.mobileCountryAsideTitle}>
@@ -1116,20 +1133,28 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     {/* TODO rendre dynamique */}
                     <Box display="flex" flexDirection="column" width="330px" padding="20px">
                       <Box display="flex" alignItems="center">
-                        <Typography variant="h3" className={classes.asideLabel}>
-                          Capitale
-                        </Typography>
-                        <Typography variant="h3" className={classes.asideInfo}>
-                          Berlin {/* TODO rendre dynamique capitale */}
-                        </Typography>
+                        {dataset?.capital && (
+                          <>
+                            <Typography variant="h3" className={classes.asideLabel}>
+                              Capitale
+                            </Typography>
+                            <Typography variant="h3" className={classes.asideInfo}>
+                              {dataset.capital}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                       <Box display="flex" alignItems="center">
-                        <Typography variant="h3" className={classes.asideLabel}>
-                          Population
-                        </Typography>
-                        <Typography variant="h3" className={classes.asideInfo}>
-                          83,02 millions{/* TODO rendre dynamique population */}
-                        </Typography>
+                        {dataset?.population && (
+                          <>
+                            <Typography variant="h3" className={classes.asideLabel}>
+                              Population
+                            </Typography>
+                            <Typography variant="h3" className={classes.asideInfo}>
+                              {dataset.population}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                     </Box>
                   </Box>
@@ -1144,8 +1169,8 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       flagFromDataset={dataset.flag_square?.src.original}
                       countryName={dataset.gps?.country}
                       countryCode={dataset.gps?.country_short}
-                      countryCapitalCity="Demacia"
-                      countryPeopleNumber="un nombre random"
+                      countryCapitalCity={dataset?.capital}
+                      countryPeopleNumber={dataset?.population}
                     />
                   </Box>
                   {!matchesXs && (
@@ -1316,7 +1341,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     </Box>
                   </Box>
                 )}
-                <Box paddingTop={dataset.visa && dataset.country_short && '50px'}>
+                <Box
+                  paddingTop={dataset.visa && dataset.country_short && '50px'}
+                  sx={{
+                    paddingTop: matchesXs && '50px',
+                  }}
+                >
                   <Box
                     padding={matchesXs ? '30px' : '40px'}
                     className={clsx({
@@ -1346,16 +1376,192 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
         </Box>
       </Box>
       {/* Fin de la partie 1 */}
+      {/* carousel de photos */}
+      <Box sx={{ marginBottom: matchesXs && '130px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: matchesXs && '0 30px',
+          }}
+        >
+          <Typography
+            variant="h3"
+            color="primary"
+            className={classes.globalSubtitle}
+            textAlign={!matchesXs ? 'center' : 'left'}
+          >
+            Panorama
+          </Typography>
+          <Box marginBottom="30px">
+            <Typography
+              variant="h1"
+              component="h2"
+              textAlign={!matchesXs ? 'center' : 'left'}
+              className={classes.unmissableBigTitle}
+            >
+              {dataset.link_words[0]} {dataset.title} en images
+            </Typography>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            margin: 'auto',
+            marginBottom: '80px',
+            [theme.breakpoints.down('sm')]: {
+              maxWidth: '100vw',
+              margin: '0',
+              position: 'relative',
+            },
+          }}
+        >
+          {matchesXs ? (
+            <>
+              <MultiCarousel
+                itemClass={classes.mobileCarouselItem}
+                autoPlaySpeed={3000}
+                draggable
+                arrows={false}
+                focusOnSelect={false}
+                infinite
+                showDots={false}
+                keyBoardControl
+                minimumTouchDrag={80}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 640,
+                    },
+                    items: 1,
+                  },
+                  mobile: {
+                    breakpoint: {
+                      max: 640,
+                      min: 0,
+                    },
+                    items: 1,
+                  },
+                }}
+                slidesToSlide={1}
+                swipeable
+                ssr
+                deviceType="mobile"
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.original)
+                    return (
+                      <Box
+                        width="100%"
+                        minWidth="300px"
+                        minHeight="200px"
+                        maxHeight="200px"
+                        sx={{ position: 'relative' }}
+                        key={id}
+                      >
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                          layout="fill"
+                        />
+                      </Box>
+                    )
+                  })}
+              </MultiCarousel>
+            </>
+          ) : (
+            <>
+              <Carousel
+                index={currentPictureSlider}
+                onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
+                animation="slide"
+                indicators={matchesXs}
+                autoPlay={false}
+                NavButton={() =>
+                  !matchesXs && (
+                    <Box className={classes.buttonPictureSlider}>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() => {
+                          let nextIndex
+                          if (currentPictureSlider > 0) {
+                            nextIndex = currentPictureSlider - 1
+                          } else {
+                            nextIndex = dataset.picture_slider.length - 1
+                          }
+                          setCurrentPictureSlider(nextIndex)
+                        }}
+                      >
+                        <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
+                      </Button>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() =>
+                          setCurrentPictureSlider(
+                            currentPictureSlider < dataset.picture_slider.length - 1
+                              ? currentPictureSlider + 1
+                              : 0
+                          )
+                        }
+                      >
+                        <ArrowRightAlt fontSize="large" />
+                      </Button>
+                    </Box>
+                  )
+                }
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.original)
+                    return (
+                      <Box
+                        key={id}
+                        className={classes.pictureSliderContainer}
+                        sx={{
+                          '&::before': {
+                            background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
+                            backgroundSize: 'cover',
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: '960px',
+                            height: '640px',
+                            position: 'relative',
+                            zIndex: '1',
+                            boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
+                            borderRadius: '20px 20px 0px 0px',
+                          }}
+                        >
+                          <Image
+                            src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                            width={960}
+                            height={640}
+                            className={classes.photoCarouselSingleImage}
+                          />
+                        </Box>
+                      </Box>
+                    )
+                  })}
+              </Carousel>
+            </>
+          )}
+        </Box>
+      </Box>
+      {/* Fin du carousel de photos */}
       {/* Partie 2 */}
       <Box marginBottom="100px">
-        <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
+        <Box className={clsx(classes.mainContainer, classes.mobileSizing)} sx={{ margin: 0 }}>
           {dataset.unmissable && (
-            <Box display={matchesXs ? 'block' : 'flex'} alignItems="center" flexDirection="column">
+            <Box sx={{ display: matchesXs ? 'block' : 'flex' }} flexDirection="column">
               <Box>
                 <Typography
                   variant="h3"
                   color="primary.ultraDark"
                   className={classes.globalSubtitle}
+                  sx={{ textAlign: !matchesXs && 'center' }}
                 >
                   La sélection Explomaker
                 </Typography>
@@ -1368,6 +1574,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   component="h2"
                   align="left"
                   className={classes.unmissableBigTitle}
+                  sx={{ textAlign: !matchesXs && 'center' }}
                 >
                   Présentation des incontournables
                 </Typography>
@@ -1394,6 +1601,11 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         <Typography
                           variant="h1"
                           component="h3"
+                          sx={{
+                            fontSize: matchesXs && '28px',
+                            lineHeight: matchesXs && '32px',
+                            fontWeight: matchesXs && '400 !important',
+                          }}
                           dangerouslySetInnerHTML={{
                             __html: dataset.unmissable[currentGalleryTile].title,
                           }}
@@ -1456,7 +1668,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       onClick={() => setIsShowingMap(!isShowingMap)}
                       startIcon={isShowingMap ? <CameraAltOutlined /> : <PinDropOutlined />}
                     >
-                      {isShowingMap ? 'photos' : 'carte'}
+                      {isShowingMap ? 'Photos' : 'Carte'}
                     </Button>
                   </Box>
                   <Box>
@@ -1607,172 +1819,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
         </Box>
       </Box>
       {/* fin de la partie 2 */}
-      {/* carousel de photos */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Box>
-          <Typography variant="h3" color="primary" className={classes.globalSubtitle}>
-            Panorama
-          </Typography>
-        </Box>
-        <Box marginBottom="30px">
-          <Typography
-            variant="h1"
-            component="h2"
-            align="left"
-            className={classes.unmissableBigTitle}
-          >
-            {dataset.link_words[0]} {dataset.title} en images
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
-          margin: 'auto',
-          marginBottom: '80px',
-          [theme.breakpoints.down('sm')]: {
-            maxWidth: '100vw',
-            margin: '0',
-            position: 'relative',
-            top: '-50px',
-          },
-        }}
-      >
-        {matchesXs ? (
-          <>
-            <MultiCarousel
-              itemClass={classes.mobileCarouselItem}
-              autoPlaySpeed={3000}
-              draggable
-              arrows={false}
-              focusOnSelect={false}
-              infinite
-              showDots={false}
-              renderDotsOutside
-              keyBoardControl
-              minimumTouchDrag={80}
-              responsive={{
-                desktop: {
-                  breakpoint: {
-                    max: 3000,
-                    min: 640,
-                  },
-                  items: 1,
-                },
-                mobile: {
-                  breakpoint: {
-                    max: 640,
-                    min: 0,
-                  },
-                  items: 1,
-                },
-              }}
-              slidesToSlide={1}
-              swipeable
-              ssr
-              deviceType="mobile"
-            >
-              {dataset.picture_slider &&
-                dataset.picture_slider.map(({ src, id }, index) => {
-                  const encodedURI = encodeURI(src.original)
-                  return (
-                    <Box
-                      width="100%"
-                      minWidth="300px"
-                      minHeight="200px"
-                      maxHeight="200px"
-                      sx={{ position: 'relative' }}
-                      key={id}
-                    >
-                      <Image
-                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                        layout="fill"
-                      />
-                    </Box>
-                  )
-                })}
-            </MultiCarousel>
-          </>
-        ) : (
-          <>
-            <Carousel
-              index={currentPictureSlider}
-              onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
-              animation="slide"
-              indicators={matchesXs}
-              autoPlay={false}
-              NavButton={() =>
-                !matchesXs && (
-                  <Box className={classes.buttonPictureSlider}>
-                    <Button
-                      className={classes.carouselArrow}
-                      onClick={() => {
-                        let nextIndex
-                        if (currentPictureSlider > 0) {
-                          nextIndex = currentPictureSlider - 1
-                        } else {
-                          nextIndex = dataset.picture_slider.length - 1
-                        }
-                        setCurrentPictureSlider(nextIndex)
-                      }}
-                    >
-                      <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
-                    </Button>
-                    <Button
-                      className={classes.carouselArrow}
-                      onClick={() =>
-                        setCurrentPictureSlider(
-                          currentPictureSlider < dataset.picture_slider.length - 1
-                            ? currentPictureSlider + 1
-                            : 0
-                        )
-                      }
-                    >
-                      <ArrowRightAlt fontSize="large" />
-                    </Button>
-                  </Box>
-                )
-              }
-            >
-              {dataset.picture_slider &&
-                dataset.picture_slider.map(({ src, id }, index) => {
-                  const encodedURI = encodeURI(src.original)
-                  return (
-                    <Box
-                      key={id}
-                      className={classes.pictureSliderContainer}
-                      sx={{
-                        '&::before': {
-                          background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
-                          backgroundSize: 'cover',
-                        },
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: '960px',
-                          height: '640px',
-                          position: 'relative',
-                          zIndex: '1',
-                          boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
-                          borderRadius: '20px 20px 0px 0px',
-                        }}
-                      >
-                        <Image
-                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                          width={960}
-                          height={640}
-                          className={classes.photoCarouselSingleImage}
-                        />
-                      </Box>
-                    </Box>
-                  )
-                })}
-            </Carousel>
-          </>
-        )}
-      </Box>
-      {/* Fin du carousel de photos */}
       {/* Partie 3 */}
       <Box marginBottom={matchesXs ? '60px' : '80px'}>
         <Box className={clsx(classes.mainContainer)}>
@@ -2045,7 +2091,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       )}
       {/* Fin de la partie 4 */}
       {/* CTA 2 */}
-      <Box marginBottom={matchesXs ? '120px' : '150px'}>
+      <Box marginBottom={matchesXs ? '120px' : '150px'} sx={{ paddingTop: matchesXs && '110px' }}>
         <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
           <Box
             display="flex"
