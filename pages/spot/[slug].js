@@ -135,19 +135,6 @@ const useStyles = makeStyles(theme => ({
       width: '70%',
     },
   },
-  flagRound: {
-    width: '80px',
-    height: '80px',
-    borderRadius: '50px',
-    backgroundColor: theme.palette.secondary.contrastText,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: '20px',
-  },
-  flagRoundFlag: {
-    fontSize: '40px',
-  },
   flagSquared: {
     width: '50px',
     height: '50px',
@@ -160,22 +147,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.contrastText,
   },
-  flagSquaredFlag: {
-    fontSize: '32px',
-  },
   fewWordsTitle: {
     fontSize: '28px',
     lineHeight: '32px',
     fontWeight: '700',
     marginBottom: '10px',
     fontFamily: theme.typography.fontFamily,
-  },
-  countryAsideTitle: {
-    fontSize: '28px',
-    lineHeight: '32px',
-    fontWeight: '700',
-    fontFamily: theme.palette.titleFontFamily,
-    color: theme.palette.secondary.contrastText,
   },
   practicalInfo: {
     fontSize: '24px',
@@ -301,18 +278,6 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.grey['4f'],
     backgroundColor: theme.palette.grey.f7,
   },
-  tagColorGreen: {
-    color: theme.palette.primary.main,
-    backgroundColor: theme.palette.primary.ultraLight,
-  },
-  tagColorRed: {
-    color: theme.palette.secondary.main,
-    backgroundColor: theme.palette.secondary.ultraLight,
-  },
-  tagColorBlue: {
-    color: theme.palette.primary.ultraDark,
-    backgroundColor: theme.palette.primary.lightGreenBackground,
-  },
   asideLabel: {
     fontSize: '20px',
     lineHeight: '28px',
@@ -350,13 +315,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: '30px 0 0 0',
     },
-  },
-  countryBottomInfo: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: '10px',
-    position: 'absolute',
-    width: '90%',
-    bottom: '20px',
   },
   practicalInfoContainer: {
     display: 'grid',
@@ -716,10 +674,6 @@ const useStyles = makeStyles(theme => ({
       left: '35%',
     },
   },
-  customTrendingDestinationsDotBox: {
-    right: 'unset',
-    flexWrap: 'wrap',
-  },
   image: {
     borderRadius: '20px',
   },
@@ -810,6 +764,10 @@ export async function getStaticProps({ params }) {
     const homePageDoc = await database.ref().child(`page_structure/accueil`).get()
     if (homePageDoc.exists()) {
       homePage = homePageDoc.val()
+    }
+  } else {
+    return {
+      notFound: true,
     }
   }
 

@@ -183,7 +183,12 @@ const DesktopSearch = ({
 
             {!matchesXs && currentSpots.length > 0 && (
               <Box className={classes.spotResultContainer}>
-                <SpotList data={currentSpots} isShowingMoreSpots={isShowingMoreSpots} isAlgolia />
+                <SpotList
+                  data={currentSpots}
+                  isShowingMoreSpots={isShowingMoreSpots}
+                  isAlgolia
+                  numberOfSpots={8}
+                />
               </Box>
             )}
             <Box

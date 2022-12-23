@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
+import { useEffect } from 'react'
 import Image from 'next/image'
 
 import WPGBlocks from '../../helper/react-gutenberg'
@@ -13,7 +14,7 @@ import headerImg from '../../images/Kenya 2.png'
 import mobileHeaderImg from '../../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png'
 
 // import { testArticle } from '../../helper/testArticle'
-import { database } from '../../lib/firebase'
+import { database, loadArticleSiteMap } from '../../lib/firebase'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 
 const useStyles = makeStyles(theme => ({
@@ -129,6 +130,11 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const finalSlugsArray = loadArticleSiteMap()
+
+  useEffect(() => {
+    console.log(finalSlugsArray)
+  }, [finalSlugsArray])
 
   return (
     <Box>
