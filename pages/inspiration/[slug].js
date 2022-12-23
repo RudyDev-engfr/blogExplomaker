@@ -14,8 +14,9 @@ import headerImg from '../../images/Kenya 2.png'
 import mobileHeaderImg from '../../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png'
 
 // import { testArticle } from '../../helper/testArticle'
-import { database, loadArticleSiteMap } from '../../lib/firebase'
+import { database } from '../../lib/firebase'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
+import { ArticlesSlugsArray } from '../../helper/slugsArray'
 
 const useStyles = makeStyles(theme => ({
   headerMapBox: {
@@ -89,15 +90,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '32px',
   },
 }))
+
 export async function getStaticPaths() {
   return {
-    paths: [
-      {
-        params: {
-          slug: 'les-jeux-de-pistes-urbains-une-aventure-trepidante-pour-un-city-trip-reussi',
-        },
-      },
-    ],
+    paths: ArticlesSlugsArray,
     fallback: 'blocking',
   }
 }
@@ -130,11 +126,6 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const finalSlugsArray = loadArticleSiteMap()
-
-  useEffect(() => {
-    console.log(finalSlugsArray)
-  }, [finalSlugsArray])
 
   return (
     <Box>
@@ -159,7 +150,6 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
               [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
             }}
           >
-            {' '}
             <Box display="flex" justifyContent="center" className={classes.categoryBox}>
               <Typography
                 sx={{

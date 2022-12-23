@@ -43,6 +43,7 @@ import TrendingDestinationsGroupButton from '../../components/multi-carousel/Tre
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
 import CountryAside from '../../components/molecules/spot/CountryAside'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
+import { spotsSlugsArray } from '../../helper/slugsArray'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -736,7 +737,7 @@ const months = [
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: 'polynesie-francaise' } }],
+    paths: spotsSlugsArray,
     fallback: 'blocking',
   }
 }
@@ -803,6 +804,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   // }, [])
 
   useEffect(() => {
+    console.log('dataset', dataset)
     let tempLanguageString = ''
     if (dataset?.languages) {
       dataset.languages.forEach((language, index) => {
@@ -816,10 +818,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     }
     setCurrentLanguages(tempLanguageString)
   }, [dataset])
-
-  useEffect(() => {
-    console.log(currentLanguages)
-  }, [currentLanguages])
 
   useEffect(() => {
     const tempTimeline = []
