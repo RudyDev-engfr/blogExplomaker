@@ -872,7 +872,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     {
       Icon: AccountBox,
       title: 'Visa & conseils',
-      smallInfoText: 'diplomatie.gouv.fr',
+      smallInfoText: 'https://www.diplomatie.gouv.fr/',
     },
   ]
 
