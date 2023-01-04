@@ -501,6 +501,7 @@ const useStyles = makeStyles(theme => ({
       padding: '45px 20px 20px 20px',
       width: '90%',
       margin: 'auto',
+      maxHeight: 'unset',
     },
   },
   reasonCardTitle: {
@@ -1639,67 +1640,69 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               ) : (
                 <Box sx={{ position: 'relative' }} alignSelf="flex-end">
                   {/* Desktop ver */}
-                  <Carousel
-                    index={currentGalleryTile}
-                    onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
-                    animation="slide"
-                    indicators={matchesXs}
-                    autoPlay={false}
-                    NavButton={() =>
-                      !matchesXs && (
-                        <Box className={classes.buttonsSpot}>
-                          <Button
-                            className={classes.carouselArrow}
-                            onClick={() => {
-                              let nextIndex
-                              if (currentGalleryTile > 0) {
-                                nextIndex = currentGalleryTile - 1
-                              } else {
-                                nextIndex = dataset.unmissable.length - 1
-                              }
-                              setCurrentGalleryTile(nextIndex)
-                            }}
-                          >
-                            <ArrowRightAlt
-                              style={{ transform: 'rotate(180deg)' }}
-                              fontSize="large"
-                            />
-                          </Button>
-                          <Button
-                            className={classes.carouselArrow}
-                            onClick={() =>
-                              setCurrentGalleryTile(
-                                currentGalleryTile < dataset.unmissable.length - 1
-                                  ? currentGalleryTile + 1
-                                  : 0
-                              )
-                            }
-                          >
-                            <ArrowRightAlt fontSize="large" />
-                          </Button>
-                        </Box>
-                      )
-                    }
-                  >
-                    {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
-                      <Box display="block" alignItems="center" key={postSlug}>
-                        <Box className={classes.countryGalleryImgContainer}>
-                          {!isShowingMap && (
-                            <Box sx={{ position: 'relative' }}>
-                              <Image
-                                src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                  picture?.src.original
-                                )}`}
-                                layout="fill"
-                                quality={100}
-                                className={classes.countryGalleryImg}
+                  <Box sx={{ minWidth: '850px', minHeight: '630px', position: 'relative' }}>
+                    <Carousel
+                      index={currentGalleryTile}
+                      onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
+                      animation="slide"
+                      indicators={matchesXs}
+                      autoPlay={false}
+                      NavButton={() =>
+                        !matchesXs && (
+                          <Box className={classes.buttonsSpot}>
+                            <Button
+                              className={classes.carouselArrow}
+                              onClick={() => {
+                                let nextIndex
+                                if (currentGalleryTile > 0) {
+                                  nextIndex = currentGalleryTile - 1
+                                } else {
+                                  nextIndex = dataset.unmissable.length - 1
+                                }
+                                setCurrentGalleryTile(nextIndex)
+                              }}
+                            >
+                              <ArrowRightAlt
+                                style={{ transform: 'rotate(180deg)' }}
+                                fontSize="large"
                               />
-                            </Box>
-                          )}
+                            </Button>
+                            <Button
+                              className={classes.carouselArrow}
+                              onClick={() =>
+                                setCurrentGalleryTile(
+                                  currentGalleryTile < dataset.unmissable.length - 1
+                                    ? currentGalleryTile + 1
+                                    : 0
+                                )
+                              }
+                            >
+                              <ArrowRightAlt fontSize="large" />
+                            </Button>
+                          </Box>
+                        )
+                      }
+                    >
+                      {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
+                        <Box display="block" alignItems="center" key={postSlug}>
+                          <Box className={classes.countryGalleryImgContainer}>
+                            {!isShowingMap && (
+                              <Box sx={{ position: 'relative' }}>
+                                <Image
+                                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                                    picture?.src.original
+                                  )}`}
+                                  layout="fill"
+                                  quality={100}
+                                  className={classes.countryGalleryImg}
+                                />
+                              </Box>
+                            )}
+                          </Box>
                         </Box>
-                      </Box>
-                    ))}
-                  </Carousel>
+                      ))}
+                    </Carousel>
+                  </Box>
                   <Paper className={classes.countryGalleryCard}>
                     <Box marginBottom="5px">
                       <Typography variant="h3" className={classes.carouselNumbers}>
@@ -1940,7 +1943,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           <Typography variant="h3" className={classes.reasonCardTitle}>
                             {cardTitle}
                           </Typography>
-                          <Box sx={{ maxHeight: '275px', overflowY: 'auto' }}>
+                          <Box sx={{ maxHeight: !matchesXs && '275px', overflowY: 'auto' }}>
                             <Typography
                               className={clsx(
                                 classes.mobileAlignCenter,
