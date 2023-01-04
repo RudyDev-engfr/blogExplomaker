@@ -441,6 +441,8 @@ const useStyles = makeStyles(theme => ({
     overflowY: 'auto',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
+      maxHeight: 'unset',
+      overflowY: 'none',
     },
   },
   carouselNumbers: {
@@ -863,7 +865,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     {
       Icon: AvTimer,
       title: 'Fuseau',
-      smallInfoText: dataset.fuseau ? `${dataset?.fuseau}` : '-',
+      smallInfoText: dataset.fuseau ? `${dataset?.fuseau} UTC` : '-',
     },
     {
       Icon: Language,
@@ -1073,16 +1075,18 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       className={classes.image}
                     />
                   </Box>
-                  <Box className={classes.flagSquared}>
-                    <Box sx={{ position: 'relative', width: '30px', height: '30px' }}>
-                      <Image
-                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                          dataset.flag_square.src.original
-                        )}`}
-                        layout="fill"
-                      />
+                  {dataset.flag_square && (
+                    <Box className={classes.flagSquared}>
+                      <Box sx={{ position: 'relative', width: '30px', height: '30px' }}>
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                            dataset.flag_square.src.original
+                          )}`}
+                          layout="fill"
+                        />
+                      </Box>
                     </Box>
-                  </Box>
+                  )}
                   <Box>
                     <Typography className={classes.mobileCountryAsideTitle}>
                       {dataset.title}({dataset.gps.country_short})
@@ -1238,7 +1242,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   </Box>
                 )}
                 {dataset.periode_visite && (
-                  <Box className={clsx(classes.bestPeriodContainer, classes.mobileSizing)}>
+                  <Box className={clsx(classes.bestPeriodContainer)}>
                     <Box marginBottom="25px">
                       <Typography
                         variant="h2"
