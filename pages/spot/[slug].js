@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material'
+import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import makeStyles from '@mui/styles/makeStyles'
@@ -42,6 +43,7 @@ import TrendingDestinationsGroupButton from '../../components/multi-carousel/Tre
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
 import CountryAside from '../../components/molecules/spot/CountryAside'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
+import { spotsSlugsArray } from '../../helper/slugsArray'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -104,9 +106,8 @@ const useStyles = makeStyles(theme => ({
   },
   boxCTA: {
     backgroundColor: theme.palette.grey.f7,
-    width: 'calc(100% - 450px)',
+    width: '100%',
     position: 'relative',
-    left: '450px',
     borderRadius: '20px',
   },
   mobileBoxCTA: {
@@ -135,19 +136,6 @@ const useStyles = makeStyles(theme => ({
       width: '70%',
     },
   },
-  flagRound: {
-    width: '80px',
-    height: '80px',
-    borderRadius: '50px',
-    backgroundColor: theme.palette.secondary.contrastText,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: '20px',
-  },
-  flagRoundFlag: {
-    fontSize: '40px',
-  },
   flagSquared: {
     width: '50px',
     height: '50px',
@@ -160,22 +148,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.contrastText,
   },
-  flagSquaredFlag: {
-    fontSize: '32px',
-  },
   fewWordsTitle: {
     fontSize: '28px',
     lineHeight: '32px',
     fontWeight: '700',
     marginBottom: '10px',
     fontFamily: theme.typography.fontFamily,
-  },
-  countryAsideTitle: {
-    fontSize: '28px',
-    lineHeight: '32px',
-    fontWeight: '700',
-    fontFamily: theme.palette.titleFontFamily,
-    color: theme.palette.secondary.contrastText,
   },
   practicalInfo: {
     fontSize: '24px',
@@ -244,23 +222,6 @@ const useStyles = makeStyles(theme => ({
       padding: '9px 15px 20px 15px',
     },
   },
-  countryAside: {
-    maxWidth: '370px',
-    minHeight: '600px',
-    backgroundColor: theme.palette.primary.ultraDark,
-    color: 'white',
-    borderRadius: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: 'relative',
-    padding: '20px',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '100%',
-      width: '100%',
-      alignSelf: 'center',
-    },
-  },
   mobileCountryAside: {
     width: '90%',
     minWidth: '315px',
@@ -282,7 +243,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '20px',
   },
   bestPeriodContainer: {
-    padding: '30px 0 0 50px',
+    padding: '100px 0 0 0',
     position: 'relative',
     top: '-60px',
     [theme.breakpoints.down('sm')]: {
@@ -291,17 +252,18 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
       padding: '0',
       top: '0',
+      paddingTop: '60px',
     },
   },
   interactionBox: {
-    paddingLeft: '70px',
     maxWidth: '370px',
     '& > *': {
       marginRight: '30px',
     },
   },
   tagsContainer: {
-    minWidth: '370px',
+    maxWidth: '280px',
+    marginBottom: '20px',
     [theme.breakpoints.down('sm')]: {
       alignSelf: 'center',
       justifySelf: 'center',
@@ -309,23 +271,13 @@ const useStyles = makeStyles(theme => ({
   },
   tagRounded: {
     fontSize: '0.875rem',
-    fontWeight: '500',
+    fontWeight: '400',
     display: 'inline-block',
     margin: '0 12px 12px 0',
     padding: '5px 12px',
     borderRadius: '30px',
-  },
-  tagColorGreen: {
-    color: theme.palette.primary.main,
-    backgroundColor: theme.palette.primary.ultraLight,
-  },
-  tagColorRed: {
-    color: theme.palette.secondary.main,
-    backgroundColor: theme.palette.secondary.ultraLight,
-  },
-  tagColorBlue: {
-    color: theme.palette.primary.ultraDark,
-    backgroundColor: theme.palette.primary.lightGreenBackground,
+    color: theme.palette.grey['4f'],
+    backgroundColor: theme.palette.grey.f7,
   },
   asideLabel: {
     fontSize: '20px',
@@ -335,8 +287,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: '16px',
       lineHeight: '24px',
       fontWeight: '400',
-      color: theme.palette.grey.grey33,
       fontFamily: 'Rubik',
+      color: theme.palette.primary.main,
     },
   },
   asideInfo: {
@@ -348,7 +300,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: '2',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
-      color: theme.palette.primary.main,
+      color: theme.palette.grey.grey33,
       fontWeight: '500',
       lineHeight: '24px',
       fontFamily: 'Rubik',
@@ -364,13 +316,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: '30px 0 0 0',
     },
-  },
-  countryBottomInfo: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: '10px',
-    position: 'absolute',
-    width: '90%',
-    bottom: '20px',
   },
   practicalInfoContainer: {
     display: 'grid',
@@ -407,10 +352,9 @@ const useStyles = makeStyles(theme => ({
   },
   unmissableBigTitle: {
     [theme.breakpoints.down('sm')]: {
-      fontSize: '28px',
-      lineHeight: '34px',
-      fontWeight: '500',
-      fontFamily: 'Rubik',
+      fontSize: '38px',
+      lineHeight: '43px',
+      fontWeight: '700',
     },
   },
   roundedLegendTimeline: {
@@ -428,16 +372,6 @@ const useStyles = makeStyles(theme => ({
   },
   primaryMainTransparent: {
     backgroundColor: 'rgba(0,157,140,0.6)',
-  },
-  tagsAndPeriodContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 70px 30px 60px',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0',
-      flexWrap: 'wrap-reverse',
-      justifyContent: 'center',
-    },
   },
   globalSubtitle: {
     fontSize: '24px',
@@ -507,6 +441,8 @@ const useStyles = makeStyles(theme => ({
     overflowY: 'auto',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
+      maxHeight: 'unset',
+      overflowY: 'none',
     },
   },
   carouselNumbers: {
@@ -514,6 +450,10 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '44px',
     fontWeight: '500',
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '22px',
+      lineHeight: '26px',
+    },
   },
   carouselSize: {
     opacity: '0.20',
@@ -563,6 +503,7 @@ const useStyles = makeStyles(theme => ({
       padding: '45px 20px 20px 20px',
       width: '90%',
       margin: 'auto',
+      maxHeight: 'unset',
     },
   },
   reasonCardTitle: {
@@ -713,6 +654,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       left: '10px',
       bottom: '10px',
+      right: 'unset',
+      minWidth: 'unset',
+      padding: '7px 10px',
+      textTransform: 'none',
     },
   },
   headerMapBox: {
@@ -733,8 +678,8 @@ const useStyles = makeStyles(theme => ({
       left: '35%',
     },
   },
-  customTrendingDestinationsDotBox: {
-    right: 'unset',
+  image: {
+    borderRadius: '20px',
   },
   // Responsive Part
   mobileAlignCenter: {
@@ -744,8 +689,9 @@ const useStyles = makeStyles(theme => ({
   },
   mobileSizing: {
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '90%',
+      maxWidth: '100vw',
       margin: 'auto',
+      padding: '0 30px',
     },
   },
   mobileCarouselItem: {
@@ -794,7 +740,7 @@ const months = [
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: 'polynesie-francaise' } }],
+    paths: spotsSlugsArray,
     fallback: 'blocking',
   }
 }
@@ -823,6 +769,10 @@ export async function getStaticProps({ params }) {
     if (homePageDoc.exists()) {
       homePage = homePageDoc.val()
     }
+  } else {
+    return {
+      notFound: true,
+    }
   }
 
   return {
@@ -844,6 +794,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [timeline, setTimeline] = useState([])
   const [showGoTop, setShowGoTop] = useState(false)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
+  const [currentLanguages, setCurrentLanguages] = useState('')
 
   // useEffect(() => {
   //   if (typeof trendingDestinations !== 'undefined') {
@@ -854,6 +805,22 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   //     setTrendingDestinationsItems(tempTrendingDestinationsArray)
   //   }
   // }, [])
+
+  useEffect(() => {
+    console.log('dataset', dataset)
+    let tempLanguageString = ''
+    if (dataset?.languages) {
+      dataset.languages.forEach((language, index) => {
+        if (index > 0) {
+          tempLanguageString = tempLanguageString.concat(', ', language)
+        }
+        if (index === 0) {
+          tempLanguageString = tempLanguageString.concat(language)
+        }
+      })
+    }
+    setCurrentLanguages(tempLanguageString)
+  }, [dataset])
 
   useEffect(() => {
     const tempTimeline = []
@@ -898,19 +865,17 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     {
       Icon: AvTimer,
       title: 'Fuseau',
-      smallInfoText: 'UTC+2',
-      // TODO rendre le fuseau horaire dynamique
+      smallInfoText: dataset.fuseau ? `${dataset?.fuseau} UTC` : '-',
     },
     {
       Icon: Language,
       title: 'Langues',
-      smallInfoText: 'Allemand',
-      // TODO rendre dynamique
+      smallInfoText: currentLanguages,
     },
     {
       Icon: AccountBox,
       title: 'Visa & conseils',
-      smallInfoText: dataset?.visa,
+      smallInfoText: 'https://www.diplomatie.gouv.fr/',
     },
   ]
 
@@ -928,50 +893,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       label: dictionary.periode_visite[0],
     },
   ]
-
-  const associatedTags = [
-    {
-      colorClass: classes.tagColorGreen,
-      label: 'Fêtes',
-    },
-    {
-      colorClass: classes.tagColorRed,
-      label: 'Culture',
-    },
-    {
-      colorClass: classes.tagColorBlue,
-      label: 'Tradition',
-    },
-    {
-      colorClass: classes.tagColorRed,
-      label: 'Randonnée',
-    },
-    {
-      colorClass: classes.tagColorBlue,
-      label: 'Paysages',
-    },
-    {
-      colorClass: classes.tagColorGreen,
-      label: 'Sport',
-    },
-    // Test avec + de tags
-    // {
-    //   colorClass: classes.tagColorBlue,
-    //   label: 'Tradition',
-    // },
-    // {
-    //   colorClass: classes.tagColorRed,
-    //   label: 'Randonnée',
-    // },
-    // {
-    //   colorClass: classes.tagColorBlue,
-    //   label: 'Animaux',
-    // },
-    // {
-    //   colorClass: classes.tagColorGreen,
-    //   label: 'Détente',
-    // },
-  ] // TODO rendre dynamique
 
   const mobileBlogCard = [
     {
@@ -1101,7 +1022,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       )}
       {matchesXs && <MobileSearchButton />}
       {/* Partie 1 */}
-      <Box mb="90px">
+      <Box mb={!matchesXs && '90px'}>
         <Box sx={{ position: 'relative' }} className={classes.headerMapBox}>
           {dataset.gps && (
             <Map
@@ -1124,7 +1045,8 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             <BackButton className={classes.backButtonTop} />
             <Box>
               <Typography variant="h1" className={classes.spotTitle}>
-                {dataset.title}
+                {`${dataset?.link_words[0]} 
+                ${dataset.title}`}
               </Typography>
               <Typography
                 variant="h2"
@@ -1141,25 +1063,30 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
             >
               {matchesXs ? (
                 <Box className={classes.mobileCountryAside}>
-                  <Box width="100%" height="220px" marginBottom="30px">
-                    <Map
-                      latitude={dataset.gps.lat}
-                      longitude={dataset.gps.lng}
-                      zoom={7}
-                      isCornerRounded
-                      isDraggable={false}
-                      markers={[
-                        <Marker
-                          position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
-                          icon="../../images/googleMapsIcons/activePin.svg"
-                          clickable={false}
-                        />,
-                      ]}
+                  <Box
+                    width="100%"
+                    height="220px"
+                    marginBottom="30px"
+                    sx={{ position: 'relative' }}
+                  >
+                    <Image
+                      src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.original}`}
+                      layout="fill"
+                      className={classes.image}
                     />
-                  </Box>{' '}
-                  <Box className={classes.flagSquared}>
-                    <Typography className={classes.flagSquaredFlag}>🇩🇪</Typography>
                   </Box>
+                  {dataset.flag_square && (
+                    <Box className={classes.flagSquared}>
+                      <Box sx={{ position: 'relative', width: '30px', height: '30px' }}>
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                            dataset.flag_square.src.original
+                          )}`}
+                          layout="fill"
+                        />
+                      </Box>
+                    </Box>
+                  )}
                   <Box>
                     <Typography className={classes.mobileCountryAsideTitle}>
                       {dataset.title}({dataset.gps.country_short})
@@ -1167,102 +1094,89 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     {/* TODO rendre dynamique */}
                     <Box display="flex" flexDirection="column" width="330px" padding="20px">
                       <Box display="flex" alignItems="center">
-                        <Typography variant="h3" className={classes.asideLabel}>
-                          Capitale
-                        </Typography>
-                        <Typography variant="h3" className={classes.asideInfo}>
-                          Berlin {/* TODO rendre dynamique capitale */}
-                        </Typography>
+                        {dataset?.capital && (
+                          <>
+                            <Typography variant="h3" className={classes.asideLabel}>
+                              Capitale
+                            </Typography>
+                            <Typography variant="h3" className={classes.asideInfo}>
+                              {dataset.capital}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                       <Box display="flex" alignItems="center">
-                        <Typography variant="h3" className={classes.asideLabel}>
-                          Population
-                        </Typography>
-                        <Typography variant="h3" className={classes.asideInfo}>
-                          83,02 millions{/* TODO rendre dynamique population */}
-                        </Typography>
+                        {dataset?.population && (
+                          <>
+                            <Typography variant="h3" className={classes.asideLabel}>
+                              Population
+                            </Typography>
+                            <Typography variant="h3" className={classes.asideInfo}>
+                              {dataset.population}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                     </Box>
                   </Box>
                 </Box>
               ) : (
-                // <Box className={classes.countryAside}>
-                //   <Box
-                //     display="flex"
-                //     alignItems="center"
-                //     justifyContent="center"
-                //     marginBottom="30px"
-                //   >
-                //     <Box className={classes.flagRound}>
-                //       <Typography className={classes.flagRoundFlag}>🇩🇪</Typography>
-                //     </Box>
-                //     {/* TODO remplacer par le flag_round de la DB */}
-                //     <Typography variant="h2" className={classes.countryAsideTitle}>
-                //       {dataset.title}({dataset.gps.country_short})
-                //       {/* TODO {dataset.gps.country}
-                //   {dataset.gps.country_short} */}
-                //     </Typography>
-                //   </Box>
-                //   <Box
-                //     width={matchesXs ? '100%' : '330px'}
-                //     height="330px"
-                //     className={classes.mapAsideContainer}
-                //   >
-                //     <Map
-                //       latitude={dataset.gps.lat}
-                //       longitude={dataset.gps.lng}
-                //       zoom={7}
-                //       isAside
-                //       isDraggable={false}
-                //       markers={[
-                //         <Marker
-                //           position={{ lat: dataset.gps.lat, lng: dataset.gps.lng }}
-                //           icon="../../images/googleMapsIcons/activePin.svg"
-                //           clickable={false}
-                //         />,
-                //       ]}
-                //     />
-                //     {/* TODO remplacer par le doigt */}
-                //   </Box>
-                //   <Box
-                //     display="flex"
-                //     flexDirection="column"
-                //     width="330px"
-                //     padding="20px"
-                //     className={classes.countryBottomInfo}
-                //   >
-                //     <Box display="flex" alignItems="center">
-                //       <Typography variant="h3" className={classes.asideLabel}>
-                //         Capitale
-                //       </Typography>
-                //       <Typography variant="h3" className={classes.asideInfo}>
-                //         Berlin {/* TODO rendre dynamique capitale */}
-                //       </Typography>
-                //     </Box>
-                //     <Box display="flex" alignItems="center">
-                //       <Typography variant="h3" className={classes.asideLabel}>
-                //         Population
-                //       </Typography>
-                //       <Typography variant="h3" className={classes.asideInfo}>
-                //         83,02 millions{/* TODO rendre dynamique population */}
-                //       </Typography>
-                //     </Box>
-                //   </Box>
-                // </Box>
-                <CountryAside
-                  srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                    dataset.picture_main.src.original
-                  )}`}
-                  flagFromDataset={dataset.flag_square?.src.original}
-                  countryName={dataset.gps?.country}
-                  countryCode={dataset.gps?.country_short}
-                  countryCapitalCity="Demacia"
-                  countryPeopleNumber="un nombre random"
-                />
+                <Box sx={{ maxWidth: '280px' }}>
+                  <Box sx={{ marginBottom: '40px' }}>
+                    <CountryAside
+                      srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                        dataset.picture_main.src.original
+                      )}`}
+                      flagFromDataset={dataset.flag_square?.src.original}
+                      countryName={dataset.gps?.country}
+                      countryCode={dataset.gps?.country_short}
+                      countryCapitalCity={dataset?.capital}
+                      countryPeopleNumber={dataset?.population}
+                    />
+                  </Box>
+                  {!matchesXs && (
+                    <Box className={clsx(classes.tagsContainer, classes.mobileSizing)}>
+                      <Box>
+                        <Box marginBottom="25px">
+                          <Typography
+                            variant="h2"
+                            className={clsx(classes.secondTitle, classes.mobileAlignCenter)}
+                          >
+                            Tags associés
+                          </Typography>
+                        </Box>
+                        <Box
+                          display="flex"
+                          alignItems="center"
+                          flexWrap="wrap"
+                          justifyContent={matchesXs ? 'center' : 'flex-start'}
+                        >
+                          {dataset.meta_envies.map(tag => (
+                            <Link
+                              href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                                tag.name
+                              )}`}
+                            >
+                              <Typography className={classes.tagRounded} key={tag.id}>
+                                {tag.name}
+                              </Typography>
+                            </Link>
+                          ))}
+                        </Box>
+                      </Box>
+                    </Box>
+                  )}
+                  {!matchesXs && (
+                    <Box className={classes.interactionBox}>
+                      <ButtonLike isSpots spotSlug={dataset.slug} />
+                      <ButtonBookmark spotSlug={dataset.slug} />
+                    </Box>
+                  )}
+                </Box>
               )}
               <Box className={clsx(classes.contentInfo, classes.mobileSizing)}>
                 {dataset.few_words && (
-                  <Box marginBottom="60px">
+                  <Box>
                     <Typography variant="h2" className={classes.fewWordsTitle}>
                       En quelques mots
                     </Typography>
@@ -1273,7 +1187,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   </Box>
                 )}
                 {dataset.visa && dataset.country_short !== 'FR' && (
-                  <Box>
+                  <Box sx={{ paddingTop: '50px' }}>
                     <Box>
                       <Typography variant="h2" className={classes.practicalInfo}>
                         Infos pratiques
@@ -1289,9 +1203,31 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                             <Box>
                               <Typography className={classes.greenLabel}>{title}</Typography>
                               <Typography className={classes.smallInfoTextStyle}>
-                                {smallInfoText.substring(0, 20)}
+                                {/* <Tooltip title={smallInfoText} className={classes.smallInfoTooltip}> */}
+                                {typeof smallInfoText === 'string' &&
+                                  !smallInfoText.includes('diplomatie') &&
+                                  smallInfoText.substring(0, 20)}
                                 {smallInfoText.length > 30 && '...'}
-                                {moneyCode && `(${moneyCode})`}
+                                {typeof smallInfoText === 'string' &&
+                                  smallInfoText.includes('diplomatie') && (
+                                    <Link
+                                      href={smallInfoText}
+                                      sx={{
+                                        color: 'black',
+                                        textTransform: 'none',
+                                        textDecoration: 'underline black',
+                                      }}
+                                    >
+                                      {smallInfoText}
+                                    </Link>
+                                  )}
+                                {/* </Tooltip> */}
+                                {
+                                  moneyCode &&
+                                    // <Tooltip title={moneyCode} className={classes.moneyTooltip}>
+                                    moneyCode
+                                  // </Tooltip>
+                                }
                               </Typography>
                               {verySmallText && (
                                 <Typography className={classes.verySmallTextStyle}>
@@ -1305,130 +1241,288 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     </Box>
                   </Box>
                 )}
+                {dataset.periode_visite && (
+                  <Box className={clsx(classes.bestPeriodContainer)}>
+                    <Box marginBottom="25px">
+                      <Typography
+                        variant="h2"
+                        className={classes.secondTitle}
+                        align={matchesXs ? 'center' : 'left'}
+                      >
+                        Meilleures périodes
+                      </Typography>
+                    </Box>
+                    <Box
+                      display="flex"
+                      marginBottom="25px"
+                      flexWrap={matchesXs ? 'wrap' : 'nowrap'}
+                    >
+                      {timeline.map(({ month, visitMarker }, index, currentArray) => (
+                        <Box className={classes.bestPeriodBox} key={month}>
+                          <Box
+                            className={clsx(
+                              { [classes.perfectTimeline]: visitMarker === 2 },
+                              { [classes.correctTimeline]: visitMarker === 1 },
+                              { [classes.notRecommandedTimeline]: visitMarker === 0 },
+                              {
+                                [classes.timelineStart]: index === 0 || (matchesXs && index === 6),
+                              },
+                              {
+                                [classes.timelineEnd]:
+                                  index === currentArray.length - 1 || (matchesXs && index === 5),
+                              },
+                              classes.timeline
+                            )}
+                          />
+                          <Typography className={classes.timelineMonth}>{month}</Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                    <Box display="flex" justifyContent="space-evenly">
+                      {legendTimeline.map(({ color, label }) => (
+                        <Box display="flex" alignItems="center" key={label}>
+                          <Box
+                            className={clsx(
+                              { [classes.primaryMain]: color === theme.palette.primary.main },
+                              {
+                                [classes.primaryMainTransparent]:
+                                  color === 'rgba(0, 157, 140, 0.6)',
+                              },
+                              { [classes.greyDf]: color === theme.palette.grey.df },
+                              classes.roundedLegendTimeline
+                            )}
+                          />
+                          <Typography
+                            className={clsx(classes.capitalize, classes.smallInfoTextStyle)}
+                          >
+                            {label}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                )}
+                <Box
+                  paddingTop={dataset.visa && dataset.country_short && '50px'}
+                  sx={{
+                    paddingTop: matchesXs && '50px',
+                  }}
+                >
+                  <Box
+                    padding={matchesXs ? '30px' : '40px'}
+                    className={clsx({
+                      [classes.boxCTA]: !matchesXs,
+                      [classes.mobileBoxCTA]: matchesXs,
+                    })}
+                  >
+                    <Box marginBottom={matchesXs ? '15px' : '10px'}>
+                      <Typography className={classes.boxCTATitle}>
+                        Envie de partir {dataset.link_words[1]} {dataset.title} ?
+                      </Typography>
+                    </Box>
+                    <Box marginBottom="25px">
+                      <Typography className={classes.boxCTAText}>
+                        Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet
+                        qui t’accompagne avant, pendant et après ton séjour.
+                      </Typography>
+                    </Box>
+                    <Button variant="contained" className={classes.boxCTAButton}>
+                      Créer mon séjour
+                    </Button>
+                  </Box>
+                </Box>
               </Box>
             </Box>
           </Paper>
-          <Box
-            display="flex"
-            className={clsx(classes.mobileSizing, classes.tagsAndPeriodContainer)}
-          >
-            {!matchesXs && (
-              <Box className={clsx(classes.tagsContainer, classes.mobileSizing)}>
-                <Box>
-                  <Box marginBottom="25px">
-                    <Typography
-                      variant="h2"
-                      className={clsx(classes.secondTitle, classes.mobileAlignCenter)}
-                    >
-                      Tags associés
-                    </Typography>
-                  </Box>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    flexWrap="wrap"
-                    justifyContent={matchesXs ? 'center' : 'flex-start'}
-                  >
-                    {associatedTags.map(({ label, colorClass }) => (
-                      <Typography className={clsx(colorClass, classes.tagRounded)} key={label}>
-                        {label}
-                      </Typography>
-                    ))}
-                  </Box>
-                </Box>
-              </Box>
-            )}
-            {dataset.periode_visite && (
-              <Box className={clsx(classes.bestPeriodContainer, classes.mobileSizing)}>
-                <Box marginBottom="25px">
-                  <Typography
-                    variant="h2"
-                    className={classes.secondTitle}
-                    align={matchesXs ? 'center' : 'left'}
-                  >
-                    Meilleures périodes
-                  </Typography>
-                </Box>
-                <Box display="flex" marginBottom="25px" flexWrap={matchesXs ? 'wrap' : 'nowrap'}>
-                  {timeline.map(({ month, visitMarker }, index, currentArray) => (
-                    <Box className={classes.bestPeriodBox} key={month}>
-                      <Box
-                        className={clsx(
-                          { [classes.perfectTimeline]: visitMarker === 2 },
-                          { [classes.correctTimeline]: visitMarker === 1 },
-                          { [classes.notRecommandedTimeline]: visitMarker === 0 },
-                          { [classes.timelineStart]: index === 0 || (matchesXs && index === 6) },
-                          {
-                            [classes.timelineEnd]:
-                              index === currentArray.length - 1 || (matchesXs && index === 5),
-                          },
-                          classes.timeline
-                        )}
-                      />
-                      <Typography className={classes.timelineMonth}>{month}</Typography>
-                    </Box>
-                  ))}
-                </Box>
-                <Box display="flex" justifyContent="space-evenly">
-                  {legendTimeline.map(({ color, label }) => (
-                    <Box display="flex" alignItems="center" key={label}>
-                      <Box
-                        className={clsx(
-                          { [classes.primaryMain]: color === theme.palette.primary.main },
-                          { [classes.primaryMainTransparent]: color === 'rgba(0, 157, 140, 0.6)' },
-                          { [classes.greyDf]: color === theme.palette.grey.df },
-                          classes.roundedLegendTimeline
-                        )}
-                      />
-                      <Typography className={clsx(classes.capitalize, classes.smallInfoTextStyle)}>
-                        {label}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-            )}
-          </Box>
-          {!matchesXs && (
-            <Box className={classes.interactionBox}>
-              <ButtonLike isSpots spotSlug={dataset.slug} />
-              <ButtonBookmark spotSlug={dataset.slug} />
-            </Box>
-          )}
-          <Box paddingTop="50px">
-            <Box
-              padding={matchesXs ? '30px' : '40px'}
-              className={clsx({ [classes.boxCTA]: !matchesXs, [classes.mobileBoxCTA]: matchesXs })}
-            >
-              <Box marginBottom={matchesXs ? '15px' : '10px'}>
-                <Typography className={classes.boxCTATitle}>
-                  Envie de partir {dataset.link_words[1]} {dataset.title} ?
-                </Typography>
-              </Box>
-              <Box marginBottom="25px">
-                <Typography className={classes.boxCTAText}>
-                  Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet qui
-                  t’accompagne avant, pendant et après ton séjour.
-                </Typography>
-              </Box>
-              <Button variant="contained" className={classes.boxCTAButton}>
-                Créer mon séjour
-              </Button>
-            </Box>
-          </Box>
         </Box>
       </Box>
       {/* Fin de la partie 1 */}
+      {/* carousel de photos */}
+      <Box sx={{ marginBottom: matchesXs && '130px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: matchesXs && '0 30px',
+          }}
+        >
+          <Typography
+            variant="h3"
+            color="primary"
+            className={classes.globalSubtitle}
+            textAlign={!matchesXs ? 'center' : 'left'}
+          >
+            Panorama
+          </Typography>
+          <Box marginBottom="30px">
+            <Typography
+              variant="h1"
+              component="h2"
+              textAlign={!matchesXs ? 'center' : 'left'}
+              className={classes.unmissableBigTitle}
+            >
+              {dataset.link_words[0]} {dataset.title} en images
+            </Typography>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            margin: 'auto',
+            marginBottom: '80px',
+            [theme.breakpoints.down('sm')]: {
+              maxWidth: '100vw',
+              margin: '0',
+              position: 'relative',
+            },
+          }}
+        >
+          {matchesXs ? (
+            <>
+              <MultiCarousel
+                itemClass={classes.mobileCarouselItem}
+                autoPlaySpeed={3000}
+                draggable
+                arrows={false}
+                focusOnSelect={false}
+                infinite
+                showDots={false}
+                keyBoardControl
+                minimumTouchDrag={80}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 640,
+                    },
+                    items: 1,
+                  },
+                  mobile: {
+                    breakpoint: {
+                      max: 640,
+                      min: 0,
+                    },
+                    items: 1,
+                  },
+                }}
+                slidesToSlide={1}
+                swipeable
+                ssr
+                deviceType="mobile"
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.original)
+                    return (
+                      <Box
+                        width="100%"
+                        minWidth="300px"
+                        minHeight="200px"
+                        maxHeight="200px"
+                        sx={{ position: 'relative' }}
+                        key={id}
+                      >
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                          layout="fill"
+                        />
+                      </Box>
+                    )
+                  })}
+              </MultiCarousel>
+            </>
+          ) : (
+            <>
+              <Carousel
+                index={currentPictureSlider}
+                onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
+                animation="slide"
+                indicators={matchesXs}
+                autoPlay={false}
+                NavButton={() =>
+                  !matchesXs && (
+                    <Box className={classes.buttonPictureSlider}>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() => {
+                          let nextIndex
+                          if (currentPictureSlider > 0) {
+                            nextIndex = currentPictureSlider - 1
+                          } else {
+                            nextIndex = dataset.picture_slider.length - 1
+                          }
+                          setCurrentPictureSlider(nextIndex)
+                        }}
+                      >
+                        <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
+                      </Button>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() =>
+                          setCurrentPictureSlider(
+                            currentPictureSlider < dataset.picture_slider.length - 1
+                              ? currentPictureSlider + 1
+                              : 0
+                          )
+                        }
+                      >
+                        <ArrowRightAlt fontSize="large" />
+                      </Button>
+                    </Box>
+                  )
+                }
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.original)
+                    return (
+                      <Box
+                        key={id}
+                        className={classes.pictureSliderContainer}
+                        sx={{
+                          '&::before': {
+                            background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
+                            backgroundSize: 'cover',
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: '960px',
+                            height: '640px',
+                            position: 'relative',
+                            zIndex: '1',
+                            boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
+                            borderRadius: '20px 20px 0px 0px',
+                          }}
+                        >
+                          <Image
+                            src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                            width={960}
+                            height={640}
+                            className={classes.photoCarouselSingleImage}
+                          />
+                        </Box>
+                      </Box>
+                    )
+                  })}
+              </Carousel>
+            </>
+          )}
+        </Box>
+      </Box>
+      {/* Fin du carousel de photos */}
       {/* Partie 2 */}
       <Box marginBottom="100px">
-        <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
+        <Box className={clsx(classes.mainContainer, classes.mobileSizing)} sx={{ margin: 0 }}>
           {dataset.unmissable && (
-            <Box display={matchesXs ? 'block' : 'flex'} alignItems="center" flexDirection="column">
+            <Box sx={{ display: matchesXs ? 'block' : 'flex' }} flexDirection="column">
               <Box>
                 <Typography
                   variant="h3"
                   color="primary.ultraDark"
                   className={classes.globalSubtitle}
+                  sx={{ textAlign: !matchesXs && 'center' }}
                 >
                   La sélection Explomaker
                 </Typography>
@@ -1441,8 +1535,9 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   component="h2"
                   align="left"
                   className={classes.unmissableBigTitle}
+                  sx={{ textAlign: !matchesXs && 'center' }}
                 >
-                  Présentation des incontournablesf
+                  Présentation des incontournables
                 </Typography>
               </Box>
               {matchesXs ? (
@@ -1467,6 +1562,11 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         <Typography
                           variant="h1"
                           component="h3"
+                          sx={{
+                            fontSize: matchesXs && '28px',
+                            lineHeight: matchesXs && '32px',
+                            fontWeight: matchesXs && '400 !important',
+                          }}
                           dangerouslySetInnerHTML={{
                             __html: dataset.unmissable[currentGalleryTile].title,
                           }}
@@ -1529,7 +1629,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                       onClick={() => setIsShowingMap(!isShowingMap)}
                       startIcon={isShowingMap ? <CameraAltOutlined /> : <PinDropOutlined />}
                     >
-                      {isShowingMap ? 'photos' : 'carte'}
+                      {isShowingMap ? 'Photos' : 'Carte'}
                     </Button>
                   </Box>
                   <Box>
@@ -1544,67 +1644,69 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               ) : (
                 <Box sx={{ position: 'relative' }} alignSelf="flex-end">
                   {/* Desktop ver */}
-                  <Carousel
-                    index={currentGalleryTile}
-                    onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
-                    animation="slide"
-                    indicators={matchesXs}
-                    autoPlay={false}
-                    NavButton={() =>
-                      !matchesXs && (
-                        <Box className={classes.buttonsSpot}>
-                          <Button
-                            className={classes.carouselArrow}
-                            onClick={() => {
-                              let nextIndex
-                              if (currentGalleryTile > 0) {
-                                nextIndex = currentGalleryTile - 1
-                              } else {
-                                nextIndex = dataset.unmissable.length - 1
-                              }
-                              setCurrentGalleryTile(nextIndex)
-                            }}
-                          >
-                            <ArrowRightAlt
-                              style={{ transform: 'rotate(180deg)' }}
-                              fontSize="large"
-                            />
-                          </Button>
-                          <Button
-                            className={classes.carouselArrow}
-                            onClick={() =>
-                              setCurrentGalleryTile(
-                                currentGalleryTile < dataset.unmissable.length - 1
-                                  ? currentGalleryTile + 1
-                                  : 0
-                              )
-                            }
-                          >
-                            <ArrowRightAlt fontSize="large" />
-                          </Button>
-                        </Box>
-                      )
-                    }
-                  >
-                    {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
-                      <Box display="block" alignItems="center" key={postSlug}>
-                        <Box className={classes.countryGalleryImgContainer}>
-                          {!isShowingMap && (
-                            <Box sx={{ position: 'relative' }}>
-                              <Image
-                                src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                  picture?.src.original
-                                )}`}
-                                layout="fill"
-                                quality={100}
-                                className={classes.countryGalleryImg}
+                  <Box sx={{ minWidth: '850px', minHeight: '630px', position: 'relative' }}>
+                    <Carousel
+                      index={currentGalleryTile}
+                      onChange={currentIndex => setCurrentGalleryTile(currentIndex)}
+                      animation="slide"
+                      indicators={matchesXs}
+                      autoPlay={false}
+                      NavButton={() =>
+                        !matchesXs && (
+                          <Box className={classes.buttonsSpot}>
+                            <Button
+                              className={classes.carouselArrow}
+                              onClick={() => {
+                                let nextIndex
+                                if (currentGalleryTile > 0) {
+                                  nextIndex = currentGalleryTile - 1
+                                } else {
+                                  nextIndex = dataset.unmissable.length - 1
+                                }
+                                setCurrentGalleryTile(nextIndex)
+                              }}
+                            >
+                              <ArrowRightAlt
+                                style={{ transform: 'rotate(180deg)' }}
+                                fontSize="large"
                               />
-                            </Box>
-                          )}
+                            </Button>
+                            <Button
+                              className={classes.carouselArrow}
+                              onClick={() =>
+                                setCurrentGalleryTile(
+                                  currentGalleryTile < dataset.unmissable.length - 1
+                                    ? currentGalleryTile + 1
+                                    : 0
+                                )
+                              }
+                            >
+                              <ArrowRightAlt fontSize="large" />
+                            </Button>
+                          </Box>
+                        )
+                      }
+                    >
+                      {dataset.unmissable.map(({ picture, post_slug: postSlug }) => (
+                        <Box display="block" alignItems="center" key={postSlug}>
+                          <Box className={classes.countryGalleryImgContainer}>
+                            {!isShowingMap && (
+                              <Box sx={{ position: 'relative' }}>
+                                <Image
+                                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                                    picture?.src.original
+                                  )}`}
+                                  layout="fill"
+                                  quality={100}
+                                  className={classes.countryGalleryImg}
+                                />
+                              </Box>
+                            )}
+                          </Box>
                         </Box>
-                      </Box>
-                    ))}
-                  </Carousel>
+                      ))}
+                    </Carousel>
+                  </Box>
                   <Paper className={classes.countryGalleryCard}>
                     <Box marginBottom="5px">
                       <Typography variant="h3" className={classes.carouselNumbers}>
@@ -1680,172 +1782,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
         </Box>
       </Box>
       {/* fin de la partie 2 */}
-      {/* carousel de photos */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Box>
-          <Typography variant="h3" color="primary" className={classes.globalSubtitle}>
-            Panorama
-          </Typography>
-        </Box>
-        <Box marginBottom="30px">
-          <Typography
-            variant="h1"
-            component="h2"
-            align="left"
-            className={classes.unmissableBigTitle}
-          >
-            {dataset.link_words[0]} {dataset.title} en images
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          width: '100%',
-          margin: 'auto',
-          marginBottom: '80px',
-          [theme.breakpoints.down('sm')]: {
-            maxWidth: '100vw',
-            margin: '0',
-            position: 'relative',
-            top: '-50px',
-          },
-        }}
-      >
-        {matchesXs ? (
-          <>
-            <MultiCarousel
-              itemClass={classes.mobileCarouselItem}
-              autoPlaySpeed={3000}
-              draggable
-              arrows={false}
-              focusOnSelect={false}
-              infinite
-              showDots={false}
-              renderDotsOutside
-              keyBoardControl
-              minimumTouchDrag={80}
-              responsive={{
-                desktop: {
-                  breakpoint: {
-                    max: 3000,
-                    min: 640,
-                  },
-                  items: 1,
-                },
-                mobile: {
-                  breakpoint: {
-                    max: 640,
-                    min: 0,
-                  },
-                  items: 1,
-                },
-              }}
-              slidesToSlide={1}
-              swipeable
-              ssr
-              deviceType="mobile"
-            >
-              {dataset.picture_slider &&
-                dataset.picture_slider.map(({ src, id }, index) => {
-                  const encodedURI = encodeURI(src.original)
-                  return (
-                    <Box
-                      width="100%"
-                      minWidth="300px"
-                      minHeight="200px"
-                      maxHeight="200px"
-                      sx={{ position: 'relative' }}
-                      key={id}
-                    >
-                      <Image
-                        src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                        layout="fill"
-                      />
-                    </Box>
-                  )
-                })}
-            </MultiCarousel>
-          </>
-        ) : (
-          <>
-            <Carousel
-              index={currentPictureSlider}
-              onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
-              animation="slide"
-              indicators={matchesXs}
-              autoPlay={false}
-              NavButton={() =>
-                !matchesXs && (
-                  <Box className={classes.buttonPictureSlider}>
-                    <Button
-                      className={classes.carouselArrow}
-                      onClick={() => {
-                        let nextIndex
-                        if (currentPictureSlider > 0) {
-                          nextIndex = currentPictureSlider - 1
-                        } else {
-                          nextIndex = dataset.picture_slider.length - 1
-                        }
-                        setCurrentPictureSlider(nextIndex)
-                      }}
-                    >
-                      <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
-                    </Button>
-                    <Button
-                      className={classes.carouselArrow}
-                      onClick={() =>
-                        setCurrentPictureSlider(
-                          currentPictureSlider < dataset.picture_slider.length - 1
-                            ? currentPictureSlider + 1
-                            : 0
-                        )
-                      }
-                    >
-                      <ArrowRightAlt fontSize="large" />
-                    </Button>
-                  </Box>
-                )
-              }
-            >
-              {dataset.picture_slider &&
-                dataset.picture_slider.map(({ src, id }, index) => {
-                  const encodedURI = encodeURI(src.original)
-                  return (
-                    <Box
-                      key={id}
-                      className={classes.pictureSliderContainer}
-                      sx={{
-                        '&::before': {
-                          background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
-                          backgroundSize: 'cover',
-                        },
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: '960px',
-                          height: '640px',
-                          position: 'relative',
-                          zIndex: '1',
-                          boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
-                          borderRadius: '20px 20px 0px 0px',
-                        }}
-                      >
-                        <Image
-                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                          width={960}
-                          height={640}
-                          className={classes.photoCarouselSingleImage}
-                        />
-                      </Box>
-                    </Box>
-                  )
-                })}
-            </Carousel>
-          </>
-        )}
-      </Box>
-      {/* Fin du carousel de photos */}
       {/* Partie 3 */}
       <Box marginBottom={matchesXs ? '60px' : '80px'}>
         <Box className={clsx(classes.mainContainer)}>
@@ -2011,7 +1947,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           <Typography variant="h3" className={classes.reasonCardTitle}>
                             {cardTitle}
                           </Typography>
-                          <Box sx={{ maxHeight: '275px', overflowY: 'auto' }}>
+                          <Box sx={{ maxHeight: !matchesXs && '275px', overflowY: 'auto' }}>
                             <Typography
                               className={clsx(
                                 classes.mobileAlignCenter,
@@ -2118,7 +2054,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
       )}
       {/* Fin de la partie 4 */}
       {/* CTA 2 */}
-      <Box marginBottom={matchesXs ? '120px' : '150px'}>
+      <Box marginBottom={matchesXs ? '120px' : '150px'} sx={{ paddingTop: matchesXs && '110px' }}>
         <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
           <Box
             display="flex"

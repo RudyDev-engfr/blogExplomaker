@@ -273,6 +273,9 @@ const useStyles = makeStyles(theme => ({
   preparingBox: {
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
   },
   opinionCard: {
     maxWidth: '555px',
@@ -294,6 +297,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     bottom: '160px',
     transition: 'all 0.3s',
+    zIndex: 10,
     '&:hover': {
       bottom: '180px',
       transition: 'all 0.3s',
@@ -1126,37 +1130,47 @@ const Home = ({ dataset }) => {
               </Box>
               <Box className={classes.preparingBox}>
                 {matchesXs ? (
-                  <Carousel
-                    navButtonsAlwaysInvisible
-                    indicatorIconButtonProps={{
-                      style: { padding: '7px', color: '#E6F5F4' },
-                    }}
-                    activeIndicatorIconButtonProps={{
-                      style: {
-                        color: '#009D8C',
-                      },
+                  <Box
+                    sx={{
+                      width: '100vw',
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}
                   >
-                    {itemsPreparation.map(({ Icon, label, text }) => (
-                      <Box
-                        display="flex"
-                        flexDirection="column"
-                        alignItems="center"
-                        maxWidth="255px"
-                        key={label}
+                    <Box sx={{ width: '255px' }}>
+                      <Carousel
+                        navButtonsAlwaysInvisible
+                        indicatorIconButtonProps={{
+                          style: { padding: '7px', color: '#E6F5F4' },
+                        }}
+                        activeIndicatorIconButtonProps={{
+                          style: {
+                            color: '#009D8C',
+                          },
+                        }}
                       >
-                        <Box className={classes.preparationBackground}>
-                          <Icon className={classes.preparationIcon} />
-                        </Box>
-                        <Box marginBottom="10px">
-                          <Typography variant="h6">{label}</Typography>
-                        </Box>
-                        <Typography variant="body1" className={classes.preparationText}>
-                          {text}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Carousel>
+                        {itemsPreparation.map(({ Icon, label, text }) => (
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            maxWidth="255px"
+                            key={label}
+                          >
+                            <Box className={classes.preparationBackground}>
+                              <Icon className={classes.preparationIcon} />
+                            </Box>
+                            <Box marginBottom="10px">
+                              <Typography variant="h6">{label}</Typography>
+                            </Box>
+                            <Typography variant="body1" className={classes.preparationText}>
+                              {text}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Carousel>
+                    </Box>
+                  </Box>
                 ) : (
                   itemsPreparation.map(({ Icon, label, text }) => (
                     <Box
@@ -1277,91 +1291,95 @@ const Home = ({ dataset }) => {
                 </Box>
                 <Box marginBottom={matchesXs && '80px'}>
                   {matchesXs ? (
-                    <Carousel
-                      navButtonsAlwaysInvisible
-                      autoPlay={false}
-                      animation="slide"
-                      indicatorIconButtonProps={{
-                        style: { padding: '7px', color: '#E6F5F4' },
-                      }}
-                      activeIndicatorIconButtonProps={{
-                        style: {
-                          color: '#009D8C',
-                        },
-                      }}
-                      indicatorContainerProps={{
-                        style: {
-                          position: 'relative',
-                          top: '-40px',
-                        },
-                      }}
-                    >
-                      {currentPublicPresentation.map(
-                        ({ logo: publicLogo, titre, texte, photo }) => (
-                          <Box
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                            sx={{ position: 'relative' }}
-                            key={publicLogo}
-                            minHeight="335px"
-                          >
-                            <Image
-                              src={
-                                `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                  photo.src.original
-                                )}` ?? travelPicture
-                              }
-                              width={500}
-                              objectFit="cover"
-                              height={335}
-                              quality={100}
-                              className={classes.mobileAdaptedProject}
-                            />
-                            <Paper elevation={2} className={classes.travelTilePaper}>
-                              <Box marginBottom="15px">
-                                <Typography
-                                  variant="h5"
-                                  className={clsx({
-                                    [classes.rotate35Deg]: titre === 'Entre amis',
-                                  })}
-                                >
-                                  {publicLogo}
-                                </Typography>
-                              </Box>
-                              <Box marginBottom="10px">
-                                <Typography variant="h6">{titre}</Typography>
-                              </Box>
-                              <Typography className={classes.textCenter}>{texte}</Typography>
-                            </Paper>
-                          </Box>
-                        )
-                      )}
-                    </Carousel>
+                    <Box sx={{ width: '100vw', height: '520px' }}>
+                      <Carousel
+                        navButtonsAlwaysInvisible
+                        autoPlay={false}
+                        animation="slide"
+                        indicatorIconButtonProps={{
+                          style: { padding: '7px', color: '#E6F5F4' },
+                        }}
+                        activeIndicatorIconButtonProps={{
+                          style: {
+                            color: '#009D8C',
+                          },
+                        }}
+                        indicatorContainerProps={{
+                          style: {
+                            position: 'relative',
+                            top: '-40px',
+                          },
+                        }}
+                      >
+                        {currentPublicPresentation.map(
+                          ({ logo: publicLogo, titre, texte, photo }) => (
+                            <Box
+                              display="flex"
+                              flexDirection="column"
+                              alignItems="center"
+                              sx={{ position: 'relative' }}
+                              key={publicLogo}
+                              minHeight="335px"
+                            >
+                              <Image
+                                src={
+                                  `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                                    photo.src.original
+                                  )}` ?? travelPicture
+                                }
+                                width={500}
+                                objectFit="cover"
+                                height={335}
+                                quality={100}
+                                className={classes.mobileAdaptedProject}
+                              />
+                              <Paper elevation={2} className={classes.travelTilePaper}>
+                                <Box marginBottom="15px">
+                                  <Typography
+                                    variant="h5"
+                                    className={clsx({
+                                      [classes.rotate35Deg]: titre === 'Entre amis',
+                                    })}
+                                  >
+                                    {publicLogo}
+                                  </Typography>
+                                </Box>
+                                <Box marginBottom="10px">
+                                  <Typography variant="h6">{titre}</Typography>
+                                </Box>
+                                <Typography className={classes.textCenter}>{texte}</Typography>
+                              </Paper>
+                            </Box>
+                          )
+                        )}
+                      </Carousel>
+                    </Box>
                   ) : (
                     /* Desktop ver */
                     <>
-                      <Carousel
-                        navButtonsAlwaysInvisible
-                        animation="slide"
-                        indicators={false}
-                        index={currentSlideDesktopPart6}
-                        onChange={currentIndex => setCurrentSlideDesktopPart6(currentIndex)}
-                      >
-                        {travelBox.map(({ srcImg }) => (
-                          <Box sx={{ position: 'relative' }} key={srcImg}>
-                            <Image
-                              src={encodeURI(srcImg)}
-                              width={1140}
-                              height={477}
-                              objectFit="cover"
-                              objectPosition="center"
-                              quality={100}
-                              className={classes.travelBoxImage}
-                            />
-                          </Box>
-                        ))}
-                      </Carousel>
+                      <Box sx={{ width: '1140px' }}>
+                        <Carousel
+                          navButtonsAlwaysInvisible
+                          animation="slide"
+                          indicators={false}
+                          index={currentSlideDesktopPart6}
+                          onChange={currentIndex => setCurrentSlideDesktopPart6(currentIndex)}
+                        >
+                          {travelBox.map(({ srcImg }) => (
+                            <Box sx={{ position: 'relative' }} key={srcImg}>
+                              <Image
+                                src={encodeURI(srcImg)}
+                                width={1140}
+                                height={477}
+                                objectFit="cover"
+                                objectPosition="center"
+                                quality={100}
+                                className={classes.travelBoxImage}
+                              />
+                            </Box>
+                          ))}
+                        </Carousel>
+                      </Box>
                       <Box display="flex" justifyContent="space-evenly">
                         {currentPublicPresentation.map(
                           ({ logo: publicLogo, titre, texte }, index) => (
@@ -1736,7 +1754,7 @@ const Home = ({ dataset }) => {
                     alignItems="center"
                     className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
                   >
-                    <Box sx={{ position: 'relative' }}>
+                    <Box sx={{ position: 'relative', width: '100vw', height: '300px' }}>
                       <Carousel
                         infinite={false}
                         navButtonsAlwaysInvisible
@@ -1750,12 +1768,13 @@ const Home = ({ dataset }) => {
                             height="300px"
                             sx={{ position: 'relative' }}
                           >
-                            <img
+                            <Image
                               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                 spot.picture.src.original
                               )}`}
                               alt=""
                               className={classes.focusImg}
+                              layout="fill"
                             />
                             {/* <LinearProgress variant="determinate" value="0" /> */}
                             <Box className={classes.logoSpot}>
@@ -1799,29 +1818,38 @@ const Home = ({ dataset }) => {
                           <ArrowRightAlt fontSize="large" />
                         </Button>
                       </Box>
-                      <Carousel
-                        indicators={false}
-                        navButtonsAlwaysInvisible
-                        animation="slide"
-                        index={currentSlideSpot}
-                        onChange={currentIndex => setCurrentSlideSpot(currentIndex)}
-                      >
-                        {trendingSpot[0].links.map(spot => (
-                          <Box key={spot.picture.src.id} width="810px" height="580px">
-                            <img
-                              src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                spot.picture.src.original
-                              )}`}
-                              alt=""
-                              className={classes.focusImg}
-                            />
-                            <Box className={classes.logoSpot}>
-                              <Image src={logo} width="169" height="209" quality={100} />
+                      <Box sx={{ width: '810px', height: '580px', position: 'relative' }}>
+                        <Carousel
+                          indicators={false}
+                          navButtonsAlwaysInvisible
+                          animation="fade"
+                          duration={1000}
+                          index={currentSlideSpot}
+                          onChange={currentIndex => setCurrentSlideSpot(currentIndex)}
+                        >
+                          {trendingSpot[0].links.map(spot => (
+                            <Box
+                              key={spot.picture.src.id}
+                              width="810px"
+                              height="580px"
+                              sx={{ position: 'relative' }}
+                            >
+                              <Image
+                                src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                                  spot.picture.src.original
+                                )}`}
+                                alt=""
+                                className={classes.focusImg}
+                                layout="fill"
+                              />
+                              <Box className={classes.logoSpot}>
+                                <Image src={logo} width="169" height="209" quality={100} />
+                              </Box>
+                              {/* <LinearProgress variant="determinate" value="0" /> */}
                             </Box>
-                            {/* <LinearProgress variant="determinate" value="0" /> */}
-                          </Box>
-                        ))}
-                      </Carousel>
+                          ))}
+                        </Carousel>
+                      </Box>
                     </Box>
                     <SpotCard data={trendingSpot[0]} />
                   </Box>

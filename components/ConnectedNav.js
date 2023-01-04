@@ -28,6 +28,7 @@ import inspi from '../images/icons/inspiLine.svg'
 import profil from '../images/icons/profil.svg'
 import favorite from '../images/icons/favorite.svg'
 import SearchField from './atoms/SearchField'
+import home from '../images/icons/accueil.svg'
 import { auth } from '../lib/firebase'
 import { SessionContext } from '../contexts/session'
 
@@ -118,9 +119,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     position: 'fixed',
     bottom: '0',
-    width: '100%',
-    height: '90px',
-    padding: theme.spacing(1.5),
+    width: '100vw',
+    height: '80px',
     zIndex: '100',
   },
   icons: {
@@ -129,7 +129,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '800',
   },
   tabs: {
-    '& button': { textTransform: 'none' },
+    '& button': { textTransform: 'none', padding: '9px' },
   },
 }))
 
@@ -168,6 +168,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
         onChange={handleChange}
       >
         <Tab
+          icon={<Image src={home} width={25} height={25} />}
+          label={
+            <Link passHref href="/">
+              <Box component="span" className={classes.icons}>
+                Home
+              </Box>
+            </Link>
+          }
+          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
+        />
+
+        <Tab
           icon={<Image src={inspi} width={25} height={25} />}
           label={
             <Link passHref href="/inspiration">
@@ -176,19 +188,19 @@ const ConnectedNav = ({ isBgTransparent }) => {
               </Box>
             </Link>
           }
-          sx={{ justifyContent: 'space-evenly' }}
+          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
-        <Link passHref href="https://app.explomaker.fr">
-          <Tab
-            icon={<Image src={logoGrey} width={25} height={25} />}
-            label={
+        <Tab
+          icon={<Image src={logoGrey} width={25} height={25} />}
+          label={
+            <Link passHref href="https://app.explomaker.fr">
               <Box component="span" className={classes.icons}>
                 Séjours
               </Box>
-            }
-            sx={{ justifyContent: 'space-evenly' }}
-          />
-        </Link>
+            </Link>
+          }
+          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
+        />
         <Tab
           icon={<Image src={favorite} width={25} height={25} />}
           label={
@@ -198,7 +210,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
               </Box>
             </Link>
           }
-          sx={{ justifyContent: 'space-evenly' }}
+          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
         <Tab
           icon={<Image src={profil} width={25} height={25} />}
@@ -209,7 +221,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
               </Box>
             </Link>
           }
-          sx={{ justifyContent: 'space-evenly' }}
+          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
       </Tabs>
     </Paper>
@@ -227,7 +239,8 @@ const ConnectedNav = ({ isBgTransparent }) => {
               <Image src={logoFull} width="180" />
             </Box>
           </Link>
-          {router.pathname.indexOf('/results') === -1 && <SearchField isNavbar />}
+          {router.pathname.indexOf('/results') === -1 &&
+            router.pathname.indexOf('/inspiration') === -1 && <SearchField isNavbar />}
           <Box className={classes.headerInnerRight}>
             <Box>
               <Link href="/inspiration" passHref>

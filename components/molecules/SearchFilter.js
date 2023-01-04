@@ -16,6 +16,7 @@ import {
   DynamicWidgets,
   HierarchicalMenu,
   RefinementList,
+  CurrentRefinements,
 } from 'react-instantsearch-hooks-web'
 import AlgoliaPanel from '../atoms/AlgoliaPanel'
 import { SessionContext } from '../../contexts/session'
@@ -70,8 +71,14 @@ const useStyles = makeStyles(theme => ({
 }))
 const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
   const classes = useStyles()
-  const { currentHitsArray } = useContext(SessionContext)
+  const { currentHitsArray, currentRefinementsArrayLength, setCurrentRefinementsArrayLength } =
+    useContext(SessionContext)
   const router = useRouter()
+
+  const transformItems = items => {
+    setCurrentRefinementsArrayLength(items.length)
+    return items
+  }
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -204,6 +211,9 @@ const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
             }}
             classNames={{ button: classes.clearRefinementsButton }}
           />
+          <Box sx={{ display: 'none' }}>
+            <CurrentRefinements transformItems={transformItems} />
+          </Box>
           {currentHitsArray && (
             <Button
               onClick={() => {

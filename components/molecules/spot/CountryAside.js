@@ -39,7 +39,7 @@ const CountryAside = ({
         backgroundColor: theme.palette.primary.ultraLight,
       }}
     >
-      <Box sx={{ position: 'relative', width: '285px', height: '185px' }}>
+      <Box sx={{ position: 'relative', width: '280px', height: '185px' }}>
         <Image src={srcImg} layout="fill" className={classes.image} />
       </Box>
       {flagFromDataset && (

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
+import { useEffect } from 'react'
 import Image from 'next/image'
 
 import WPGBlocks from '../../helper/react-gutenberg'
@@ -15,6 +16,7 @@ import mobileHeaderImg from '../../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png
 // import { testArticle } from '../../helper/testArticle'
 import { database } from '../../lib/firebase'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
+import { ArticlesSlugsArray } from '../../helper/slugsArray'
 
 const useStyles = makeStyles(theme => ({
   headerMapBox: {
@@ -88,15 +90,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '32px',
   },
 }))
+
 export async function getStaticPaths() {
   return {
-    paths: [
-      {
-        params: {
-          slug: 'les-jeux-de-pistes-urbains-une-aventure-trepidante-pour-un-city-trip-reussi',
-        },
-      },
-    ],
+    paths: ArticlesSlugsArray,
     fallback: 'blocking',
   }
 }
@@ -153,7 +150,6 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
               [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
             }}
           >
-            {' '}
             <Box display="flex" justifyContent="center" className={classes.categoryBox}>
               <Typography
                 sx={{

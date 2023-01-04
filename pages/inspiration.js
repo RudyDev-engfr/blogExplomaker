@@ -185,6 +185,18 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const [currentPopularThemes, setCurrentPopularThemes] = useState([])
   const [isShowingMoreSpots, setIsShowingMoreSpots] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+  const [currentFavoritesArticles, setCurrentFavoritesArticles] = useState([])
+  const [isShowingMoreFavoritesArticles, setIsShowingMoreFavoritesArticles] = useState(false)
+
+  useEffect(() => {
+    if (typeof favoritesArticles !== 'undefined' || favoritesArticles !== {}) {
+      const favoritesArticlesKeys = Object.keys(favoritesArticles)
+      const tempPopularThemeArray = favoritesArticlesKeys.map(
+        currentKey => favoritesArticles[currentKey]
+      )
+      setCurrentFavoritesArticles(tempPopularThemeArray)
+    }
+  }, [favoritesArticles])
 
   useEffect(() => {
     if (typeof popularThemes !== 'undefined' || popularThemes !== {}) {
@@ -447,9 +459,12 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor: theme.palette.grey.f7,
         }}
       >
-        <Box sx={{ width: !matchesXs ? '1140px' : '100vw', padding: '30px' }}>
+        <Box
+          sx={{ width: !matchesXs ? '1140px' : '100vw', padding: matchesXs ? '30px' : '60px 0' }}
+        >
           <Typography
             variant="h6"
             color="primary.ultraDark"
@@ -480,50 +495,63 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
           alignItems: 'center',
+          paddingTop: '60px',
+          marginBottom: '60px',
         }}
       >
-        <Typography>Articles</Typography>
-        <Typography>Vos articles préférés de la semaine</Typography>
-        {/* <Carousel
-          itemClass={classes.mobileSpotsCarouselItem}
-          autoPlaySpeed={3000}
-          draggable
-          arrows={false}
-          focusOnSelect={false}
-          infinite={currentArticles.length > 1}
-          showDots
-          dotListClass={dotListClass}
-          customDot={<TrendingDestinationsDotBox carouselArray={currentArticles} />}
-          renderDotsOutside
-          keyBoardControl
-          minimumTouchDrag={80}
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 640,
-              },
-              items: 3,
-            },
-            mobile: {
-              breakpoint: {
-                max: 640,
-                min: 0,
-              },
-              items: 1,
-              partialVisibilityGutter: 40,
-            },
+        <Box
+          sx={{
+            width: !matchesXs ? '1140px' : '100vw',
+            padding: matchesXs && '30px',
           }}
-          slidesToSlide={1}
-          swipeable
-          ssr
-          deviceType="desktop"
-          partialVisible
-        ></Carousel> */}
-        <Typography>Articles par catégorie</Typography>
+        >
+          <Typography
+            variant="h6"
+            color="primary.ultraDark"
+            fontWeight="400"
+            sx={{ marginBottom: '10px' }}
+          >
+            Articles
+          </Typography>
+          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+            Vos articles préférés de la semaine
+          </Typography>
+          <ArticlesList
+            data={currentFavoritesArticles}
+            isShowingMoreArticles={isShowingMoreFavoritesArticles}
+            isSmallSize
+            numberOfArticles={9}
+          />
+          <Box display="flex" justifyContent="center">
+            {currentFavoritesArticles.length > 3 &&
+              (!isShowingMoreFavoritesArticles ? (
+                <Button
+                  variant="contained"
+                  className={classes.buttonPrimary}
+                  onClick={() => setIsShowingMoreFavoritesArticles(true)}
+                  sx={{ width: '13%' }}
+                >
+                  Voir tout
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  className={classes.buttonPrimary}
+                  onClick={() => setIsShowingMoreFavoritesArticles(false)}
+                  sx={{ width: '13%' }}
+                >
+                  Voir moins
+                </Button>
+              ))}
+          </Box>
+        </Box>
       </Box>
+      {/* Fin de la partie 6 */}
+      {/* Partie 7 */}
+
+      {/* fin de la Partie 7 */}
+      <Typography>Articles par catégorie</Typography>
     </Box>
   )
 }

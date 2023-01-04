@@ -1,5 +1,6 @@
+import { useContext } from 'react'
 import { makeStyles, useTheme } from '@mui/styles'
-import { useMediaQuery } from '@mui/material'
+import { Badge, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -10,6 +11,7 @@ import SearchFilter from './SearchFilter'
 import union from '../../images/icons/filtre.svg'
 import SpotList from './SpotList'
 import ArticlesList from './ArticlesList'
+import { SessionContext } from '../../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   greyBackgroundContainer: {
@@ -77,6 +79,7 @@ const DesktopSearch = ({
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const { currentRefinementsArrayLength } = useContext(SessionContext)
 
   return (
     <>
@@ -123,14 +126,16 @@ const DesktopSearch = ({
                     Du plus récent
                   </MenuItem>
                 </TextField> */}
-                <Button
-                  startIcon={<Image src={union} width={13.33} height={13.33} quality={100} />}
-                  onClick={() => modalStateSetter('filter')}
-                  disableRipple
-                  classes={{ root: classes.filterButton }}
-                >
-                  Filtrer
-                </Button>
+                <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
+                  <Button
+                    startIcon={<Image src={union} width={13.33} height={13.33} quality={100} />}
+                    onClick={() => modalStateSetter('filter')}
+                    disableRipple
+                    classes={{ root: classes.filterButton }}
+                  >
+                    Filtrer
+                  </Button>
+                </Badge>
               </Box>
             </Box>
             <Box
@@ -178,7 +183,12 @@ const DesktopSearch = ({
 
             {!matchesXs && currentSpots.length > 0 && (
               <Box className={classes.spotResultContainer}>
-                <SpotList data={currentSpots} isShowingMoreSpots={isShowingMoreSpots} isAlgolia />
+                <SpotList
+                  data={currentSpots}
+                  isShowingMoreSpots={isShowingMoreSpots}
+                  isAlgolia
+                  numberOfSpots={8}
+                />
               </Box>
             )}
             <Box
