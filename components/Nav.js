@@ -206,7 +206,8 @@ const Nav = () => {
                   <Image src={logoFull} width="180" />
                 </Box>
               </Link>
-              {!router.pathname.includes('/results') && <SearchField isNavbar />}
+              {!router.pathname.includes('/results') &&
+                !router.pathname.includes('/inspiration') && <SearchField isNavbar />}
               <Box className={classes.headerInnerRight}>
                 <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>
