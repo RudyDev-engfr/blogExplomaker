@@ -166,7 +166,7 @@ const Nav = () => {
               label={
                 <Link passHref href="/">
                   <Box component="span" className={classes.icons}>
-                    Accueil
+                    Home
                   </Box>
                 </Link>
               }

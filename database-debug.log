@@ -3,11 +3,7 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-10:27:53.325 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-10:27:53.413 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-10:27:53.807 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 83ms, init: 0ms
-10:28:00.502 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
-18:50:00.031 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-18:50:00.038 [NamespaceSystem-akka.actor.default-dispatcher-289] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: explomaker-3010b
-18:50:00.042 [NamespaceSystem-akka.actor.default-dispatcher-289] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for explomaker-3010b
-18:50:00.045 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
+16:23:49.711 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+16:23:49.798 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+16:23:50.210 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 89ms, init: 0ms
+16:23:55.827 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
