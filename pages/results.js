@@ -196,7 +196,6 @@ const Results = () => {
             </IconButton>
             <SearchBox
               searchAsYouType
-              autoFocus
               classNames={{
                 root: classes.searboxRoot,
                 input: classes.searchInput,
