@@ -28,6 +28,7 @@ const useStyles = makeStyles({
     height: '100%',
     padding: '11px 15px',
     borderRadius: '50px',
+    textTransform: 'none',
   },
   sizeMediumButton: {
     height: '100%',

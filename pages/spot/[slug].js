@@ -111,7 +111,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
   },
   mobileBoxCTA: {
-    width: '90%',
+    width: '100vw',
     margin: 'auto',
     position: 'relative',
     borderRadius: '20px',
@@ -1050,6 +1050,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Typography>
               <Typography
                 variant="h2"
+                component="div"
                 className={clsx(classes.spotSubtitle, { [classes.ultraDark]: !matchesXs })}
                 dangerouslySetInnerHTML={{ __html: dataset.catch_sentence }}
               />
@@ -1151,17 +1152,18 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           flexWrap="wrap"
                           justifyContent={matchesXs ? 'center' : 'flex-start'}
                         >
-                          {dataset.meta_envies.map(tag => (
-                            <Link
-                              href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
-                                tag.name
-                              )}`}
-                            >
-                              <Typography className={classes.tagRounded} key={tag.id}>
-                                {tag.name}
-                              </Typography>
-                            </Link>
-                          ))}
+                          {dataset.meta_envies &&
+                            dataset.meta_envies.map(tag => (
+                              <Link
+                                href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                                  tag.name
+                                )}`}
+                              >
+                                <Typography className={classes.tagRounded} key={tag.id}>
+                                  {tag.name}
+                                </Typography>
+                              </Link>
+                            ))}
                         </Box>
                       </Box>
                     </Box>
@@ -1302,38 +1304,72 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     </Box>
                   </Box>
                 )}
-                <Box
-                  paddingTop={dataset.visa && dataset.country_short && '50px'}
-                  sx={{
-                    paddingTop: matchesXs && '50px',
-                  }}
-                >
+
+                {!matchesXs && (
                   <Box
-                    padding={matchesXs ? '30px' : '40px'}
-                    className={clsx({
-                      [classes.boxCTA]: !matchesXs,
-                      [classes.mobileBoxCTA]: matchesXs,
-                    })}
+                    paddingTop={dataset.visa && dataset.country_short && '50px'}
+                    sx={{
+                      paddingTop: matchesXs && '50px',
+                    }}
                   >
-                    <Box marginBottom={matchesXs ? '15px' : '10px'}>
-                      <Typography className={classes.boxCTATitle}>
-                        Envie de partir {dataset.link_words[1]} {dataset.title} ?
-                      </Typography>
+                    <Box
+                      padding={matchesXs ? '30px' : '40px'}
+                      className={clsx({
+                        [classes.boxCTA]: !matchesXs,
+                        [classes.mobileBoxCTA]: matchesXs,
+                      })}
+                    >
+                      <Box marginBottom={matchesXs ? '15px' : '10px'}>
+                        <Typography className={classes.boxCTATitle}>
+                          Envie de partir {dataset.link_words[1]} {dataset.title} ?
+                        </Typography>
+                      </Box>
+                      <Box marginBottom="25px">
+                        <Typography className={classes.boxCTAText}>
+                          Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet
+                          qui t’accompagne avant, pendant et après ton séjour.
+                        </Typography>
+                      </Box>
+                      <Button variant="contained" className={classes.boxCTAButton}>
+                        Créer mon séjour
+                      </Button>
                     </Box>
-                    <Box marginBottom="25px">
-                      <Typography className={classes.boxCTAText}>
-                        Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet
-                        qui t’accompagne avant, pendant et après ton séjour.
-                      </Typography>
-                    </Box>
-                    <Button variant="contained" className={classes.boxCTAButton}>
-                      Créer mon séjour
-                    </Button>
                   </Box>
-                </Box>
+                )}
               </Box>
             </Box>
           </Paper>
+          {matchesXs && (
+            <Box
+              paddingTop={dataset.visa && dataset.country_short && '50px'}
+              sx={{
+                paddingTop: matchesXs && '50px',
+              }}
+            >
+              <Box
+                padding={matchesXs ? '30px' : '40px'}
+                className={clsx({
+                  [classes.boxCTA]: !matchesXs,
+                  [classes.mobileBoxCTA]: matchesXs,
+                })}
+              >
+                <Box marginBottom={matchesXs ? '15px' : '10px'}>
+                  <Typography className={classes.boxCTATitle}>
+                    Envie de partir {dataset.link_words[1]} {dataset.title} ?
+                  </Typography>
+                </Box>
+                <Box marginBottom="25px">
+                  <Typography className={classes.boxCTAText}>
+                    Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet qui
+                    t’accompagne avant, pendant et après ton séjour.
+                  </Typography>
+                </Box>
+                <Button variant="contained" className={classes.boxCTAButton}>
+                  Créer mon séjour
+                </Button>
+              </Box>
+            </Box>
+          )}
         </Box>
       </Box>
       {/* Fin de la partie 1 */}

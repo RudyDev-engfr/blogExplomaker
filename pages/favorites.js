@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.grey.e5,
     padding: '121px 0 80px 0',
     [theme.breakpoints.down('sm')]: {
-      padding: '45px 30px 80px 30px',
+      padding: '45px 0 80px 30px',
     },
   },
   mainContainer: {
@@ -72,6 +72,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
             infinite={user?.spotsBookmarked?.length > 1}
             showDots={false}
             renderDotsOutside
+            partialVisbile={false}
             keyBoardControl
             minimumTouchDrag={80}
             responsive={{
@@ -191,7 +192,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
         Mes articles
       </Typography>
       {matchesXs ? (
-        <Box marginBottom="80px">
+        <Box marginBottom="80px" sx={{ maxWidth: '315px' }}>
           <Carousel
             itemClass={classes.mobileSpotsCarouselItem}
             autoPlaySpeed={3000}
@@ -200,6 +201,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             focusOnSelect={false}
             infinite={user?.articlesBookmarked.length > 1}
             showDots={false}
+            partialVisbile={false}
             renderDotsOutside
             keyBoardControl
             minimumTouchDrag={80}
@@ -217,6 +219,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   min: 0,
                 },
                 items: 1,
+                partialVisibilityGutter: 0,
               },
             }}
             slidesToSlide={1}

@@ -1645,6 +1645,7 @@ const Home = ({ dataset }) => {
                     altImg=""
                     date={hotArticles[0].creation_date}
                     readingTime={hotArticles[0].reading_time}
+                    link={hotArticles[0].target_url}
                   />
                 </Box>
                 {/* TODO on the blog card and on the links, redirect to blog or article (?) */}

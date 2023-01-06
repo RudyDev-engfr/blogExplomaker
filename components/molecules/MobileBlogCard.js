@@ -22,7 +22,7 @@ import { SessionContext } from '../../contexts/session'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '315px',
+    width: '300px',
     height: '295px',
     borderRadius: '20px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
