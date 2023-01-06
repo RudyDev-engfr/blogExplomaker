@@ -76,7 +76,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
               <TrendingDestinationsDotBox carouselArray={user?.spotsBookmarked} isResults />
             }
             renderDotsOutside
-            partialVisbile={false}
+            partialVisible
             keyBoardControl
             minimumTouchDrag={80}
             responsive={{
@@ -86,6 +86,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 640,
                 },
                 items: 1,
+                partialVisibilityGutter: 30,
               },
               mobile: {
                 breakpoint: {
@@ -93,6 +94,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 0,
                 },
                 items: 1,
+                partialVisibilityGutter: 130,
               },
             }}
             slidesToSlide={1}
