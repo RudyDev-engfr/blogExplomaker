@@ -1050,6 +1050,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Typography>
               <Typography
                 variant="h2"
+                component="div"
                 className={clsx(classes.spotSubtitle, { [classes.ultraDark]: !matchesXs })}
                 dangerouslySetInnerHTML={{ __html: dataset.catch_sentence }}
               />
