@@ -26,24 +26,42 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ButtonLike = ({ isLiked, likesCount = '0', isSpots = false, spotSlug }) => {
-  const { user, spotsLikedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
+const ButtonLike = ({
+  isLiked,
+  likesCount = '0',
+  isSpots = false,
+  spotSlug,
+  isArticle,
+  articleSlug,
+}) => {
+  const { user, spotsLikedUpdate, setIsAuthModalOpen, articlesLikedUpdate } =
+    useContext(SessionContext)
 
   const classes = useStyles()
 
-  return isSpots ? (
+  return isSpots || isArticle ? (
     <Button
       disableElevation
       variant="contained"
       startIcon={<FavoriteIcon />}
       className={clsx(classes.buttonLike, {
-        [classes.likedColors]: user?.spotsLiked?.includes(spotSlug),
+        [classes.likedColors]:
+          user?.spotsLiked?.includes(spotSlug) || user?.articlesLiked.includes(articleSlug),
       })}
       onClick={() => {
-        if (user?.isLoggedIn) {
-          spotsLikedUpdate(spotSlug)
-        } else {
-          setIsAuthModalOpen('login')
+        if (isSpots) {
+          if (user?.isLoggedIn) {
+            spotsLikedUpdate(spotSlug)
+          } else {
+            setIsAuthModalOpen('login')
+          }
+        }
+        if (isArticle) {
+          if (user?.isLoggedIn) {
+            articlesLikedUpdate(articleSlug)
+          } else {
+            setIsAuthModalOpen('login')
+          }
         }
       }}
     >
