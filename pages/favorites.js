@@ -386,6 +386,10 @@ const Favorites = () => {
   }, [currentArticles])
 
   useEffect(() => {
+    console.log('spots favoris', currentSpots)
+  }, [currentSpots])
+
+  useEffect(() => {
     console.log(user)
   }, [user])
 
