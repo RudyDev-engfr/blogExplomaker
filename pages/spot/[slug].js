@@ -1304,7 +1304,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                     </Box>
                   </Box>
                 )}
-
                 {!matchesXs && (
                   <Box
                     paddingTop={dataset.visa && dataset.country_short && '50px'}
