@@ -9,6 +9,7 @@ import { useMediaQuery } from '@mui/material'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import { ArrowRightAlt } from '@mui/icons-material'
 
 import { database } from '../lib/firebase'
 
@@ -45,7 +46,6 @@ import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
-import { ArrowRightAlt } from '@mui/icons-material'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {

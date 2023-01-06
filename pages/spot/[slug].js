@@ -1152,17 +1152,18 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           flexWrap="wrap"
                           justifyContent={matchesXs ? 'center' : 'flex-start'}
                         >
-                          {dataset.meta_envies.map(tag => (
-                            <Link
-                              href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
-                                tag.name
-                              )}`}
-                            >
-                              <Typography className={classes.tagRounded} key={tag.id}>
-                                {tag.name}
-                              </Typography>
-                            </Link>
-                          ))}
+                          {dataset.meta_envies &&
+                            dataset.meta_envies.map(tag => (
+                              <Link
+                                href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                                  tag.name
+                                )}`}
+                              >
+                                <Typography className={classes.tagRounded} key={tag.id}>
+                                  {tag.name}
+                                </Typography>
+                              </Link>
+                            ))}
                         </Box>
                       </Box>
                     </Box>
