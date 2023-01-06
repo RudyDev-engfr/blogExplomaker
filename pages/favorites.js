@@ -16,6 +16,7 @@ import { SessionContext } from '../contexts/session'
 import NoneFavorite from '../components/molecules/NoneFavorite'
 import { useAuth } from '../lib/firebase'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
+import TrendingDestinationsDotBox from '../components/multi-carousel/TrendingDestinationsDotBox'
 
 const useStyles = makeStyles(theme => ({
   fullWidthContainer: {
@@ -70,9 +71,12 @@ const MySpots = ({ currentSpots, isLoading }) => {
             arrows={false}
             focusOnSelect={false}
             infinite={user?.spotsBookmarked?.length > 1}
-            showDots={false}
+            showDots
+            customDot={
+              <TrendingDestinationsDotBox carouselArray={user?.spotsBookmarked} isResults />
+            }
             renderDotsOutside
-            partialVisbile={false}
+            partialVisible
             keyBoardControl
             minimumTouchDrag={80}
             responsive={{
@@ -82,6 +86,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 640,
                 },
                 items: 1,
+                partialVisibilityGutter: 30,
               },
               mobile: {
                 breakpoint: {
@@ -89,6 +94,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 0,
                 },
                 items: 1,
+                partialVisibilityGutter: 130,
               },
             }}
             slidesToSlide={1}
@@ -200,9 +206,12 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             arrows={false}
             focusOnSelect={false}
             infinite={user?.articlesBookmarked.length > 1}
-            showDots={false}
-            partialVisbile={false}
+            showDots
+            customDot={
+              <TrendingDestinationsDotBox carouselArray={user?.articlesBookmarked} isResults />
+            }
             renderDotsOutside
+            partialVisbile={false}
             keyBoardControl
             minimumTouchDrag={80}
             responsive={{
