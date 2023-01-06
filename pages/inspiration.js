@@ -45,6 +45,7 @@ import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
+import { ArrowRightAlt } from '@mui/icons-material'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -256,6 +257,16 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       url: 'SearchFront%5BrefinementList%5D%5Ben_direction_de%5D%5B0%5D=Moyen%20Orient',
     },
   ]
+
+  const categoriesName = [
+    'Actualités',
+    'Récits de voyage',
+    'Inspiration',
+    'Préparation',
+    'Guides',
+    'Jeux concours',
+  ]
+
   useEffect(() => {
     if (typeof spotlight.linked_posts !== 'undefined') {
       const ArticlesKeys = Object.keys(spotlight.linked_posts)
@@ -549,9 +560,42 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       </Box>
       {/* Fin de la partie 6 */}
       {/* Partie 7 */}
-
+      <Box
+        sx={{
+          width: !matchesXs ? '1140px' : '100vw',
+          padding: matchesXs && '30px',
+          margin: 'auto',
+        }}
+      >
+        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+          Articles par catégorie
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+          }}
+        >
+          {categoriesName.map(category => (
+            <Button
+              endIcon={<ArrowRightAlt />}
+              sx={{
+                width: '360px',
+                backgroundColor: theme.palette.grey.f7,
+                textTransform: 'none',
+                justifyContent: 'space-between',
+                padding: '15px 20px',
+                color: theme.palette.grey.grey33,
+                marginBottom: '20px',
+              }}
+            >
+              {category}
+            </Button>
+          ))}
+        </Box>
+      </Box>
       {/* fin de la Partie 7 */}
-      <Typography>Articles par catégorie</Typography>
     </Box>
   )
 }
