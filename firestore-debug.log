@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Jan 06, 2023 8:42:43 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
 INFO: Started WebSocket server on ws://127.0.0.1:9150
 API endpoint: http://127.0.0.1:8080
@@ -349,3 +350,5 @@ Jan 06, 2023 11:19:07 AM io.gapi.emulators.netty.HttpVersionRoutingHandler chann
 INFO: Detected non-HTTP/2 connection.
 Jan 06, 2023 11:19:52 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
+=======
+>>>>>>> 12530741bb4a46d5d122b5c1c8986415866360ab
