@@ -130,7 +130,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   categoryColor={color}
                   altImg=""
                   key={`spot/${slug}`}
-                  targetLink={slug}
+                  link={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
@@ -174,7 +174,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 categoryColor={color}
                 altImg=""
                 key={`spot/${slug}`}
-                targetLink={slug}
+                link={slug}
                 is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
