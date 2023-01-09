@@ -152,6 +152,16 @@ const useStyles = makeStyles(theme => ({
   carouselNotCentered: {
     right: 'unset',
   },
+  inspiTypeContainer: {
+    display: 'grid',
+    gridTemplate: '1fr / repeat(4, 1fr)',
+    gridGap: '30px',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplate: 'repeat(2, 1fr) / repeat(2, 1fr)',
+      gridGap: '15px',
+      width: 'calc(100vw - 60px)',
+    },
+  },
 }))
 
 export async function getStaticProps() {
@@ -180,7 +190,13 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const { spotLight: spotlight, monthDestination, favoritesArticles, popularThemes } = dataset
+  const {
+    spotLight: spotlight,
+    monthDestination,
+    favoritesArticles,
+    popularThemes,
+    inspirationForPeople,
+  } = dataset
   const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
   const [currentSpotlightArticles, setCurrentSpotlightArticles] = useState([])
   const [currentPopularThemes, setCurrentPopularThemes] = useState([])
@@ -188,6 +204,19 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const [isHovering, setIsHovering] = useState(false)
   const [currentFavoritesArticles, setCurrentFavoritesArticles] = useState([])
   const [isShowingMoreFavoritesArticles, setIsShowingMoreFavoritesArticles] = useState(false)
+  const [currentInspirationForPeople, setCurrentInspirationForPeople] = useState([])
+  const [currentMonthInspiration, setCurrentMonthInspiration] = useState([])
+  const [isShowingMoreMonthInspiration, setIsShowingMoreMonthInspiration] = useState(false)
+
+  useEffect(() => {
+    if (typeof monthDestination !== 'undefined' || monthDestination !== {}) {
+      const monthDestinationKeys = Object.keys(monthDestination)
+      const tempMonthDestinationArray = monthDestinationKeys.map(
+        currentKey => monthDestination[currentKey]
+      )
+      setCurrentMonthInspiration(tempMonthDestinationArray)
+    }
+  }, [monthDestination])
 
   useEffect(() => {
     if (typeof favoritesArticles !== 'undefined' || favoritesArticles !== {}) {
@@ -206,6 +235,16 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       setCurrentPopularThemes(tempPopularThemeArray)
     }
   }, [popularThemes])
+
+  useEffect(() => {
+    if (typeof inspirationForPeople !== 'undefined' || inspirationForPeople !== {}) {
+      const inspirationForPeopleKeys = Object.keys(inspirationForPeople)
+      const tempInspirationForPeopleArray = inspirationForPeopleKeys.map(
+        currentKey => inspirationForPeople[currentKey]
+      )
+      setCurrentInspirationForPeople(tempInspirationForPeopleArray)
+    }
+  }, [inspirationForPeople])
 
   const continentArray = [
     {
@@ -320,27 +359,29 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   isShowingMoreArticles={isShowingMoreArticles}
                   isSmallSize
                   numberOfArticles={3}
+                  numberOfMaxArticles={9}
                 />
                 <Box display="flex" justifyContent="center">
-                  {!isShowingMoreArticles ? (
-                    <Button
-                      variant="contained"
-                      className={classes.buttonPrimary}
-                      onClick={() => setIsShowingMoreArticles(true)}
-                      sx={{ width: '13%' }}
-                    >
-                      Voir tout
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      className={classes.buttonPrimary}
-                      onClick={() => setIsShowingMoreArticles(false)}
-                      sx={{ width: '13%' }}
-                    >
-                      Voir moins
-                    </Button>
-                  )}
+                  {currentSpotlightArticles.length > 3 &&
+                    (!isShowingMoreArticles ? (
+                      <Button
+                        variant="contained"
+                        className={classes.buttonPrimary}
+                        onClick={() => setIsShowingMoreArticles(true)}
+                        sx={{ width: '13%' }}
+                      >
+                        Voir tout
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        className={classes.buttonPrimary}
+                        onClick={() => setIsShowingMoreArticles(false)}
+                        sx={{ width: '13%' }}
+                      >
+                        Voir moins
+                      </Button>
+                    ))}
                 </Box>
               </Box>
             ) : (
@@ -514,7 +555,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
         <Box
           sx={{
             width: !matchesXs ? '1140px' : '100vw',
-            padding: matchesXs && '30px',
+            padding: matchesXs && '0 0 0 30px',
           }}
         >
           <Typography
@@ -528,12 +569,23 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
             Vos articles préférés de la semaine
           </Typography>
-          <ArticlesList
-            data={currentFavoritesArticles}
-            isShowingMoreArticles={isShowingMoreFavoritesArticles}
-            isSmallSize
-            numberOfArticles={9}
-          />
+          {matchesXs ? (
+            <Box sx={{ position: 'relative' }}>
+              <ArticlesCarousel
+                currentArticles={currentFavoritesArticles}
+                dotListClass={classes.carouselNotCentered}
+              />
+            </Box>
+          ) : (
+            <ArticlesList
+              data={currentFavoritesArticles}
+              isShowingMoreArticles={isShowingMoreFavoritesArticles}
+              isSmallSize
+              numberOfArticles={3}
+              numberOfMaxArticles={9}
+            />
+          )}
+
           <Box display="flex" justifyContent="center">
             {currentFavoritesArticles.length > 3 &&
               (!isShowingMoreFavoritesArticles ? (
@@ -565,6 +617,8 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           width: !matchesXs ? '1140px' : '100vw',
           padding: matchesXs && '30px',
           margin: 'auto',
+          marginBottom: '60px',
+          paddingTop: '60px',
         }}
       >
         <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
@@ -596,6 +650,104 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
         </Box>
       </Box>
       {/* fin de la Partie 7 */}
+      {/* partie 8 */}
+      <Box
+        sx={{
+          width: !matchesXs ? '1140px' : '100vw',
+          padding: matchesXs && '30px',
+          margin: 'auto',
+          paddingTop: '60px',
+          paddingBottom: '60px',
+          backgroundColor: theme.palette.grey.f7,
+        }}
+      >
+        <Typography
+          variant="h6"
+          color="primary.ultraDark"
+          fontWeight="400"
+          sx={{ marginBottom: '10px' }}
+        >
+          Thématiques
+        </Typography>
+        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+          De l&apos;inspi pour tous tes projets de voyage
+        </Typography>
+        <Box className={classes.inspiTypeContainer}>
+          {currentInspirationForPeople.map(
+            ({ logo, name: inspirationName, picture, target_url: targetUrl }) => (
+              <ThematicCard
+                key={inspirationName}
+                title={inspirationName}
+                srcImg={picture.src.original}
+                link={targetUrl}
+              />
+            )
+          )}
+        </Box>
+      </Box>
+      {/* fin de la partie 8 */}
+      {/* Partie 9 inspiration par mois */}
+      <Box
+        sx={{
+          width: !matchesXs ? '1140px' : '100vw',
+          padding: matchesXs && '0  0 0 30px',
+          margin: 'auto',
+          paddingTop: '60px',
+          marginBottom: matchesXs ? '180px' : '60px',
+        }}
+      >
+        <Typography
+          variant="h6"
+          color="primary.ultraDark"
+          fontWeight="400"
+          sx={{ marginBottom: '10px' }}
+        >
+          Thématiques
+        </Typography>
+        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+          De l&apos;inspi pour tous tes projets de voyage
+        </Typography>
+        {matchesXs ? (
+          <Box sx={{ position: 'relative' }}>
+            <ArticlesCarousel
+              currentArticles={currentMonthInspiration}
+              dotListClass={classes.carouselNotCentered}
+            />
+          </Box>
+        ) : (
+          <>
+            <ArticlesList
+              data={currentMonthInspiration}
+              isShowingMoreArticles={isShowingMoreMonthInspiration}
+              isSmallSize
+              numberOfArticles={6}
+              numberOfMaxArticles={12}
+            />
+            <Box display="flex" justifyContent="center">
+              {!isShowingMoreMonthInspiration ? (
+                <Button
+                  variant="contained"
+                  className={classes.buttonPrimary}
+                  onClick={() => setIsShowingMoreMonthInspiration(true)}
+                  sx={{ width: '13%' }}
+                >
+                  Voir tout
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  className={classes.buttonPrimary}
+                  onClick={() => setIsShowingMoreMonthInspiration(false)}
+                  sx={{ width: '13%' }}
+                >
+                  Voir moins
+                </Button>
+              )}
+            </Box>
+          </>
+        )}
+      </Box>
+      {/* fin de partie 9 */}
     </Box>
   )
 }

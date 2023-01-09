@@ -648,6 +648,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: '50px',
     right: '50px',
+    zIndex: 3,
     '&:hover': {
       backgroundColor: theme.palette.secondary.contrastText,
     },
@@ -1209,7 +1210,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                 {typeof smallInfoText === 'string' &&
                                   !smallInfoText.includes('diplomatie') &&
                                   smallInfoText.substring(0, 20)}
-                                {smallInfoText.length > 30 && '...'}
                                 {typeof smallInfoText === 'string' &&
                                   smallInfoText.includes('diplomatie') && (
                                     <Link
@@ -1220,9 +1220,10 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                         textDecoration: 'underline black',
                                       }}
                                     >
-                                      {smallInfoText}
+                                      Diplomatie.gouv.fr
                                     </Link>
                                   )}
+                                {/* {smallInfoText.length > 30 && '...'} */}
                                 {/* </Tooltip> */}
                                 {
                                   moneyCode &&
