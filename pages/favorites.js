@@ -94,7 +94,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 0,
                 },
                 items: 1,
-                partialVisibilityGutter: 130,
+                partialVisibilityGutter: 100,
               },
             }}
             slidesToSlide={1}
