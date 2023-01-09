@@ -20,9 +20,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ButtonBookmark = ({ spotSlug }) => {
+const ButtonBookmark = ({ spotSlug, articleSlug, isArticle = false, isSpot = false }) => {
   const classes = useStyles()
-  const { user, spotsBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
+  const { user, spotsBookmarkedUpdate, setIsAuthModalOpen, articlesBookmarkedUpdate } =
+    useContext(SessionContext)
 
   return (
     <IconButton
@@ -32,14 +33,30 @@ const ButtonBookmark = ({ spotSlug }) => {
         [classes.bookmarkedColors]: user?.spotsLiked?.includes(spotSlug),
       })}
       onClick={() => {
-        if (user?.isLoggedIn) {
-          spotsBookmarkedUpdate(spotSlug)
-        } else {
-          setIsAuthModalOpen('login')
+        if (isSpot) {
+          if (user?.isLoggedIn) {
+            spotsBookmarkedUpdate(spotSlug)
+          } else {
+            setIsAuthModalOpen('login')
+          }
+        }
+        if (isArticle) {
+          if (user?.isLoggedIn) {
+            articlesBookmarkedUpdate(articleSlug)
+          } else {
+            setIsAuthModalOpen('login')
+          }
         }
       }}
     >
-      {user?.spotsBookmarked?.includes(spotSlug) ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+      {isSpot &&
+        (user?.spotsBookmarked?.includes(spotSlug) ? <BookmarkIcon /> : <BookmarkBorderIcon />)}
+      {isArticle &&
+        (user?.articlesBookmarked?.includes(articleSlug) ? (
+          <BookmarkIcon />
+        ) : (
+          <BookmarkBorderIcon />
+        ))}
     </IconButton>
   )
 }

@@ -61,10 +61,6 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
 
   const currentFilters = [
     {
-      header: 'Type de résultats',
-      category: 'resultats',
-    },
-    {
       header: 'Type de séjours',
       category: 'type_de_sejour',
     },
@@ -77,6 +73,10 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
     { header: 'Durée du séjour', category: 'duree_du_sejour' },
     { header: 'En direction de', category: 'en_direction_de' },
     { header: 'Avis explomaker', category: 'avis_explomaker' },
+    {
+      header: 'Type de résultats',
+      category: 'resultats',
+    },
   ]
 
   return (

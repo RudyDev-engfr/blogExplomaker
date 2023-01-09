@@ -1171,7 +1171,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   {!matchesXs && (
                     <Box className={classes.interactionBox}>
                       <ButtonLike isSpots spotSlug={dataset.slug} />
-                      <ButtonBookmark spotSlug={dataset.slug} />
+                      <ButtonBookmark spotSlug={dataset.slug} isSpot />
                     </Box>
                   )}
                 </Box>

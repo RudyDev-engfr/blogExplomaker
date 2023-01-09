@@ -32,7 +32,9 @@ const SignatureProfile = ({
       </Box>
       <Box>
         <Box sx={{ marginBottom: '20px' }}>
-          <Typography sx={{}}>Tags de l&apos;article</Typography>
+          <Typography sx={{ fontSize: '20px', fontWeight: '500', lineHeight: '24px' }}>
+            Tags de l&apos;article
+          </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
           {tags.map(tag => (
@@ -48,7 +50,7 @@ const SignatureProfile = ({
                 marginBottom: '10px',
               }}
             >
-              <Typography component="span" sx={{ fontWeight: '500' }}>
+              <Typography component="span" sx={{ fontWeight: '400' }}>
                 {tag.name}
               </Typography>
             </Box>

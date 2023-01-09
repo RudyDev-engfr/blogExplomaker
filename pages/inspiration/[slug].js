@@ -17,6 +17,8 @@ import mobileHeaderImg from '../../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png
 import { database } from '../../lib/firebase'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { ArticlesSlugsArray } from '../../helper/slugsArray'
+import ButtonLike from '../../components/atoms/ButtonLike'
+import ButtonBookmark from '../../components/atoms/ButtonBookmark'
 
 const useStyles = makeStyles(theme => ({
   headerMapBox: {
@@ -89,6 +91,9 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '30px',
     marginBottom: '32px',
   },
+  interactionBox: {
+    display: 'flex',
+  },
 }))
 
 export async function getStaticPaths() {
@@ -137,11 +142,21 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
         <Paper elevation={0} className={classes.headingPaper}>
           {!matchesXs && (
             <Box sx={{ maxWidth: '380px', width: '380px' }}>
-              <SignatureProfile
-                date={dataset.creation_date}
-                readingTime={dataset.reading_time}
-                tags={dataset.meta}
-              />
+              <Box marginBottom="60px">
+                <SignatureProfile
+                  date={dataset.creation_date}
+                  readingTime={dataset.reading_time}
+                  tags={dataset.meta}
+                />
+              </Box>
+              {!matchesXs && (
+                <Box className={classes.interactionBox}>
+                  <Box marginRight="10px">
+                    <ButtonLike isArticle articleSlug={dataset.slug} />
+                  </Box>
+                  <ButtonBookmark isArticle articleSlug={dataset.slug} />
+                </Box>
+              )}
             </Box>
           )}
           <Box

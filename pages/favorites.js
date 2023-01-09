@@ -130,7 +130,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   categoryColor={color}
                   altImg=""
                   key={`spot/${slug}`}
-                  targetLink={slug}
+                  link={slug}
                   is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
@@ -174,7 +174,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 categoryColor={color}
                 altImg=""
                 key={`spot/${slug}`}
-                targetLink={slug}
+                link={slug}
                 is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
@@ -384,6 +384,10 @@ const Favorites = () => {
   useEffect(() => {
     console.log('articles favoris', currentArticles)
   }, [currentArticles])
+
+  useEffect(() => {
+    console.log('spots favoris', currentSpots)
+  }, [currentSpots])
 
   useEffect(() => {
     console.log(user)
