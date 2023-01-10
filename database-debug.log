@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-08:42:44.336 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-08:42:44.424 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-08:42:44.800 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 94ms, init: 0ms
-08:42:50.609 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
-=======
->>>>>>> 12530741bb4a46d5d122b5c1c8986415866360ab
+11:53:45.652 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+11:53:45.758 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+11:53:46.075 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 90ms, init: 0ms
+11:53:53.837 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active

@@ -1002,3 +1002,354 @@ INFO: Detected non-HTTP/2 connection.
 [debug] [2023-01-06T10:19:52.705Z] Jan 06, 2023 11:19:52 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
  {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 06, 2023 11:19:52 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:53:41.523Z] ----------------------------------------------------------------------
+[debug] [2023-01-10T10:53:41.524Z] Command:       /Users/kanachou/.nvm/versions/node/v14.21.2/bin/node /usr/local/bin/firebase emulators:start --import=./emulators.backup
+[debug] [2023-01-10T10:53:41.525Z] CLI Version:   11.16.1
+[debug] [2023-01-10T10:53:41.525Z] Platform:      darwin
+[debug] [2023-01-10T10:53:41.525Z] Node Version:  v14.21.2
+[debug] [2023-01-10T10:53:41.531Z] Time:          Tue Jan 10 2023 11:53:41 GMT+0100 (Central European Standard Time)
+[debug] [2023-01-10T10:53:41.531Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-10T10:53:41.535Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-01-10T10:53:41.601Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-10T10:53:41.602Z] > authorizing via signed-in user (rudy.prevaud@gmail.com)
+[debug] [2023-01-10T10:53:41.892Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-10T10:53:41.892Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-01-10T10:53:41.912Z] java version "11.0.16.1" 2022-08-18 LTS
+[debug] [2023-01-10T10:53:41.912Z] 
+Java(TM) SE Runtime Environment 18.9 (build 11.0.16.1+1-LTS-1)
+Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.16.1+1-LTS-1, mixed mode)
+
+[debug] [2023-01-10T10:53:41.917Z] Parsed Java major version: 11
+[info] i  emulators: Starting emulators: auth, functions, firestore, database {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, database"}}
+[debug] [2023-01-10T10:53:42.918Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:42.918Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:42.918Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:42.918Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:42.918Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:42.918Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-10T10:53:42.929Z] [hub] writing locator at /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/hub-explomaker-3010b.json
+[debug] [2023-01-10T10:53:43.220Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:43.220Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-10T10:53:43.221Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: hosting, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mhosting, pubsub, storage\u001b[22m"}}
+[info] ✔  functions: Using node@14 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@14 from host."}}
+[debug] [2023-01-10T10:53:43.236Z] defaultcredentials: writing to file /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json
+[debug] [2023-01-10T10:53:43.238Z] Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json"}}
+[debug] [2023-01-10T10:53:43.239Z] > refreshing access token with scopes: []
+[debug] [2023-01-10T10:53:43.240Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-10T10:53:43.240Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-10T10:53:43.395Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-10T10:53:43.395Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-10T10:53:43.406Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig [none]
+[debug] [2023-01-10T10:53:43.743Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig 200
+[debug] [2023-01-10T10:53:43.743Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig {"projectId":"explomaker-3010b","databaseURL":"https://explomaker-3010b.firebaseio.com","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"}
+[info] i  firestore: Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata {"metadata":{"emulator":{"name":"firestore"},"message":"Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata"}}
+[warn] ⚠  firestore: Did not find a Cloud Firestore rules file specified in a firebase.json config file. {"metadata":{"emulator":{"name":"firestore"},"message":"Did not find a Cloud Firestore rules file specified in a firebase.json config file."}}
+[warn] ⚠  firestore: The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration. {"metadata":{"emulator":{"name":"firestore"},"message":"The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration."}}
+[debug] [2023-01-10T10:53:43.764Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-10T10:53:43.764Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2023-01-10T10:53:43.764Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","explomaker-3010b","--seed_from_export","/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"explomaker-3010b\",\"--seed_from_export\",\"/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[debug] [2023-01-10T10:53:44.490Z] Jan 10, 2023 11:53:44 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+INFO: Started WebSocket server on ws://127.0.0.1:9150
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:53:44 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
+[debug] [2023-01-10T10:53:44.501Z] API endpoint: http:// {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://"}}
+[debug] [2023-01-10T10:53:44.502Z] 127.0.0.1:8080
+If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
+
+Dev App Server is now running.
+
+ {"metadata":{"emulator":{"name":"firestore"},"message":"127.0.0.1:8080\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nDev App Server is now running.\n\n"}}
+[info] ✔  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
+[debug] [2023-01-10T10:53:44.540Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b [none]
+[debug] [2023-01-10T10:53:44.833Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b 200
+[debug] [2023-01-10T10:53:44.833Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b {"projectId":"explomaker-3010b","projectNumber":"607806486683","displayName":"explomaker","name":"projects/explomaker-3010b","resources":{"hostingSite":"explomaker-3010b","realtimeDatabaseInstance":"explomaker-3010b","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_461a7a31-ed1e-4bd6-b588-5012a8f6f220"}
+[debug] [2023-01-10T10:53:44.834Z] database rules config:  [{"instance":"explomaker-3010b","rules":"/Users/kanachou/Documents/blogExplomaker/database.rules.json"}]
+[debug] [2023-01-10T10:53:44.838Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-01-10T10:53:44.838Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-10T10:53:44.838Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-01-10T10:53:44.838Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning","--functions_emulator_host","127.0.0.1","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\",\"--functions_emulator_host\",\"127.0.0.1\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2023-01-10T10:53:45.264Z] WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+ {"metadata":{"emulator":{"name":"database"},"message":"WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n"}}
+[debug] [2023-01-10T10:53:45.653Z] 11:53:45.652 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"11:53:45.652 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2023-01-10T10:53:45.758Z] 11:53:45.758 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+ {"metadata":{"emulator":{"name":"database"},"message":"11:53:45.758 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
+[info] i  database: Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/database_export/explomaker-3010b.json {"metadata":{"emulator":{"name":"database"},"message":"Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/database_export/explomaker-3010b.json"}}
+[debug] [2023-01-10T10:53:46.076Z] 11:53:46.075 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 90ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"11:53:46.075 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 90ms, init: 0ms\n"}}
+[info] i  auth: Importing config from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/config.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing config from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/config.json"}}
+[debug] [2023-01-10T10:53:51.447Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T10:53:51.447Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:53:51.449Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2023-01-10T10:53:51.451Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T10:53:51.451Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:53:51.452Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  auth: Importing accounts from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/accounts.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing accounts from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/accounts.json"}}
+[debug] [2023-01-10T10:53:51.499Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-10T10:53:51.499Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-10T10:53:51.499Z] Starting Emulator UI with command {"binary":"node","args":["/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-10T10:53:51.625Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-10T10:53:51.625Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[debug] [2023-01-10T10:53:51.776Z] Jan 10, 2023 11:53:51 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:53:51 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[info] i  functions: Watching "/Users/kanachou/Documents/blogExplomaker/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/kanachou/Documents/blogExplomaker/functions\" for Cloud Functions..."}}
+[debug] [2023-01-10T10:53:51.785Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-10T10:53:53.497Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase": "^8.10.0",
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^3.3.0",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "firebase": "^8.10.0",
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^3.3.0",
+    "typescript": "^4.9.3",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "firebase-functions-test": "^0.2.0",
+    "@types/node": "^14.0.1"
+  },
+  "private": true
+}
+[debug] [2023-01-10T10:53:53.497Z] Building nodejs source
+[debug] [2023-01-10T10:53:53.498Z] Analyzing nodejs backend spec
+[debug] [2023-01-10T10:53:53.500Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-01-10T10:53:53.521Z] Jan 10, 2023 11:53:52 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:53:52 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:53:53.522Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T10:53:53.522Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:53:53.523Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2023-01-10T10:53:53.765Z] Serving at port 9005
+
+[debug] [2023-01-10T10:53:53.801Z] Got response from /__/functions.yaml {"endpoints":{"getFavorites":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"getFavorites"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-10T10:53:53.806Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: getFavorites. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: getFavorites."}}
+[info] ✔  functions[us-central1-getFavorites]: http function initialized (http://127.0.0.1:5001/explomaker-3010b/us-central1/getFavorites). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/explomaker-3010b/us-central1/getFavorites)."}}
+[debug] [2023-01-10T10:53:53.816Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=explomaker-3010b
+[debug] [2023-01-10T10:53:53.817Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": false\n  }\n}\n"
+[debug] [2023-01-10T10:53:53.837Z] 11:53:53.837 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"11:53:53.837 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active\n"}}
+[debug] [2023-01-10T10:53:53.848Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-01-10T10:53:53.848Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Functions      │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ 127.0.0.1:8080 │ http://127.0.0.1:4000/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ 127.0.0.1:9000 │ http://127.0.0.1:4000/database  │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500, 9150
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2023-01-10T10:54:02.815Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T10:54:02.815Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:54:02.815Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T10:54:02.822Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T10:54:02.823Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T10:54:02.853Z] [worker-pool] addWorker(us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:02.853Z] [worker-pool] Adding worker with key us-central1-getFavorites, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-getFavorites, total=1"}}
+[debug] [2023-01-10T10:54:02.939Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2023-01-10T10:54:02.939Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2023-01-10T10:54:02.939Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T10:54:02.943Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T10:54:02.943Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T10:54:02.970Z] [worker-pool] addWorker(us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:02.970Z] [worker-pool] Adding worker with key us-central1-getFavorites, total=2 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-getFavorites, total=2"}}
+[debug] [2023-01-10T10:54:02.975Z] Jan 10, 2023 11:54:02 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:54:02 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:54:02.994Z] Jan 10, 2023 11:54:02 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:54:02 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:54:03.040Z] [work-queue] {"queueLength":1,"workRunningCount":2}
+[debug] [2023-01-10T10:54:03.041Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2023-01-10T10:54:03.041Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T10:54:03.043Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T10:54:03.043Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T10:54:03.069Z] [worker-pool] addWorker(us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:03.070Z] [worker-pool] Adding worker with key us-central1-getFavorites, total=3 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-getFavorites, total=3"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7405] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7402] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7403] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7403] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7405] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7402] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7403] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7405] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2023-01-10T10:54:03.690Z] [runtime-status] [7402] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2023-01-10T10:54:03.691Z] [runtime-status] [7402] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.691Z] [runtime-status] [7405] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.691Z] [runtime-status] [7403] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.720Z] [runtime-status] [7402] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Checked functions.config() {\"config\":{}}"}}
+[debug] [2023-01-10T10:54:03.721Z] [runtime-status] [7402] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.721Z] [runtime-status] [7402] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.721Z] [runtime-status] [7403] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Checked functions.config() {\"config\":{}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7403] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7403] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7403] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Checked functions.config() {\"config\":{}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7402] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7402] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7402] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7403] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7403] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.24.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.24.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2023-01-10T10:54:03.722Z] [runtime-status] [7405] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"11.4.1","resolution":"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"11.4.1\",\"resolution\":\"/Users/kanachou/Documents/blogExplomaker/functions/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2023-01-10T10:54:03.723Z] [runtime-status] [7402] initializeApp(DEFAULT) {"storageBucket":"explomaker-3010b.appspot.com","databaseURL":"http://127.0.0.1:9000/?ns=explomaker-3010b","projectId":"explomaker-3010b"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] initializeApp(DEFAULT) {\"storageBucket\":\"explomaker-3010b.appspot.com\",\"databaseURL\":\"http://127.0.0.1:9000/?ns=explomaker-3010b\",\"projectId\":\"explomaker-3010b\"}"}}
+[debug] [2023-01-10T10:54:03.723Z] [runtime-status] [7405] initializeApp(DEFAULT) {"storageBucket":"explomaker-3010b.appspot.com","databaseURL":"http://127.0.0.1:9000/?ns=explomaker-3010b","projectId":"explomaker-3010b"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] initializeApp(DEFAULT) {\"storageBucket\":\"explomaker-3010b.appspot.com\",\"databaseURL\":\"http://127.0.0.1:9000/?ns=explomaker-3010b\",\"projectId\":\"explomaker-3010b\"}"}}
+[debug] [2023-01-10T10:54:03.723Z] [runtime-status] [7403] initializeApp(DEFAULT) {"storageBucket":"explomaker-3010b.appspot.com","databaseURL":"http://127.0.0.1:9000/?ns=explomaker-3010b","projectId":"explomaker-3010b"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] initializeApp(DEFAULT) {\"storageBucket\":\"explomaker-3010b.appspot.com\",\"databaseURL\":\"http://127.0.0.1:9000/?ns=explomaker-3010b\",\"projectId\":\"explomaker-3010b\"}"}}
+[debug] [2023-01-10T10:54:03.728Z] [runtime-status] [7405] Functions runtime initialized. {"cwd":"/Users/kanachou/Documents/blogExplomaker/functions","node_version":"14.21.2"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Functions runtime initialized. {\"cwd\":\"/Users/kanachou/Documents/blogExplomaker/functions\",\"node_version\":\"14.21.2\"}"}}
+[debug] [2023-01-10T10:54:03.728Z] [runtime-status] [7402] Functions runtime initialized. {"cwd":"/Users/kanachou/Documents/blogExplomaker/functions","node_version":"14.21.2"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Functions runtime initialized. {\"cwd\":\"/Users/kanachou/Documents/blogExplomaker/functions\",\"node_version\":\"14.21.2\"}"}}
+[debug] [2023-01-10T10:54:03.728Z] [runtime-status] [7403] Functions runtime initialized. {"cwd":"/Users/kanachou/Documents/blogExplomaker/functions","node_version":"14.21.2"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Functions runtime initialized. {\"cwd\":\"/Users/kanachou/Documents/blogExplomaker/functions\",\"node_version\":\"14.21.2\"}"}}
+[debug] [2023-01-10T10:54:03.728Z] [runtime-status] [7402] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_7ea20720663e0395.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7402] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_7ea20720663e0395.sock"}}
+[debug] [2023-01-10T10:54:03.729Z] [runtime-status] [7405] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_78b2a50d0e154b73.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7405] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_78b2a50d0e154b73.sock"}}
+[debug] [2023-01-10T10:54:03.729Z] [runtime-status] [7403] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_99bbb0f7acd9752a.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"[runtime-status] [7403] Listening to port: /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/fire_emu_99bbb0f7acd9752a.sock"}}
+[debug] [2023-01-10T10:54:03.787Z] [worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: IDLE"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: BUSY"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY"}}
+[debug] [2023-01-10T10:54:03.788Z] [worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: IDLE"}}
+[debug] [2023-01-10T10:54:03.789Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:54:03.789Z] [worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: BUSY"}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[debug] [2023-01-10T10:54:03.792Z] [worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-336156ac-9823-4117-9f2c-e59289306f4e]: IDLE"}}
+[debug] [2023-01-10T10:54:03.792Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2023-01-10T10:54:03.793Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T10:54:03.793Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:54:03.793Z] [worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-09871f78-2943-4c72-8d6f-997dfae16ef8]: IDLE"}}
+[debug] [2023-01-10T10:54:03.793Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "getFavorites" in 0.412667ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.412667ms"}}
+[info] i  functions: Finished "getFavorites" in 0.413917ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.413917ms"}}
+[info] i  functions: Finished "getFavorites" in 0.402834ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.402834ms"}}
+[debug] [2023-01-10T10:54:09.305Z] Jan 10, 2023 11:54:09 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:54:09 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:54:09.327Z] Jan 10, 2023 11:54:09 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:54:09 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:55:37.148Z] Jan 10, 2023 11:55:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:55:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:55:37.168Z] Jan 10, 2023 11:55:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:55:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:55:37.225Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T10:55:37.225Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T10:55:37.225Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T10:55:37.234Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T10:55:37.234Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T10:55:37.234Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T10:55:37.234Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY"}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[info] i  functions: Finished "getFavorites" in 0.312792ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.312792ms"}}
+[debug] [2023-01-10T10:55:37.237Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T10:55:37.238Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2023-01-10T10:56:37.201Z] Jan 10, 2023 11:56:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:56:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:57:37.227Z] Jan 10, 2023 11:57:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:57:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:58:37.259Z] Jan 10, 2023 11:58:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:58:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T10:59:37.282Z] Jan 10, 2023 11:59:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 11:59:37 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T11:00:37.184Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T11:00:37.185Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T11:00:37.185Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T11:00:37.188Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T11:00:37.189Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T11:00:37.190Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T11:00:37.190Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY"}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[info] i  functions: Finished "getFavorites" in 0.377333ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.377333ms"}}
+[debug] [2023-01-10T11:00:37.194Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T11:00:37.194Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2023-01-10T11:00:37.263Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T11:00:37.264Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T11:00:37.264Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T11:00:37.267Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T11:00:37.267Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T11:00:37.268Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T11:00:37.268Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY"}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[info] i  functions: Finished "getFavorites" in 0.176334ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.176334ms"}}
+[debug] [2023-01-10T11:00:37.271Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T11:00:37.271Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2023-01-10T11:00:37.282Z] Jan 10, 2023 12:00:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 12:00:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T11:00:37.297Z] Jan 10, 2023 12:00:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 12:00:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-01-10T11:00:37.315Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2023-01-10T11:00:37.315Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2023-01-10T11:00:37.315Z] Accepted request OPTIONS /explomaker-3010b/us-central1/getFavorites --> us-central1-getFavorites
+[debug] [2023-01-10T11:00:37.317Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2023-01-10T11:00:37.317Z] [functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/ {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/explomaker-3010b/us-central1/getFavorites, mapping to path=/"}}
+[debug] [2023-01-10T11:00:37.317Z] [worker-pool] submitRequest(triggerId=us-central1-getFavorites) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-getFavorites)"}}
+[debug] [2023-01-10T11:00:37.317Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: BUSY"}}
+[info] i  functions: Beginning execution of "getFavorites" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Beginning execution of \"getFavorites\""}}
+[debug] [2023-01-10T11:00:37.318Z] [worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-getFavorites-553af954-5078-484e-9833-ffb8359b39f9]: IDLE"}}
+[debug] [2023-01-10T11:00:37.318Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "getFavorites" in 0.241208ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-getFavorites"},"extension":{},"message":"Finished \"getFavorites\" in 0.241208ms"}}
+[debug] [2023-01-10T11:01:37.314Z] Jan 10, 2023 12:01:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 10, 2023 12:01:37 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}

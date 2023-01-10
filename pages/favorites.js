@@ -204,7 +204,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
             draggable
             arrows={false}
             focusOnSelect={false}
-            infinite={user?.articlesBookmarked.length > 1}
+            infinite={user?.articlesBookmarked?.length > 1}
             showDots
             customDot={
               <TrendingDestinationsDotBox carouselArray={user?.articlesBookmarked} isResults />
