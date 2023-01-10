@@ -16,6 +16,7 @@ const ArticlesList = ({
   isSmallSize = false,
   numberOfArticles = 2,
   isAlgolia = false,
+  numberOfMaxArticles = 29,
 }) => {
   const classes = useStyles()
   const theme = useTheme()
@@ -34,7 +35,7 @@ const ArticlesList = ({
       {isAlgolia
         ? data
             .filter((article, index) =>
-              isShowingMoreArticles ? index <= 29 : index <= numberOfArticles - 1
+              isShowingMoreArticles ? index <= numberOfMaxArticles : index <= numberOfArticles - 1
             )
             .map(
               ({
@@ -76,10 +77,11 @@ const ArticlesList = ({
                 target_url: targetUrl,
                 creation_date: creationDate,
                 slug,
+                sub_type: subType,
               }) => (
                 <MobileBlogCard
                   srcImg={pictureMain.src?.original}
-                  link={targetUrl}
+                  targetLink={targetUrl}
                   title={title}
                   key={targetUrl}
                   publishDate={creationDate ?? '17 Déc 2020 | 6min'}
@@ -88,6 +90,7 @@ const ArticlesList = ({
                   isSmallSize={isSmallSize}
                   slug={slug}
                   isAlgolia={isAlgolia}
+                  category={subType[0].name}
                 />
               )
             )}

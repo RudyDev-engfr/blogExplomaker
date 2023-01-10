@@ -240,6 +240,7 @@ const DesktopSearch = ({
                   isShowingMoreArticles={isShowingMoreArticles}
                   isAlgolia
                   numberOfArticles={9}
+                  numberOfMaxArticles={29}
                 />
               )}
             </Box>

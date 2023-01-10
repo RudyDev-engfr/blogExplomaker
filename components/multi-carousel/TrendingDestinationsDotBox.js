@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     mt: 5,
     transform: 'translateY(50px)',
-    zIndex: '10',
+    zIndex: '3',
     alignSelf: 'flex-start',
     [theme.breakpoints.down('sm')]: {
       alignSelf: 'center',

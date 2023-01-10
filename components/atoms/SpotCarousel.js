@@ -49,11 +49,11 @@ const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass, infinite
     >
       {currentSpots
         .filter((currentSpot, index) => (isShowingMoreSpots ? true : index <= 5))
-        .map(({ title, country, picture, color, slug }) => (
+        .map(({ title, gps, picture, color, slug }) => (
           <Box display="flex" sx={{ margin: 'auto', marginBottom: '30px' }}>
             <CountryTile
               countryTitle={title}
-              category={country}
+              category={gps.country}
               srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                 picture.src.original
               )}`}
