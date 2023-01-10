@@ -1,0 +1,51 @@
+import { Box, Button, Typography, useMediaQuery } from '@mui/material'
+import { makeStyles, useTheme } from '@mui/styles'
+import Image from 'next/image'
+
+import illustrationPlanning from '../../images/ILLUSTRATION_PLANNING_1.png'
+import logo from '../../images/icons/logo.svg'
+
+const useStyles = makeStyles(theme => ({
+  buttonPrimary: {
+    padding: `${theme.spacing(2.5)} 25px`,
+    borderRadius: '50px',
+    boxShadow: '0 3px 15px 0 #009D8C33',
+    textTransform: 'none',
+  },
+}))
+const CTA = () => {
+  const classes = useStyles()
+  const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
+  return (
+    <Box sx={{ display: !matchesXs ? 'flex' : 'block', justifyContent: 'space-between' }}>
+      <Box sx={{ maxWidth: '400px' }}>
+        <Typography
+          variant="h6"
+          color="primary.ultraDark"
+          fontWeight="400"
+          sx={{ marginBottom: '20px' }}
+        >
+          Inspiré ?
+        </Typography>
+        <Typography variant="h1" component="h3" sx={{ marginBottom: '20px' }}>
+          Prépares ton séjour avec Explomaker
+        </Typography>
+        <Typography sx={{ marginBottom: '50px' }}>
+          Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet qui
+          t’accompagne avant, pendant et après ton séjour.
+        </Typography>
+        <Button
+          startIcon={<Image src={logo} height={25} width={20} />}
+          variant="contained"
+          className={classes.buttonPrimary}
+          sx={{ marginBottom: matchesXs && '60px' }}
+        >
+          Créer un séjour
+        </Button>
+      </Box>
+      <Image src={illustrationPlanning} width="537" quality={100} />
+    </Box>
+  )
+}
+export default CTA

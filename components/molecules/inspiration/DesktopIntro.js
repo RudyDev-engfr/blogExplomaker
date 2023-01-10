@@ -1,7 +1,9 @@
-import { Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
+import Image from 'next/image'
 
+import logo from '../../../images/icons/logo.svg'
 import CountryTile from '../../atoms/CountryTile'
 
 const useStyles = makeStyles(theme => ({
@@ -11,6 +13,19 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '700',
     marginBottom: '10px',
     fontFamily: theme.typography.fontFamily,
+  },
+  buttonPrimary: {
+    padding: `${theme.spacing(2.5)} 25px`,
+    borderRadius: '50px',
+    boxShadow: '0 3px 15px 0 #009D8C33',
+    textTransform: 'none',
+  },
+  buttonUltraLight: {
+    backgroundColor: theme.palette.primary.ultraLight,
+    color: theme.palette.primary.main,
+    textTransform: 'none',
+    padding: `${theme.spacing(2.5)} 25px`,
+    borderRadius: '50px',
   },
 }))
 const DesktopIntro = ({ spotlight, metaContinentRef }) => {
@@ -42,6 +57,17 @@ const DesktopIntro = ({ spotlight, metaContinentRef }) => {
           En quelques mots
         </Typography>
         <Typography dangerouslySetInnerHTML={{ __html: spotlight.few_words }} />
+        <Box sx={{ display: 'flex', paddingTop: '30px' }}>
+          <Button
+            startIcon={<Image src={logo} height={25} width={20} />}
+            variant="contained"
+            className={classes.buttonPrimary}
+            sx={{ marginRight: '15px' }}
+          >
+            Créer un séjour
+          </Button>
+          <Button className={classes.buttonUltraLight}>Découvrir {spotlight.prefixed_title}</Button>
+        </Box>
       </Box>
     </Box>
   )

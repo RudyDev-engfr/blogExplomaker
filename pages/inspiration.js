@@ -46,6 +46,7 @@ import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
+import CTA from '../components/molecules/CTA'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {
@@ -651,38 +652,39 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       </Box>
       {/* fin de la Partie 7 */}
       {/* partie 8 */}
-      <Box
-        sx={{
-          width: !matchesXs ? '1140px' : '100vw',
-          padding: matchesXs && '30px',
-          margin: 'auto',
-          paddingTop: '60px',
-          paddingBottom: '60px',
-          backgroundColor: theme.palette.grey.f7,
-        }}
-      >
-        <Typography
-          variant="h6"
-          color="primary.ultraDark"
-          fontWeight="400"
-          sx={{ marginBottom: '10px' }}
+      <Box sx={{ backgroundColor: theme.palette.grey.f7, margin: 'auto' }}>
+        <Box
+          sx={{
+            width: !matchesXs ? '1140px' : '100vw',
+            padding: matchesXs && '30px',
+            margin: 'auto',
+            paddingTop: '60px',
+            paddingBottom: '60px',
+          }}
         >
-          Thématiques
-        </Typography>
-        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-          De l&apos;inspi pour tous tes projets de voyage
-        </Typography>
-        <Box className={classes.inspiTypeContainer}>
-          {currentInspirationForPeople.map(
-            ({ logo, name: inspirationName, picture, target_url: targetUrl }) => (
-              <ThematicCard
-                key={inspirationName}
-                title={inspirationName}
-                srcImg={picture.src.original}
-                link={targetUrl}
-              />
-            )
-          )}
+          <Typography
+            variant="h6"
+            color="primary.ultraDark"
+            fontWeight="400"
+            sx={{ marginBottom: '10px' }}
+          >
+            Thématiques
+          </Typography>
+          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+            De l&apos;inspi pour tous tes projets de voyage
+          </Typography>
+          <Box className={classes.inspiTypeContainer}>
+            {currentInspirationForPeople.map(
+              ({ logo, name: inspirationName, picture, target_url: targetUrl }) => (
+                <ThematicCard
+                  key={inspirationName}
+                  title={inspirationName}
+                  srcImg={picture.src.original}
+                  link={targetUrl}
+                />
+              )
+            )}
+          </Box>
         </Box>
       </Box>
       {/* fin de la partie 8 */}
@@ -748,6 +750,17 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
         )}
       </Box>
       {/* fin de partie 9 */}
+      <Box
+        sx={{
+          width: !matchesXs ? '1140px' : '100vw',
+          padding: matchesXs && '0  30px 0 30px',
+          margin: 'auto',
+          paddingTop: '60px',
+          marginBottom: matchesXs ? '180px' : '60px',
+        }}
+      >
+        <CTA />
+      </Box>
     </Box>
   )
 }
