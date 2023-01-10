@@ -58,6 +58,7 @@ const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass, infinite
                 picture.src.original
               )}`}
               categoryColor={color}
+              isLarge
               altImg=""
               key={`spot/${slug}`}
               link={slug}

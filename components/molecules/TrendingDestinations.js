@@ -141,6 +141,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
                     srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureTitled.src.original}`}
                     altImg=""
                     link={slug}
+                    isLarge
                     key={`trendingDestination-${slug}`}
                     categoryColor={color}
                   />

@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '285px',
     },
   },
+  rootMobile: {
+    width: 'calc(100vw - 60px)',
+  },
   likeButton: {
     zIndex: '100',
     position: 'absolute',
@@ -146,6 +149,7 @@ const MobileBlogCard = ({
   targetLink,
   readingTime,
   slug,
+  isMobile,
 }) => {
   const classes = useStyles()
   const theme = useTheme()
@@ -156,7 +160,10 @@ const MobileBlogCard = ({
   return (
     <Card
       elevation={0}
-      className={clsx({ [classes.root]: !is360px, [classes.resultRoot]: is360px }, className)}
+      className={clsx(
+        { [classes.root]: !is360px, [classes.resultRoot]: is360px, [classes.rootMobile]: isMobile },
+        className
+      )}
     >
       <CardActionArea
         classes={{
