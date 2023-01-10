@@ -121,7 +121,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   sx={{ borderRadius: '20px' }}
                 />
               )
-            ) : currentSpots.length > 0 ? (
+            ) : currentSpots?.length > 0 ? (
               currentSpots.map(({ gps, picture_main: pictureMain, title, slug, color }) => (
                 <CountryTile
                   countryTitle={title}
@@ -131,7 +131,6 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   altImg=""
                   key={`spot/${slug}`}
                   link={slug}
-                  is360px
                   className={classes.mobileBlogCardAndCountryTile}
                 />
               ))
@@ -286,8 +285,8 @@ const MyArticles = ({ currentArticles, isLoading }) => {
         </Box>
       ) : isLoading ? (
         <Box className={classes.countryTileGrid}>
-          {user.articlesBookmarked?.length > 1 ? (
-            user.articlesBookmarked?.map(() => (
+          {user?.articlesBookmarked?.length > 1 ? (
+            user?.articlesBookmarked?.map(() => (
               <Skeleton
                 variant="rectangular"
                 width={360}
