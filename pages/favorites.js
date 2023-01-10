@@ -76,7 +76,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
               <TrendingDestinationsDotBox carouselArray={user?.spotsBookmarked} isResults />
             }
             renderDotsOutside
-            partialVisible
+            partialVisible={false}
             keyBoardControl
             minimumTouchDrag={80}
             responsive={{
@@ -86,7 +86,6 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 640,
                 },
                 items: 1,
-                partialVisibilityGutter: 30,
               },
               mobile: {
                 breakpoint: {
@@ -94,7 +93,6 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   min: 0,
                 },
                 items: 1,
-                partialVisibilityGutter: 100,
               },
             }}
             slidesToSlide={1}
@@ -131,6 +129,7 @@ const MySpots = ({ currentSpots, isLoading }) => {
                   altImg=""
                   key={`spot/${slug}`}
                   link={slug}
+                  isLarge
                   className={classes.mobileBlogCardAndCountryTile}
                 />
               ))
@@ -174,7 +173,6 @@ const MySpots = ({ currentSpots, isLoading }) => {
                 altImg=""
                 key={`spot/${slug}`}
                 link={slug}
-                is360px
                 className={classes.mobileBlogCardAndCountryTile}
               />
             ))}
