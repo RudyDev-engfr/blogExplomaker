@@ -114,14 +114,14 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/inspiration/fonctionnemen-explomaker"
+                href="https://explomaker.fr/inspiration/fonctionnement-explomaker"
                 className={classes.footerLink}
               >
                 Fonctionnement de l&rsquo;app
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/inspiration/guide-demarrage-explomaker"
+                href="/inspiration/guide-demarrage-explomaker"
                 className={classes.footerLink}
               >
                 Débuter avec Explomaker
