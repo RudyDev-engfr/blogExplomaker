@@ -1291,7 +1291,7 @@ const Home = ({ dataset }) => {
                 </Box>
                 <Box marginBottom={matchesXs && '80px'}>
                   {matchesXs ? (
-                    <Box sx={{ width: '100vw', height: '520px' }}>
+                    <Box sx={{ width: '100vw', height: '800px', position: 'relative' }}>
                       <Carousel
                         navButtonsAlwaysInvisible
                         autoPlay={false}
@@ -1317,22 +1317,20 @@ const Home = ({ dataset }) => {
                               display="flex"
                               flexDirection="column"
                               alignItems="center"
-                              sx={{ position: 'relative' }}
+                              sx={{ position: 'relative', minHeight: '520px' }}
                               key={publicLogo}
-                              minHeight="335px"
                             >
-                              <Image
-                                src={
-                                  `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                              <Box sx={{ position: 'relative', height: '335px', width: '100vw' }}>
+                                <Image
+                                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     photo.src.original
-                                  )}` ?? travelPicture
-                                }
-                                width={500}
-                                objectFit="cover"
-                                height={335}
-                                quality={100}
-                                className={classes.mobileAdaptedProject}
-                              />
+                                  )}`}
+                                  objectFit="cover"
+                                  layout="fill"
+                                  quality={100}
+                                  className={classes.mobileAdaptedProject}
+                                />
+                              </Box>
                               <Paper elevation={2} className={classes.travelTilePaper}>
                                 <Box marginBottom="15px">
                                   <Typography
