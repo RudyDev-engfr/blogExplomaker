@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
+import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mui/material'
 
 import Carousel from 'react-multi-carousel'
@@ -190,6 +191,7 @@ export async function getStaticProps() {
 const Inspiration = ({ dataset, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
+  const router = useRouter()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const {
     spotLight: spotlight,
@@ -644,6 +646,12 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 color: theme.palette.grey.grey33,
                 marginBottom: '20px',
               }}
+              onClick={() =>
+                router.push(`
+              /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
+                category
+              )}`)
+              }
             >
               {category}
             </Button>
@@ -704,10 +712,10 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
           fontWeight="400"
           sx={{ marginBottom: '10px' }}
         >
-          Thématiques
+          Articles
         </Typography>
         <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-          De l&apos;inspi pour tous tes projets de voyage
+          Les meilleures destinations, mois par mois
         </Typography>
         {matchesXs ? (
           <Box sx={{ position: 'relative' }}>
@@ -725,7 +733,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               numberOfArticles={6}
               numberOfMaxArticles={12}
             />
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" sx={{ paddingTop: '60px' }}>
               {!isShowingMoreMonthInspiration ? (
                 <Button
                   variant="contained"

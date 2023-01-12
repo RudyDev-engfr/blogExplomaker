@@ -150,6 +150,7 @@ const Footer = () => {
                   href="results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
                   className={classes.footerLink}
                   underline="none"
+                  rel="nofollow"
                 >
                   Le blog Explomaker
                 </Link>
@@ -158,6 +159,7 @@ const Footer = () => {
                 variant="body2"
                 href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Actualit%C3%A9s"
                 className={classes.footerLink}
+                rel="nofollow"
               >
                 Actualités
               </Link>
@@ -165,6 +167,7 @@ const Footer = () => {
                 variant="body2"
                 href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Inspiration"
                 className={classes.footerLink}
+                rel="nofollow"
               >
                 Inspiration
               </Link>
@@ -172,6 +175,7 @@ const Footer = () => {
                 variant="body2"
                 href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Exploration"
                 className={classes.footerLink}
+                rel="noffollow"
               >
                 Exploration
               </Link>
@@ -179,6 +183,7 @@ const Footer = () => {
                 variant="body2"
                 href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Pr%C3%A9paration+de+voyage"
                 className={classes.footerLink}
+                rel="nofollow"
               >
                 Préparation de voyage
               </Link>
@@ -186,6 +191,7 @@ const Footer = () => {
                 variant="body2"
                 href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=R%C3%A9cits+de+voyages"
                 className={classes.footerLink}
+                rel="nofollow"
               >
                 Récits de voyages
               </Link>
@@ -201,11 +207,14 @@ const Footer = () => {
               <Typography variant="h4" className={classes.footerTitle}>
                 Contact
               </Typography>
-              <Link href="/contact" variant="body2" className={classes.footerLink}>
+              <Link href="/contact" variant="body2" className={classes.footerLink} rel="nofollow">
                 Une erreur sur l&rsquo;app ?
               </Link>
-              <Link href="/contact" variant="body2" className={classes.footerLink}>
+              <Link href="/contact" variant="body2" className={classes.footerLink} rel="nofollow">
                 Contact rapide
+              </Link>
+              <Link variant="body2" href="/recrutement" className={classes.footerLink}>
+                Recrutement
               </Link>
             </Box>
           </Grid>

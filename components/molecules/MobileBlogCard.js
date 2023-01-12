@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: '325px',
     borderRadius: '20px',
     position: 'relative',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
   },
   imageContainer: {
     position: 'relative',
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
   rootMobile: {
     width: 'calc(100vw - 60px)',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
   },
   likeButton: {
     zIndex: '100',

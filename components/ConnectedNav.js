@@ -204,7 +204,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Tab
           icon={<Image src={favorite} width={25} height={25} />}
           label={
-            <Link passHref href="/favorites">
+            <Link passHref href="/favorites" rel="nofollow">
               <Box component="span" className={classes.icons}>
                 Favoris
               </Box>
@@ -281,7 +281,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                     }}
                     anchorPosition={{ left: 100, top: 100 }}
                   >
-                    <Link href="/results" passHref>
+                    <Link href="/results" passHref rel="nofollow">
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"
@@ -295,7 +295,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                         Recherche
                       </MenuItem>
                     </Link>
-                    <Link href="/favorites" passHref>
+                    <Link href="/favorites" passHref rel="nofollow">
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"

@@ -1,6 +1,7 @@
 import { Avatar, Box, Typography } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import { format, parse } from 'date-fns'
+import Link from 'next/link'
 
 const SignatureProfile = ({
   avatarSrc = '../../images/emma.png',
@@ -38,22 +39,29 @@ const SignatureProfile = ({
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
           {tags.map(tag => (
-            <Box
-              key={tag.name}
-              sx={{
-                padding: '6px 12px',
-                backgroundColor: theme.palette.grey.f7,
-                borderRadius: '30px',
-                gap: '10px',
-                maxWidth: 'fit-content',
-                marginRight: '10px',
-                marginBottom: '10px',
-              }}
+            <Link
+              passHref
+              href={`/results?SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                tag.name
+              )}`}
             >
-              <Typography component="span" sx={{ fontWeight: '400' }}>
-                {tag.name}
-              </Typography>
-            </Box>
+              <Box
+                key={tag.name}
+                sx={{
+                  padding: '6px 12px',
+                  backgroundColor: theme.palette.grey.f7,
+                  borderRadius: '30px',
+                  gap: '10px',
+                  maxWidth: 'fit-content',
+                  marginRight: '10px',
+                  marginBottom: '10px',
+                }}
+              >
+                <Typography component="span" sx={{ fontWeight: '400' }}>
+                  {tag.name}
+                </Typography>
+              </Box>
+            </Link>
           ))}
         </Box>
       </Box>

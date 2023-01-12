@@ -30,6 +30,7 @@ const ArticlesList = ({
           ? 'repeat(auto-fill, 360px) / repeat(3, 1fr)'
           : 'repeat(auto-fill, 360px) / 1fr',
         justifyItems: matchesXs && 'center',
+        gridGap: '15px',
       }}
     >
       {isAlgolia

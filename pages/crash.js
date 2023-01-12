@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     margin: 'auto',
-    backgroundColor: '#F7F8F9',
     [theme.breakpoints.down('sm')]: {
       padding: '40px 30px 30px 30px',
     },
@@ -83,7 +82,7 @@ const useStyles = makeStyles(theme => ({
 
 export async function getStaticProps() {
   let dataset
-  const doc = await database.ref().child(`content/pages/contact`).get()
+  const doc = await database.ref().child(`content/pages/crash`).get()
   if (doc.exists()) {
     dataset = doc.val()
   }
@@ -94,7 +93,7 @@ export async function getStaticProps() {
   }
 }
 
-const Contact = ({ dataset }) => {
+const Crash = ({ dataset }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -119,4 +118,4 @@ const Contact = ({ dataset }) => {
     </Box>
   )
 }
-export default Contact
+export default Crash

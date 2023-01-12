@@ -36,7 +36,6 @@ const SpotCarousel = ({ currentSpots, isShowingMoreSpots, dotListClass, infinite
             min: 0,
           },
           items: 1,
-          partialVisibilityGutter: 80,
         },
       }}
       slidesToSlide={1}

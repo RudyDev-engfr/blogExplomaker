@@ -44,6 +44,8 @@ import ButtonBookmark from '../../components/atoms/ButtonBookmark'
 import CountryAside from '../../components/molecules/spot/CountryAside'
 import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { spotsSlugsArray } from '../../helper/slugsArray'
+import ArticlesList from '../../components/molecules/ArticlesList'
+import ArticlesCarousel from '../../components/atoms/ArticlesCarousel'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -722,6 +724,9 @@ const useStyles = makeStyles(theme => ({
       zIndex: '-1',
     },
   },
+  articlesCarouselDots: {
+    right: 'unset',
+  },
 }))
 
 const months = [
@@ -796,6 +801,18 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [showGoTop, setShowGoTop] = useState(false)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
   const [currentLanguages, setCurrentLanguages] = useState('')
+  const [currentLinkedPosts, setCurrentLinkedPosts] = useState([])
+  const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
+
+  useEffect(() => {
+    if (typeof dataset.linked_posts !== 'undefined' || dataset.linked_posts !== {}) {
+      const linkedPostsKeys = Object.keys(dataset.linked_posts)
+      const tempLinkedPostArray = linkedPostsKeys.map(
+        currentKey => dataset.linked_posts[currentKey]
+      )
+      setCurrentLinkedPosts(tempLinkedPostArray)
+    }
+  }, [dataset.linked_posts])
 
   // useEffect(() => {
   //   if (typeof trendingDestinations !== 'undefined') {
@@ -892,30 +909,6 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
     {
       color: theme.palette.grey.df,
       label: dictionary.periode_visite[0],
-    },
-  ]
-
-  const mobileBlogCard = [
-    {
-      title: 'Le Kenya',
-      srcImg: blogPicture,
-      subtitle: 'Partez à la découverte des paysages grandioses et variés du Kenya',
-      likesCount: '12',
-      commentsCount: '2',
-    },
-    {
-      title: 'Le Kenya',
-      srcImg: blogPicture,
-      subtitle: 'Partez à la découverte des paysages grandioses et variés du Kenya',
-      likesCount: '12',
-      commentsCount: '2',
-    },
-    {
-      title: 'Le Kenya',
-      srcImg: blogPicture,
-      subtitle: 'Partez à la découverte des paysages grandioses et variés du Kenya',
-      likesCount: '12',
-      commentsCount: '2',
     },
   ]
 
@@ -2041,50 +2034,33 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               width="100%"
               justifyContent="space-between"
               alignItems="center"
-              paddingBottom="60px"
+              sx={{ position: 'relative' }}
             >
-              {/* {matchesXs ? (
-                <Carousel
-                  animation="slide"
-                  autoPlay={false}
-                  navButtonsAlwaysInvisible
-                  indicators={false}
-                >
-                  {mobileBlogCard.map(({ title, srcImg, subtitle, commentsCount, likesCount }) => (
-                    <MobileBlogCard
-                      key={uuidv4()}
-                      title={title}
-                      srcImg={srcImg}
-                      subtitle={subtitle}
-                      commentsCount={commentsCount}
-                      likesCount={likesCount}
-                    />
-                  ))}
-                </Carousel>
+              {matchesXs ? (
+                <ArticlesCarousel
+                  currentArticles={currentLinkedPosts}
+                  dotListClass={classes.articlesCarouselDots}
+                />
               ) : (
-                blogCard.map(({ category, bigTitle, srcImg, date, timestamp, categoryColor }) => (
-                  <BlogCard
-                    key={uuidv4()}
-                    isHeartStroke
-                    isSmallSize
-                    category={category}
-                    categoryColor={categoryColor}
-                    bigTitle={bigTitle}
-                    srcImg={srcImg}
-                    date={date}
-                    timestamp={timestamp}
-                  />
-                ))
-              )} */}
+                <ArticlesList
+                  data={currentLinkedPosts}
+                  isShowingMoreArticles={isShowingMoreArticles}
+                  isSmallSize
+                  numberOfArticles={3}
+                  numberOfMaxArticles={9}
+                />
+              )}
             </Box>
-            <Link
-              passHref
-              href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
-            >
-              <Button variant="contained" className={classes.globalButton}>
-                Voir tous les articles
-              </Button>
-            </Link>
+            <Box sx={{ paddingTop: '60px' }}>
+              <Link
+                passHref
+                href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
+              >
+                <Button variant="contained" className={classes.globalButton}>
+                  Voir tous les articles
+                </Button>
+              </Link>
+            </Box>
           </Box>
         </Box>
       )}

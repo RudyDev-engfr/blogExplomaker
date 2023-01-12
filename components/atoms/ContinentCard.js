@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
     },
