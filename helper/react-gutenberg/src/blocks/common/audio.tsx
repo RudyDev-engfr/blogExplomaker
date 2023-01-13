@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-use-before-define
 import * as React from 'react'
 import { Box, Button, createStyles, Text } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -92,6 +93,7 @@ const WPGAudioBlock: React.SFC<IWPGBlock> = (props: any) => {
     innerHTML,
   } = props
   const matchesXs = useMediaQuery('(max-width:600px)')
+  const router = useRouter()
   const [imgArray, setImgArray] = React.useState([])
   const [currentImage, setCurrentImage] = React.useState(0)
 
@@ -154,7 +156,12 @@ const WPGAudioBlock: React.SFC<IWPGBlock> = (props: any) => {
               <Box className={classes.itemContainer} key={image.picture_titled.id}>
                 <Box className={classes.shadowVeil} />
                 <Text className={classes.itemTitle}>{image.title}</Text>
-                <Button variant="filled" className={classes.itemButton}>
+
+                <Button
+                  variant="filled"
+                  className={classes.itemButton}
+                  onClick={() => router.push(`/spot/${image.slug}`)}
+                >
                   Découvrir
                 </Button>
                 <img

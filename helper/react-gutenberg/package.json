@@ -28,6 +28,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@loadable/component": "^5.10.1",
+    "next": "^12.0.1",
     "@mantine/core": "^5.9.4",
     "@mantine/hooks": "^5.9.4",
     "@material-ui/icons": "^4.11.3",

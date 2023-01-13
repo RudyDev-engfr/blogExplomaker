@@ -46,7 +46,8 @@ const ButtonLike = ({
       startIcon={<FavoriteIcon />}
       className={clsx(classes.buttonLike, {
         [classes.likedColors]:
-          user?.spotsLiked?.includes(spotSlug) || user?.articlesLiked.includes(articleSlug),
+          user?.spotsLiked &&
+          (user?.spotsLiked?.includes(spotSlug) || user?.articlesLiked.includes(articleSlug)),
       })}
       onClick={() => {
         if (isSpots) {

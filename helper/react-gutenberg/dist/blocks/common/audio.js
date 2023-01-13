@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // eslint-disable-next-line no-use-before-define
 const React = require("react");
 const core_1 = require("@mantine/core");
+const router_1 = require("next/router");
 const react_multi_carousel_1 = require("react-multi-carousel");
 require("react-multi-carousel/lib/styles.css");
 const hooks_1 = require("@mantine/hooks");
@@ -85,6 +86,7 @@ const WPGAudioBlock = (props) => {
     // innerBlocks,
     innerHTML, } = props;
     const matchesXs = (0, hooks_1.useMediaQuery)('(max-width:600px)');
+    const router = (0, router_1.useRouter)();
     const [imgArray, setImgArray] = React.useState([]);
     const [currentImage, setCurrentImage] = React.useState(0);
     React.useEffect(() => {
@@ -126,7 +128,7 @@ const WPGAudioBlock = (props) => {
                     }, slidesToSlide: 1, swipeable: true, ssr: true, deviceType: matchesXs ? 'mobile' : 'desktop' }, imgArray.map(image => (React.createElement(core_1.Box, { className: classes.itemContainer, key: image.picture_titled.id },
                     React.createElement(core_1.Box, { className: classes.shadowVeil }),
                     React.createElement(core_1.Text, { className: classes.itemTitle }, image.title),
-                    React.createElement(core_1.Button, { variant: "filled", className: classes.itemButton }, "D\u00E9couvrir"),
+                    React.createElement(core_1.Button, { variant: "filled", className: classes.itemButton, onClick: () => router.push(`/spot/${image.slug}`) }, "D\u00E9couvrir"),
                     React.createElement("img", { src: `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(image.picture_titled.src.original)}`, alt: "", className: classes.carouselImage })))))))));
 };
 exports.default = WPGAudioBlock;
