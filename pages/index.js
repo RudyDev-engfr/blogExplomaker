@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -755,6 +756,13 @@ const Home = ({ dataset }) => {
 
   return (
     <>
+      <Head
+        title={dataset?.tags?.title}
+        description={dataset?.tags?.description}
+        url="https://explomaker.fr/inspiration"
+        OG={dataset.tags?.OG}
+        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+      />
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn

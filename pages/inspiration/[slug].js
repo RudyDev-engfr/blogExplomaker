@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Head from 'next/head'
 
 import WPGBlocks from '../../helper/react-gutenberg'
 import GetCustomBlock from '../../components/GutenbergCustomBlock'
@@ -133,55 +134,64 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
-    <Box>
-      {matchesXs && <MobileSearchButton />}
-      <Box className={classes.headerMapBox}>
-        <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
-      </Box>
-      <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
-        <Paper elevation={0} className={classes.headingPaper}>
-          {!matchesXs && (
-            <Box sx={{ maxWidth: '380px', width: '380px' }}>
-              <Box marginBottom="60px">
-                <SignatureProfile
-                  date={dataset.creation_date}
-                  readingTime={dataset.reading_time}
-                  tags={dataset.meta}
-                />
-              </Box>
-              {!matchesXs && (
-                <Box className={classes.interactionBox}>
-                  <Box marginRight="10px">
-                    <ButtonLike isArticle articleSlug={dataset.slug} />
-                  </Box>
-                  <ButtonBookmark isArticle articleSlug={dataset.slug} />
+    <>
+      <Head
+        title={dataset?.tags?.title}
+        description={dataset?.tags?.description}
+        url="https://explomaker.fr/inspiration"
+        OG={dataset.tags?.OG}
+        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+      />
+      <Box>
+        {matchesXs && <MobileSearchButton />}
+        <Box className={classes.headerMapBox}>
+          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+        </Box>
+        <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
+          <Paper elevation={0} className={classes.headingPaper}>
+            {!matchesXs && (
+              <Box sx={{ maxWidth: '380px', width: '380px' }}>
+                <Box marginBottom="60px">
+                  <SignatureProfile
+                    date={dataset.creation_date}
+                    readingTime={dataset.reading_time}
+                    tags={dataset.meta}
+                  />
                 </Box>
-              )}
+                {!matchesXs && (
+                  <Box className={classes.interactionBox}>
+                    <Box marginRight="10px">
+                      <ButtonLike isArticle articleSlug={dataset.slug} />
+                    </Box>
+                    <ButtonBookmark isArticle articleSlug={dataset.slug} />
+                  </Box>
+                )}
+              </Box>
+            )}
+            <Box
+              sx={{
+                maxWidth: '760px',
+                [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
+              }}
+            >
+              <Box display="flex" justifyContent="center" className={classes.categoryBox}>
+                <Typography
+                  sx={{
+                    fontSize: matchesXs ? '14px' : '12px',
+                    fontWeight: '500',
+                    color: theme.palette.primary.main,
+                    lineHeight: matchesXs ? '14px' : '16px',
+                  }}
+                >
+                  {dataset.sub_type[0].name}
+                </Typography>
+              </Box>
+              <Typography variant="h1">{dataset.title}</Typography>
+              <WPGBlocks blocks={dataset.blocks} />
             </Box>
-          )}
-          <Box
-            sx={{
-              maxWidth: '760px',
-              [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
-            }}
-          >
-            <Box display="flex" justifyContent="center" className={classes.categoryBox}>
-              <Typography
-                sx={{
-                  fontSize: matchesXs ? '14px' : '12px',
-                  fontWeight: '500',
-                  color: theme.palette.primary.main,
-                  lineHeight: matchesXs ? '14px' : '16px',
-                }}
-              >
-                {dataset.sub_type[0].name}
-              </Typography>
-            </Box>
-            <Typography variant="h1">{dataset.title}</Typography>
-            <WPGBlocks blocks={dataset.blocks} />
-          </Box>
-        </Paper>
+          </Paper>
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }

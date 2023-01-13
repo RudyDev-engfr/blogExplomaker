@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mui/material'
 
@@ -318,111 +319,292 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   }, [spotlight])
 
   return (
-    <Box>
-      {matchesXs && <MobileSearchButton />}
-      <Box className={classes.headerMapBox}>
-        <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
-        <Box className={classes.headerSearchbar}>
-          <Typography
-            color="white"
-            variant="h3"
-            paddingLeft={matchesXs ? '0' : '65px'}
-            className={classes.headerTitle}
-          >
-            Recherche ta destination voyage !
-          </Typography>
-          <Box display="flex" justifyContent="space-between">
-            <SearchField
-              placeholder="Pays, Région, Ville ..."
-              className={classes.headerInspiration}
-              rootInput={classes.rootInput}
-              needBorder={false}
-            />
+    <>
+      <Head
+        title={dataset?.tags?.title}
+        description={dataset?.tags?.description}
+        url="https://explomaker.fr/inspiration"
+        OG={dataset.tags?.OG}
+        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+      />
+      <Box>
+        {matchesXs && <MobileSearchButton />}
+        <Box className={classes.headerMapBox}>
+          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+          <Box className={classes.headerSearchbar}>
+            <Typography
+              color="white"
+              variant="h3"
+              paddingLeft={matchesXs ? '0' : '65px'}
+              className={classes.headerTitle}
+            >
+              Recherche ta destination voyage !
+            </Typography>
+            <Box display="flex" justifyContent="space-between">
+              <SearchField
+                placeholder="Pays, Région, Ville ..."
+                className={classes.headerInspiration}
+                rootInput={classes.rootInput}
+                needBorder={false}
+              />
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
-        <Paper elevation={0} className={classes.headingPaper}>
-          {/* Partie 1 Tile + text */}
-          {matchesXs ? (
-            <MobileIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
-          ) : (
-            <DesktopIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
-          )}
-          {/* fin de Partie 1 */}
-          {/* Partie 2 liste de BlogCard */}
-          {currentSpotlightArticles.length > 0 &&
-            (!matchesXs ? (
-              <Box marginBottom="60px">
-                <Typography variant="h6" color="grey.grey33">
-                  Articles sur {spotlight.prefixed_title}
+        <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
+          <Paper elevation={0} className={classes.headingPaper}>
+            {/* Partie 1 Tile + text */}
+            {matchesXs ? (
+              <MobileIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
+            ) : (
+              <DesktopIntro spotlight={spotlight} metaContinentRef={metaContinentRef} />
+            )}
+            {/* fin de Partie 1 */}
+            {/* Partie 2 liste de BlogCard */}
+            {currentSpotlightArticles.length > 0 &&
+              (!matchesXs ? (
+                <Box marginBottom="60px">
+                  <Typography variant="h6" color="grey.grey33">
+                    Articles sur {spotlight.prefixed_title}
+                  </Typography>
+                  <ArticlesList
+                    data={currentSpotlightArticles}
+                    isShowingMoreArticles={isShowingMoreArticles}
+                    isSmallSize
+                    numberOfArticles={3}
+                    numberOfMaxArticles={9}
+                  />
+                  <Box display="flex" justifyContent="center">
+                    {currentSpotlightArticles.length > 3 &&
+                      (!isShowingMoreArticles ? (
+                        <Button
+                          variant="contained"
+                          className={classes.buttonPrimary}
+                          onClick={() => setIsShowingMoreArticles(true)}
+                          sx={{ width: '13%' }}
+                        >
+                          Voir tout
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="contained"
+                          className={classes.buttonPrimary}
+                          onClick={() => setIsShowingMoreArticles(false)}
+                          sx={{ width: '13%' }}
+                        >
+                          Voir moins
+                        </Button>
+                      ))}
+                  </Box>
+                </Box>
+              ) : (
+                <Box marginBottom="120px">
+                  <Box marginBottom="20px">
+                    <Typography
+                      variant="h6"
+                      color="grey.grey33"
+                      textAlign="center"
+                      paddingRight="30px"
+                    >
+                      Articles sur {spotlight.prefixed_title}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ position: 'relative' }}>
+                    <ArticlesCarousel
+                      currentArticles={currentSpotlightArticles}
+                      dotListClass={classes.carouselNotCentered}
+                    />
+                  </Box>
+                </Box>
+              ))}
+            {/* fin de Partie 2 */}
+            {/* Partie 3 liste de spots */}
+            {!matchesXs ? (
+              <Box>
+                <Typography variant="h6" color="grey.grey33" marginBottom="15px">
+                  Spots en {spotlight.title}
                 </Typography>
-                <ArticlesList
-                  data={currentSpotlightArticles}
-                  isShowingMoreArticles={isShowingMoreArticles}
-                  isSmallSize
-                  numberOfArticles={3}
-                  numberOfMaxArticles={9}
-                />
+                <Box className={classes.spotResultContainer}>
+                  <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
+                </Box>
                 <Box display="flex" justifyContent="center">
-                  {currentSpotlightArticles.length > 3 &&
-                    (!isShowingMoreArticles ? (
-                      <Button
-                        variant="contained"
-                        className={classes.buttonPrimary}
-                        onClick={() => setIsShowingMoreArticles(true)}
-                        sx={{ width: '13%' }}
-                      >
-                        Voir tout
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="contained"
-                        className={classes.buttonPrimary}
-                        onClick={() => setIsShowingMoreArticles(false)}
-                        sx={{ width: '13%' }}
-                      >
-                        Voir moins
-                      </Button>
-                    ))}
+                  {!isShowingMoreSpots ? (
+                    <Button
+                      variant="contained"
+                      className={classes.buttonPrimary}
+                      onClick={() => setIsShowingMoreSpots(true)}
+                      sx={{ width: '13%' }}
+                    >
+                      Voir tout
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      className={classes.buttonPrimary}
+                      onClick={() => setIsShowingMoreSpots(false)}
+                      sx={{ width: '13%' }}
+                    >
+                      Voir moins
+                    </Button>
+                  )}
                 </Box>
               </Box>
             ) : (
-              <Box marginBottom="120px">
-                <Box marginBottom="20px">
+              <Box marginBottom="30px">
+                <Box>
                   <Typography
                     variant="h6"
                     color="grey.grey33"
+                    marginBottom="15px"
                     textAlign="center"
                     paddingRight="30px"
                   >
-                    Articles sur {spotlight.prefixed_title}
+                    Spots en {spotlight.title}
                   </Typography>
                 </Box>
                 <Box sx={{ position: 'relative' }}>
-                  <ArticlesCarousel
-                    currentArticles={currentSpotlightArticles}
+                  <SpotCarousel
+                    currentSpots={spotlight.unmissable}
+                    isShowingMoreSpots={isShowingMoreSpots}
                     dotListClass={classes.carouselNotCentered}
                   />
                 </Box>
               </Box>
-            ))}
-          {/* fin de Partie 2 */}
-          {/* Partie 3 liste de spots */}
-          {!matchesXs ? (
-            <Box>
-              <Typography variant="h6" color="grey.grey33" marginBottom="15px">
-                Spots en {spotlight.title}
-              </Typography>
-              <Box className={classes.spotResultContainer}>
-                <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
+            )}
+          </Paper>
+        </Box>
+        {/* Fin de partie 3 */}
+        {/* Partie 4 liste de continents */}
+        <Box
+          sx={{
+            backgroundColor: theme.palette.grey.f7,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: matchesXs ? '60px 30px' : '30px',
+          }}
+        >
+          <Box>
+            <Typography
+              variant="h6"
+              color="primary.ultraDark"
+              fontWeight="400"
+              sx={{ marginBottom: '10px' }}
+            >
+              Thématiques
+            </Typography>
+            <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+              Inspiration par continent
+            </Typography>
+            <Box className={classes.continentGrid}>
+              {continentArray.map(({ name, img, hoverImg, url }, index) => (
+                <ContinentCard
+                  continentTitle={name}
+                  continentImg={img}
+                  continentHoverImg={hoverImg}
+                  setIsHovering={setIsHovering}
+                  isHovering={isHovering}
+                  index={index}
+                  key={name}
+                  url={url}
+                  isOversized={matchesXs && index > 3}
+                />
+              ))}
+            </Box>
+          </Box>
+        </Box>
+        {/* fin de Partie 4 liste de continents */}
+        {/* Partie 5 liste des thématiques */}
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: theme.palette.grey.f7,
+          }}
+        >
+          <Box
+            sx={{ width: !matchesXs ? '1140px' : '100vw', padding: matchesXs ? '30px' : '60px 0' }}
+          >
+            <Typography
+              variant="h6"
+              color="primary.ultraDark"
+              fontWeight="400"
+              sx={{ marginBottom: '10px' }}
+            >
+              Thématiques
+            </Typography>
+            <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+              Thématiques les plus populaires
+            </Typography>
+            <Box className={classes.thematicGridContainer}>
+              {currentPopularThemes.map(({ name: thematicName, picture, target_url: link }) => (
+                <ThematicCard
+                  key={thematicName}
+                  title={thematicName}
+                  srcImg={picture.src.original}
+                  link={link}
+                />
+              ))}
+            </Box>
+          </Box>
+        </Box>
+        {/* Fin de partie 5 */}
+        {/* Partie 6 */}
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            paddingTop: '60px',
+            marginBottom: '60px',
+          }}
+        >
+          <Box
+            sx={{
+              width: !matchesXs ? '1140px' : '100vw',
+              padding: matchesXs && '0 0 0 30px',
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="primary.ultraDark"
+              fontWeight="400"
+              sx={{ marginBottom: '10px' }}
+            >
+              Articles
+            </Typography>
+            <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+              Vos articles préférés de la semaine
+            </Typography>
+            {matchesXs ? (
+              <Box sx={{ position: 'relative' }}>
+                <ArticlesCarousel
+                  currentArticles={currentFavoritesArticles}
+                  dotListClass={classes.carouselNotCentered}
+                />
               </Box>
-              <Box display="flex" justifyContent="center">
-                {!isShowingMoreSpots ? (
+            ) : (
+              <ArticlesList
+                data={currentFavoritesArticles}
+                isShowingMoreArticles={isShowingMoreFavoritesArticles}
+                isSmallSize
+                numberOfArticles={3}
+                numberOfMaxArticles={9}
+              />
+            )}
+
+            <Box display="flex" justifyContent="center">
+              {currentFavoritesArticles.length > 3 &&
+                (!isShowingMoreFavoritesArticles ? (
                   <Button
                     variant="contained"
                     className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreSpots(true)}
+                    onClick={() => setIsShowingMoreFavoritesArticles(true)}
                     sx={{ width: '13%' }}
                   >
                     Voir tout
@@ -431,134 +613,106 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   <Button
                     variant="contained"
                     className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreSpots(false)}
+                    onClick={() => setIsShowingMoreFavoritesArticles(false)}
                     sx={{ width: '13%' }}
                   >
                     Voir moins
                   </Button>
-                )}
-              </Box>
+                ))}
             </Box>
-          ) : (
-            <Box marginBottom="30px">
-              <Box>
-                <Typography
-                  variant="h6"
-                  color="grey.grey33"
-                  marginBottom="15px"
-                  textAlign="center"
-                  paddingRight="30px"
-                >
-                  Spots en {spotlight.title}
-                </Typography>
-              </Box>
-              <Box sx={{ position: 'relative' }}>
-                <SpotCarousel
-                  currentSpots={spotlight.unmissable}
-                  isShowingMoreSpots={isShowingMoreSpots}
-                  dotListClass={classes.carouselNotCentered}
-                />
-              </Box>
-            </Box>
-          )}
-        </Paper>
-      </Box>
-      {/* Fin de partie 3 */}
-      {/* Partie 4 liste de continents */}
-      <Box
-        sx={{
-          backgroundColor: theme.palette.grey.f7,
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: matchesXs ? '60px 30px' : '30px',
-        }}
-      >
-        <Box>
-          <Typography
-            variant="h6"
-            color="primary.ultraDark"
-            fontWeight="400"
-            sx={{ marginBottom: '10px' }}
-          >
-            Thématiques
-          </Typography>
-          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-            Inspiration par continent
-          </Typography>
-          <Box className={classes.continentGrid}>
-            {continentArray.map(({ name, img, hoverImg, url }, index) => (
-              <ContinentCard
-                continentTitle={name}
-                continentImg={img}
-                continentHoverImg={hoverImg}
-                setIsHovering={setIsHovering}
-                isHovering={isHovering}
-                index={index}
-                key={name}
-                url={url}
-                isOversized={matchesXs && index > 3}
-              />
-            ))}
           </Box>
         </Box>
-      </Box>
-      {/* fin de Partie 4 liste de continents */}
-      {/* Partie 5 liste des thématiques */}
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: theme.palette.grey.f7,
-        }}
-      >
-        <Box
-          sx={{ width: !matchesXs ? '1140px' : '100vw', padding: matchesXs ? '30px' : '60px 0' }}
-        >
-          <Typography
-            variant="h6"
-            color="primary.ultraDark"
-            fontWeight="400"
-            sx={{ marginBottom: '10px' }}
-          >
-            Thématiques
-          </Typography>
-          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-            Thématiques les plus populaires
-          </Typography>
-          <Box className={classes.thematicGridContainer}>
-            {currentPopularThemes.map(({ name: thematicName, picture, target_url: link }) => (
-              <ThematicCard
-                key={thematicName}
-                title={thematicName}
-                srcImg={picture.src.original}
-                link={link}
-              />
-            ))}
-          </Box>
-        </Box>
-      </Box>
-      {/* Fin de partie 5 */}
-      {/* Partie 6 */}
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingTop: '60px',
-          marginBottom: '60px',
-        }}
-      >
+        {/* Fin de la partie 6 */}
+        {/* Partie 7 */}
         <Box
           sx={{
             width: !matchesXs ? '1140px' : '100vw',
-            padding: matchesXs && '0 0 0 30px',
+            padding: matchesXs && '30px',
+            margin: 'auto',
+            marginBottom: '60px',
+            paddingTop: '60px',
+          }}
+        >
+          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+            Articles par catégorie
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+            }}
+          >
+            {categoriesName.map(category => (
+              <Button
+                endIcon={<ArrowRightAlt />}
+                sx={{
+                  width: '360px',
+                  backgroundColor: theme.palette.grey.f7,
+                  textTransform: 'none',
+                  justifyContent: 'space-between',
+                  padding: '15px 20px',
+                  color: theme.palette.grey.grey33,
+                  marginBottom: '20px',
+                }}
+                onClick={() =>
+                  router.push(`
+              /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
+                category
+              )}`)
+                }
+              >
+                {category}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+        {/* fin de la Partie 7 */}
+        {/* partie 8 */}
+        <Box sx={{ backgroundColor: theme.palette.grey.f7, margin: 'auto' }}>
+          <Box
+            sx={{
+              width: !matchesXs ? '1140px' : '100vw',
+              padding: matchesXs && '30px',
+              margin: 'auto',
+              paddingTop: '60px',
+              paddingBottom: '60px',
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="primary.ultraDark"
+              fontWeight="400"
+              sx={{ marginBottom: '10px' }}
+            >
+              Thématiques
+            </Typography>
+            <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
+              De l&apos;inspi pour tous tes projets de voyage
+            </Typography>
+            <Box className={classes.inspiTypeContainer}>
+              {currentInspirationForPeople.map(
+                ({ logo, name: inspirationName, picture, target_url: targetUrl }) => (
+                  <ThematicCard
+                    key={inspirationName}
+                    title={inspirationName}
+                    srcImg={picture.src.original}
+                    link={targetUrl}
+                  />
+                )
+              )}
+            </Box>
+          </Box>
+        </Box>
+        {/* fin de la partie 8 */}
+        {/* Partie 9 inspiration par mois */}
+        <Box
+          sx={{
+            width: !matchesXs ? '1140px' : '100vw',
+            padding: matchesXs && '0  0 0 30px',
+            margin: 'auto',
+            paddingTop: '60px',
+            marginBottom: matchesXs ? '180px' : '60px',
           }}
         >
           <Typography
@@ -570,206 +724,62 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             Articles
           </Typography>
           <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-            Vos articles préférés de la semaine
+            Les meilleures destinations, mois par mois
           </Typography>
           {matchesXs ? (
             <Box sx={{ position: 'relative' }}>
               <ArticlesCarousel
-                currentArticles={currentFavoritesArticles}
+                currentArticles={currentMonthInspiration}
                 dotListClass={classes.carouselNotCentered}
               />
             </Box>
           ) : (
-            <ArticlesList
-              data={currentFavoritesArticles}
-              isShowingMoreArticles={isShowingMoreFavoritesArticles}
-              isSmallSize
-              numberOfArticles={3}
-              numberOfMaxArticles={9}
-            />
+            <>
+              <ArticlesList
+                data={currentMonthInspiration}
+                isShowingMoreArticles={isShowingMoreMonthInspiration}
+                isSmallSize
+                numberOfArticles={6}
+                numberOfMaxArticles={12}
+              />
+              <Box display="flex" justifyContent="center" sx={{ paddingTop: '60px' }}>
+                {!isShowingMoreMonthInspiration ? (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreMonthInspiration(true)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir tout
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    className={classes.buttonPrimary}
+                    onClick={() => setIsShowingMoreMonthInspiration(false)}
+                    sx={{ width: '13%' }}
+                  >
+                    Voir moins
+                  </Button>
+                )}
+              </Box>
+            </>
           )}
-
-          <Box display="flex" justifyContent="center">
-            {currentFavoritesArticles.length > 3 &&
-              (!isShowingMoreFavoritesArticles ? (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreFavoritesArticles(true)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir tout
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreFavoritesArticles(false)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir moins
-                </Button>
-              ))}
-          </Box>
         </Box>
-      </Box>
-      {/* Fin de la partie 6 */}
-      {/* Partie 7 */}
-      <Box
-        sx={{
-          width: !matchesXs ? '1140px' : '100vw',
-          padding: matchesXs && '30px',
-          margin: 'auto',
-          marginBottom: '60px',
-          paddingTop: '60px',
-        }}
-      >
-        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-          Articles par catégorie
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-          }}
-        >
-          {categoriesName.map(category => (
-            <Button
-              endIcon={<ArrowRightAlt />}
-              sx={{
-                width: '360px',
-                backgroundColor: theme.palette.grey.f7,
-                textTransform: 'none',
-                justifyContent: 'space-between',
-                padding: '15px 20px',
-                color: theme.palette.grey.grey33,
-                marginBottom: '20px',
-              }}
-              onClick={() =>
-                router.push(`
-              /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
-                category
-              )}`)
-              }
-            >
-              {category}
-            </Button>
-          ))}
-        </Box>
-      </Box>
-      {/* fin de la Partie 7 */}
-      {/* partie 8 */}
-      <Box sx={{ backgroundColor: theme.palette.grey.f7, margin: 'auto' }}>
+        {/* fin de partie 9 */}
         <Box
           sx={{
             width: !matchesXs ? '1140px' : '100vw',
-            padding: matchesXs && '30px',
+            padding: matchesXs && '0  30px 0 30px',
             margin: 'auto',
             paddingTop: '60px',
-            paddingBottom: '60px',
+            marginBottom: matchesXs ? '180px' : '60px',
           }}
         >
-          <Typography
-            variant="h6"
-            color="primary.ultraDark"
-            fontWeight="400"
-            sx={{ marginBottom: '10px' }}
-          >
-            Thématiques
-          </Typography>
-          <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-            De l&apos;inspi pour tous tes projets de voyage
-          </Typography>
-          <Box className={classes.inspiTypeContainer}>
-            {currentInspirationForPeople.map(
-              ({ logo, name: inspirationName, picture, target_url: targetUrl }) => (
-                <ThematicCard
-                  key={inspirationName}
-                  title={inspirationName}
-                  srcImg={picture.src.original}
-                  link={targetUrl}
-                />
-              )
-            )}
-          </Box>
+          <CTA />
         </Box>
       </Box>
-      {/* fin de la partie 8 */}
-      {/* Partie 9 inspiration par mois */}
-      <Box
-        sx={{
-          width: !matchesXs ? '1140px' : '100vw',
-          padding: matchesXs && '0  0 0 30px',
-          margin: 'auto',
-          paddingTop: '60px',
-          marginBottom: matchesXs ? '180px' : '60px',
-        }}
-      >
-        <Typography
-          variant="h6"
-          color="primary.ultraDark"
-          fontWeight="400"
-          sx={{ marginBottom: '10px' }}
-        >
-          Articles
-        </Typography>
-        <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-          Les meilleures destinations, mois par mois
-        </Typography>
-        {matchesXs ? (
-          <Box sx={{ position: 'relative' }}>
-            <ArticlesCarousel
-              currentArticles={currentMonthInspiration}
-              dotListClass={classes.carouselNotCentered}
-            />
-          </Box>
-        ) : (
-          <>
-            <ArticlesList
-              data={currentMonthInspiration}
-              isShowingMoreArticles={isShowingMoreMonthInspiration}
-              isSmallSize
-              numberOfArticles={6}
-              numberOfMaxArticles={12}
-            />
-            <Box display="flex" justifyContent="center" sx={{ paddingTop: '60px' }}>
-              {!isShowingMoreMonthInspiration ? (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreMonthInspiration(true)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir tout
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  className={classes.buttonPrimary}
-                  onClick={() => setIsShowingMoreMonthInspiration(false)}
-                  sx={{ width: '13%' }}
-                >
-                  Voir moins
-                </Button>
-              )}
-            </Box>
-          </>
-        )}
-      </Box>
-      {/* fin de partie 9 */}
-      <Box
-        sx={{
-          width: !matchesXs ? '1140px' : '100vw',
-          padding: matchesXs && '0  30px 0 30px',
-          margin: 'auto',
-          paddingTop: '60px',
-          marginBottom: matchesXs ? '180px' : '60px',
-        }}
-      >
-        <CTA />
-      </Box>
-    </Box>
+    </>
   )
 }
 export default Inspiration

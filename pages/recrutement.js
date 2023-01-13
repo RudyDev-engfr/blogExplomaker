@@ -1,5 +1,6 @@
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
+import Head from 'next/head'
 import Image from 'next/image'
 
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
@@ -98,24 +99,33 @@ const Recrutement = ({ dataset }) => {
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   return (
-    <Box>
-      {matchesXs && <MobileSearchButton />}
-      <Box className={classes.headerMapBox}>
-        <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+    <>
+      <Head
+        title={dataset?.tags?.title}
+        description={dataset?.tags?.description}
+        url="https://explomaker.fr/inspiration"
+        OG={dataset.tags?.OG}
+        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+      />
+      <Box>
+        {matchesXs && <MobileSearchButton />}
+        <Box className={classes.headerMapBox}>
+          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+        </Box>
+        <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
+          <Paper elevation={0} className={classes.headingPaper}>
+            <Box
+              sx={{
+                [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
+              }}
+            >
+              <Typography variant="h1">{dataset.title}</Typography>
+              <WPGBlocks blocks={dataset.blocks} />
+            </Box>
+          </Paper>
+        </Box>
       </Box>
-      <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
-        <Paper elevation={0} className={classes.headingPaper}>
-          <Box
-            sx={{
-              [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
-            }}
-          >
-            <Typography variant="h1">{dataset.title}</Typography>
-            <WPGBlocks blocks={dataset.blocks} />
-          </Box>
-        </Paper>
-      </Box>
-    </Box>
+    </>
   )
 }
 export default Recrutement

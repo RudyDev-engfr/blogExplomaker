@@ -1001,12 +1001,13 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   return (
     <>
-      {/* <Head
-        title={dataset?.title}
-        description={dataset?.catch_sentence}
+      <Head
+        title={dataset?.tags?.title}
+        description={dataset?.tags?.catch_sentence}
         url={`https://explomaker.fr/spot/${slug}`}
+        OG={dataset.tags.OG}
         thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
-      /> */}
+      />
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn
