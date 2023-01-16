@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
@@ -35,7 +36,6 @@ import blogPicture2 from '../../images/blogCardPicture2.png'
 import blogPicture3 from '../../images/blogCardPicture3.png'
 import planningImg from '../../images/ILLUSTRATION_PLANNING_1.png'
 import ButtonLike from '../../components/atoms/ButtonLike'
-import Head from '../../components/molecules/Head'
 import TrendingDestinations from '../../components/molecules/TrendingDestinations'
 import BackButton from '../../components/atoms/BackButton'
 import TrendingDestinationsDotBox from '../../components/multi-carousel/TrendingDestinationsDotBox'
@@ -1006,7 +1006,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
         description={dataset?.tags?.catch_sentence}
         url={`https://explomaker.fr/spot/${slug}`}
         OG={dataset.tags.OG}
-        thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
       />
       <Box ref={refScrollUp} />
       {!matchesXs && (
