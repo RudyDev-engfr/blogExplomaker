@@ -114,16 +114,12 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="https://explomaker.fr/inspiration/fonctionnement-explomaker"
+                href="https://explomaker.fr/fonctionnement"
                 className={classes.footerLink}
               >
                 Fonctionnement de l&rsquo;app
               </Link>
-              <Link
-                variant="body2"
-                href="/inspiration/guide-demarrage-explomaker"
-                className={classes.footerLink}
-              >
+              <Link variant="body2" href="/inspiration/demarrage" className={classes.footerLink}>
                 Débuter avec Explomaker
               </Link>
               <Link
@@ -207,7 +203,7 @@ const Footer = () => {
               <Typography variant="h4" className={classes.footerTitle}>
                 Contact
               </Typography>
-              <Link href="/contact" variant="body2" className={classes.footerLink} rel="nofollow">
+              <Link href="/crash" variant="body2" className={classes.footerLink} rel="nofollow">
                 Une erreur sur l&rsquo;app ?
               </Link>
               <Link href="/contact" variant="body2" className={classes.footerLink} rel="nofollow">
