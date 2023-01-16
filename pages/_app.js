@@ -39,7 +39,7 @@ const MyApp = props => {
     return (
       <>
         <Head>
-          <title>Explomaker</title>
+          {/* <title>Explomaker</title> */}
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         </Head>
         <GlobalClassGenerator>

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
@@ -24,6 +23,7 @@ import Image from 'next/image'
 import { v4 as uuidv4 } from 'uuid'
 import 'react-multi-carousel/lib/styles.css'
 
+import Head from '../../components/molecules/Head'
 import BlogCard from '../../components/molecules/BlogCard'
 import GoTopBtn from '../../components/GoTopBtn'
 import IndicatorBox from '../../components/atoms/IndicatorBox'
@@ -1001,13 +1001,15 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   return (
     <>
-      <Head
-        title={dataset?.tags?.title}
-        description={dataset?.tags?.catch_sentence}
-        url={`https://explomaker.fr/spot/${slug}`}
-        OG={dataset.tags.OG}
-        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
-      />
+      {dataset?.tags && slug && (
+        <Head
+          title={dataset?.tags?.title}
+          description={dataset?.tags?.description}
+          url={`https://explomaker.fr/spot/${encodeURI(slug)}`}
+          OG={dataset?.tags?.OG}
+          // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
+        />
+      )}
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn

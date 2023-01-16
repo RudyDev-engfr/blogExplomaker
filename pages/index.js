@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Head from 'next/head'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -42,6 +41,7 @@ import SpotCard from '../components/SpotCard'
 import { database, mailCollection } from '../lib/firebase'
 import GoTopBtn from '../components/GoTopBtn'
 import TrendingDestinations from '../components/molecules/TrendingDestinations'
+import Head from '../components/molecules/Head'
 
 import logoFull from '../images/icons/logoFull.svg'
 import concept2 from '../images/concept2.png'
@@ -757,9 +757,9 @@ const Home = ({ dataset }) => {
   return (
     <>
       <Head
-        title={dataset?.tags?.title}
+        title="Explomaker spot"
         description={dataset?.tags?.description}
-        url="https://explomaker.fr/inspiration"
+        // url="https://www.explomaker.fr/inspiration"
         OG={dataset.tags?.OG}
         // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
       />
