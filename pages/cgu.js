@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 export async function getStaticProps() {
   let dataset
-  const doc = await database.ref().child(`content/pages/conditions-generales-d-utilisation`).get()
+  const doc = await database.ref().child(`content/pages/cgu`).get()
   if (doc.exists()) {
     dataset = doc.val()
   }

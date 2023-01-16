@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { ThemeProvider } from '@mui/material/styles'
 import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -38,10 +36,6 @@ const MyApp = props => {
   if (isLoaded) {
     return (
       <>
-        <Head>
-          {/* <title>Explomaker</title> */}
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        </Head>
         <GlobalClassGenerator>
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
