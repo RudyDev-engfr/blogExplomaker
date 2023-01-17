@@ -100,10 +100,7 @@ const Demarrage = ({ dataset }) => {
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <>
-      <Head
-
-      // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
-      />
+      {dataset?.tags && <Head tags={dataset.tags} />}
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>

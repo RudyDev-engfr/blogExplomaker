@@ -1001,7 +1001,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
 
   return (
     <>
-      {dataset?.tags && slug && <Head tags={dataset.tags} />}
+      {dataset?.tags && <Head tags={dataset.tags} />}
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn

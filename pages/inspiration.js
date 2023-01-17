@@ -320,13 +320,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
 
   return (
     <>
-      <Head
-        title={dataset?.tags?.title}
-        description={dataset?.tags?.description}
-        url="https://explomaker.fr/inspiration"
-        OG={dataset.tags?.OG}
-        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
-      />
+      {dataset?.tags && <Head tags={dataset.tags} />}
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
