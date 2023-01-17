@@ -13,7 +13,6 @@ const useStyles = makeStyles({
 const ArticlesList = ({
   data,
   isShowingMoreArticles,
-  isSmallSize = false,
   numberOfArticles = 2,
   isAlgolia = false,
   numberOfMaxArticles = 29,
@@ -62,7 +61,6 @@ const ArticlesList = ({
                   slug={slug}
                   is360px={!matchesXs}
                   className={classes.mobileBlogCardAndCountryTile}
-                  isSmallSize={isSmallSize}
                   isAlgolia={isAlgolia}
                 />
               )
@@ -88,7 +86,6 @@ const ArticlesList = ({
                   publishDate={creationDate ?? '17 Déc 2020 | 6min'}
                   is360px={!matchesXs}
                   className={classes.mobileBlogCardAndCountryTile}
-                  isSmallSize={isSmallSize}
                   slug={slug}
                   isAlgolia={isAlgolia}
                   category={subType[0].name}

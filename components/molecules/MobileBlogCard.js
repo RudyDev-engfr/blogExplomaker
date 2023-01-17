@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     height: '198px',
     [theme.breakpoints.down('sm')]: {
       height: '171px',
-      maxWidth: '285px',
+      objectFit: 'cover',
     },
   },
   rootMobile: {
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     height: '198px',
     [theme.breakpoints.down('sm')]: {
       height: '171px',
-      maxWidth: '285px',
+      objectFit: 'cover',
     },
   },
 

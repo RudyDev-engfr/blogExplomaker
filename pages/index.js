@@ -756,13 +756,7 @@ const Home = ({ dataset }) => {
 
   return (
     <>
-      <Head
-        title="Explomaker spot"
-        description={dataset?.tags?.description}
-        // url="https://www.explomaker.fr/inspiration"
-        OG={dataset.tags?.OG}
-        // thumbnail={`https://storage.googleapis.com/explomaker-data-stateless/${dataset?.picture_main.src.thumbnail}`}
-      />
+      {dataset?.tags && <Head tags={dataset?.tags} />}
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn

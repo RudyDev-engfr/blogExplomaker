@@ -363,7 +363,6 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   <ArticlesList
                     data={currentSpotlightArticles}
                     isShowingMoreArticles={isShowingMoreArticles}
-                    isSmallSize
                     numberOfArticles={3}
                     numberOfMaxArticles={9}
                   />

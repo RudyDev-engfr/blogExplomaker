@@ -275,6 +275,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                     className={classes.mobileBlogCardAndCountryTile}
                     readingTime={readingTime}
                     category={category[0].name}
+                    isMobile={matchesXs}
                   />
                 )
               )
@@ -328,6 +329,7 @@ const MyArticles = ({ currentArticles, isLoading }) => {
                   className={classes.mobileBlogCardAndCountryTile}
                   readingTime={readingTime}
                   category={category[0].name}
+                  isMobile={matchesXs}
                 />
               )
             )}

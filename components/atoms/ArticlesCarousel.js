@@ -66,6 +66,7 @@ const ArticlesCarousel = ({ currentArticles, dotListClass }) => {
               category={subType[0].name}
               targetLink={targetURL}
               readingTime={readingTime}
+              isMobile
             />
           </Box>
         )
