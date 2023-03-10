@@ -799,6 +799,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const [currentLanguages, setCurrentLanguages] = useState('')
   const [currentLinkedPosts, setCurrentLinkedPosts] = useState([])
   const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
+  const [readMore, setReadMore] = useState()
 
   useEffect(() => {
     if (typeof dataset.linked_posts !== 'undefined' || dataset.linked_posts !== {}) {
@@ -1893,6 +1894,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </>
             ) : (
               <>
+                {/* reasons desktop version */}
                 <Box className={classes.reasonsHeader}>
                   <Typography
                     variant="h3"
@@ -1967,7 +1969,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                           <Typography variant="h3" className={classes.reasonCardTitle}>
                             {cardTitle}
                           </Typography>
-                          <Box sx={{ maxHeight: !matchesXs && '275px', overflowY: 'auto' }}>
+                          <Box
+                            sx={{
+                              maxHeight: !matchesXs && '275px',
+                              overflowY: readMore === index && 'auto',
+                            }}
+                          >
                             <Typography
                               className={clsx(
                                 classes.mobileAlignCenter,
@@ -1977,6 +1984,41 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                               {cardText}
                             </Typography>
                           </Box>
+                          {cardText.split('').length >= 680 && readMore !== index && (
+                            <>
+                              <Box
+                                sx={{
+                                  position: 'absolute',
+                                  bottom: 0,
+                                  left: 0,
+                                  width: ' 100%',
+                                  height: '118px',
+                                  padding: '65px 0 10px',
+                                  textAlign: 'center',
+                                  cursor: 'pointer',
+                                  backgroundColor: 'rgb(230,245,244)',
+                                  background:
+                                    'linear-gradient(0deg, rgba(230,245,244,1) 50%, rgba(230,245,244,0) 100%)',
+                                  borderRadius: '25px',
+                                  zIndex: 10,
+                                }}
+                              />
+                              <Button
+                                sx={{
+                                  zIndex: 11,
+                                  position: 'absolute',
+                                  bottom: '20px',
+                                  textTransform: 'none',
+                                  color: theme.palette.grey.grey33,
+                                  right: '50%',
+                                  transform: 'translateX(50%)',
+                                }}
+                                onClick={() => setReadMore(index)}
+                              >
+                                Lire la suite
+                              </Button>
+                            </>
+                          )}
                         </Paper>
                       </Box>
                     ))}
