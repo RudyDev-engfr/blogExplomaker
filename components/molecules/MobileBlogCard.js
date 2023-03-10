@@ -236,7 +236,7 @@ const MobileBlogCard = ({
           >
             <Typography
               className={classes.cardTitle}
-              dangerouslySetInnerHTML={{ __html: title.substring(0, 70).concat('...') }}
+              dangerouslySetInnerHTML={{ __html: title.substring(0, 70) }}
             />
             {/* {!is360px && (
               <Box display="flex">

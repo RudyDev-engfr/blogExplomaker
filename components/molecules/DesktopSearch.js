@@ -149,47 +149,66 @@ const DesktopSearch = ({
                   Spots({currentSpots.length > 16 ? '16+' : currentSpots.length})
                 </Typography>
               )}
-              {currentSpots.length > 4 && !isShowingMoreSpots && (
-                <Button
-                  sx={{
-                    textTransform: 'none',
-                    height: '32px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                  variant="contained"
-                  onClick={() => setIsShowingMoreSpots(true)}
-                >
-                  Voir plus
-                </Button>
-              )}
-              {isShowingMoreSpots && (
-                <Button
-                  sx={{
-                    textTransform: 'none',
-                    height: '32px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                  variant="contained"
-                  onClick={() => setIsShowingMoreSpots(false)}
-                >
-                  Voir moins
-                </Button>
-              )}
             </Box>
-
             {!matchesXs && currentSpots.length > 0 && (
-              <Box className={classes.spotResultContainer}>
-                <SpotList
-                  data={currentSpots}
-                  isShowingMoreSpots={isShowingMoreSpots}
-                  isAlgolia
-                  numberOfSpots={8}
-                />
-              </Box>
+              <>
+                <Box className={classes.spotResultContainer}>
+                  <SpotList
+                    data={currentSpots}
+                    isShowingMoreSpots={isShowingMoreSpots}
+                    isAlgolia
+                    numberOfSpots={8}
+                  />
+                </Box>
+                {currentSpots.length > 4 && !isShowingMoreSpots && (
+                  <Box
+                    sx={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      paddingBottom: '15px',
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        textTransform: 'none',
+                        height: '32px',
+                        borderRadius: '5px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                      }}
+                      variant="contained"
+                      onClick={() => setIsShowingMoreSpots(true)}
+                    >
+                      Voir plus
+                    </Button>
+                  </Box>
+                )}
+                {isShowingMoreSpots && (
+                  <Box
+                    sx={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      paddingBottom: '15px',
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        textTransform: 'none',
+                        height: '32px',
+                        borderRadius: '5px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                      }}
+                      variant="contained"
+                      onClick={() => setIsShowingMoreSpots(false)}
+                    >
+                      Voir moins
+                    </Button>
+                  </Box>
+                )}
+              </>
             )}
             <Box
               marginBottom="30px"
@@ -201,36 +220,6 @@ const DesktopSearch = ({
                 <Typography variant="h3" component="h2">
                   Articles({currentArticles.length})
                 </Typography>
-              )}
-              {currentArticles.length > 9 && !isShowingMoreArticles && (
-                <Button
-                  sx={{
-                    textTransform: 'none',
-                    height: '32px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                  variant="contained"
-                  onClick={() => setIsShowingMoreArticles(true)}
-                >
-                  Voir plus
-                </Button>
-              )}
-              {isShowingMoreArticles && (
-                <Button
-                  sx={{
-                    textTransform: 'none',
-                    height: '32px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                  variant="contained"
-                  onClick={() => setIsShowingMoreArticles(false)}
-                >
-                  Voir moins
-                </Button>
               )}
             </Box>
             <Box className={classes.articlesResultContainer}>
@@ -244,6 +233,54 @@ const DesktopSearch = ({
                 />
               )}
             </Box>
+            {currentArticles.length > 9 && !isShowingMoreArticles && (
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: '15px',
+                }}
+              >
+                <Button
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
+                  variant="contained"
+                  onClick={() => setIsShowingMoreArticles(true)}
+                >
+                  Voir plus
+                </Button>
+              </Box>
+            )}
+            {isShowingMoreArticles && (
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: '15px',
+                }}
+              >
+                <Button
+                  sx={{
+                    textTransform: 'none',
+                    height: '32px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                  }}
+                  variant="contained"
+                  onClick={() => setIsShowingMoreArticles(false)}
+                >
+                  Voir moins
+                </Button>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
