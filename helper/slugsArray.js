@@ -1,59 +1,20 @@
 export const ArticlesSlugsArray = [
+  { params: { slug: 'le-guide-ultime-dun-evg-evjf-reussi' } },
+  { params: { slug: 'checklist-de-depart-en-voyage' } },
+  { params: { slug: 'le-guide-de-preparation-dun-voyage' } },
+  { params: { slug: 'un-week-end-en-alsace-au-coeur-de-la-magie-de-noel' } },
   {
-    params: {
-      slug: 'un-week-end-en-alsace-au-coeur-de-la-magie-de-noel',
-    },
+    params: { slug: 'les-jeux-de-pistes-urbains-une-aventure-trepidante-pour-un-city-trip-reussi' },
   },
-  {
-    params: {
-      slug: 'les-jeux-de-pistes-urbains-une-aventure-trepidante-pour-un-city-trip-reussi',
-    },
-  },
-  {
-    params: {
-      slug: 'voyages-et-pourboires-ce-quil-faut-savoir',
-    },
-  },
-  {
-    params: {
-      slug: 'quelle-destination-pour-un-voyage-de-noces-2',
-    },
-  },
-  {
-    params: {
-      slug: 'que-faire-a-new-york-10-idees-originales-sortir-des-sentiers-battus',
-    },
-  },
-  {
-    params: {
-      slug: 'activites-improbables-a-faire-en-voyage',
-    },
-  },
-  {
-    params: {
-      slug: 'briefing-pour-voyager-moins-cher',
-    },
-  },
-  {
-    params: {
-      slug: 'top-des-destinations-encore-hors-des-sentiers-battus',
-    },
-  },
-  {
-    params: {
-      slug: 'le-petit-guide-pour-bien-preparer-sa-valise',
-    },
-  },
-  {
-    params: {
-      slug: 'guide-demarrage-explomaker',
-    },
-  },
-  {
-    params: {
-      slug: 'fonctionnement-explomaker',
-    },
-  },
+  { params: { slug: 'voyages-et-pourboires-ce-quil-faut-savoir' } },
+  { params: { slug: 'quelle-destination-pour-un-voyage-de-noces-2' } },
+  { params: { slug: 'avril' } },
+  { params: { slug: 'que-faire-a-new-york-10-idees-originales-sortir-des-sentiers-battus' } },
+  { params: { slug: 'activites-improbables-a-faire-en-voyage' } },
+  { params: { slug: 'briefing-pour-voyager-moins-cher' } },
+  { params: { slug: 'top-des-destinations-encore-hors-des-sentiers-battus' } },
+  { params: { slug: 'guide-demarrage-explomaker' } },
+  { params: { slug: 'fonctionnement-explomaker' } },
 ]
 
 export const spotsSlugsArray = [
