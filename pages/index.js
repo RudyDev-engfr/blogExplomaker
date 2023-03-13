@@ -88,13 +88,13 @@ const itemsPreparation = [
 const itemsCollaborate = [
   {
     Icon: ChatBubble,
-    label: 'Chat de groupe',
-    text: 'Un chat uniquement dédié à ton prochain séjour.',
+    label: 'Collaboration',
+    text: 'Obtenez des mises à jour en temps réel sur votre voyage à mesure qu’il prend forme',
   },
   {
     Icon: Poll,
     label: 'Sondages',
-    text: 'Créez des sondages et votez pour vos options préférées.',
+    text: 'Plus d’allers-retours d’e-mails pour essayer de fixer des dates et des activités. Créez des sondages et votez pour vos options préférées.',
   },
   {
     Icon: Favorite,
@@ -110,21 +110,21 @@ const itemsCollaborate = [
 
 const workingItem = [
   {
-    emoji: '🔍',
-    label: 'Avant : ',
-    coloredLabel: 'Préparez',
-    text: 'Psychopathes de l’organisation, \n ou partisans du freestyle, Explomaker saura vous fournir le dégré d’accompagnement que vous souhaitez pour la préparation de votre séjour.',
+    emoji: '📱',
+    label: '1  - ',
+    coloredLabel: 'Créer un voyage',
+    text: 'Démarrez un nouveau voyage sur explomaker et invitez vos amis ou votre famille avec le lien de partage unique du séjour.',
   },
   {
     emoji: '🧭',
-    label: 'Pendant : ',
-    coloredLabel: 'Explorez',
-    text: 'Consultez votre planning, déplacez vous facilement, accèdez à tous vos documents (billets, réservations...), explorez les alentours, et communiquez entre vous lorsque vous êtes séparés.',
+    label: '2 - ',
+    coloredLabel: 'Construisez votre itinéraire',
+    text: 'Construisez ensemble l’itinéraire de vos rêves en partageant vos idées et en découvrant des activités qui plairont à tous !',
   },
   {
     emoji: '📷',
-    label: 'Après : ',
-    coloredLabel: 'Partagez',
+    label: '3 - ',
+    coloredLabel: 'Profitez !',
     text: 'Créez des albums photos, privés oupartagés, et ajoutez-y vos photos de voyage pour pouvoir les commenter, les télécharger et vous remémorer de bons souvenirs, entre vous, de manière sécurisée.',
   },
 ]
@@ -789,17 +789,19 @@ const Home = ({ dataset }) => {
               >
                 <Box marginBottom="20px">
                   <Typography variant="h1" className={classes.mobileTextCenter}>
-                    L&rsquo;application qui{' '}
+                    L&rsquo;application de{' '}
                     <Box component="span" className={classes.textPrimary}>
-                      simplifie la préparation
+                      planification de voyage
                     </Box>{' '}
-                    de vos futurs voyages
+                    entre amis
                   </Typography>
                 </Box>
                 <Box marginBottom="40px">
                   <Typography variant="body1" className={classes.mobileTextCenter}>
-                    Simple, pratique et entièrement gratuit, Explomaker est un outil collaboratif
-                    complet qui t’accompagne avant, pendant et après ton séjour.
+                    Explomaker est la solution parfaite pour planifier sans stress votre prochaine
+                    aventure ! Grâce à son interface facile à utiliser, vous pouvez entre amis
+                    collaborer en toute simplicité pour planifier votre séjour et centraliser tous
+                    les détails de votre voyage en un seul endroit.
                   </Typography>
                 </Box>
                 <Box>
@@ -822,15 +824,15 @@ const Home = ({ dataset }) => {
                   <Box display="flex" justifyContent="space-evenly" flexWrap="wrap">
                     <Box display="flex" alignItems="center">
                       <Check color="primary" />
-                      <Typography>Complet</Typography>
+                      <Typography>Planning</Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" />
-                      <Typography>Collaboratif</Typography>
+                      <Typography>Explorations</Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" className={classes.checkIcons} />
-                      <Typography>Entièrement gratuit</Typography>
+                      <Typography>Inspirations</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -974,9 +976,9 @@ const Home = ({ dataset }) => {
                 </Box>
                 <Box marginBottom="40px">
                   <Typography variant="body1" className={classes.mobileTextCenter}>
-                    Tu utilises une dizaine d’applications pour préparer tes voyages ? Avec
-                    ExploMaker, c’est terminé ! Retrouve tout ce dont tu as besoin au sein d’une
-                    seule et même interface.
+                    Tu utilises plusieurs applications pour préparer tes voyages ? Avec ExploMaker,
+                    c’est terminé ! Retrouve tous tes préparatifs et tous tes voyages en un seul
+                    endroit.
                   </Typography>
                 </Box>
                 <Link href="https://app.explomaker.fr" passHref>
@@ -1021,7 +1023,7 @@ const Home = ({ dataset }) => {
                         classes.ultraDark
                       )}
                     >
-                      Un outil de plannification complet
+                      Un outil de planification complet
                     </Typography>
                   </Box>
                   <Box marginBottom="20px">
@@ -1030,13 +1032,15 @@ const Home = ({ dataset }) => {
                       component="h2"
                       className={clsx(classes.mobileTextCenter, classes.mobileTitle)}
                     >
-                      Tu aimes que tout soit carré? Bienvenue 🤝
+                      Tu aimes voyager l&apos;esprit tranquille, en sachant que tout est
+                      parfaitement planifié ? Bienvenue 🤝
                     </Typography>
                   </Box>
                   <Box marginBottom="50px">
                     <Typography variant="body1" className={classes.mobileTextCenter}>
-                      Ajoute hébergements, activités, restaurants, transports sur place et vols à
-                      ton planning. Des envies différentes ? Chacun son planning ! Ajoute tes
+                      Ajoutez progressivement à votre planning les idées et les différentes
+                      réservations : hébergements, activités, restaurants, transports, etc. Des
+                      envies différentes selon les participants ? Chacun son planning ! Ajoute tes
                       partenaires de voyage uniquement aux événements qui les concernent.
                     </Typography>
                   </Box>
@@ -1119,7 +1123,7 @@ const Home = ({ dataset }) => {
                       classes.ultraDark
                     )}
                   >
-                    La préparation de voyage simplifiée
+                    Un outil pour faciliter la prise de décision
                   </Typography>
                 </Box>
                 <Typography
@@ -1237,7 +1241,8 @@ const Home = ({ dataset }) => {
                     component="h2"
                     className={clsx(classes.mobileTextCenter, classes.mobileTitle)}
                   >
-                    Construisez ensemble le séjour de vos rêves 🙌
+                    Collaborez avec vos amis et votre famille pour organiser le meilleur voyage
+                    possible 🙌
                   </Typography>
                 </Box>
                 <Box className={classes.collaborationBox}>

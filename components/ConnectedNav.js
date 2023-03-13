@@ -250,7 +250,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                   Inspiration
                 </Button>
               </Link>
-              <Link href="/" passHref>
+              <Link href="https://app.explomaker.fr" passHref>
                 <Button disableRipple className={classes.navLink}>
                   Séjours
                 </Button>
