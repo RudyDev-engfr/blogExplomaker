@@ -799,9 +799,8 @@ const Home = ({ dataset }) => {
                 <Box marginBottom="40px">
                   <Typography variant="body1" className={classes.mobileTextCenter}>
                     Explomaker est la solution parfaite pour planifier sans stress votre prochaine
-                    aventure ! Grâce à son interface facile à utiliser, vous pouvez entre amis
-                    collaborer en toute simplicité pour planifier votre séjour et centraliser tous
-                    les détails de votre voyage en un seul endroit.
+                    aventure ! Créez votre séjour, invitez vos proches, et centralisez tous les
+                    détails de votre voyage en un seul endroit.
                   </Typography>
                 </Box>
                 <Box>
@@ -1038,10 +1037,18 @@ const Home = ({ dataset }) => {
                   </Box>
                   <Box marginBottom="50px">
                     <Typography variant="body1" className={classes.mobileTextCenter}>
-                      Ajoutez progressivement à votre planning les idées et les différentes
-                      réservations : hébergements, activités, restaurants, transports, etc. Des
-                      envies différentes selon les participants ? Chacun son planning ! Ajoute tes
-                      partenaires de voyage uniquement aux événements qui les concernent.
+                      Ajoutez progressivement à votre planning vos idées et réservations :
+                      hébergements, activités, restaurants, transports, etc. Des envies différentes
+                      selon les participants ? Chacun son planning ! Ajoute tes partenaires de
+                      voyage uniquement aux événements qui les concernent. Dans le paragraphe
+                      &quot;Comment ça marche ?\&quot; 1 - Crée ton voyage ! Démarre un nouveau
+                      voyage sur Explomaker et invite tes amis ou ta famille avec le lien de partage
+                      unique du séjour. 2 - Construis ton itinéraire ! Construis ensemble
+                      l&apos;itinéraire de tes rêves en partageant tes idées et en découvrant des
+                      activités qui te plaisent ! 3 - Profite ! Crée des albums photos, privés ou
+                      partagés, et ajoute-y tes photos de voyage pour pouvoir les commenter, les
+                      télécharger et te remémorer de bons souvenirs, entre toi et tes proches, de
+                      manière sécurisée.
                     </Typography>
                   </Box>
                 </Box>

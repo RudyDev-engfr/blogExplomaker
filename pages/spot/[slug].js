@@ -1195,19 +1195,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                 {typeof smallInfoText === 'string' &&
                                   !smallInfoText.includes('diplomatie') &&
                                   smallInfoText.substring(0, 20)}
-                                {typeof smallInfoText === 'string' &&
-                                  smallInfoText.includes('diplomatie') && (
-                                    <Link
-                                      href={smallInfoText}
-                                      sx={{
-                                        color: 'black',
-                                        textTransform: 'none',
-                                        textDecoration: 'underline black',
-                                      }}
-                                    >
-                                      Diplomatie.gouv.fr
-                                    </Link>
-                                  )}
+
                                 {/* {smallInfoText.length > 30 && '...'} */}
                                 {/* </Tooltip> */}
                                 {
@@ -1222,6 +1210,19 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                   1 EURO = {verySmallText} {moneyCode}
                                 </Typography>
                               )}
+                              {typeof smallInfoText === 'string' &&
+                                smallInfoText.includes('diplomatie') && (
+                                  <Link
+                                    href="https://www.diplomatie.gouv.fr"
+                                    sx={{
+                                      color: 'black',
+                                      textTransform: 'none',
+                                      textDecoration: 'underline black',
+                                    }}
+                                  >
+                                    Diplomatie.gouv.fr
+                                  </Link>
+                                )}
                             </Box>
                           </Box>
                         )
