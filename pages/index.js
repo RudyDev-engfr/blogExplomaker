@@ -650,6 +650,9 @@ const useStyles = makeStyles(theme => ({
   mobileAdaptedProject: {
     minHeight: '335px',
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 
 export async function getStaticProps() {
@@ -810,7 +813,12 @@ const Home = ({ dataset }) => {
                       [theme.breakpoints.down('sm')]: { display: 'flex', justifyContent: 'center' },
                     }}
                   >
-                    <Link href="https://app.explomaker.fr" passHref>
+                    <Link
+                      href="https://app.explomaker.fr"
+                      passHref
+                      target="_blank"
+                      className={classes.nextLink}
+                    >
                       <Button
                         variant="contained"
                         className={clsx(classes.buttonPrimary, classes.v5MuiBUttonFix)}
@@ -980,14 +988,16 @@ const Home = ({ dataset }) => {
                     endroit.
                   </Typography>
                 </Box>
-                <Link href="https://app.explomaker.fr" passHref>
+                <Link
+                  href="https://app.explomaker.fr"
+                  passHref
+                  target="_blank"
+                  className={classes.nextLink}
+                >
                   <Button
                     variant="contained"
-                    className={clsx(
-                      classes.buttonPrimary,
-                      classes.mediumSize,
-                      classes.v5MuiBUttonFix
-                    )}
+                    className={clsx(classes.buttonPrimary, classes.v5MuiBUttonFix)}
+                    sx={{ minWidth: '250px' }}
                   >
                     Crée ton séjour
                   </Button>
@@ -1104,7 +1114,7 @@ const Home = ({ dataset }) => {
                   </Box>
                 )}
               </Box>
-              <Image src={illustrationPlanning} width="537" quality={100} />
+              <Image src={illustrationPlanning} width={matchesXs ? '360' : '537'} quality={100} />
             </Box>
           </Box>
         </Box>
@@ -1223,7 +1233,7 @@ const Home = ({ dataset }) => {
               justifyContent="space-between"
               className={clsx(classes.mobileAlignCenter, classes.mobileReverseRow)}
             >
-              <Image src={illustrationCollab} width="562" quality={100} />
+              <Image src={illustrationCollab} width={matchesXs ? '360' : '562'} quality={100} />
               <Box
                 maxWidth="570px"
                 display="flex"
@@ -1495,15 +1505,20 @@ const Home = ({ dataset }) => {
                     </Box>
                   ))}
                 </Box>
-                <Link href="https://app.explomaker.fr" passHref>
+                <Link
+                  href="https://app.explomaker.fr"
+                  passHref
+                  target="_blank"
+                  className={classes.nextLink}
+                >
                   <Button
                     variant="contained"
                     className={clsx(
                       classes.buttonPrimary,
                       classes.smallSize,
-                      classes.mobileButton,
                       classes.v5MuiBUttonFix
                     )}
+                    sx={{ minWidth: '250px' }}
                   >
                     Crée ton séjour
                   </Button>
@@ -1671,7 +1686,12 @@ const Home = ({ dataset }) => {
                         currentArray
                       ) => (
                         <Box key={`hotArticles${title}`}>
-                          <Link passhref href={targetURL}>
+                          <Link
+                            passhref
+                            href={targetURL}
+                            target="_blank"
+                            className={classes.nextLink}
+                          >
                             <Button
                               className={classes.buttonBlogList}
                               endIcon={
@@ -1715,15 +1735,17 @@ const Home = ({ dataset }) => {
                     )}
                 </Paper>
               </Box>
-              <Link component={IconButton} passhref href="/inspiration">
+              <Link
+                component={IconButton}
+                passhref
+                href="/inspiration"
+                target="_blank"
+                className={classes.nextLink}
+              >
                 <Button
                   variant="contained"
-                  className={clsx(
-                    classes.buttonPrimary,
-                    classes.smallSize,
-                    classes.mobileButton,
-                    classes.v5MuiBUttonFix
-                  )}
+                  className={clsx(classes.buttonPrimary, classes.v5MuiBUttonFix)}
+                  sx={{ minWidth: '250px' }}
                 >
                   Plus de lecture ?
                 </Button>
@@ -1936,10 +1958,13 @@ const Home = ({ dataset }) => {
               <Link
                 passHref
                 href="/results?SearchFront%5BrefinementList%5D%5Bavis_explomaker%5D%5B0%5D=Nos%20coups%20de%20coeur"
+                target="_blank"
+                className={classes.nextLink}
               >
                 <Button
                   variant="contained"
-                  className={clsx(classes.buttonPrimary, classes.smallSize, classes.mobileButton)}
+                  className={clsx(classes.buttonPrimary)}
+                  sx={{ minWidth: '250px' }}
                 >
                   Tous les articles
                 </Button>

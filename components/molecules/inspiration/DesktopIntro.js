@@ -2,6 +2,7 @@ import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import logo from '../../../images/icons/logo.svg'
@@ -27,6 +28,9 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     padding: `${theme.spacing(2.5)} 25px`,
     borderRadius: '50px',
+  },
+  nextLink: {
+    textDecoration: 'none',
   },
 }))
 const DesktopIntro = ({ spotlight, metaContinentRef }) => {
@@ -60,15 +64,21 @@ const DesktopIntro = ({ spotlight, metaContinentRef }) => {
         </Typography>
         <Typography dangerouslySetInnerHTML={{ __html: spotlight.few_words }} />
         <Box sx={{ display: 'flex', paddingTop: '30px' }}>
-          <Button
-            startIcon={<Image src={logo} height={25} width={20} />}
-            variant="contained"
-            className={classes.buttonPrimary}
-            sx={{ marginRight: '15px' }}
-            onClick={() => router.push('https://app.explomaker.fr')}
+          <Link
+            passHref
+            href="https://app.explomaker.fr"
+            target="_blank"
+            className={classes.nextLink}
           >
-            Créer un séjour
-          </Button>
+            <Button
+              startIcon={<Image src={logo} height={25} width={20} />}
+              variant="contained"
+              className={classes.buttonPrimary}
+              sx={{ marginRight: '15px' }}
+            >
+              Créer un séjour
+            </Button>
+          </Link>
           <Button
             className={classes.buttonUltraLight}
             onClick={() => router.push(`/spot/${spotlight.slug}`)}

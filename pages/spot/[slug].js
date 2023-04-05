@@ -723,6 +723,9 @@ const useStyles = makeStyles(theme => ({
   articlesCarouselDots: {
     right: 'unset',
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 
 const months = [
@@ -1144,6 +1147,8 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                 href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
                                   tag.name
                                 )}`}
+                                className={classes.nextLink}
+                                target="_blank"
                               >
                                 <Typography className={classes.tagRounded} key={tag.id}>
                                   {tag.name}
@@ -1219,6 +1224,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                       textTransform: 'none',
                                       textDecoration: 'underline black',
                                     }}
+                                    target="_blank"
                                   >
                                     Diplomatie.gouv.fr
                                   </Link>
@@ -2089,6 +2095,8 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               <Link
                 passHref
                 href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
+                className={classes.nextLink}
+                target="_blank"
               >
                 <Button variant="contained" className={classes.globalButton}>
                   Voir tous les articles
@@ -2128,7 +2136,12 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                   t’accompagne avant, pendant et après ton séjour.
                 </Typography>
               </Box>
-              <Link passHref href="https://app.explomaker.fr">
+              <Link
+                passHref
+                href="https://app.explomaker.fr"
+                className={classes.nextLink}
+                target="_blank"
+              >
                 <Button variant="contained" className={classes.globalButton}>
                   Créer mon séjour
                 </Button>

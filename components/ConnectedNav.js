@@ -131,6 +131,9 @@ const useStyles = makeStyles(theme => ({
   tabs: {
     '& button': { textTransform: 'none', padding: '9px' },
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 
 const ConnectedNav = ({ isBgTransparent }) => {
@@ -182,7 +185,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Tab
           icon={<Image src={inspi} width={25} height={25} />}
           label={
-            <Link passHref href="/inspiration">
+            <Link passHref href="/inspiration" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
                 Inspi
               </Box>
@@ -193,7 +196,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Tab
           icon={<Image src={logoGrey} width={25} height={25} />}
           label={
-            <Link passHref href="https://app.explomaker.fr">
+            <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
                 Séjours
               </Box>
@@ -204,7 +207,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Tab
           icon={<Image src={favorite} width={25} height={25} />}
           label={
-            <Link passHref href="/favorites" rel="nofollow">
+            <Link passHref href="/favorites" rel="nofollow" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
                 Favoris
               </Box>
@@ -215,7 +218,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Tab
           icon={<Image src={profil} width={25} height={25} />}
           label={
-            <Link passHref href="https://app.explomaker.fr/profile">
+            <Link passHref href="https://app.explomaker.fr/profile" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
                 Profil
               </Box>
@@ -234,7 +237,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
     >
       <Box className={classes.autocontainerNav}>
         <Box className={classes.headerInner}>
-          <Link href="/" passHref>
+          <Link href="/" passHref className={classes.nextLink}>
             <Box sx={{ cursor: 'pointer' }}>
               <Image src={logoFull} width="180" />
             </Box>
@@ -245,12 +248,12 @@ const ConnectedNav = ({ isBgTransparent }) => {
             )}
           <Box className={classes.headerInnerRight}>
             <Box>
-              <Link href="/inspiration" passHref>
+              <Link href="/inspiration" passHref className={classes.nextLink}>
                 <Button disableRipple className={classes.navLink}>
                   Inspiration
                 </Button>
               </Link>
-              <Link href="https://app.explomaker.fr" passHref>
+              <Link href="https://app.explomaker.fr" passHref className={classes.nextLink}>
                 <Button disableRipple className={classes.navLink}>
                   Séjours
                 </Button>

@@ -1,6 +1,7 @@
 import { Box, Button, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import illustrationPlanning from '../../images/ILLUSTRATION_PLANNING_1.png'
 import logo from '../../images/icons/logo.svg'
@@ -11,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50px',
     boxShadow: '0 3px 15px 0 #009D8C33',
     textTransform: 'none',
+  },
+  nextLink: {
+    textDecoration: 'none',
   },
 }))
 const CTA = () => {
@@ -35,16 +39,23 @@ const CTA = () => {
           Créé gratuitement ton séjour sur Explomaker ! L’outil collaboratif complet qui
           t’accompagne avant, pendant et après ton séjour.
         </Typography>
-        <Button
-          startIcon={<Image src={logo} height={25} width={20} />}
-          variant="contained"
-          className={classes.buttonPrimary}
-          sx={{ marginBottom: matchesXs && '60px' }}
+        <Link
+          passHref
+          href="https://app.explomaker.fr"
+          target="_blank"
+          className={classes.nextLink}
         >
-          Créer un séjour
-        </Button>
+          <Button
+            startIcon={<Image src={logo} height={25} width={20} />}
+            variant="contained"
+            className={classes.buttonPrimary}
+            sx={{ marginBottom: matchesXs && '60px' }}
+          >
+            Créer un séjour
+          </Button>
+        </Link>
       </Box>
-      <Image src={illustrationPlanning} width="537" quality={100} />
+      <Image src={illustrationPlanning} width={matchesXs ? '360' : '537'} quality={100} />
     </Box>
   )
 }

@@ -401,7 +401,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                       Articles sur {spotlight.prefixed_title}
                     </Typography>
                   </Box>
-                  <Box sx={{ position: 'relative' }}>
+                  <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
                     <ArticlesCarousel
                       currentArticles={currentSpotlightArticles}
                       dotListClass={classes.carouselNotCentered}
@@ -575,7 +575,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               Vos articles préférés de la semaine
             </Typography>
             {matchesXs ? (
-              <Box sx={{ position: 'relative' }}>
+              <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
                 <ArticlesCarousel
                   currentArticles={currentFavoritesArticles}
                   dotListClass={classes.carouselNotCentered}
@@ -598,7 +598,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                     variant="contained"
                     className={classes.buttonPrimary}
                     onClick={() => setIsShowingMoreFavoritesArticles(true)}
-                    sx={{ width: '13%' }}
+                    sx={{ width: '13%', minWidth: '150px' }}
                   >
                     Voir tout
                   </Button>
@@ -720,7 +720,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             Les meilleures destinations, mois par mois
           </Typography>
           {matchesXs ? (
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
               <ArticlesCarousel
                 currentArticles={currentMonthInspiration}
                 dotListClass={classes.carouselNotCentered}

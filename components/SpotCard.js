@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
     color: '#DFDFDF',
     fontSize: '2.125rem',
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 
 const SpotCard = ({ data }) => {
@@ -82,7 +85,7 @@ const SpotCard = ({ data }) => {
         <Typography>{introduction}</Typography>
       </Box>
       {links.map(({ link /* TODO */, titre: linkTitle }) => (
-        <Link key={link} href={`${link}`}>
+        <Link key={link} href={`${link}`} target="_blank" className={classes.nextLink}>
           <Box display="flex" width="100%" marginBottom="30px" component={ButtonBase}>
             <Box marginRight="25px">
               <ArrowRightAlt className={classes.arrowList} />
