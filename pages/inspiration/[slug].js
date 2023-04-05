@@ -139,7 +139,13 @@ export default function Article({ dataset, dictionary, homePage, slug }) {
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
-          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+          <Image
+            src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+              dataset.picture.src.original
+            )}`}
+            layout="fill"
+            objectFit="cover"
+          />
         </Box>
         <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
           <Paper elevation={0} className={classes.headingPaper}>
