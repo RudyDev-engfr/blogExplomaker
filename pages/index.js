@@ -791,7 +791,7 @@ const Home = ({ dataset }) => {
                 className={classes.mobileAlignCenter}
               >
                 <Box marginBottom="20px">
-                  <Typography variant="h1" className={classes.mobileTextCenter}>
+                  <Typography variant="h1" component="h1" className={classes.mobileTextCenter}>
                     L&rsquo;application de{' '}
                     <Box component="span" className={classes.textPrimary}>
                       planification de voyage
