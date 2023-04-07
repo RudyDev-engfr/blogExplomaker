@@ -8,6 +8,8 @@ import theme from '../styles/theme'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import GlobalClassGenerator from '../styles/GlobalClassGenerator'
+
+import HeadContextProvider from '../contexts/head'
 import SessionContextProvider from '../contexts/session'
 
 import '../styles/firebaseui-styling.global.css'
@@ -40,11 +42,13 @@ const MyApp = props => {
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <SessionContextProvider>
-                <Nav />
-                <Component {...pageProps} />
-                <Footer />
-              </SessionContextProvider>
+              <HeadContextProvider>
+                <SessionContextProvider>
+                  <Nav />
+                  <Component {...pageProps} />
+                  <Footer />
+                </SessionContextProvider>
+              </HeadContextProvider>
             </ThemeProvider>
           </StyledEngineProvider>
         </GlobalClassGenerator>

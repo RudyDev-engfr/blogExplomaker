@@ -1051,14 +1051,6 @@ const Home = ({ dataset }) => {
                       hébergements, activités, restaurants, transports, etc. Des envies différentes
                       selon les participants ? Chacun son planning ! Ajoute tes partenaires de
                       voyage uniquement aux événements qui les concernent. Dans le paragraphe
-                      &quot;Comment ça marche ?\&quot; 1 - Crée ton voyage ! Démarre un nouveau
-                      voyage sur Explomaker et invite tes amis ou ta famille avec le lien de partage
-                      unique du séjour. 2 - Construis ton itinéraire ! Construis ensemble
-                      l&apos;itinéraire de tes rêves en partageant tes idées et en découvrant des
-                      activités qui te plaisent ! 3 - Profite ! Crée des albums photos, privés ou
-                      partagés, et ajoute-y tes photos de voyage pour pouvoir les commenter, les
-                      télécharger et te remémorer de bons souvenirs, entre toi et tes proches, de
-                      manière sécurisée.
                     </Typography>
                   </Box>
                 </Box>
