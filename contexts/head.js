@@ -14,7 +14,7 @@ if (!firebase.apps.length) {
 
 export const HeadContext = createContext()
 
-export const HeadProvider = ({ children }) => {
+const HeadContextProvider = ({ children }) => {
   const [headData, setHeadData] = useState({})
   const router = useRouter()
 
@@ -24,25 +24,54 @@ export const HeadProvider = ({ children }) => {
 
   useEffect(() => {
     let doc
+    let dataset
     const fetchTags = async () => {
       try {
         const database = firebase.database()
         if (!router.pathname.includes('inspiration') && !router.pathname.includes('spot')) {
-          doc = await database.ref().child('content/pages/aide').get()
+          doc = await database.ref().child('content/pages').get()
+          dataset = doc.val()
+          console.log('je ne devrais pas rentrer là avec mon pathname', dataset)
+        } else if (router.pathname.includes('/spot')) {
+          doc = await database.ref().child('content/spots').get()
+          dataset = doc.val()
+          console.log('je devrais rentrer là avec mon pathname', dataset)
         }
-        if (doc.exists()) {
-          const dataset = doc.val()
+        //  else if (
+        //   router.pathname.indexOf('/inspiration') !==
+        //   router.pathname.split('').length - 12
+        // ) {
+        //   doc = await database.ref().child('/page_structure/inspiration').get()
+        // }
+        if (dataset !== null) {
+          console.log('dataset du head', dataset.tags)
           updateHeadData(dataset.tags)
+          console.log('==== CHARGEMENT DES DONNEES HEAD REUSSIES ====')
         }
       } catch (error) {
         console.error(error)
+        console.error('Le document est introuvable ou ne peut pas être utilisé')
       }
     }
 
     fetchTags()
-  }, [])
+
+    // fetch tags data on route changes
+    router.events.on('routeChangeComplete', fetchTags)
+
+    // cleanup function to remove listener on unmount
+    return () => {
+      router.events.off('routeChangeComplete', fetchTags)
+    }
+  }, [router])
+
+  useEffect(() => {
+    console.log('je suis les data depuis le context', headData)
+  }, [headData])
 
   return (
     <HeadContext.Provider value={{ headData, updateHeadData }}>{children}</HeadContext.Provider>
   )
 }
+
+export default HeadContextProvider

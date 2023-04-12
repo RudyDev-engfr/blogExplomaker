@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
@@ -42,6 +42,7 @@ import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { spotsSlugsArray } from '../../helper/slugsArray'
 import ArticlesList from '../../components/molecules/ArticlesList'
 import ArticlesCarousel from '../../components/atoms/ArticlesCarousel'
+import { HeadContext } from '../../contexts/head'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -756,6 +757,7 @@ export async function getStaticProps({ params }) {
   let dataset
   let dictionary
   let homePage
+  let periodeVisited
   if (doc.exists()) {
     dataset = doc.val()
     if (
@@ -769,6 +771,7 @@ export async function getStaticProps({ params }) {
     const dictionaryDoc = await database.ref().child(`dictionary`).get()
     if (dictionaryDoc.exists()) {
       dictionary = dictionaryDoc.val()
+      periodeVisited = dictionary.periode_visite
     }
     const homePageDoc = await database.ref().child(`page_structure/accueil`).get()
     if (homePageDoc.exists()) {
@@ -781,12 +784,12 @@ export async function getStaticProps({ params }) {
   }
 
   return {
-    props: { dataset, dictionary, homePage, slug },
+    props: { dataset, periodeVisited, homePage, slug },
     revalidate: 1,
   }
 }
 
-const Spot = ({ dataset, dictionary, homePage, slug }) => {
+const Spot = ({ dataset, periodeVisited, homePage, slug }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -900,15 +903,15 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
   const legendTimeline = [
     {
       color: theme.palette.primary.main,
-      label: dictionary.periode_visite[2],
+      label: periodeVisited[2],
     },
     {
       color: 'rgba(0, 157, 140, 0.6)',
-      label: dictionary.periode_visite[1],
+      label: periodeVisited[1],
     },
     {
       color: theme.palette.grey.df,
-      label: dictionary.periode_visite[0],
+      label: periodeVisited[0],
     },
   ]
 
@@ -1453,6 +1456,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                         <Image
                           src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
                           layout="fill"
+                          alt={`photo${index}`}
                         />
                       </Box>
                     )
@@ -1528,6 +1532,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                             src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
                             width={960}
                             height={640}
+                            alt={`photo${index}`}
                             className={classes.photoCarouselSingleImage}
                           />
                         </Box>
@@ -1621,6 +1626,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                   layout="fill"
                                   quality={100}
                                   className={classes.countryGalleryImg}
+                                  alt="photoUnmissable"
                                 />
                               </Box>
                             )}
@@ -1725,6 +1731,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
                                     picture?.src.original
                                   )}`}
                                   layout="fill"
+                                  alt="photoUnmissable"
                                   quality={100}
                                   className={classes.countryGalleryImg}
                                 />
@@ -2148,7 +2155,7 @@ const Spot = ({ dataset, dictionary, homePage, slug }) => {
               </Link>
             </Box>
             <Box className={classes.imageContainerCTA2}>
-              <Image src={planningImg} width={537} quality={100} />
+              <Image src={planningImg} alt="planningImage" width={537} quality={100} />
             </Box>
           </Box>
         </Box>
