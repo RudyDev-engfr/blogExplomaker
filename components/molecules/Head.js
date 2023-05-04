@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import HeadNext from 'next/head'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useContext } from 'react'
 import { HeadContext } from '../../contexts/head'
@@ -8,6 +9,7 @@ import theme from '../../styles/theme'
 
 const Head = () => {
   const { headData: tags } = useContext(HeadContext)
+  const router = useRouter()
 
   return (
     <div>
@@ -20,6 +22,7 @@ const Head = () => {
             <meta name="description" content={tags.description} />
 
             {/* Open Graph metadata */}
+            {router.pathname === '/' && <meta name="agd-partner-manual-verification" />}
             <meta property="og:title" content={`${tags['og:title']} | Explomaker`} />
             <meta property="og:type" content={tags['og:type']} />
             <meta property="og:description" content={tags['og:description']} />
