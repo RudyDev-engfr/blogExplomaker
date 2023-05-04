@@ -22,7 +22,7 @@ const Head = () => {
             <meta name="description" content={tags.description} />
 
             {/* Open Graph metadata */}
-            {router.pathname === '/' && <meta name="agd-partner-manual-verification" />}
+            <meta name="agd-partner-manual-verification" />
             <meta property="og:title" content={`${tags['og:title']} | Explomaker`} />
             <meta property="og:type" content={tags['og:type']} />
             <meta property="og:description" content={tags['og:description']} />
