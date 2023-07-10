@@ -203,7 +203,7 @@ export async function getTimezone(lat, lng, timestamp) {
     headers: {},
   }
   const response = await fetch(
-    `https://maps.googleapis.com/maps/api/timezone/json?location=${lat}%2C${lng}&timestamp=${timestamp}&key=AIzaSyCKC9_XX60E1at2qp_90SU07-d-22pDydM`,
+    `https://maps.googleapis.com/maps/api/timezone/json?location=${lat}%2C${lng}&timestamp=${timestamp}&key=AIzaSyBJepvl7rY64ocX_24S1FnqYFyEHTRNBFU`,
     config
   )
 

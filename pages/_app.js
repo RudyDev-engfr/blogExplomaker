@@ -23,7 +23,7 @@ const mapsLibraries = ['places']
 const MyApp = props => {
   const { Component, pageProps } = props
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCKC9_XX60E1at2qp_90SU07-d-22pDydM',
+    googleMapsApiKey: 'AIzaSyBJepvl7rY64ocX_24S1FnqYFyEHTRNBFU',
     libraries: mapsLibraries,
   })
 
