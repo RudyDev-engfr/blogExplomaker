@@ -42,7 +42,6 @@ import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { spotsSlugsArray } from '../../helper/slugsArray'
 import ArticlesList from '../../components/molecules/ArticlesList'
 import ArticlesCarousel from '../../components/atoms/ArticlesCarousel'
-import { HeadContext } from '../../contexts/head'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -783,13 +782,25 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  let metaDoc
+  try {
+    metaDoc = await database.ref().child(`content/spots/${slug}`).get()
+  } catch (error) {
+    console.error(error)
+    return { notFound: true }
+  }
+
+  const spotData = metaDoc.val()
+  console.log('spotData', spotData)
+  const tags = spotData?.tags || {}
+
   return {
-    props: { dataset, periodeVisited, homePage, slug },
+    props: { dataset, periodeVisited, homePage, slug, tags },
     revalidate: 1,
   }
 }
 
-const Spot = ({ dataset, periodeVisited, homePage, slug }) => {
+const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -1004,7 +1015,7 @@ const Spot = ({ dataset, periodeVisited, homePage, slug }) => {
 
   return (
     <>
-      {dataset?.tags && <Head tags={dataset.tags} />}
+      <Head tags={tags} />
       <Box ref={refScrollUp} />
       {!matchesXs && (
         <GoTopBtn

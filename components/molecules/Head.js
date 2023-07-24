@@ -2,19 +2,31 @@
 import HeadNext from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { HeadContext } from '../../contexts/head'
-import favicon from '../../images/favicon.svg'
+// import favicon from '../../images/favicon.svg'
 import theme from '../../styles/theme'
 
-const Head = () => {
-  const { headData: tags } = useContext(HeadContext)
-  const router = useRouter()
+const Head = ({ tags }) => {
+  // const { headData: tags } = useContext(HeadContext)
+
+  useEffect(() => {
+    console.log(document.querySelector('meta[name="viewport"]'))
+    console.log(document.querySelector('meta[name="description"]'))
+    console.log(document.querySelector('meta[name="agd-partner-manual-verification"]'))
+    console.log(document.querySelector('meta[property="og:title"]'))
+    console.log(document.querySelector('meta[property="og:type"]'))
+    console.log(document.querySelector('meta[property="og:description"]'))
+    console.log(document.querySelector('meta[property="og:url"]'))
+    console.log(document.querySelector('meta[property="og:site_name"]'))
+    console.log(document.querySelector('meta[property="og:image"]'))
+    console.log(document.querySelector('meta[name="theme-color"]'))
+  }, [])
 
   return (
     <div>
       <HeadNext>
-        {typeof tags !== 'undefined' && (
+        {tags && (
           <>
             <meta charset="utf-8" />
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -32,7 +44,7 @@ const Head = () => {
 
             {/* Other metadata */}
             <meta name="theme-color" content={theme.palette.primary.main} />
-            <link rel="icon" type="image/svg" href="../favicon.svg" />
+            <link rel="icon" href="/favicon.ico" />
             <link
               href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
               rel="stylesheet"

@@ -7,7 +7,6 @@ export const ArticlesSlugsArray = [
     params: { slug: 'les-jeux-de-pistes-urbains-une-aventure-trepidante-pour-un-city-trip-reussi' },
   },
   { params: { slug: 'voyages-et-pourboires-ce-quil-faut-savoir' } },
-  { params: { slug: 'quelle-destination-pour-un-voyage-de-noces-2' } },
   { params: { slug: 'avril' } },
   { params: { slug: 'que-faire-a-new-york-10-idees-originales-sortir-des-sentiers-battus' } },
   { params: { slug: 'activites-improbables-a-faire-en-voyage' } },

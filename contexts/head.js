@@ -19,7 +19,11 @@ const HeadContextProvider = ({ children }) => {
   const router = useRouter()
 
   const updateHeadData = newData => {
-    setHeadData(newData)
+    setHeadData(prevHeadData => {
+      console.log('Old Head Data: ', prevHeadData)
+      console.log('New Head Data: ', newData)
+      return newData
+    })
   }
 
   useEffect(() => {
@@ -33,7 +37,8 @@ const HeadContextProvider = ({ children }) => {
           dataset = doc.val()
           console.log('je ne devrais pas rentrer là avec mon pathname', dataset)
         } else if (router.pathname.includes('/spot')) {
-          doc = await database.ref().child('content/spots').get()
+          const slug = router.asPath.split('/').pop() // gets the last part of the path, i.e., the slug
+          doc = await database.ref().child(`content/spots/${slug}`).get()
           dataset = doc.val()
           console.log('je devrais rentrer là avec mon pathname', dataset)
         }
@@ -43,7 +48,7 @@ const HeadContextProvider = ({ children }) => {
         // ) {
         //   doc = await database.ref().child('/page_structure/inspiration').get()
         // }
-        if (dataset !== null) {
+        if (dataset) {
           console.log('dataset du head', dataset.tags)
           updateHeadData(dataset.tags)
           console.log('==== CHARGEMENT DES DONNEES HEAD REUSSIES ====')

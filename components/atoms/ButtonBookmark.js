@@ -27,7 +27,6 @@ const ButtonBookmark = ({ spotSlug, articleSlug, isArticle = false, isSpot = fal
 
   return (
     <IconButton
-      disableElevation
       variant="contained"
       className={clsx(classes.buttonLike, {
         [classes.bookmarkedColors]: user?.spotsLiked?.includes(spotSlug),
