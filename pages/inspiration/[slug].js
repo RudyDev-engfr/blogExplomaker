@@ -122,20 +122,30 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  let metaDoc
+  try {
+    metaDoc = await database.ref().child(`content/posts/${slug}`).get()
+  } catch (error) {
+    console.error(error)
+    return { notFound: true }
+  }
+
+  const articleData = metaDoc.val()
+
   return {
-    props: { dataset, dictionary, homePage, slug },
+    props: { dataset, dictionary, homePage, slug, articleData },
     revalidate: 1,
   }
 }
 
-export default function Article({ dataset, dictionary, homePage, slug }) {
+export default function Article({ dataset, articleData }) {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <>
-      {dataset?.tags && <Head tags={dataset.tags} />}
+      {articleData && <Head tags={dataset.tags} />}
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
