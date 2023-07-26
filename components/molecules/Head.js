@@ -21,7 +21,7 @@ const Head = ({ tags }) => {
     console.log(document.querySelector('meta[property="og:site_name"]'))
     console.log(document.querySelector('meta[property="og:image"]'))
     console.log(document.querySelector('meta[name="theme-color"]'))
-  }, [])
+  }, [tags])
 
   return (
     <div>

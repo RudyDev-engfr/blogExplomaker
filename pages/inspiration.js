@@ -5,7 +5,6 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mui/material'
 
@@ -49,6 +48,7 @@ import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import CTA from '../components/molecules/CTA'
+import Head from '../components/molecules/Head'
 
 const useStyles = makeStyles(theme => ({
   // fullWidthContainer: {

@@ -1,6 +1,5 @@
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Head from 'next/head'
 import Image from 'next/image'
 
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
@@ -9,6 +8,7 @@ import WPGBlocks from '../helper/react-gutenberg'
 import headerImg from '../images/Kenya 2.png'
 import mobileHeaderImg from '../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png'
 import { database } from '../lib/firebase'
+import Head from '../components/molecules/Head'
 
 const useStyles = makeStyles(theme => ({
   headerMapBox: {

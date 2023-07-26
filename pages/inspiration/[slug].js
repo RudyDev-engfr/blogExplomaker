@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Head from 'next/head'
 
 import WPGBlocks from '../../helper/react-gutenberg'
 import GetCustomBlock from '../../components/GutenbergCustomBlock'
@@ -20,6 +19,7 @@ import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { ArticlesSlugsArray } from '../../helper/slugsArray'
 import ButtonLike from '../../components/atoms/ButtonLike'
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
+import Head from '../../components/molecules/Head'
 
 const useStyles = makeStyles(theme => ({
   headerMapBox: {
