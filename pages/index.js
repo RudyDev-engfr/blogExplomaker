@@ -835,11 +835,11 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" />
-                      <Typography>Explorations</Typography>
+                      <Typography>Guide par destination</Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" className={classes.checkIcons} />
-                      <Typography>Inspirations</Typography>
+                      <Typography>Assistant de voyage</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -969,7 +969,7 @@ const Home = ({ dataset }) => {
                       classes.mobileSubtitle
                     )}
                   >
-                    Un voyage ? Explomaker !
+                    L&apos;Assistant IA Explomaker
                   </Typography>
                 </Box>
                 <Box marginBottom="20px">
@@ -978,14 +978,16 @@ const Home = ({ dataset }) => {
                     component="h2"
                     className={clsx(classes.mobileTextCenter, classes.mobileTitle)}
                   >
-                    Le nouveau compagnon de tes futurs voyages
+                    Votre compagnon de voyage intelligent
                   </Typography>
                 </Box>
                 <Box marginBottom="40px">
                   <Typography variant="body1" className={classes.mobileTextCenter}>
-                    Tu utilises plusieurs applications pour préparer tes voyages ? Avec ExploMaker,
-                    c’est terminé ! Retrouve tous tes préparatifs et tous tes voyages en un seul
-                    endroit.
+                    Découvrez l&apos;Assistant Explomaker, conçu pour transformer votre
+                    planification de voyage en une expérience intuitive et sans stress. Cet
+                    assistant de voyage virtuel est à votre service 24/7, vous guidant à chaque
+                    étape, et offrant une assistance personnalisée pour une planification de voyage
+                    aussi naturelle qu&apos;une conversation.
                   </Typography>
                 </Box>
                 <Link
@@ -1050,7 +1052,7 @@ const Home = ({ dataset }) => {
                       Ajoutez progressivement à votre planning vos idées et réservations :
                       hébergements, activités, restaurants, transports, etc. Des envies différentes
                       selon les participants ? Chacun son planning ! Ajoute tes partenaires de
-                      voyage uniquement aux événements qui les concernent. Dans le paragraphe
+                      voyage uniquement aux événements qui les concernent.
                     </Typography>
                   </Box>
                 </Box>
