@@ -124,7 +124,7 @@ export async function getStaticProps({ params }) {
 
   let metaDoc
   try {
-    metaDoc = await database.ref().child(`content/posts/${slug}`).get()
+    metaDoc = await database.ref().child(`content/post/${slug}`).get()
   } catch (error) {
     console.error(error)
     return { notFound: true }
@@ -145,7 +145,7 @@ export default function Article({ dataset, articleData }) {
 
   return (
     <>
-      {articleData && <Head tags={dataset.tags} />}
+      <Head tags={articleData} />
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
