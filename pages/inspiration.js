@@ -324,7 +324,12 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
-          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+          <Image
+            src={!matchesXs ? headerImg : mobileHeaderImg}
+            layout="fill"
+            objectFit="cover"
+            alt="header_image"
+          />
           <Box className={classes.headerSearchbar}>
             <Typography
               color="white"

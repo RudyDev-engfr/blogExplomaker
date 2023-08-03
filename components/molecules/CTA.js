@@ -46,7 +46,7 @@ const CTA = () => {
           className={classes.nextLink}
         >
           <Button
-            startIcon={<Image src={logo} height={25} width={20} />}
+            startIcon={<Image src={logo} height={25} width={20} alt="main_icon" />}
             variant="contained"
             className={classes.buttonPrimary}
             sx={{ marginBottom: matchesXs && '60px' }}
@@ -55,7 +55,12 @@ const CTA = () => {
           </Button>
         </Link>
       </Box>
-      <Image src={illustrationPlanning} width={matchesXs ? '360' : '537'} quality={100} />
+      <Image
+        src={illustrationPlanning}
+        width={matchesXs ? '360' : '537'}
+        quality={100}
+        alt="planning_illustration"
+      />
     </Box>
   )
 }

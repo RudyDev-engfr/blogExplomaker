@@ -371,7 +371,7 @@ const MobileSearch = ({
               disableRipple
               classes={{ root: classes.filterButton }}
             >
-              <Image src={union} width={20} height={20} quality={100} />
+              <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
             </IconButton>
           </Badge>
         </Box>
@@ -399,7 +399,9 @@ const MobileSearch = ({
           </Typography>
           <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
             <Button
-              startIcon={<Image src={union} width={20} height={20} quality={100} />}
+              startIcon={
+                <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
+              }
               onClick={() => modalStateSetter('filter')}
               disableRipple
               classes={{ root: classes.filterButton }}
@@ -429,7 +431,9 @@ const MobileSearch = ({
           </Typography>
           <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
             <Button
-              startIcon={<Image src={union} width={20} height={20} quality={100} />}
+              startIcon={
+                <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
+              }
               onClick={() => modalStateSetter('filter')}
               disableRipple
               classes={{ root: classes.filterButton }}

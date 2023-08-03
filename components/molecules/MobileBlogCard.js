@@ -189,6 +189,7 @@ const MobileBlogCard = ({
                   ? encodeURI(srcImg)
                   : `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`
               }
+              alt="mobileBlogCard_image"
               className={classes.cardImage}
               objectFit="cover"
               objectPosition="center"

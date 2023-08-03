@@ -65,7 +65,7 @@ const MobileIntro = ({ spotlight, metaContinentRef }) => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button
-          startIcon={<Image src={logo} height={25} width={20} />}
+          startIcon={<Image src={logo} height={25} width={20} alt="main_logo" />}
           variant="contained"
           className={classes.buttonPrimary}
           sx={{ marginBottom: '15px' }}

@@ -55,6 +55,7 @@ const CustomBlock = props => {
             image.picture_titled.src.original
           )}`}
           layout="fill"
+          alt="main_image_from_article"
         />
       ))}
     </Carousel>

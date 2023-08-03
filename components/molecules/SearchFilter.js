@@ -227,7 +227,7 @@ const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
                 lineHeight: '25px',
               }}
             >
-              Voir les résultats ({currentHitsArray.length})
+              Voir les résultats ({currentHitsArray?.length})
             </Button>
           )}
         </Box>

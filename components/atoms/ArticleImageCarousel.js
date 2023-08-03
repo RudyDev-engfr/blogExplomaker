@@ -59,7 +59,12 @@ const ArticleImageCarousel = ({ currentImages, dotListClass }) => {
       deviceType="mobile"
     >
       {currentImages.map(image => (
-        <Image layout="fill" src={image.src} className={classes.carouselImage} />
+        <Image
+          layout="fill"
+          src={image.src}
+          className={classes.carouselImage}
+          alt="carousel_image"
+        />
       ))}
     </Carousel>
   ) : (
@@ -104,7 +109,12 @@ const ArticleImageCarousel = ({ currentImages, dotListClass }) => {
     >
       {currentImages.map(image => (
         <Box sx={{ position: 'relative' }}>
-          <Image layout="fill" src={image.src} className={classes.carouselImage} />
+          <Image
+            layout="fill"
+            src={image.src}
+            className={classes.carouselImage}
+            alt="carousel_image"
+          />
           <Button>Découvrir</Button>
         </Box>
       ))}

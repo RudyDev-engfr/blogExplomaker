@@ -5,10 +5,9 @@ import algoliasearch from 'algoliasearch'
 
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { IconButton, useTheme } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import IconButton from '@mui/material/IconButton'
+import { useTheme, makeStyles } from '@mui/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 

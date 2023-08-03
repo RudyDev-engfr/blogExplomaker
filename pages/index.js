@@ -773,7 +773,7 @@ const Home = ({ dataset }) => {
           <Box className={classes.mainContainer}>
             {matchesXs && (
               <Box display="flex" justifyContent="center" sx={{ position: 'relative' }} top="65px">
-                <Image src={logoFull} width={250} height={60} />
+                <Image src={logoFull} width={250} height={60} alt="mainLogo_image" />
               </Box>
             )}
             <Box
@@ -951,7 +951,12 @@ const Home = ({ dataset }) => {
               marginTop="150px"
               marginBottom="150px"
             >
-              <Image src={illustrationComplete} width="540" quality={100} />
+              <Image
+                src={illustrationComplete}
+                width="540"
+                quality={100}
+                alt="illustrationComplete_image"
+              />
               <Box
                 maxWidth="540px"
                 margin="40px"
@@ -1108,7 +1113,12 @@ const Home = ({ dataset }) => {
                   </Box>
                 )}
               </Box>
-              <Image src={illustrationPlanning} width={matchesXs ? '360' : '537'} quality={100} />
+              <Image
+                src={illustrationPlanning}
+                width={matchesXs ? '360' : '537'}
+                quality={100}
+                alt="planning_illustration"
+              />
             </Box>
           </Box>
         </Box>
@@ -1227,7 +1237,12 @@ const Home = ({ dataset }) => {
               justifyContent="space-between"
               className={clsx(classes.mobileAlignCenter, classes.mobileReverseRow)}
             >
-              <Image src={illustrationCollab} width={matchesXs ? '360' : '562'} quality={100} />
+              <Image
+                src={illustrationCollab}
+                width={matchesXs ? '360' : '562'}
+                quality={100}
+                alt="collab_illustration"
+              />
               <Box
                 maxWidth="570px"
                 display="flex"
@@ -1347,6 +1362,7 @@ const Home = ({ dataset }) => {
                                   layout="fill"
                                   quality={100}
                                   className={classes.mobileAdaptedProject}
+                                  alt="publicPresentation_image"
                                 />
                               </Box>
                               <Paper elevation={2} className={classes.travelTilePaper}>
@@ -1391,6 +1407,7 @@ const Home = ({ dataset }) => {
                                 objectPosition="center"
                                 quality={100}
                                 className={classes.travelBoxImage}
+                                alt="travelBox_image"
                               />
                             </Box>
                           ))}
@@ -1801,13 +1818,19 @@ const Home = ({ dataset }) => {
                               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                 spot.picture.src.original
                               )}`}
-                              alt=""
+                              alt="trendingSpot_image"
                               className={classes.focusImg}
                               layout="fill"
                             />
                             {/* <LinearProgress variant="determinate" value="0" /> */}
                             <Box className={classes.logoSpot}>
-                              <Image src={logo} width="169" height="209" quality={100} />
+                              <Image
+                                src={logo}
+                                width="169"
+                                height="209"
+                                quality={100}
+                                alt="spot_logo"
+                              />
                             </Box>
                           </Box>
                         ))}
@@ -1867,12 +1890,18 @@ const Home = ({ dataset }) => {
                                 src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                   spot.picture.src.original
                                 )}`}
-                                alt=""
+                                alt="spotPicture_image"
                                 className={classes.focusImg}
                                 layout="fill"
                               />
                               <Box className={classes.logoSpot}>
-                                <Image src={logo} width="169" height="209" quality={100} />
+                                <Image
+                                  src={logo}
+                                  width="169"
+                                  height="209"
+                                  quality={100}
+                                  alt="spotPicture_logo"
+                                />
                               </Box>
                               {/* <LinearProgress variant="determinate" value="0" /> */}
                             </Box>

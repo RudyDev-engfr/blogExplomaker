@@ -1077,6 +1077,7 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                       src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.original}`}
                       layout="fill"
                       className={classes.image}
+                      alt="mobileCountryAside_image"
                     />
                   </Box>
                   {dataset.flag_square && (
@@ -1087,6 +1088,7 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                             dataset.flag_square.src.original
                           )}`}
                           layout="fill"
+                          alt="mobileCountryAsideFlag_logo"
                         />
                       </Box>
                     </Box>

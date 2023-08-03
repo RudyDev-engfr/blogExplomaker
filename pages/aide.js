@@ -104,7 +104,12 @@ const Aide = ({ dataset }) => {
       <Box>
         {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
-          <Image src={!matchesXs ? headerImg : mobileHeaderImg} layout="fill" objectFit="cover" />
+          <Image
+            src={!matchesXs ? headerImg : mobileHeaderImg}
+            layout="fill"
+            objectFit="cover"
+            alt="header_image"
+          />
         </Box>
         <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>
           <Paper elevation={0} className={classes.headingPaper}>

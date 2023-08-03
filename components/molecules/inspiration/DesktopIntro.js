@@ -71,7 +71,7 @@ const DesktopIntro = ({ spotlight, metaContinentRef }) => {
             className={classes.nextLink}
           >
             <Button
-              startIcon={<Image src={logo} height={25} width={20} />}
+              startIcon={<Image src={logo} height={25} width={20} alt="main_logo" />}
               variant="contained"
               className={classes.buttonPrimary}
               sx={{ marginRight: '15px' }}

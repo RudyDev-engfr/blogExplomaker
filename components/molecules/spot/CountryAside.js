@@ -40,7 +40,7 @@ const CountryAside = ({
       }}
     >
       <Box sx={{ position: 'relative', width: '280px', height: '185px' }}>
-        <Image src={srcImg} layout="fill" className={classes.image} />
+        <Image src={srcImg} layout="fill" className={classes.image} alt="countryAside_image" />
       </Box>
       {flagFromDataset && (
         <Box className={classes.flagContainer}>
@@ -50,6 +50,7 @@ const CountryAside = ({
                 flagFromDataset
               )}`}
               layout="fill"
+              alt="flag_icon"
             />
           </Box>
         </Box>

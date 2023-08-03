@@ -155,6 +155,7 @@ export default function Article({ dataset, articleData }) {
             )}`}
             layout="fill"
             objectFit="cover"
+            alt="header_image"
           />
         </Box>
         <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>

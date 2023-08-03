@@ -152,7 +152,7 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
                   <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
-                      alt=""
+                      alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
                       layout="fill"
@@ -170,7 +170,7 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="" />
+              <Image src={lineMobile} alt="lineMobile_image" />
             </Box>
             <Box position="absolute" top="2%" right="2%">
               <IconButton onClick={() => modalStateSetter('')} size="large">
@@ -315,7 +315,7 @@ const SignUpModal = ({
                   <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
-                      alt=""
+                      alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
                       layout="fill"
@@ -333,7 +333,7 @@ const SignUpModal = ({
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="" />
+              <Image src={lineMobile} alt="lineMobile_image" />
             </Box>
             <Box position="absolute" top="2%" right="2%">
               <IconButton onClick={() => modalStateSetter('')} size="large">
@@ -518,7 +518,7 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
                   <Box sx={{ width: '100vw', height: '100vh', position: 'relative' }}>
                     <Image
                       src={srcImg}
-                      alt=""
+                      alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
                       layout="fill"
@@ -536,7 +536,7 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="" />
+              <Image src={lineMobile} alt="lineMobile_image" />
             </Box>
             <Box position="absolute" top="2%" left="2%">
               <IconButton onClick={() => modalStateSetter('login')} size="large">

@@ -152,7 +152,7 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
             }}
             onClick={() => modalStateSetter('')}
           >
-            Voir {currentHitsArray.length} résultats
+            Voir {currentHitsArray?.length} résultats
           </Button>
         </Box>
       </Paper>

@@ -200,7 +200,7 @@ const CountryTile = ({
             <Box sx={{ position: 'relative' }} height="100%" width="100%">
               <Image
                 src={encodeURI(srcImg)}
-                alt={altImg}
+                alt={altImg ?? 'country_image'}
                 layout="fill"
                 objectFit="cover"
                 className={classes.tileImg}
@@ -255,7 +255,7 @@ const CountryTile = ({
             </Box>
             <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
               <Box marginRight="4px" display="flex" alignItems="center">
-                <Image width={20} height={20} src={commentIcon} />
+                <Image width={20} height={20} src={commentIcon} alt="comment_icon" />
               </Box>
               <Typography className={classes.socialInteractionCount}>{commentsCounter}</Typography>
             </Box>

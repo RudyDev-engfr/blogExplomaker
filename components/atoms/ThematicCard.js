@@ -47,7 +47,7 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
           <Box sx={{ position: 'relative' }} height="100%" width="100%">
             <Image
               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`}
-              alt={altImg}
+              alt={altImg ?? 'thematicCard_image'}
               width={262.5}
               height={164}
               objectFit="cover"

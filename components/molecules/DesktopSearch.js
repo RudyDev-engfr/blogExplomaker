@@ -128,7 +128,15 @@ const DesktopSearch = ({
                 </TextField> */}
                 <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
                   <Button
-                    startIcon={<Image src={union} width={13.33} height={13.33} quality={100} />}
+                    startIcon={
+                      <Image
+                        src={union}
+                        width={13.33}
+                        height={13.33}
+                        quality={100}
+                        alt="filter_icon"
+                      />
+                    }
                     onClick={() => modalStateSetter('filter')}
                     disableRipple
                     classes={{ root: classes.filterButton }}

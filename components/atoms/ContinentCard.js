@@ -54,6 +54,7 @@ const ContinentCard = ({
           src={isHovering === index ? continentHoverImg : continentImg}
           width={250}
           height={150}
+          alt="continent_image"
         />
         <Typography
           sx={{ fontSize: matchesXs ? '17px' : '22px', padding: '0 20px' }}

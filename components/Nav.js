@@ -162,7 +162,7 @@ const Nav = () => {
         <Paper variant="outlined" square className={classes.xsNav}>
           <Tabs centered variant="fullWidth" className={classes.tabs}>
             <Tab
-              icon={<Image src={home} width={25} height={25} />}
+              icon={<Image src={home} width={25} height={25} alt="home_logo" />}
               label={
                 <Link passHref href="/">
                   <Box component="span" className={classes.icons}>
@@ -172,7 +172,7 @@ const Nav = () => {
               }
             />
             <Tab
-              icon={<Image src={inspi} width={25} height={25} />}
+              icon={<Image src={inspi} width={25} height={25} alt="Inspiration_logo" />}
               label={
                 <Link passHref href="/inspiration">
                   <Box component="span" className={classes.icons}>
@@ -182,7 +182,7 @@ const Nav = () => {
               }
             />
             <Tab
-              icon={<Image src={profil} width={25} height={25} />}
+              icon={<Image src={profil} width={25} height={25} alt="profile_logo" />}
               label={
                 <Box component="span" className={classes.icons}>
                   Connexion
@@ -203,7 +203,7 @@ const Nav = () => {
             <Box className={classes.headerInner}>
               <Link href="/" passHref>
                 <Box sx={{ cursor: 'pointer' }}>
-                  <Image src={logoFull} width="180" />
+                  <Image src={logoFull} width="180" alt="main_logo" />
                 </Box>
               </Link>
               {!router.pathname.includes('/results') &&

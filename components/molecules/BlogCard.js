@@ -270,7 +270,7 @@ const BlogCard = ({
           >
             <Image
               src={encodeURI(srcImg)}
-              alt={altImg}
+              alt={altImg ?? 'blogCard_image'}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
