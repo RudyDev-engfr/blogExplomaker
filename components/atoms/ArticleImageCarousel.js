@@ -2,7 +2,7 @@ import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Carousel from 'react-multi-carousel'
 import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDotBox'
 import TrendingDestinationsGroupButton from '../multi-carousel/TrendingDestinationsGroupButton'
@@ -60,10 +60,11 @@ const ArticleImageCarousel = ({ currentImages, dotListClass }) => {
     >
       {currentImages.map(image => (
         <Image
-          layout="fill"
           src={image.src}
           className={classes.carouselImage}
           alt="carousel_image"
+          fill
+          sizes="100vw"
         />
       ))}
     </Carousel>
@@ -110,10 +111,11 @@ const ArticleImageCarousel = ({ currentImages, dotListClass }) => {
       {currentImages.map(image => (
         <Box sx={{ position: 'relative' }}>
           <Image
-            layout="fill"
             src={image.src}
             className={classes.carouselImage}
             alt="carousel_image"
+            fill
+            sizes="100vw"
           />
           <Button>Découvrir</Button>
         </Box>

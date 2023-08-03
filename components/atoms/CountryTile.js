@@ -15,7 +15,7 @@ import { useTheme } from '@mui/styles'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import { SessionContext } from '../../contexts/session'
 
@@ -201,9 +201,12 @@ const CountryTile = ({
               <Image
                 src={encodeURI(srcImg)}
                 alt={altImg ?? 'country_image'}
-                layout="fill"
-                objectFit="cover"
                 className={classes.tileImg}
+                fill
+                sizes="100vw"
+                style={{
+                  objectFit: 'cover',
+                }}
               />
             </Box>
           </CardMedia>
@@ -255,7 +258,16 @@ const CountryTile = ({
             </Box>
             <Box className={classes.likeAndCommentsBox} sx={{ padding: '0' }}>
               <Box marginRight="4px" display="flex" alignItems="center">
-                <Image width={20} height={20} src={commentIcon} alt="comment_icon" />
+                <Image
+                  width={20}
+                  height={20}
+                  src={commentIcon}
+                  alt="comment_icon"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               </Box>
               <Typography className={classes.socialInteractionCount}>{commentsCounter}</Typography>
             </Box>

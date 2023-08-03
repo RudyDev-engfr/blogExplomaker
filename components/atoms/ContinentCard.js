@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { makeStyles, useTheme } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
@@ -55,6 +55,10 @@ const ContinentCard = ({
           width={250}
           height={150}
           alt="continent_image"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
         />
         <Typography
           sx={{ fontSize: matchesXs ? '17px' : '22px', padding: '0 20px' }}

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import CountryTile from '../../atoms/CountryTile'
 import logo from '../../../images/icons/logo.svg'
@@ -65,7 +65,18 @@ const MobileIntro = ({ spotlight, metaContinentRef }) => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button
-          startIcon={<Image src={logo} height={25} width={20} alt="main_logo" />}
+          startIcon={
+            <Image
+              src={logo}
+              height={25}
+              width={20}
+              alt="main_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           variant="contained"
           className={classes.buttonPrimary}
           sx={{ marginBottom: '15px' }}

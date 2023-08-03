@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import { makeStyles, useTheme } from '@mui/styles'
 import PropTypes from 'prop-types'
@@ -371,7 +371,17 @@ const MobileSearch = ({
               disableRipple
               classes={{ root: classes.filterButton }}
             >
-              <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
+              <Image
+                src={union}
+                width={20}
+                height={20}
+                quality={100}
+                alt="filter_icon"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </IconButton>
           </Badge>
         </Box>
@@ -400,7 +410,17 @@ const MobileSearch = ({
           <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
             <Button
               startIcon={
-                <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
+                <Image
+                  src={union}
+                  width={20}
+                  height={20}
+                  quality={100}
+                  alt="filter_icon"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               }
               onClick={() => modalStateSetter('filter')}
               disableRipple
@@ -432,7 +452,17 @@ const MobileSearch = ({
           <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
             <Button
               startIcon={
-                <Image src={union} width={20} height={20} quality={100} alt="filter_icon" />
+                <Image
+                  src={union}
+                  width={20}
+                  height={20}
+                  quality={100}
+                  alt="filter_icon"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               }
               onClick={() => modalStateSetter('filter')}
               disableRipple

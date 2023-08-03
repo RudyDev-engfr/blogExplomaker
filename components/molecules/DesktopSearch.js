@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import SearchFilter from './SearchFilter'
 import union from '../../images/icons/filtre.svg'
@@ -92,40 +92,40 @@ const DesktopSearch = ({
               </Typography>
               <Box display="flex">
                 {/* <TextField
-                  mr={2}
-                  type="select"
-                  select
-                  SelectProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Typography className={classes.sortAdornment}>Trié par :</Typography>
-                      </InputAdornment>
-                    ),
-                  }}
-                  value={currentSort}
-                  InputProps={{
-                    classes: {
-                      input: classes.inputSort,
-                    },
-                  }}
-                  aria-label="Trié par:"
-                  hiddenLabel
-                  variant="outlined"
-                  onChange={event => setCurrentSort(event.target.value)}
-                  disableRipple
-                  classes={{ root: classes.filterButton }}
-                  sx={{ width: '185px', fontSize: '14px' }}
-                >
-                  <MenuItem value="pertinence" sx={{ fontSize: '14px' }}>
-                    Pertinence
-                  </MenuItem>
-                  <MenuItem value="oldest" sx={{ fontSize: '14px' }}>
-                    Du plus ancien
-                  </MenuItem>
-                  <MenuItem value="newest" sx={{ fontSize: '14px' }}>
-                    Du plus récent
-                  </MenuItem>
-                </TextField> */}
+                mr={2}
+                type="select"
+                select
+                SelectProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Typography className={classes.sortAdornment}>Trié par :</Typography>
+                    </InputAdornment>
+                  ),
+                }}
+                value={currentSort}
+                InputProps={{
+                  classes: {
+                    input: classes.inputSort,
+                  },
+                }}
+                aria-label="Trié par:"
+                hiddenLabel
+                variant="outlined"
+                onChange={event => setCurrentSort(event.target.value)}
+                disableRipple
+                classes={{ root: classes.filterButton }}
+                sx={{ width: '185px', fontSize: '14px' }}
+              >
+                <MenuItem value="pertinence" sx={{ fontSize: '14px' }}>
+                  Pertinence
+                </MenuItem>
+                <MenuItem value="oldest" sx={{ fontSize: '14px' }}>
+                  Du plus ancien
+                </MenuItem>
+                <MenuItem value="newest" sx={{ fontSize: '14px' }}>
+                  Du plus récent
+                </MenuItem>
+              </TextField> */}
                 <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
                   <Button
                     startIcon={
@@ -135,6 +135,10 @@ const DesktopSearch = ({
                         height={13.33}
                         quality={100}
                         alt="filter_icon"
+                        style={{
+                          maxWidth: '100%',
+                          height: 'auto',
+                        }}
                       />
                     }
                     onClick={() => modalStateSetter('filter')}

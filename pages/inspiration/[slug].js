@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import WPGBlocks from '../../helper/react-gutenberg'
 import GetCustomBlock from '../../components/GutenbergCustomBlock'
@@ -153,9 +153,12 @@ export default function Article({ dataset, articleData }) {
             src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
               dataset.picture.src.original
             )}`}
-            layout="fill"
-            objectFit="cover"
             alt="header_image"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+            }}
           />
         </Box>
         <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>

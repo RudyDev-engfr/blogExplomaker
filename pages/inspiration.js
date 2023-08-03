@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { makeStyles, useTheme } from '@mui/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -326,9 +326,12 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
         <Box className={classes.headerMapBox}>
           <Image
             src={!matchesXs ? headerImg : mobileHeaderImg}
-            layout="fill"
-            objectFit="cover"
             alt="header_image"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+            }}
           />
           <Box className={classes.headerSearchbar}>
             <Typography
@@ -655,9 +658,9 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 }}
                 onClick={() =>
                   router.push(`
-              /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
-                category
-              )}`)
+            /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
+              category
+            )}`)
                 }
               >
                 {category}

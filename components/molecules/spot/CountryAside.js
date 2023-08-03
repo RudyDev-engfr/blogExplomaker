@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 const useStyles = makeStyles(theme => ({
   flagContainer: {
@@ -40,7 +40,7 @@ const CountryAside = ({
       }}
     >
       <Box sx={{ position: 'relative', width: '280px', height: '185px' }}>
-        <Image src={srcImg} layout="fill" className={classes.image} alt="countryAside_image" />
+        <Image src={srcImg} className={classes.image} alt="countryAside_image" fill sizes="100vw" />
       </Box>
       {flagFromDataset && (
         <Box className={classes.flagContainer}>
@@ -49,8 +49,9 @@ const CountryAside = ({
               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                 flagFromDataset
               )}`}
-              layout="fill"
               alt="flag_icon"
+              fill
+              sizes="100vw"
             />
           </Box>
         </Box>

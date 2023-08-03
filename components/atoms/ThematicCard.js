@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
@@ -50,8 +50,12 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
               alt={altImg ?? 'thematicCard_image'}
               width={262.5}
               height={164}
-              objectFit="cover"
               className={classes.tileImg}
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                objectFit: 'cover',
+              }}
             />
           </Box>
         </CardMedia>

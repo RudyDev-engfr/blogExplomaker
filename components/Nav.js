@@ -8,7 +8,7 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import makeStyles from '@mui/styles/makeStyles'
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
 
@@ -162,7 +162,18 @@ const Nav = () => {
         <Paper variant="outlined" square className={classes.xsNav}>
           <Tabs centered variant="fullWidth" className={classes.tabs}>
             <Tab
-              icon={<Image src={home} width={25} height={25} alt="home_logo" />}
+              icon={
+                <Image
+                  src={home}
+                  width={25}
+                  height={25}
+                  alt="home_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              }
               label={
                 <Link passHref href="/">
                   <Box component="span" className={classes.icons}>
@@ -172,7 +183,18 @@ const Nav = () => {
               }
             />
             <Tab
-              icon={<Image src={inspi} width={25} height={25} alt="Inspiration_logo" />}
+              icon={
+                <Image
+                  src={inspi}
+                  width={25}
+                  height={25}
+                  alt="Inspiration_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              }
               label={
                 <Link passHref href="/inspiration">
                   <Box component="span" className={classes.icons}>
@@ -182,7 +204,18 @@ const Nav = () => {
               }
             />
             <Tab
-              icon={<Image src={profil} width={25} height={25} alt="profile_logo" />}
+              icon={
+                <Image
+                  src={profil}
+                  width={25}
+                  height={25}
+                  alt="profile_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              }
               label={
                 <Box component="span" className={classes.icons}>
                   Connexion
@@ -203,7 +236,15 @@ const Nav = () => {
             <Box className={classes.headerInner}>
               <Link href="/" passHref>
                 <Box sx={{ cursor: 'pointer' }}>
-                  <Image src={logoFull} width="180" alt="main_logo" />
+                  <Image
+                    src={logoFull}
+                    width="180"
+                    alt="main_logo"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
                 </Box>
               </Link>
               {!router.pathname.includes('/results') &&

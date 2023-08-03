@@ -18,7 +18,7 @@ import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import clsx from 'clsx'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 
@@ -171,7 +171,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
         onChange={handleChange}
       >
         <Tab
-          icon={<Image src={home} width={25} height={25} alt="home_logo" />}
+          icon={
+            <Image
+              src={home}
+              width={25}
+              height={25}
+              alt="home_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           label={
             <Link passHref href="/">
               <Box component="span" className={classes.icons}>
@@ -183,7 +194,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
         />
 
         <Tab
-          icon={<Image src={inspi} width={25} height={25} alt="Inspiration_logo" />}
+          icon={
+            <Image
+              src={inspi}
+              width={25}
+              height={25}
+              alt="Inspiration_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           label={
             <Link passHref href="/inspiration" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
@@ -194,7 +216,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
           sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
         <Tab
-          icon={<Image src={logoGrey} width={25} height={25} alt="homePage_logo" />}
+          icon={
+            <Image
+              src={logoGrey}
+              width={25}
+              height={25}
+              alt="homePage_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           label={
             <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
@@ -205,7 +238,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
           sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
         <Tab
-          icon={<Image src={favorite} width={25} height={25} alt="favorite_logo" />}
+          icon={
+            <Image
+              src={favorite}
+              width={25}
+              height={25}
+              alt="favorite_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           label={
             <Link passHref href="/favorites" rel="nofollow" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
@@ -216,7 +260,18 @@ const ConnectedNav = ({ isBgTransparent }) => {
           sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
         <Tab
-          icon={<Image src={profil} width={25} height={25} alt="profile_logo" />}
+          icon={
+            <Image
+              src={profil}
+              width={25}
+              height={25}
+              alt="profile_logo"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          }
           label={
             <Link passHref href="https://app.explomaker.fr/profile" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
@@ -239,7 +294,15 @@ const ConnectedNav = ({ isBgTransparent }) => {
         <Box className={classes.headerInner}>
           <Link href="/" passHref className={classes.nextLink}>
             <Box sx={{ cursor: 'pointer' }}>
-              <Image src={logoFull} width="180" alt="main_logo" />
+              <Image
+                src={logoFull}
+                width="180"
+                alt="main_logo"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
           </Link>
           {router.pathname.indexOf('/results') === -1 &&
@@ -301,6 +364,10 @@ const ConnectedNav = ({ isBgTransparent }) => {
                             height={24}
                             quality={100}
                             alt="search_logo"
+                            style={{
+                              maxWidth: '100%',
+                              height: 'auto',
+                            }}
                           />
                         </Box>
                         Recherche

@@ -19,7 +19,7 @@ import { Marker } from '@react-google-maps/api'
 import clsx from 'clsx'
 import Carousel from 'react-material-ui-carousel'
 import MultiCarousel from 'react-multi-carousel'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { v4 as uuidv4 } from 'uuid'
 import 'react-multi-carousel/lib/styles.css'
 
@@ -1049,7 +1049,7 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
             <Box>
               <Typography variant="h1" className={classes.spotTitle}>
                 {`${dataset?.link_words[0]} 
-                ${dataset.title}`}
+              ${dataset.title}`}
               </Typography>
               <Typography
                 variant="h2"
@@ -1075,9 +1075,10 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                   >
                     <Image
                       src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.original}`}
-                      layout="fill"
                       className={classes.image}
                       alt="mobileCountryAside_image"
+                      fill
+                      sizes="100vw"
                     />
                   </Box>
                   {dataset.flag_square && (
@@ -1087,8 +1088,9 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                           src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                             dataset.flag_square.src.original
                           )}`}
-                          layout="fill"
                           alt="mobileCountryAsideFlag_logo"
+                          fill
+                          sizes="100vw"
                         />
                       </Box>
                     </Box>
@@ -1468,8 +1470,9 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                       >
                         <Image
                           src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                          layout="fill"
                           alt={`photo${index}`}
+                          fill
+                          sizes="100vw"
                         />
                       </Box>
                     )
@@ -1547,6 +1550,10 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                             height={640}
                             alt={`photo${index}`}
                             className={classes.photoCarouselSingleImage}
+                            style={{
+                              maxWidth: '100%',
+                              height: 'auto',
+                            }}
                           />
                         </Box>
                       </Box>
@@ -1636,10 +1643,11 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     picture.src?.original
                                   )}`}
-                                  layout="fill"
                                   quality={100}
                                   className={classes.countryGalleryImg}
                                   alt="photoUnmissable"
+                                  fill
+                                  sizes="100vw"
                                 />
                               </Box>
                             )}
@@ -1743,10 +1751,11 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     picture?.src.original
                                   )}`}
-                                  layout="fill"
                                   alt="photoUnmissable"
                                   quality={100}
                                   className={classes.countryGalleryImg}
+                                  fill
+                                  sizes="100vw"
                                 />
                               </Box>
                             )}
@@ -2168,13 +2177,22 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
               </Link>
             </Box>
             <Box className={classes.imageContainerCTA2}>
-              <Image src={planningImg} alt="planningImage" width={537} quality={100} />
+              <Image
+                src={planningImg}
+                alt="planningImage"
+                width={537}
+                quality={100}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
           </Box>
         </Box>
       </Box>
       {/* fin du CTA2}
-      {/* Partie 5 */}
+    {/* Partie 5 */}
       {dataset.review && (
         <Box marginBottom="150px">
           <Box className={clsx(classes.mainContainer, classes.mobileSizing)}>
@@ -2293,9 +2311,9 @@ const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
       <Box marginBottom="150px">
         <Box className={classes.mainContainer}>
           {/* <TrendingDestinations
-            trendingDestinationsItems={trendingDestinationsItems}
-            dotListClass={classes.customTrendingDestinationsDotBox}
-          /> */}
+          trendingDestinationsItems={trendingDestinationsItems}
+          dotListClass={classes.customTrendingDestinationsDotBox}
+        /> */}
         </Box>
       </Box>
       {/* fin de la Partie 6 */}

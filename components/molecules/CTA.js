@@ -1,6 +1,6 @@
 import { Box, Button, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import illustrationPlanning from '../../images/ILLUSTRATION_PLANNING_1.png'
@@ -46,7 +46,18 @@ const CTA = () => {
           className={classes.nextLink}
         >
           <Button
-            startIcon={<Image src={logo} height={25} width={20} alt="main_icon" />}
+            startIcon={
+              <Image
+                src={logo}
+                height={25}
+                width={20}
+                alt="main_icon"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            }
             variant="contained"
             className={classes.buttonPrimary}
             sx={{ marginBottom: matchesXs && '60px' }}
@@ -60,6 +71,10 @@ const CTA = () => {
         width={matchesXs ? '360' : '537'}
         quality={100}
         alt="planning_illustration"
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+        }}
       />
     </Box>
   )

@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -71,7 +71,18 @@ const DesktopIntro = ({ spotlight, metaContinentRef }) => {
             className={classes.nextLink}
           >
             <Button
-              startIcon={<Image src={logo} height={25} width={20} alt="main_logo" />}
+              startIcon={
+                <Image
+                  src={logo}
+                  height={25}
+                  width={20}
+                  alt="main_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              }
               variant="contained"
               className={classes.buttonPrimary}
               sx={{ marginRight: '15px' }}

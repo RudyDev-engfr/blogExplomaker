@@ -1,6 +1,6 @@
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import WPGBlocks from '../helper/react-gutenberg'
@@ -107,9 +107,12 @@ const Recrutement = ({ dataset }) => {
         <Box className={classes.headerMapBox}>
           <Image
             src={!matchesXs ? headerImg : mobileHeaderImg}
-            layout="fill"
-            objectFit="cover"
             alt="header_image"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+            }}
           />
         </Box>
         <Box className={classes.mainContainer} sx={{ position: 'relative', top: '-100px' }}>

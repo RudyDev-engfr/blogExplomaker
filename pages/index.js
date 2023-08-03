@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -773,7 +773,16 @@ const Home = ({ dataset }) => {
           <Box className={classes.mainContainer}>
             {matchesXs && (
               <Box display="flex" justifyContent="center" sx={{ position: 'relative' }} top="65px">
-                <Image src={logoFull} width={250} height={60} alt="mainLogo_image" />
+                <Image
+                  src={logoFull}
+                  width={250}
+                  height={60}
+                  alt="mainLogo_image"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               </Box>
             )}
             <Box
@@ -956,6 +965,10 @@ const Home = ({ dataset }) => {
                 width="540"
                 quality={100}
                 alt="illustrationComplete_image"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
               <Box
                 maxWidth="540px"
@@ -1118,6 +1131,10 @@ const Home = ({ dataset }) => {
                 width={matchesXs ? '360' : '537'}
                 quality={100}
                 alt="planning_illustration"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
           </Box>
@@ -1242,6 +1259,10 @@ const Home = ({ dataset }) => {
                 width={matchesXs ? '360' : '562'}
                 quality={100}
                 alt="collab_illustration"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
               <Box
                 maxWidth="570px"
@@ -1358,11 +1379,14 @@ const Home = ({ dataset }) => {
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     photo.src.original
                                   )}`}
-                                  objectFit="cover"
-                                  layout="fill"
                                   quality={100}
                                   className={classes.mobileAdaptedProject}
                                   alt="publicPresentation_image"
+                                  fill
+                                  sizes="100vw"
+                                  style={{
+                                    objectFit: 'cover',
+                                  }}
                                 />
                               </Box>
                               <Paper elevation={2} className={classes.travelTilePaper}>
@@ -1403,11 +1427,15 @@ const Home = ({ dataset }) => {
                                 src={encodeURI(srcImg)}
                                 width={1140}
                                 height={477}
-                                objectFit="cover"
-                                objectPosition="center"
                                 quality={100}
                                 className={classes.travelBoxImage}
                                 alt="travelBox_image"
+                                style={{
+                                  maxWidth: '100%',
+                                  height: 'auto',
+                                  objectFit: 'cover',
+                                  objectPosition: 'center',
+                                }}
                               />
                             </Box>
                           ))}
@@ -1541,51 +1569,70 @@ const Home = ({ dataset }) => {
         {/* Fin de partie 7 */}
         {/* Partie 8 */}
         {/* <Box className={classes.whiteBackgroundContainer}>
-          <Box className={classes.mainContainer}>
+        <Box className={classes.mainContainer}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            marginBottom="140px"
+            className={classes.mobileAlignCenter}
+          >
             <Box
-              display="flex"
-              flexDirection="column"
-              marginBottom="140px"
-              className={classes.mobileAlignCenter}
+              marginBottom="50px"
+              className={clsx(classes.mobileFlexColumn, classes.mobileAlignCenter)}
             >
-              <Box
-                marginBottom="50px"
-                className={clsx(classes.mobileFlexColumn, classes.mobileAlignCenter)}
-              >
-                <Box marginBottom="20px" className={classes.mobileSizing}>
-                  <Typography
-                    variant="subtitle1"
-                    className={clsx(
-                      classes.mobileSubtitle,
-                      classes.mobileTextCenter,
-                      classes.ultraDark
-                    )}
-                  >
-                    L&rsquo;avis des explorateurs
-                  </Typography>
-                </Box>
+              <Box marginBottom="20px" className={classes.mobileSizing}>
                 <Typography
-                  variant="h1"
-                  component="h2"
-                  className={clsx(classes.mobileTitle, classes.mobileTextCenter)}
+                  variant="subtitle1"
+                  className={clsx(
+                    classes.mobileSubtitle,
+                    classes.mobileTextCenter,
+                    classes.ultraDark
+                  )}
                 >
-                  Ils utilisent Explomaker
+                  L&rsquo;avis des explorateurs
                 </Typography>
               </Box>
-              <Box className={classes.mobileSizing}>
-                <Card elevation={2} className={classes.opinionCard}>
-                  <CardContent>
-                    <Box className={classes.opinionProfileUser}>
-                      <Image
-                        src={emma}
-                        width="70"
-                        height="70"
-                        quality={100}
-                        className={classes.opinionUserPicture}
-                      />
-                      <Box display="flex" flexDirection="column">
-                        {matchesXs ? (
-                          <>
+              <Typography
+                variant="h1"
+                component="h2"
+                className={clsx(classes.mobileTitle, classes.mobileTextCenter)}
+              >
+                Ils utilisent Explomaker
+              </Typography>
+            </Box>
+            <Box className={classes.mobileSizing}>
+              <Card elevation={2} className={classes.opinionCard}>
+                <CardContent>
+                  <Box className={classes.opinionProfileUser}>
+                    <Image
+                      src={emma}
+                      width="70"
+                      height="70"
+                      quality={100}
+                      className={classes.opinionUserPicture}
+                    />
+                    <Box display="flex" flexDirection="column">
+                      {matchesXs ? (
+                        <>
+                          <Typography
+                            variant="h3"
+                            component="h6"
+                            className={clsx(classes.grey33, classes.weight500)}
+                          >
+                            {reviews[0].nom}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className={classes.colorRed}
+                            sx={{ fontSize: '17px', lineHeight: '25px' }}
+                          >
+                            {reviews[0].sejour}
+                          </Typography>
+                          <Rating value={parseFloat(reviews[0].note)} readOnly />
+                        </>
+                      ) : (
+                        <>
+                          <Box display="flex" justifyContent="space-between">
                             <Typography
                               variant="h3"
                               component="h6"
@@ -1593,46 +1640,27 @@ const Home = ({ dataset }) => {
                             >
                               {reviews[0].nom}
                             </Typography>
-                            <Typography
-                              variant="body2"
-                              className={classes.colorRed}
-                              sx={{ fontSize: '17px', lineHeight: '25px' }}
-                            >
-                              {reviews[0].sejour}
-                            </Typography>
                             <Rating value={parseFloat(reviews[0].note)} readOnly />
-                          </>
-                        ) : (
-                          <>
-                            <Box display="flex" justifyContent="space-between">
-                              <Typography
-                                variant="h3"
-                                component="h6"
-                                className={clsx(classes.grey33, classes.weight500)}
-                              >
-                                {reviews[0].nom}
-                              </Typography>
-                              <Rating value={parseFloat(reviews[0].note)} readOnly />
-                            </Box>
-                            <Typography
-                              variant="body2"
-                              className={clsx(classes.colorRed, classes.weight500)}
-                            >
-                              {reviews[0].sejour}
-                            </Typography>
-                          </>
-                        )}
-                      </Box>
+                          </Box>
+                          <Typography
+                            variant="body2"
+                            className={clsx(classes.colorRed, classes.weight500)}
+                          >
+                            {reviews[0].sejour}
+                          </Typography>
+                        </>
+                      )}
                     </Box>
-                    <Box>
-                      <Typography className={classes.grey33}>{reviews[0].texte}</Typography>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Box>
+                  </Box>
+                  <Box>
+                    <Typography className={classes.grey33}>{reviews[0].texte}</Typography>
+                  </Box>
+                </CardContent>
+              </Card>
             </Box>
           </Box>
-        </Box> */}
+        </Box>
+      </Box> */}
         {/* Fin de la partie 8 */}
         {/* Partie 9 */}
         <Box className={classes.greyBackgroundContainer}>
@@ -1820,7 +1848,8 @@ const Home = ({ dataset }) => {
                               )}`}
                               alt="trendingSpot_image"
                               className={classes.focusImg}
-                              layout="fill"
+                              fill
+                              sizes="100vw"
                             />
                             {/* <LinearProgress variant="determinate" value="0" /> */}
                             <Box className={classes.logoSpot}>
@@ -1830,6 +1859,12 @@ const Home = ({ dataset }) => {
                                 height="209"
                                 quality={100}
                                 alt="spot_logo"
+                                style={{
+                                  maxWidth: '100%',
+                                  height: 'auto',
+                                  objectFit: 'cover',
+                                  objectPosition: 'center',
+                                }}
                               />
                             </Box>
                           </Box>
@@ -1892,7 +1927,8 @@ const Home = ({ dataset }) => {
                                 )}`}
                                 alt="spotPicture_image"
                                 className={classes.focusImg}
-                                layout="fill"
+                                fill
+                                sizes="100vw"
                               />
                               <Box className={classes.logoSpot}>
                                 <Image
@@ -1901,6 +1937,12 @@ const Home = ({ dataset }) => {
                                   height="209"
                                   quality={100}
                                   alt="spotPicture_logo"
+                                  style={{
+                                    maxWidth: '100%',
+                                    height: 'auto',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center',
+                                  }}
                                 />
                               </Box>
                               {/* <LinearProgress variant="determinate" value="0" /> */}
@@ -2112,12 +2154,12 @@ const Home = ({ dataset }) => {
                     </Typography>
                   </Box>
                   {/* <form
-                    onSubmit={event => {
-                      handleSubmit(event)
-                      console.log(email)
-                    }}
-                    className={clsx(classes.formNewsletter, classes.mobileFlexColumn)}
-                  > */}
+                  onSubmit={event => {
+                    handleSubmit(event)
+                    console.log(email)
+                  }}
+                  className={clsx(classes.formNewsletter, classes.mobileFlexColumn)}
+                > */}
                   {!isEmailSent ? (
                     <>
                       <Box marginRight="15px">

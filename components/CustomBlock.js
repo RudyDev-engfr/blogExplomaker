@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -54,8 +54,9 @@ const CustomBlock = props => {
           src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
             image.picture_titled.src.original
           )}`}
-          layout="fill"
           alt="main_image_from_article"
+          fill
+          sizes="100vw"
         />
       ))}
     </Carousel>

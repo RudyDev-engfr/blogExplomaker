@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import background404 from '../images/ILLUSTRATION_COMPLETE.png'
@@ -147,7 +147,7 @@ const ErrorPage = () => {
       <Box className={classes.mainContainer}>
         <Box className={classes.itemsContainer}>
           <Box className={classes.imageContainer}>
-            <Image alt="error background" src={background404} layout="fill" quality={100} />
+            <Image alt="error background" src={background404} quality={100} fill sizes="100vw" />
           </Box>
           <Box className={classes.textContainer}>
             <Box>

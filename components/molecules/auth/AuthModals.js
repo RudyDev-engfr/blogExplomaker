@@ -9,7 +9,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import makeStyles from '@mui/styles/makeStyles'
 import ArrowBackIos from '@mui/icons-material/ArrowBackIos'
 import Close from '@mui/icons-material/Close'
@@ -155,7 +155,8 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
                       alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
-                      layout="fill"
+                      fill
+                      sizes="100vw"
                     />
                   </Box>
                   <Box className={classes.carouselDescriptionBox}>
@@ -170,7 +171,14 @@ const LoginModal = ({ modalState, modalStateSetter, handleProviderLogin }) => {
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="lineMobile_image" />
+              <Image
+                src={lineMobile}
+                alt="lineMobile_image"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Box position="absolute" top="2%" right="2%">
               <IconButton onClick={() => modalStateSetter('')} size="large">
@@ -318,7 +326,8 @@ const SignUpModal = ({
                       alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
-                      layout="fill"
+                      fill
+                      sizes="100vw"
                     />
                   </Box>
                   <Box className={classes.carouselDescriptionBox}>
@@ -333,7 +342,14 @@ const SignUpModal = ({
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="lineMobile_image" />
+              <Image
+                src={lineMobile}
+                alt="lineMobile_image"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Box position="absolute" top="2%" right="2%">
               <IconButton onClick={() => modalStateSetter('')} size="large">
@@ -521,7 +537,8 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
                       alt="gallery_image"
                       className={classes.carouselImg}
                       key={srcImg}
-                      layout="fill"
+                      fill
+                      sizes="100vw"
                     />
                   </Box>
                   <Box className={classes.carouselDescriptionBox}>
@@ -536,7 +553,14 @@ const PasswordResetModal = ({ modalState, modalStateSetter }) => {
           </Box>
           <Paper className={classes.paper}>
             <Box display="flex" justifyContent="center" paddingTop="10px" paddingBottom="40px">
-              <Image src={lineMobile} alt="lineMobile_image" />
+              <Image
+                src={lineMobile}
+                alt="lineMobile_image"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Box position="absolute" top="2%" left="2%">
               <IconButton onClick={() => modalStateSetter('login')} size="large">
