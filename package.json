@@ -10,7 +10,8 @@
     "export": "firebase emulators:export ./emulators.backup",
     "lint": "next lint",
     "deploy": "firebase deploy --only hosting:blog",
-    "emulators": "firebase emulators:start --import=./emulators.backup"
+    "emulators": "firebase emulators:start --import=./emulators.backup",
+    "prettier-format": "prettier --write '**/*.js'"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",

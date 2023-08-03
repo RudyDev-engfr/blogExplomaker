@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import WPGBlocks from '../../helper/react-gutenberg'
 import GetCustomBlock from '../../components/GutenbergCustomBlock'

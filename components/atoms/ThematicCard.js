@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({

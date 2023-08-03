@@ -18,7 +18,7 @@ import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import clsx from 'clsx'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 

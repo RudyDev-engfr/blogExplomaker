@@ -1,7 +1,7 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-const component_1 = require("@loadable/component");
-const Columns = (0, component_1.default)(() => Promise.resolve().then(() => require('./columns')));
+Object.defineProperty(exports, '__esModule', { value: true })
+const component_1 = require('@loadable/component')
+const Columns = (0, component_1.default)(() => Promise.resolve().then(() => require('./columns')))
 exports.default = {
-    Columns
-};
+  Columns,
+}
 //# sourceMappingURL=index.js.map

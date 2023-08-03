@@ -19,7 +19,7 @@ import { Marker } from '@react-google-maps/api'
 import clsx from 'clsx'
 import Carousel from 'react-material-ui-carousel'
 import MultiCarousel from 'react-multi-carousel'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { v4 as uuidv4 } from 'uuid'
 import 'react-multi-carousel/lib/styles.css'
 

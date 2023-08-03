@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import SearchFilter from './SearchFilter'
 import union from '../../images/icons/filtre.svg'

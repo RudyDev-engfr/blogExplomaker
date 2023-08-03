@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'

@@ -8,7 +8,7 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import makeStyles from '@mui/styles/makeStyles'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import clsx from 'clsx'
 import { useRouter } from 'next/dist/client/router'
 

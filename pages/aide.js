@@ -1,6 +1,6 @@
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import WPGBlocks from '../helper/react-gutenberg'

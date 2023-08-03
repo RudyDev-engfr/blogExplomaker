@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 
 import background404 from '../images/ILLUSTRATION_COMPLETE.png'

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 const useStyles = makeStyles(theme => ({
   flagContainer: {

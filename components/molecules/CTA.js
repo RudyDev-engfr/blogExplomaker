@@ -1,6 +1,6 @@
 import { Box, Button, Typography, useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 
 import illustrationPlanning from '../../images/ILLUSTRATION_PLANNING_1.png'
