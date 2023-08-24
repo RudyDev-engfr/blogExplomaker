@@ -179,7 +179,7 @@ const CountryTile = ({
   const { user, spotsBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
-    <Link passHref href={`/spot/${link}`}>
+    <Link passHref target={!matchesXs && '_blank'} href={`/spot/${link}`}>
       <Card
         elevation={0}
         className={clsx(classes.root, {

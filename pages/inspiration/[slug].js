@@ -65,10 +65,12 @@ const useStyles = makeStyles(theme => ({
       zIndex: 3,
     },
     '& h2': {
-      fontSize: '38px',
+      fontSize: '32px',
       fontWeight: '400',
-      lineHeight: '44px',
+      lineHeight: '37px',
       color: theme.palette.primary.ultraDark,
+      margin: '32px 0 10px 0',
+      width: '100%',
     },
     '& img': {
       borderRadius: '20px',

@@ -16,19 +16,19 @@ import CustomButtonGroup from './CustomButtonGroup'
 
 const useStyles = createStyles({
   carouselContainer: {
-    width: '660px',
+    width: '760px',
     height: '375px',
     position: 'relative',
     '@media (max-width: 600px)': { width: 'calc(100vw - 30px)', height: '250px' },
   },
   carouselImage: {
     height: '330px',
-    width: '660px',
+    width: '760px',
     borderRadius: '20px',
     '@media (max-width: 600px)': { width: '284px', height: '210px' },
   },
   itemContainer: {
-    width: '660px',
+    width: '760px',
     height: '330px',
     '@media (max-width: 600px)': { width: '284px', height: '210px' },
   },

@@ -247,8 +247,9 @@ const Nav = () => {
                   />
                 </Box>
               </Link>
-              {!router.pathname.includes('/results') &&
-                !router.pathname.includes('/inspiration') && <SearchField isNavbar />}
+              {router.pathname.indexOf('/results') === -1 &&
+                router.pathname.indexOf('/inspiration') !==
+                  router.pathname.split('').length - 12 && <SearchField isNavbar />}
               <Box className={classes.headerInnerRight}>
                 <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>

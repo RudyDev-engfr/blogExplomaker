@@ -125,7 +125,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
             {trendingDestinationsItems
               .filter(
                 ({ picture_titled: pictureTitled, title }) =>
-                  pictureTitled.src.original !== '' && title !== ''
+                  pictureTitled?.src?.original !== '' && title !== ''
               )
               .map(
                 ({
@@ -138,7 +138,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
                   <CountryTile
                     countryTitle={title}
                     category={continent}
-                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureTitled.src.original}`}
+                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureTitled?.src?.original}`}
                     altImg=""
                     link={slug}
                     isLarge
@@ -191,9 +191,9 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
             deviceType="desktop"
           >
             {trendingDestinationsItems
-              .filter(
+              ?.filter(
                 ({ picture_titled: pictureTitled, title }) =>
-                  pictureTitled.src.original !== '' && title !== ''
+                  pictureTitled?.src?.original !== '' && title !== ''
               )
               .map(
                 ({
@@ -207,7 +207,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
                     countryTitle={title}
                     category={continent}
                     categoryColor={color}
-                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureTitled.src.original}`}
+                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${pictureTitled?.src?.original}`}
                     altImg=""
                     link={slug}
                     key={`trendingDestination-${slug}`}

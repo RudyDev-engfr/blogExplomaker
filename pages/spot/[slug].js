@@ -800,7 +800,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-const Spot = ({ dataset, periodeVisited, homePage, slug, tags }) => {
+const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))

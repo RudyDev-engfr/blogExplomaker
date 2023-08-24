@@ -200,10 +200,12 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
     favoritesArticles,
     popularThemes,
     inspirationForPeople,
+    articlesCategory,
   } = dataset
   const [isShowingMoreArticles, setIsShowingMoreArticles] = useState(false)
   const [currentSpotlightArticles, setCurrentSpotlightArticles] = useState([])
   const [currentPopularThemes, setCurrentPopularThemes] = useState([])
+  const [currentArticlesCategory, setCurrentArticlesCategory] = useState([])
   const [isShowingMoreSpots, setIsShowingMoreSpots] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const [currentFavoritesArticles, setCurrentFavoritesArticles] = useState([])
@@ -211,6 +213,16 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const [currentInspirationForPeople, setCurrentInspirationForPeople] = useState([])
   const [currentMonthInspiration, setCurrentMonthInspiration] = useState([])
   const [isShowingMoreMonthInspiration, setIsShowingMoreMonthInspiration] = useState(false)
+
+  useEffect(() => {
+    if (typeof articlesCategory !== 'undefined' || articlesCategory !== {}) {
+      const articlesCategoryKeys = Object.keys(articlesCategory)
+      const tempArticlesCategoryArray = articlesCategoryKeys.map(
+        currentKey => articlesCategoryKeys[currentKey]
+      )
+      setCurrentArticlesCategory(tempArticlesCategoryArray)
+    }
+  }, [articlesCategory])
 
   useEffect(() => {
     if (typeof monthDestination !== 'undefined' || monthDestination !== {}) {
@@ -644,7 +656,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               justifyContent: 'space-between',
             }}
           >
-            {categoriesName.map(category => (
+            {currentArticlesCategory.map(category => (
               <Button
                 endIcon={<ArrowRightAlt />}
                 sx={{
