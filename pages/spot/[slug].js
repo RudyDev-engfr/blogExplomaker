@@ -1458,7 +1458,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
               >
                 {dataset.picture_slider &&
                   dataset.picture_slider.map(({ src, id }, index) => {
-                    const encodedURI = encodeURI(src.original)
+                    const encodedURI = encodeURI(src.large)
                     return (
                       <Box
                         width="100%"
@@ -1540,7 +1540,6 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                             height: '640px',
                             position: 'relative',
                             zIndex: '1',
-                            boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.1)',
                             borderRadius: '20px 20px 0px 0px',
                           }}
                         >
@@ -1553,6 +1552,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                             style={{
                               maxWidth: '100%',
                               height: 'auto',
+                              maxHeight: '640px',
                             }}
                           />
                         </Box>
@@ -1641,7 +1641,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                               <Box sx={{ position: 'relative' }}>
                                 <Image
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                    picture.src?.original
+                                    picture.src?.large
                                   )}`}
                                   quality={100}
                                   className={classes.countryGalleryImg}
