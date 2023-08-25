@@ -7,7 +7,7 @@ import MobileBlogCard from './MobileBlogCard'
 
 const useStyles = makeStyles({
   mobileBlogCardAndCountryTile: {
-    margin: '30px 0 0 0',
+    margin: '0 0 0 0',
   },
 })
 const ArticlesList = ({

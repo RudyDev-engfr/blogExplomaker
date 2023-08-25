@@ -1927,7 +1927,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
       </Box>
       {/* Fin de la partie 3 */}
       {/* carousel de photos */}
-      <Box sx={{ marginBottom: matchesXs && '130px' }}>
+      <Box sx={{ marginBottom: matchesXs && '130px', paddingTop: '60px' }}>
         <Box
           sx={{
             display: 'flex',
@@ -1958,7 +1958,6 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
           sx={{
             width: '100%',
             margin: 'auto',
-            marginBottom: '80px',
             [theme.breakpoints.down('sm')]: {
               maxWidth: '100vw',
               margin: '0',
@@ -2167,7 +2166,13 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                 />
               )}
             </Box>
-            <Box sx={{ paddingTop: '60px' }}>
+            <Box
+              sx={{
+                paddingTop: matchesXs ? '90px' : '60px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               <Link
                 passHref
                 href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"

@@ -127,7 +127,6 @@ const useStyles = makeStyles(theme => ({
     display: 'grid',
     gridTemplate: '1fr / 1fr 1fr 1fr 1fr',
     gridGap: '30px',
-    paddingBottom: '60px',
   },
   continentGrid: {
     display: 'grid',
@@ -372,8 +371,8 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             {/* Partie 2 liste de BlogCard */}
             {currentSpotlightArticles.length > 0 &&
               (!matchesXs ? (
-                <Box marginBottom="60px">
-                  <Typography variant="h6" color="grey.grey33">
+                <Box marginBottom="30px">
+                  <Typography variant="h6" color="grey.grey33" sx={{ marginBottom: '20px' }}>
                     Articles sur {spotlight.prefixed_title}
                   </Typography>
                   <ArticlesList
@@ -382,7 +381,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                     numberOfArticles={3}
                     numberOfMaxArticles={9}
                   />
-                  <Box display="flex" justifyContent="center" sx={{ paddingTop: '15px' }}>
+                  <Box display="flex" justifyContent="center" sx={{ paddingTop: '20px' }}>
                     {currentSpotlightArticles.length > 3 &&
                       (!isShowingMoreArticles ? (
                         <Button
@@ -429,13 +428,13 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             {/* Partie 3 liste de spots */}
             {!matchesXs ? (
               <Box>
-                <Typography variant="h6" color="grey.grey33" marginBottom="15px">
+                <Typography variant="h6" color="grey.grey33" marginBottom="20px">
                   Spots en {spotlight.title}
                 </Typography>
                 <Box className={classes.spotResultContainer}>
                   <SpotList data={spotlight.unmissable} isShowingMoreSpots={isShowingMoreSpots} />
                 </Box>
-                <Box display="flex" justifyContent="center">
+                <Box display="flex" justifyContent="center" sx={{ paddingTop: '20px' }}>
                   {!isShowingMoreSpots ? (
                     <Button
                       variant="contained"
