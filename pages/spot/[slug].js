@@ -1397,188 +1397,6 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
         </Box>
       </Box>
       {/* Fin de la partie 1 */}
-      {/* carousel de photos */}
-      <Box sx={{ marginBottom: matchesXs && '130px' }}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            padding: matchesXs && '0 30px',
-          }}
-        >
-          <Typography
-            variant="h3"
-            color="primary"
-            className={classes.globalSubtitle}
-            textAlign={!matchesXs ? 'center' : 'left'}
-          >
-            Panorama
-          </Typography>
-          <Box marginBottom="30px">
-            <Typography
-              variant="h1"
-              component="h2"
-              textAlign={!matchesXs ? 'center' : 'left'}
-              className={classes.unmissableBigTitle}
-            >
-              {dataset.link_words[0]} {dataset.title} en images
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            width: '100%',
-            margin: 'auto',
-            marginBottom: '80px',
-            [theme.breakpoints.down('sm')]: {
-              maxWidth: '100vw',
-              margin: '0',
-              position: 'relative',
-            },
-          }}
-        >
-          {matchesXs ? (
-            <>
-              <MultiCarousel
-                itemClass={classes.mobileCarouselItem}
-                autoPlaySpeed={3000}
-                draggable
-                arrows={false}
-                focusOnSelect={false}
-                infinite
-                showDots={false}
-                keyBoardControl
-                minimumTouchDrag={80}
-                responsive={{
-                  desktop: {
-                    breakpoint: {
-                      max: 3000,
-                      min: 640,
-                    },
-                    items: 1,
-                  },
-                  mobile: {
-                    breakpoint: {
-                      max: 640,
-                      min: 0,
-                    },
-                    items: 1,
-                  },
-                }}
-                slidesToSlide={1}
-                swipeable
-                ssr
-                deviceType="mobile"
-              >
-                {dataset.picture_slider &&
-                  dataset.picture_slider.map(({ src, id }, index) => {
-                    const encodedURI = encodeURI(src.large)
-                    return (
-                      <Box
-                        width="100%"
-                        minWidth="300px"
-                        minHeight="200px"
-                        maxHeight="200px"
-                        sx={{ position: 'relative' }}
-                        key={id}
-                      >
-                        <Image
-                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                          alt={`photo${index}`}
-                          fill
-                          sizes="100vw"
-                        />
-                      </Box>
-                    )
-                  })}
-              </MultiCarousel>
-            </>
-          ) : (
-            <>
-              <Carousel
-                index={currentPictureSlider}
-                onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
-                animation="slide"
-                indicators={matchesXs}
-                autoPlay={false}
-                NavButton={() =>
-                  !matchesXs && (
-                    <Box className={classes.buttonPictureSlider}>
-                      <Button
-                        className={classes.carouselArrow}
-                        onClick={() => {
-                          let nextIndex
-                          if (currentPictureSlider > 0) {
-                            nextIndex = currentPictureSlider - 1
-                          } else {
-                            nextIndex = dataset.picture_slider.length - 1
-                          }
-                          setCurrentPictureSlider(nextIndex)
-                        }}
-                      >
-                        <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
-                      </Button>
-                      <Button
-                        className={classes.carouselArrow}
-                        onClick={() =>
-                          setCurrentPictureSlider(
-                            currentPictureSlider < dataset.picture_slider.length - 1
-                              ? currentPictureSlider + 1
-                              : 0
-                          )
-                        }
-                      >
-                        <ArrowRightAlt fontSize="large" />
-                      </Button>
-                    </Box>
-                  )
-                }
-              >
-                {dataset.picture_slider &&
-                  dataset.picture_slider.map(({ src, id }, index) => {
-                    const encodedURI = encodeURI(src.original)
-                    return (
-                      <Box
-                        key={id}
-                        className={classes.pictureSliderContainer}
-                        sx={{
-                          '&::before': {
-                            background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
-                            backgroundSize: 'cover',
-                          },
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: '960px',
-                            height: '640px',
-                            position: 'relative',
-                            zIndex: '1',
-                            borderRadius: '20px 20px 0px 0px',
-                          }}
-                        >
-                          <Image
-                            src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
-                            width={960}
-                            height={640}
-                            alt={`photo${index}`}
-                            className={classes.photoCarouselSingleImage}
-                            style={{
-                              maxWidth: '100%',
-                              height: 'auto',
-                              maxHeight: '640px',
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    )
-                  })}
-              </Carousel>
-            </>
-          )}
-        </Box>
-      </Box>
-      {/* Fin du carousel de photos */}
       {/* Partie 2 */}
       <Box marginBottom="100px">
         <Box className={clsx(classes.mainContainer, classes.mobileSizing)} sx={{ margin: 0 }}>
@@ -1853,6 +1671,188 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
         </Box>
       </Box>
       {/* fin de la partie 2 */}
+      {/* carousel de photos */}
+      <Box sx={{ marginBottom: matchesXs && '130px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: matchesXs && '0 30px',
+          }}
+        >
+          <Typography
+            variant="h3"
+            color="primary"
+            className={classes.globalSubtitle}
+            textAlign={!matchesXs ? 'center' : 'left'}
+          >
+            Panorama
+          </Typography>
+          <Box marginBottom="30px">
+            <Typography
+              variant="h1"
+              component="h2"
+              textAlign={!matchesXs ? 'center' : 'left'}
+              className={classes.unmissableBigTitle}
+            >
+              {dataset.link_words[0]} {dataset.title} en images
+            </Typography>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            margin: 'auto',
+            marginBottom: '80px',
+            [theme.breakpoints.down('sm')]: {
+              maxWidth: '100vw',
+              margin: '0',
+              position: 'relative',
+            },
+          }}
+        >
+          {matchesXs ? (
+            <>
+              <MultiCarousel
+                itemClass={classes.mobileCarouselItem}
+                autoPlaySpeed={3000}
+                draggable
+                arrows={false}
+                focusOnSelect={false}
+                infinite
+                showDots={false}
+                keyBoardControl
+                minimumTouchDrag={80}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 640,
+                    },
+                    items: 1,
+                  },
+                  mobile: {
+                    breakpoint: {
+                      max: 640,
+                      min: 0,
+                    },
+                    items: 1,
+                  },
+                }}
+                slidesToSlide={1}
+                swipeable
+                ssr
+                deviceType="mobile"
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.large)
+                    return (
+                      <Box
+                        width="100%"
+                        minWidth="300px"
+                        minHeight="200px"
+                        maxHeight="200px"
+                        sx={{ position: 'relative' }}
+                        key={id}
+                      >
+                        <Image
+                          src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                          alt={`photo${index}`}
+                          fill
+                          sizes="100vw"
+                        />
+                      </Box>
+                    )
+                  })}
+              </MultiCarousel>
+            </>
+          ) : (
+            <>
+              <Carousel
+                index={currentPictureSlider}
+                onChange={currentIndex => setCurrentPictureSlider(currentIndex)}
+                animation="slide"
+                indicators={matchesXs}
+                autoPlay={false}
+                NavButton={() =>
+                  !matchesXs && (
+                    <Box className={classes.buttonPictureSlider}>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() => {
+                          let nextIndex
+                          if (currentPictureSlider > 0) {
+                            nextIndex = currentPictureSlider - 1
+                          } else {
+                            nextIndex = dataset.picture_slider.length - 1
+                          }
+                          setCurrentPictureSlider(nextIndex)
+                        }}
+                      >
+                        <ArrowRightAlt style={{ transform: 'rotate(180deg)' }} fontSize="large" />
+                      </Button>
+                      <Button
+                        className={classes.carouselArrow}
+                        onClick={() =>
+                          setCurrentPictureSlider(
+                            currentPictureSlider < dataset.picture_slider.length - 1
+                              ? currentPictureSlider + 1
+                              : 0
+                          )
+                        }
+                      >
+                        <ArrowRightAlt fontSize="large" />
+                      </Button>
+                    </Box>
+                  )
+                }
+              >
+                {dataset.picture_slider &&
+                  dataset.picture_slider.map(({ src, id }, index) => {
+                    const encodedURI = encodeURI(src.original)
+                    return (
+                      <Box
+                        key={id}
+                        className={classes.pictureSliderContainer}
+                        sx={{
+                          '&::before': {
+                            background: `url(https://storage.googleapis.com/explomaker-data-stateless/${src.thumbnail})`,
+                            backgroundSize: 'cover',
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: '960px',
+                            height: '640px',
+                            position: 'relative',
+                            zIndex: '1',
+                            borderRadius: '20px 20px 0px 0px',
+                          }}
+                        >
+                          <Image
+                            src={`https://storage.googleapis.com/explomaker-data-stateless/${encodedURI}`}
+                            width={960}
+                            height={640}
+                            alt={`photo${index}`}
+                            className={classes.photoCarouselSingleImage}
+                            style={{
+                              maxWidth: '100%',
+                              height: 'auto',
+                              maxHeight: '640px',
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    )
+                  })}
+              </Carousel>
+            </>
+          )}
+        </Box>
+      </Box>
+      {/* Fin du carousel de photos */}
       {/* Partie 3 */}
       <Box marginBottom={matchesXs ? '60px' : '80px'}>
         <Box className={clsx(classes.mainContainer)}>
