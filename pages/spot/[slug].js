@@ -158,6 +158,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '500',
     fontFamily: theme.typography.fontFamily,
     marginBottom: '25px',
+    zIndex: 1,
   },
   greenLabel: {
     color: theme.palette.primary.main,
@@ -243,6 +244,7 @@ const useStyles = makeStyles(theme => ({
     padding: '100px 0 0 0',
     position: 'relative',
     top: '-60px',
+    zIndex: 0,
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
@@ -729,6 +731,10 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none !important',
     textTransform: 'none',
     color: theme.palette.grey33,
+    '&:hover': {
+      color: theme.palette.grey33,
+      backgroundColor: 'unset',
+    },
   },
 }))
 
@@ -1202,7 +1208,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                   </Box>
                 )}
                 {dataset.visa && dataset.country_short !== 'FR' && (
-                  <Box sx={{ paddingTop: '50px' }}>
+                  <Box sx={{ paddingTop: '50px', zIndex: 1 }}>
                     <Box>
                       <Typography variant="h2" className={classes.practicalInfo}>
                         Infos pratiques
@@ -1227,7 +1233,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                                 {/* </Tooltip> */}
                                 {moneyCode && (
                                   <Tooltip title={moneyCode}>
-                                    <Button>{moneyCode}</Button>
+                                    <Button className={classes.unstyledButton}>{moneyCode}</Button>
                                   </Tooltip>
                                 )}
                               </Typography>
