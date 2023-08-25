@@ -203,8 +203,7 @@ const useStyles = makeStyles(theme => ({
   },
   collaborationIcon: {
     color: theme.palette.primary.main,
-    width: '23px',
-    height: '23px',
+    fontSize: '23px',
   },
   iconBox: {
     position: 'relative',
@@ -274,7 +273,7 @@ const useStyles = makeStyles(theme => ({
     height: '80px',
     borderRadius: '50px',
     background:
-      'linear-gradient(180deg, rgba(230, 245, 244, 0.8) 0%, rgba(230, 245, 244, 0.2) 100%)',
+      'linear-gradient(180deg, rgba(230, 245, 244, 0.9) 0%, rgba(230, 245, 244, 0.5) 100%)',
     marginBottom: '25px',
   },
   collaborationBackground: {
@@ -285,7 +284,7 @@ const useStyles = makeStyles(theme => ({
     height: '60px',
     borderRadius: '50px',
     background:
-      'linear-gradient(180deg, rgba(230, 245, 244, 0.8) 0%, rgba(230, 245, 244, 0.2) 100%)',
+      'linear-gradient(180deg, rgba(230, 245, 244, 0.9) 0%, rgba(230, 245, 244, 0.5) 100%)',
     marginRight: '20px',
   },
   preparationText: {
@@ -356,6 +355,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '50px',
     [theme.breakpoints.down('sm')]: {
       gridTemplate: 'repeat(3, 1fr) / 360px',
+      gridGap: '60px',
     },
   },
   workingEmoji: {
@@ -667,6 +667,7 @@ const WelcomePage = ({ dataset }) => {
     '0_header': headerContent,
     '1_encart_blog_1grand_4petits': encartContent,
     '2_slider_destinations': sliderDestinationsContent,
+    '2_2_slider_destinations': secondSliderDestinationsContent,
     '3_thematiques_recherche': thematicSearchContent,
     '4_contenu_thematique_3_articles': trendingSpotContent,
     '5_argument_1': firstArgumentContent,
@@ -676,12 +677,14 @@ const WelcomePage = ({ dataset }) => {
     '9_argument_5': fifthArgumentContent,
     '10_slider_photos_arguments': photosSliderArguments,
     '11_selection_article_x3': articlesSelection,
+    intro_explomaker: introExplomaker,
   } = dataset
 
   const [email, setEmail] = useState('')
   const [currentSlideDesktopPart6, setCurrentSlideDesktopPart6] = useState(0)
   const [currentSlideSpot, setCurrentSlideSpot] = useState(0)
   const [trendingDestinationsItems, setTrendingDestinationsItems] = useState([])
+  const [secondTrendingDestinationsItems, setSecondTrendingDestinationsItems] = useState([])
   const [currentPublicPresentation, setCurrentPublicPresentation] = useState([])
   const [currentHeartStrokes, setCurrentHeartStrokes] = useState([])
   const [showGoTop, setShowGoTop] = useState()
@@ -695,6 +698,16 @@ const WelcomePage = ({ dataset }) => {
     )
     setTrendingDestinationsItems(tempTrendingDestinationsArray)
   }, [sliderDestinationsContent])
+
+  useEffect(() => {
+    if (secondSliderDestinationsContent?.spots?.length > 0) {
+      const trendingDestinationsKeys = Object.keys(secondSliderDestinationsContent?.spots)
+      const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
+        currentKey => secondSliderDestinationsContent.spots[currentKey]
+      )
+      setSecondTrendingDestinationsItems(tempTrendingDestinationsArray)
+    }
+  }, [secondSliderDestinationsContent])
 
   useEffect(() => {
     console.log('dataset', dataset)
@@ -781,15 +794,21 @@ const WelcomePage = ({ dataset }) => {
                   <Box display="flex" justifyContent="space-evenly" flexWrap="wrap">
                     <Box display="flex" alignItems="center">
                       <Check color="primary" />
-                      <Typography>{headerContent?.bonus[0]}</Typography>
+                      <Typography sx={{ [theme.breakpoints.down('sm')]: { maxWidth: '60vw' } }}>
+                        {headerContent?.bonus[0]}
+                      </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" />
-                      <Typography>{headerContent?.bonus[1]}</Typography>
+                      <Typography sx={{ [theme.breakpoints.down('sm')]: { maxWidth: '60vw' } }}>
+                        {headerContent?.bonus[1]}
+                      </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Check color="primary" className={classes.checkIcons} />
-                      <Typography>{headerContent?.bonus[2]}</Typography>
+                      <Typography sx={{ [theme.breakpoints.down('sm')]: { maxWidth: '60vw' } }}>
+                        {headerContent?.bonus[2]}
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -936,7 +955,10 @@ const WelcomePage = ({ dataset }) => {
                 <Box className={classes.mobileAlignCenter}>
                   <BlogCard
                     bigTitle={encartContent?.articles[0]?.title}
-                    category={encartContent?.articles[0]?.name}
+                    category={
+                      encartContent?.articles[0]?.name ||
+                      encartContent?.articles[0]?.sub_type[0].name
+                    }
                     srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encartContent?.articles[0]?.picture.src.original}`}
                     altImg=""
                     date={encartContent?.articles[0]?.creation_date}
@@ -1025,7 +1047,7 @@ const WelcomePage = ({ dataset }) => {
         {/* Partie sliderDestinations */}
         <Box
           className={classes.whiteBackgroundContainer}
-          sx={{ marginBottom: matchesXs ? '130px' : '80px' }}
+          sx={{ marginBottom: matchesXs ? '130px' : '80px', paddingTop: '30px' }}
         >
           <Box className={classes.mainContainer}>
             {trendingDestinationsItems.length > 0 && (
@@ -1037,6 +1059,21 @@ const WelcomePage = ({ dataset }) => {
           </Box>
         </Box>
         {/* Fin de partie sliderDestinations */}
+        {/* Partie secondSliderDestinations */}
+        {secondTrendingDestinationsItems.length > 0 && (
+          <Box
+            className={classes.whiteBackgroundContainer}
+            sx={{ marginBottom: matchesXs ? '130px' : '80px', paddingTop: '30px' }}
+          >
+            <Box className={classes.mainContainer}>
+              <TrendingDestinations
+                trendingDestinationsItems={secondTrendingDestinationsItems}
+                dotListClass={classes.customTrendingDestinationsDotBox}
+              />
+            </Box>
+          </Box>
+        )}
+        {/* Fin de partie secondSliderDestinations */}
         {/* Partie thématiques */}
         <Box
           sx={{
@@ -1045,7 +1082,6 @@ const WelcomePage = ({ dataset }) => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: theme.palette.grey.f7,
           }}
         >
           <Box
@@ -1055,12 +1091,16 @@ const WelcomePage = ({ dataset }) => {
               variant="h6"
               color="primary.ultraDark"
               fontWeight="400"
-              sx={{ marginBottom: '10px' }}
+              sx={{ marginBottom: '10px', textAlign: matchesXs && 'center' }}
             >
-              Thématiques
+              {thematicSearchContent?.sur_titre}
             </Typography>
-            <Typography variant="h3" sx={{ fontFamily: 'rubik', marginBottom: '30px' }}>
-              Thématiques les plus populaires
+            <Typography
+              variant="h1"
+              component="h2"
+              sx={{ marginBottom: '30px', textAlign: matchesXs && 'center' }}
+            >
+              {thematicSearchContent?.titre}
             </Typography>
             <Box className={classes.thematicGridContainer}>
               {thematicSearchContent?.thematiques?.map(
@@ -1077,7 +1117,7 @@ const WelcomePage = ({ dataset }) => {
           </Box>
         </Box>
         {/* fin de la Partie thématiques */}
-        {/* Partie 10 */}
+        {/* Partie Focus */}
         <Box className={classes.whiteBackgroundContainer} padding="60px 0 0 0">
           <Box className={classes.mainContainer}>
             <Box>
@@ -1118,6 +1158,7 @@ const WelcomePage = ({ dataset }) => {
                         navButtonsAlwaysInvisible
                         indicators={false}
                         animation="slide"
+                        autoPlay={false}
                       >
                         {trendingSpotContent?.liens[0].links.map(spot => (
                           <Box
@@ -1197,6 +1238,7 @@ const WelcomePage = ({ dataset }) => {
                           duration={1000}
                           index={currentSlideSpot}
                           onChange={currentIndex => setCurrentSlideSpot(currentIndex)}
+                          autoPlay={false}
                         >
                           {trendingSpotContent.liens[0].links.map(spot => (
                             <Box
@@ -1242,21 +1284,33 @@ const WelcomePage = ({ dataset }) => {
             </Box>
           </Box>
         </Box>
-        {/* Fin de la partie 10 */}
+        {/* Fin de la partie Focus */}
         {/* partie IA * */}
-        <Box className={classes.whiteBackgroundContainer}>
+        <Box
+          className={classes.greyBackgroundContainer}
+          sx={{ paddingTop: '90px', paddingBottom: '30px' }}
+        >
           <Box className={classes.mainContainer}>
+            <Typography
+              variant="h1"
+              component="h1"
+              className={clsx(classes.mobileTextCenter, classes.headerTitle)}
+              dangerouslySetInnerHTML={{ __html: introExplomaker }}
+              sx={{ maxWidth: '70%', margin: matchesXs && 'auto' }}
+            />
             <Box
               className={clsx(classes.mobileFlexWrapReverse, classes.page2)}
-              display="flex"
-              justifyContent="center"
-              marginTop="150px"
-              marginBottom="150px"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '90px',
+                marginBottom: '60px',
+              }}
             >
               <Image
                 src={`https://storage.googleapis.com/explomaker-data-stateless/${firstArgumentContent?.picture.src.original}`}
-                width="540"
-                height="540"
+                width={matchesXs ? 340 : 540}
+                height={matchesXs ? 340 : 540}
                 quality={100}
                 alt="illustrationComplete_image"
                 style={{
@@ -1318,8 +1372,8 @@ const WelcomePage = ({ dataset }) => {
           </Box>
         </Box>
         {/* Fin de la partie IA */}
-        {/* Partie 3 */}
-        <Box className={classes.whiteBackgroundContainer}>
+        {/* Partie argument 2 */}
+        <Box className={classes.whiteBackgroundContainer} sx={{ paddingTop: '90px' }}>
           <Box className={classes.mainContainer}>
             <Box className={classes.planificationContainer}>
               <Box
@@ -1451,6 +1505,7 @@ const WelcomePage = ({ dataset }) => {
                       classes.textCenter,
                       classes.ultraDark
                     )}
+                    sx={{ paddingX: '30px' }}
                   >
                     {thirdArgumentContent?.sur_titre}
                   </Typography>
@@ -1459,6 +1514,7 @@ const WelcomePage = ({ dataset }) => {
                   variant="h1"
                   component="h2"
                   className={clsx(classes.mobileTextCenter, classes.mobileTitle)}
+                  sx={{ paddingX: '30px' }}
                 >
                   {thirdArgumentContent?.titre}
                 </Typography>
@@ -1591,7 +1647,7 @@ const WelcomePage = ({ dataset }) => {
                         <Typography className={classes.workingEmoji}>{icone}</Typography>
                       </Box>
                       <Box marginBottom="10px">
-                        <Typography variant="h6">
+                        <Typography variant="h6" sx={{ textAlign: matchesXs && 'center' }}>
                           {`${index + 1} - `}
                           <Box component="span" className={classes.textPrimary}>
                             {titre}
@@ -1642,7 +1698,7 @@ const WelcomePage = ({ dataset }) => {
                 src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                   fifthArgumentContent?.picture.src?.original
                 )}`}
-                width={matchesXs ? '360' : '562'}
+                width={matchesXs ? '360' : '500'}
                 height={matchesXs ? '360' : '562'}
                 quality={100}
                 alt="collab_illustration"
@@ -1650,7 +1706,6 @@ const WelcomePage = ({ dataset }) => {
                   maxWidth: '100%',
                   height: 'auto',
                   borderRadius: '20px',
-                  alignSelf: 'self-start',
                 }}
               />
               <Box
@@ -1734,7 +1789,7 @@ const WelcomePage = ({ dataset }) => {
                 </Box>
                 <Box marginBottom={matchesXs && '80px'}>
                   {matchesXs ? (
-                    <Box sx={{ width: '100vw', height: '800px', position: 'relative' }}>
+                    <Box sx={{ width: '100vw', height: '600px', position: 'relative' }}>
                       <Carousel
                         navButtonsAlwaysInvisible
                         autoPlay={false}
@@ -1754,49 +1809,50 @@ const WelcomePage = ({ dataset }) => {
                           },
                         }}
                       >
-                        {currentPublicPresentation.map(
-                          ({ logo: publicLogo, titre, texte, photo }) => (
-                            <Box
-                              display="flex"
-                              flexDirection="column"
-                              alignItems="center"
-                              sx={{ position: 'relative', minHeight: '520px' }}
-                              key={publicLogo}
-                            >
-                              <Box sx={{ position: 'relative', height: '335px', width: '100vw' }}>
-                                <Image
-                                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                    photo.src.original
-                                  )}`}
-                                  quality={100}
-                                  className={classes.mobileAdaptedProject}
-                                  alt="publicPresentation_image"
-                                  fill
-                                  sizes="100vw"
-                                  style={{
-                                    objectFit: 'cover',
-                                  }}
-                                />
+                        {photosSliderArguments?.elements &&
+                          photosSliderArguments.elements.map(
+                            ({ logo: publicLogo, titre, texte, photo }) => (
+                              <Box
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="center"
+                                sx={{ position: 'relative', minHeight: '520px' }}
+                                key={publicLogo}
+                              >
+                                <Box sx={{ position: 'relative', height: '335px', width: '100vw' }}>
+                                  <Image
+                                    src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                                      photo.src.original
+                                    )}`}
+                                    quality={100}
+                                    className={classes.mobileAdaptedProject}
+                                    alt="publicPresentation_image"
+                                    fill
+                                    sizes="100vw"
+                                    style={{
+                                      objectFit: 'cover',
+                                    }}
+                                  />
+                                </Box>
+                                <Paper elevation={2} className={classes.travelTilePaper}>
+                                  <Box marginBottom="15px">
+                                    <Typography
+                                      variant="h5"
+                                      className={clsx({
+                                        [classes.rotate35Deg]: titre === 'Entre amis',
+                                      })}
+                                    >
+                                      {publicLogo}
+                                    </Typography>
+                                  </Box>
+                                  <Box marginBottom="10px">
+                                    <Typography variant="h6">{titre}</Typography>
+                                  </Box>
+                                  <Typography className={classes.textCenter}>{texte}</Typography>
+                                </Paper>
                               </Box>
-                              <Paper elevation={2} className={classes.travelTilePaper}>
-                                <Box marginBottom="15px">
-                                  <Typography
-                                    variant="h5"
-                                    className={clsx({
-                                      [classes.rotate35Deg]: titre === 'Entre amis',
-                                    })}
-                                  >
-                                    {publicLogo}
-                                  </Typography>
-                                </Box>
-                                <Box marginBottom="10px">
-                                  <Typography variant="h6">{titre}</Typography>
-                                </Box>
-                                <Typography className={classes.textCenter}>{texte}</Typography>
-                              </Paper>
-                            </Box>
-                          )
-                        )}
+                            )
+                          )}
                       </Carousel>
                     </Box>
                   ) : (
@@ -1809,6 +1865,7 @@ const WelcomePage = ({ dataset }) => {
                           indicators={false}
                           index={currentSlideDesktopPart6}
                           onChange={currentIndex => setCurrentSlideDesktopPart6(currentIndex)}
+                          autoPlay={false}
                         >
                           {photosSliderArguments?.elements &&
                             photosSliderArguments.elements.map(({ photo }) => (

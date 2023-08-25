@@ -319,7 +319,7 @@ const BlogCard = ({
                 className={clsx(classes.grey82, { [classes.smallSizeDate]: isSmallSize })}
               >
                 {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')} |
-                {` ${readingTime} min`}
+                {` ${readingTime}`}
               </Typography>
               <Box display="flex">
                 <Box display="flex" alignItems="center">

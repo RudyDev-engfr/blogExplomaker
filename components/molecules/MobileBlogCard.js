@@ -90,6 +90,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '18px',
     fontWeight: '500',
     lineHeight: '24px',
+    minHeight: '80px',
   },
   cardSubtitle: {
     fontSize: '14px',
@@ -235,10 +236,7 @@ const MobileBlogCard = ({
             marginBottom={is360px ? '10px' : '0px'}
             justifyContent="space-between"
           >
-            <Typography
-              className={classes.cardTitle}
-              dangerouslySetInnerHTML={{ __html: title.substring(0, 70) }}
-            />
+            <Typography className={classes.cardTitle} dangerouslySetInnerHTML={{ __html: title }} />
             {/* {!is360px && (
               <Box display="flex">
                 <Box display="flex" alignItems="center" marginRight="10px">
@@ -257,7 +255,7 @@ const MobileBlogCard = ({
             <Box display="flex" justifyContent="space-between">
               <Typography className={classes.cardCounts}>
                 {format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')}
-                {readingTime && ` | ${readingTime} min`}
+                {readingTime && ` | ${readingTime}`}
               </Typography>
               {/* <Box width="80px" display="flex" justifyContent="space-between">
                   <Box display="flex" alignItems="center" marginRight="10px">

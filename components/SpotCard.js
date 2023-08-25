@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '80%',
       position: 'relative',
       top: '-95px',
+      padding: '40px 30px 30px',
     },
   },
   cardTitle: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '20px',
     fontWeight: '500',
     color: '#333333',
-    textAlign: 'start',
+    textAlign: 'left',
   },
   arrowList: {
     color: '#DFDFDF',
@@ -75,6 +76,7 @@ const SpotCard = ({ data }) => {
               fontSize: '28px',
               lineHeight: '32px',
               fontWeight: '500',
+              maxWidth: '100%',
             },
           }}
         >
@@ -82,18 +84,30 @@ const SpotCard = ({ data }) => {
         </Typography>
       </Box>
       <Box marginBottom="40px">
-        <Typography>{introduction}</Typography>
+        <Typography sx={{ maxWidth: '100% !important', wordBreak: 'break-word' }}>
+          {introduction}
+        </Typography>
       </Box>
-      {links.map(({ link /* TODO */, titre: linkTitle }) => (
-        <Link key={link} href={`${link}`} target="_blank" className={classes.nextLink}>
-          <Box display="flex" width="100%" marginBottom="30px" component={ButtonBase}>
-            <Box marginRight="25px">
-              <ArrowRightAlt className={classes.arrowList} />
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+        {links.map(({ link /* TODO */, titre: linkTitle }) => (
+          <Link key={link} href={`${link}`} target="_blank" className={classes.nextLink}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                width: '100%',
+                marginBottom: '30px',
+              }}
+              component={ButtonBase}
+            >
+              <Box marginRight="25px">
+                <ArrowRightAlt className={classes.arrowList} />
+              </Box>
+              <Typography className={classes.spotList}>{linkTitle}</Typography>
             </Box>
-            <Typography className={classes.spotList}>{linkTitle}</Typography>
-          </Box>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </Box>
     </Paper>
   )
 }
