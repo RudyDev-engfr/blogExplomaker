@@ -700,7 +700,7 @@ const WelcomePage = ({ dataset }) => {
   }, [sliderDestinationsContent])
 
   useEffect(() => {
-    if (secondSliderDestinationsContent?.spots?.length > 0) {
+    if (secondSliderDestinationsContent?.spots) {
       const trendingDestinationsKeys = Object.keys(secondSliderDestinationsContent?.spots)
       const tempTrendingDestinationsArray = trendingDestinationsKeys.map(
         currentKey => secondSliderDestinationsContent.spots[currentKey]

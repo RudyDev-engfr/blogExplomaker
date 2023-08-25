@@ -3,8 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material'
-import Tooltip from '@mui/material/Tooltip'
+import { Tooltip, useTheme } from '@mui/material'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import makeStyles from '@mui/styles/makeStyles'
@@ -726,6 +725,11 @@ const useStyles = makeStyles(theme => ({
   nextLink: {
     textDecoration: 'none',
   },
+  unstyledButton: {
+    textDecoration: 'none !important',
+    textTransform: 'none',
+    color: theme.palette.grey33,
+  },
 }))
 
 const months = [
@@ -1221,12 +1225,11 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
 
                                 {/* {smallInfoText.length > 30 && '...'} */}
                                 {/* </Tooltip> */}
-                                {
-                                  moneyCode &&
-                                    // <Tooltip title={moneyCode} className={classes.moneyTooltip}>
-                                    moneyCode
-                                  // </Tooltip>
-                                }
+                                {moneyCode && (
+                                  <Tooltip title={moneyCode}>
+                                    <Button>{moneyCode}</Button>
+                                  </Tooltip>
+                                )}
                               </Typography>
                               {verySmallText && (
                                 <Typography className={classes.verySmallTextStyle}>
@@ -1235,17 +1238,23 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                               )}
                               {typeof smallInfoText === 'string' &&
                                 smallInfoText.includes('diplomatie') && (
-                                  <Link
-                                    href="https://www.diplomatie.gouv.fr"
-                                    sx={{
-                                      color: 'black',
-                                      textTransform: 'none',
-                                      textDecoration: 'underline black',
-                                    }}
-                                    target="_blank"
-                                  >
-                                    Diplomatie.gouv.fr
-                                  </Link>
+                                  <Tooltip title={smallInfoText}>
+                                    <Link
+                                      href="https://www.diplomatie.gouv.fr"
+                                      sx={{
+                                        color: 'black',
+                                        textTransform: 'none',
+                                        textDecoration: 'underline black',
+                                      }}
+                                      target="_blank"
+                                    >
+                                      <Button disableRipple className={classes.unstyledButton}>
+                                        <Typography sx={{ textDecoration: 'none' }}>
+                                          Diplomatie.gouv.fr
+                                        </Typography>
+                                      </Button>
+                                    </Link>
+                                  </Tooltip>
                                 )}
                             </Box>
                           </Box>
