@@ -36,6 +36,9 @@ const useStyles = makeStyles(theme => ({
       position: 'relative',
     },
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 const ThematicCard = ({ title, srcImg, altImg, link }) => {
   const classes = useStyles()
@@ -44,7 +47,12 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
-    <Link href={`/results?${link}`} passHref target={!matchesXs && '_blank'}>
+    <Link
+      href={`/results?${link}`}
+      passHref
+      target={!matchesXs && '_blank'}
+      className={classes.nextLink}
+    >
       <Card className={classes.rootCard}>
         <CardActionArea sx={{ minHeight: '100%' }}>
           <CardMedia component="span">

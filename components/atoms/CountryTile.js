@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     padding: '25px',
   },
   shadow: {
-    background: 'linear-gradient(270deg, rgba(31, 31, 25, 0) 16%, rgb(31,31,25,0.5) 100%)',
+    background: 'linear-gradient(180deg, rgba(31, 31, 25, 0) 16%, rgb(31,31,25,0.5) 100%)',
   },
   shadowGreen: {
     background: 'linear-gradient(180deg, rgba(0, 157, 140, 0) 48.96%, rgba(0, 157, 140, 0.8) 100%)',

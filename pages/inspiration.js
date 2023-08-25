@@ -215,14 +215,19 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   const [isShowingMoreMonthInspiration, setIsShowingMoreMonthInspiration] = useState(false)
 
   useEffect(() => {
+    console.log('articlescategory', articlesCategory)
     if (typeof articlesCategory !== 'undefined' || articlesCategory !== {}) {
       const articlesCategoryKeys = Object.keys(articlesCategory)
       const tempArticlesCategoryArray = articlesCategoryKeys.map(
-        currentKey => articlesCategoryKeys[currentKey]
+        currentKey => articlesCategory[currentKey]
       )
       setCurrentArticlesCategory(tempArticlesCategoryArray)
     }
   }, [articlesCategory])
+
+  useEffect(() => {
+    console.log('currentARticlescategory', currentArticlesCategory)
+  }, [currentArticlesCategory])
 
   useEffect(() => {
     if (typeof monthDestination !== 'undefined' || monthDestination !== {}) {
@@ -384,7 +389,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                           variant="contained"
                           className={classes.buttonPrimary}
                           onClick={() => setIsShowingMoreArticles(true)}
-                          sx={{ width: '13%' }}
+                          sx={{ width: '13%', minWidth: '150px' }}
                         >
                           Voir tout
                         </Button>
@@ -393,7 +398,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                           variant="contained"
                           className={classes.buttonPrimary}
                           onClick={() => setIsShowingMoreArticles(false)}
-                          sx={{ width: '13%' }}
+                          sx={{ minWidth: '150px', width: '13%' }}
                         >
                           Voir moins
                         </Button>
@@ -586,7 +591,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               Vos articles préférés de la semaine
             </Typography>
             {matchesXs ? (
-              <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
+              <Box sx={{ position: 'relative', maxWidth: '100vw', marginBottom: '50px' }}>
                 <ArticlesCarousel
                   currentArticles={currentFavoritesArticles}
                   dotListClass={classes.carouselNotCentered}
@@ -602,7 +607,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               />
             )}
 
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" sx={{ paddingTop: '15px' }}>
               {currentFavoritesArticles.length > 3 &&
                 (!isShowingMoreFavoritesArticles ? (
                   <Button
@@ -618,7 +623,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                     variant="contained"
                     className={classes.buttonPrimary}
                     onClick={() => setIsShowingMoreFavoritesArticles(false)}
-                    sx={{ width: '13%' }}
+                    sx={{ width: '13%', minWidth: '150px' }}
                   >
                     Voir moins
                   </Button>
@@ -647,7 +652,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               justifyContent: 'space-between',
             }}
           >
-            {currentArticlesCategory.map(category => (
+            {currentArticlesCategory.map(currentCategory => (
               <Button
                 endIcon={<ArrowRightAlt />}
                 sx={{
@@ -662,11 +667,11 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 onClick={() =>
                   router.push(`
             /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
-              category
+              currentCategory.target_url
             )}`)
                 }
               >
-                {category}
+                {currentCategory.name}
               </Button>
             ))}
           </Box>
