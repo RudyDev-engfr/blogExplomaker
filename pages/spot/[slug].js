@@ -1340,9 +1340,16 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                           qui t’accompagne avant, pendant et après ton séjour.
                         </Typography>
                       </Box>
-                      <Button variant="contained" className={classes.boxCTAButton}>
-                        Créer mon séjour
-                      </Button>
+                      <Link
+                        passHref
+                        href="https://app.explomaker.fr"
+                        className={classes.nextLink}
+                        target="_blank"
+                      >
+                        <Button variant="contained" className={classes.boxCTAButton}>
+                          Créer mon séjour
+                        </Button>
+                      </Link>
                     </Box>
                   </Box>
                 )}
@@ -1374,9 +1381,16 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                     t’accompagne avant, pendant et après ton séjour.
                   </Typography>
                 </Box>
-                <Button variant="contained" className={classes.boxCTAButton}>
-                  Créer mon séjour
-                </Button>
+                <Link
+                  passHref
+                  href="https://app.explomaker.fr"
+                  className={classes.nextLink}
+                  target="_blank"
+                >
+                  <Button variant="contained" className={classes.boxCTAButton}>
+                    Créer mon séjour
+                  </Button>
+                </Link>
               </Box>
             </Box>
           )}
