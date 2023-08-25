@@ -313,15 +313,6 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
     },
   ]
 
-  const categoriesName = [
-    'Actualités',
-    'Récits de voyage',
-    'Inspiration',
-    'Préparation',
-    'Guides',
-    'Jeux concours',
-  ]
-
   useEffect(() => {
     if (typeof spotlight.linked_posts !== 'undefined') {
       const ArticlesKeys = Object.keys(spotlight.linked_posts)
@@ -386,7 +377,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                     numberOfArticles={3}
                     numberOfMaxArticles={9}
                   />
-                  <Box display="flex" justifyContent="center">
+                  <Box display="flex" justifyContent="center" sx={{ paddingTop: '15px' }}>
                     {currentSpotlightArticles.length > 3 &&
                       (!isShowingMoreArticles ? (
                         <Button
