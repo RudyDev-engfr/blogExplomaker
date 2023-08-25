@@ -1084,7 +1084,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                     sx={{ position: 'relative' }}
                   >
                     <Image
-                      src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.original}`}
+                      src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.large}`}
                       className={classes.image}
                       alt="mobileCountryAside_image"
                       fill
@@ -1143,7 +1143,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                   <Box sx={{ marginBottom: '40px' }}>
                     <CountryAside
                       srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                        dataset.picture_main.src.original
+                        dataset.picture_main.src.large
                       )}`}
                       flagFromDataset={dataset.flag_square?.src.original}
                       countryName={dataset.gps?.country}
@@ -1600,7 +1600,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                               <Box sx={{ position: 'relative' }}>
                                 <Image
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                    picture?.src.original
+                                    picture?.src.large
                                   )}`}
                                   alt="photoUnmissable"
                                   quality={100}
@@ -1829,7 +1829,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
               >
                 {dataset.picture_slider &&
                   dataset.picture_slider.map(({ src, id }, index) => {
-                    const encodedURI = encodeURI(src.original)
+                    const encodedURI = encodeURI(src.large)
                     return (
                       <Box
                         key={id}
