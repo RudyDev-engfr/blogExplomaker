@@ -1233,7 +1233,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                                         <Typography
                                           sx={{ textDecoration: 'none', fontSize: '14px' }}
                                         >
-                                          smallInfoText.substring(0, 20)
+                                          {smallInfoText.substring(0, 20)}
                                         </Typography>
                                       </Button>
                                     </Tooltip>
