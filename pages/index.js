@@ -852,7 +852,7 @@ const Home = ({ dataset }) => {
                   <Box className={classes.videosGrid}>
                     <Box className="video1">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FLEFT01.mp4?alt=media&token=406b2fd3-4a22-45d2-91b4-d0abda27e853"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FLEFT01.mp4?alt=media&token=e0c15c9e-769d-48b3-9feb-a27703567ab1"
                         loop
                         playing
                         volume={0}
@@ -863,7 +863,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video2">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER01.mp4?alt=media&token=6199c367-1476-449d-8423-03e925a7f36e"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER01.mp4?alt=media&token=932e203f-d33d-4baa-b1c0-f737e1a9a0e9"
                         loop
                         playing
                         volume={0}
@@ -874,7 +874,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video3">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT01.mp4?alt=media&token=aa43aac8-1485-4a49-827b-1fe2b6b87383"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT01.mp4?alt=media&token=c59b27d3-1112-4d27-9626-6c6ca403e731"
                         loop
                         playing
                         volume={0}
@@ -885,7 +885,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video4">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FLEFT02.mp4?alt=media&token=699ea778-4977-4b6c-8f6d-25a329ec8f05"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FLEFT02.mp4?alt=media&token=04f0ab46-1344-4e3b-ad1c-2848ca9196e3"
                         loop
                         playing
                         volume={0}
@@ -896,7 +896,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video5">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER02.mp4?alt=media&token=cfaccff1-8b78-40b9-847c-754c29e62526"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER02.mp4?alt=media&token=ca8b6c39-f4ec-4011-a578-60c9f87aee68"
                         loop
                         playing
                         volume={0}
@@ -907,7 +907,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video6">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT02.mp4?alt=media&token=2f842d32-fc45-41cf-8d49-b4f69afa7148"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT02.mp4?alt=media&token=0de4cea7-44ec-41a1-91d8-f1c9e3e4a2d6"
                         loop
                         playing
                         volume={0}
@@ -918,7 +918,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video7">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER03.mp4?alt=media&token=16c3b6c9-47c3-40bf-9800-f36d5a8a7d69"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FCENTER03.mp4?alt=media&token=126711c0-5c58-4052-adfe-55512721ed21"
                         loop
                         playing
                         volume={0}
@@ -929,7 +929,7 @@ const Home = ({ dataset }) => {
                     </Box>
                     <Box className="video8">
                       <ReactPlayer
-                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT03.mp4?alt=media&token=4b0693ac-6f58-4d82-b6af-68e014ffe556"
+                        url="https://firebasestorage.googleapis.com/v0/b/explomaker-3010b.appspot.com/o/blog%2FlandingPage%2FRIGHT03.mp4?alt=media&token=9dc5c837-b4c4-44bc-ab4f-ef2e15564c37"
                         loop
                         playing
                         volume={0}
