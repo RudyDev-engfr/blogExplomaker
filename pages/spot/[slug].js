@@ -1231,13 +1231,17 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
 
                                 {/* {smallInfoText.length > 30 && '...'} */}
                                 {/* </Tooltip> */}
-                                {moneyCode && (
-                                  <Tooltip title={moneyCode}>
-                                    <Button className={classes.unstyledButton}>{moneyCode}</Button>
+                                {moneyCode && verySmallText && (
+                                  <Tooltip title={`1 EURO = ${verySmallText} ${moneyCode}`}>
+                                    <Button className={classes.unstyledButton}>
+                                      <Typography sx={{ textDecoration: 'none', fontSize: '14px' }}>
+                                        {moneyCode}
+                                      </Typography>
+                                    </Button>
                                   </Tooltip>
                                 )}
                               </Typography>
-                              {verySmallText && (
+                              {verySmallText && matchesXs && (
                                 <Typography className={classes.verySmallTextStyle}>
                                   1 EURO = {verySmallText} {moneyCode}
                                 </Typography>
