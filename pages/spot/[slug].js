@@ -1227,8 +1227,17 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                               <Typography className={classes.smallInfoTextStyle}>
                                 {/* <Tooltip title={smallInfoText} className={classes.smallInfoTooltip}> */}
                                 {typeof smallInfoText === 'string' &&
-                                  !smallInfoText.includes('diplomatie') &&
-                                  smallInfoText.substring(0, 20)}
+                                  !smallInfoText.includes('diplomatie') && (
+                                    <Tooltip title={smallInfoText}>
+                                      <Button className={classes.unstyledButton}>
+                                        <Typography
+                                          sx={{ textDecoration: 'none', fontSize: '14px' }}
+                                        >
+                                          smallInfoText.substring(0, 20)
+                                        </Typography>
+                                      </Button>
+                                    </Tooltip>
+                                  )}
 
                                 {/* {smallInfoText.length > 30 && '...'} */}
                                 {/* </Tooltip> */}
