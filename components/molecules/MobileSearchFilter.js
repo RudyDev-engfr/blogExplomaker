@@ -78,6 +78,10 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
       header: 'Type de résultats',
       category: 'resultats',
     },
+    {
+      header: 'Période de visite',
+      category: 'Période',
+    },
   ]
 
   return (

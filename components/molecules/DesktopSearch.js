@@ -103,6 +103,10 @@ const DesktopSearch = ({
       header: 'Type de résultats',
       category: 'resultats',
     },
+    {
+      header: 'Période de visite',
+      category: 'Période',
+    },
   ]
 
   return (
