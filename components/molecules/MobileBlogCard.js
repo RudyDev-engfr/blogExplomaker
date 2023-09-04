@@ -178,7 +178,6 @@ const MobileBlogCard = ({
             root: is360px ? classes.resultCardActionAreaRoot : classes.cardActionAreaRoot,
             focusHighlight: classes.cardActionAreaFocusHighlight,
           }}
-          onClick={() => router.push(targetLink)}
         >
           <CardMedia>
             <Box

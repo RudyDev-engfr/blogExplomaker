@@ -47,8 +47,6 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
   return (
     <Accordion
       sx={{
-        width: 'fit-content',
-        maxWidth: '250px',
         marginBottom: '0',
         '&.Mui-expanded': {
           minHeight: expanded.includes(`panel${index}`) ? 'fit-content' : '48px',
@@ -73,6 +71,8 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
           color: 'white',
           backgroundColor: theme.palette.primary.main,
           borderRadius: '5px',
+          width: 'fit-content',
+          maxWidth: '250px',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

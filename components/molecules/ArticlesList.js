@@ -26,10 +26,11 @@ const ArticlesList = ({
       display="grid"
       sx={{
         gridTemplate: !matchesXs
-          ? 'repeat(auto-fill, 360px) / repeat(3, 1fr)'
-          : 'repeat(auto-fill, 360px) / 1fr',
+          ? 'repeat(auto-fill, 300px) / repeat(3, 1fr)'
+          : 'repeat(auto-fill, 300px) / 1fr',
         justifyItems: matchesXs && 'center',
         gridGap: '15px',
+        paddingTop: '15px',
       }}
     >
       {isAlgolia

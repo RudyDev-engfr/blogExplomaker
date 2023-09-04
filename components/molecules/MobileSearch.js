@@ -323,7 +323,7 @@ const MobileSearch = ({
     <>
       <Box
         sx={{
-          borderBottom: 1,
+          // borderBottom: 1,
           borderColor: 'divider',
           width: '100vw !important',
           position: 'fixed',
