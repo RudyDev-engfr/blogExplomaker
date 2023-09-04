@@ -327,7 +327,7 @@ const MobileSearch = ({
           borderColor: 'divider',
           width: '100vw !important',
           position: 'fixed',
-          top: '95px',
+          top: '65px',
           backgroundColor: theme.palette.secondary.contrastText,
           zIndex: 900,
         }}

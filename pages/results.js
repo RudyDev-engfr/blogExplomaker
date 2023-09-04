@@ -182,7 +182,7 @@ const Results = () => {
               position: 'fixed',
               backgroundColor: theme.palette.secondary.contrastText,
               width: '100vw',
-              padding: '45px 24px 0px',
+              padding: '15px 24px 0px',
               zIndex: 900,
             }}
           >
