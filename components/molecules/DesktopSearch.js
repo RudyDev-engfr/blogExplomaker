@@ -196,6 +196,7 @@ const DesktopSearch = ({
               display="flex"
               justifyContent="space-between"
               alignItems="center"
+              sx={{ paddingTop: '15px' }}
             >
               {currentSpots.length > 0 && (
                 <Typography variant="h3" component="h2">

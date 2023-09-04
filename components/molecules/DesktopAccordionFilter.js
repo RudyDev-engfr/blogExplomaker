@@ -9,7 +9,7 @@ import AlgoliaPanel from '../atoms/AlgoliaPanel'
 
 const useStyles = makeStyles(theme => ({
   panelHeader: {
-    fontSize: '18px',
+    fontSize: '16px',
     color: theme.palette.grey['33'],
     fontWeight: 600,
     lineHeight: '21px',
@@ -22,17 +22,21 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
   const theme = useTheme()
   const [expandedArray, setExpandedArray] = useState([])
 
-  const handleChange = panel => (event, isExpanded) => {
-    console.log(isExpanded)
-    let tempExpandedArray = expanded || []
-    console.log('tempExpandedArray', tempExpandedArray)
-    if (isExpanded && !tempExpandedArray.includes(panel)) {
-      tempExpandedArray.push(panel)
-    }
-    if (!isExpanded) {
-      tempExpandedArray = tempExpandedArray.filter(tempPanel => tempPanel !== panel)
-    }
-    setExpandedArray(tempExpandedArray)
+  // const handleChange = panel => (event, isExpanded) => {
+  //   console.log(isExpanded)
+  //   let tempExpandedArray = expanded || []
+  //   console.log('tempExpandedArray', tempExpandedArray)
+  //   if (isExpanded && !tempExpandedArray.includes(panel)) {
+  //     tempExpandedArray.push(panel)
+  //   }
+  //   if (!isExpanded) {
+  //     tempExpandedArray = tempExpandedArray.filter(tempPanel => tempPanel !== panel)
+  //   }
+  //   setExpandedArray(tempExpandedArray)
+  // }
+
+  const handleSingleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
   }
 
   useEffect(() => {
@@ -49,11 +53,11 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
       sx={{
         marginBottom: '0',
         '&.Mui-expanded': {
-          minHeight: expanded.includes(`panel${index}`) ? 'fit-content' : '48px',
+          minHeight: expanded ? 'fit-content' : '48px',
           transition: 'none',
         },
         '&.MuiAccordion-root': {
-          maxHeight: expanded.includes(`panel${index}`) ? 'fit-content' : '48px',
+          maxHeight: expanded ? 'fit-content' : '48px',
         },
         transition: 'none',
       }}
@@ -61,8 +65,8 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
       disableGutters
       aria-controls={`panelContent-${index}`}
       id={`panelHeader-${index}`}
-      expanded={expanded.includes(`panel${index}`)}
-      onChange={handleChange(`panel${index}`)}
+      expanded={expanded === `panel${index}`}
+      onChange={handleSingleChange(`panel${index}`)}
     >
       <AccordionSummary
         expandIcon={<ArrowRight sx={{ fontSize: '25px', color: 'white' }} />}
@@ -72,15 +76,17 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
           backgroundColor: theme.palette.primary.main,
           borderRadius: '5px',
           width: 'fit-content',
-          maxWidth: '250px',
+          paddingX: '8px',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <AlgoliaPanel header={header} headerClassName={classes.panelHeader} />
-          <CustomCurrentRefinements includedAttributes={[`${category}`]} />
+          {/* <CustomCurrentRefinements includedAttributes={[`${category}`]} /> */}
         </Box>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails
+        sx={{ position: 'absolute', zIndex: '10', backgroundColor: 'white', width: 'max-content' }}
+      >
         <CustomRefinementList attribute={category} />
       </AccordionDetails>
     </Accordion>
