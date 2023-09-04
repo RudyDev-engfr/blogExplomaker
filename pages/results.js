@@ -140,40 +140,41 @@ const Results = () => {
         )}
         {/* Partie 1 */}
         {!matchesXs ? (
-          <Box className={classes.fullWidthContainer} paddingTop="82px">
-            <Box className={classes.mainContainer}>
-              <Box className={classes.resultHeaderContainer}>
-                <Box marginBottom="40px" maxWidth="784px">
-                  <Typography variant="h1" color={theme.palette.secondary.contrastText}>
-                    Recherche
-                  </Typography>
-                  <Typography
-                    color={theme.palette.secondary.contrastText}
-                    sx={{ fontSize: '17px' }}
-                  >
-                    Recherche un pays, une ville, un lieu d’intérêt, une passion, un sport ou un
-                    critère de voyage. Entre tes mots-clés et on te présente une sélection de
-                    destinations et d’articles associés.
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography className={classes.resultsLabel}>Saisis ta recherche</Typography>
-                  <Box display="flex" justifyContent="flex-start">
-                    <SearchBox
-                      searchAsYouType
-                      classNames={{
-                        root: classes.searboxRoot,
-                        input: classes.searchInput,
-                        submit: classes.searchSubmit,
-                        reset: classes.searchReset,
-                      }}
-                      submitIconComponent={() => <SearchIcon />}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
+          // <Box className={classes.fullWidthContainer} paddingTop="82px">
+          //   <Box className={classes.mainContainer}>
+          //     <Box className={classes.resultHeaderContainer}>
+          //       <Box marginBottom="40px" maxWidth="784px">
+          //         <Typography variant="h1" color={theme.palette.secondary.contrastText}>
+          //           Recherche
+          //         </Typography>
+          //         <Typography
+          //           color={theme.palette.secondary.contrastText}
+          //           sx={{ fontSize: '17px' }}
+          //         >
+          //           Recherche un pays, une ville, un lieu d’intérêt, une passion, un sport ou un
+          //           critère de voyage. Entre tes mots-clés et on te présente une sélection de
+          //           destinations et d’articles associés.
+          //         </Typography>
+          //       </Box>
+          //       <Box>
+          //         <Typography className={classes.resultsLabel}>Saisis ta recherche</Typography>
+          //         <Box display="flex" justifyContent="flex-start">
+          //           <SearchBox
+          //             searchAsYouType
+          //             classNames={{
+          //               root: classes.searboxRoot,
+          //               input: classes.searchInput,
+          //               submit: classes.searchSubmit,
+          //               reset: classes.searchReset,
+          //             }}
+          //             submitIconComponent={() => <SearchIcon />}
+          //           />
+          //         </Box>
+          //       </Box>
+          //     </Box>
+          //   </Box>
+          // </Box>
+          <Box />
         ) : (
           <Box
             display="flex"

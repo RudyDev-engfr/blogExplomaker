@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { makeStyles, useTheme } from '@mui/styles'
 import { Badge, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
@@ -12,6 +12,7 @@ import union from '../../images/icons/filtre.svg'
 import SpotList from './SpotList'
 import ArticlesList from './ArticlesList'
 import { SessionContext } from '../../contexts/session'
+import DesktopAccordionFilter from './DesktopAccordionFilter'
 
 const useStyles = makeStyles(theme => ({
   greyBackgroundContainer: {
@@ -79,11 +80,34 @@ const DesktopSearch = ({
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const { currentRefinementsArrayLength } = useContext(SessionContext)
+  const [expanded, setExpanded] = useState([])
+  const { currentHitsArray, currentRefinementsArrayLength, setCurrentRefinementsArrayLength } =
+    useContext(SessionContext)
+
+  const currentFilters = [
+    {
+      header: 'Type de séjours',
+      category: 'type_de_sejour',
+    },
+    {
+      header: "Type d'article",
+      category: 'type_d_article',
+    },
+    { header: 'Envies', category: 'envies' },
+    { header: 'Tags Article', category: 'tags_articles' },
+    { header: 'Tu es un voyageur', category: 'tu_es_un_voyageur' },
+    { header: 'Durée du séjour', category: 'duree_du_sejour' },
+    { header: 'En direction de', category: 'en_direction_de' },
+    { header: 'Avis explomaker', category: 'avis_explomaker' },
+    {
+      header: 'Type de résultats',
+      category: 'resultats',
+    },
+  ]
 
   return (
     <>
-      <Box className={classes.greyBackgroundContainer} paddingTop="35px">
+      <Box className={classes.greyBackgroundContainer} paddingTop="115px">
         <Box className={classes.mainContainer}>
           <Box>
             <Box marginBottom="20px" display="flex" justifyContent="space-between" width="100%">
@@ -126,7 +150,7 @@ const DesktopSearch = ({
                   Du plus récent
                 </MenuItem>
               </TextField> */}
-                <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
+                {/* <Badge color="primary" badgeContent={currentRefinementsArrayLength}>
                   <Button
                     startIcon={
                       <Image
@@ -147,8 +171,21 @@ const DesktopSearch = ({
                   >
                     Filtrer
                   </Button>
-                </Badge>
+                </Badge> */}
               </Box>
+            </Box>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gridGap: '15px' }}>
+              {currentFilters.map(({ header, category }, index) => (
+                <DesktopAccordionFilter
+                  isFirstAccordion={false}
+                  header={header}
+                  category={category}
+                  key={category}
+                  index={index}
+                  expanded={expanded}
+                  setExpanded={setExpanded}
+                />
+              ))}
             </Box>
             <Box
               marginBottom="30px"

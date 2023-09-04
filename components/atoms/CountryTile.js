@@ -208,7 +208,7 @@ const CountryTile = ({
                 alt={altImg ?? 'country_image'}
                 className={classes.tileImg}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 960px) 100vw"
                 style={{
                   objectFit: 'cover',
                 }}

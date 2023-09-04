@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { format, parse } from 'date-fns'
 import clsx from 'clsx'
 import { useTheme } from '@mui/styles'
@@ -160,87 +161,97 @@ const MobileBlogCard = ({
   const { user, articlesBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
-    <Card
-      elevation={0}
-      className={clsx(
-        { [classes.root]: !is360px, [classes.resultRoot]: is360px, [classes.rootMobile]: isMobile },
-        className
-      )}
-    >
-      <CardActionArea
-        classes={{
-          root: is360px ? classes.resultCardActionAreaRoot : classes.cardActionAreaRoot,
-          focusHighlight: classes.cardActionAreaFocusHighlight,
-        }}
-        onClick={() => router.push(targetLink)}
+    <Link passHref target={!matchesXs && '_blank'} href={`${targetLink}`}>
+      <Card
+        elevation={0}
+        className={clsx(
+          {
+            [classes.root]: !is360px,
+            [classes.resultRoot]: is360px,
+            [classes.rootMobile]: isMobile,
+          },
+          className
+        )}
       >
-        <CardMedia>
-          <Box
-            className={clsx({
-              [classes.imageContainer]: !is360px,
-              [classes.resultImageContainer]: is360px,
-            })}
-            sx={{ position: 'relative' }}
-          >
-            <Image
-              layout="fill"
-              src={
-                srcImg.includes('http')
-                  ? encodeURI(srcImg)
-                  : `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(srcImg)}`
-              }
-              alt="mobileBlogCard_image"
-              className={classes.cardImage}
-              objectFit="cover"
-              objectPosition="center"
-            />
-            <Box display="flex" justifyContent="center" className={classes.categoryBox}>
-              <Typography
-                sx={{
-                  fontSize: matchesXs ? '14px' : '12px',
-                  fontWeight: '500',
-                  color: theme.palette.primary.main,
-                  lineHeight: matchesXs ? '14px' : '16px',
+        <CardActionArea
+          classes={{
+            root: is360px ? classes.resultCardActionAreaRoot : classes.cardActionAreaRoot,
+            focusHighlight: classes.cardActionAreaFocusHighlight,
+          }}
+          onClick={() => router.push(targetLink)}
+        >
+          <CardMedia>
+            <Box
+              className={clsx({
+                [classes.imageContainer]: !is360px,
+                [classes.resultImageContainer]: is360px,
+              })}
+              sx={{ position: 'relative' }}
+            >
+              <Image
+                fill
+                sizes="(max-width: 960px) 100vw"
+                src={
+                  srcImg.includes('http')
+                    ? encodeURI(srcImg)
+                    : `https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                        srcImg
+                      )}`
+                }
+                alt="mobileBlogCard_image"
+                className={classes.cardImage}
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: 'enter',
+                }}
+              />
+              <Box display="flex" justifyContent="center" className={classes.categoryBox}>
+                <Typography
+                  sx={{
+                    fontSize: matchesXs ? '14px' : '12px',
+                    fontWeight: '500',
+                    color: theme.palette.primary.main,
+                    lineHeight: matchesXs ? '14px' : '16px',
+                  }}
+                >
+                  {category}
+                </Typography>
+              </Box>
+              <IconButton
+                sx={{ color: '#FFFFFF', padding: matchesXs && '0' }}
+                classes={{ root: classes.likeButton }}
+                onClick={event => {
+                  event.stopPropagation()
+                  if (!user?.isLoggedIn) {
+                    setIsAuthModalOpen('login')
+                  }
+                  articlesBookmarkedUpdate(slug)
                 }}
               >
-                {category}
-              </Typography>
+                {user?.articlesBookmarked?.includes(slug) ? (
+                  <Bookmark sx={{ fontSize: '26px' }} />
+                ) : (
+                  <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />
+                )}
+              </IconButton>
             </Box>
-            <IconButton
-              sx={{ color: '#FFFFFF', padding: matchesXs && '0' }}
-              classes={{ root: classes.likeButton }}
-              onClick={event => {
-                event.stopPropagation()
-                if (!user?.isLoggedIn) {
-                  setIsAuthModalOpen('login')
-                }
-                articlesBookmarkedUpdate(slug)
-              }}
-            >
-              {user?.articlesBookmarked?.includes(slug) ? (
-                <Bookmark sx={{ fontSize: '26px' }} />
-              ) : (
-                <BookmarkTwoToneIcon sx={{ fontSize: '26px' }} />
-              )}
-            </IconButton>
-          </Box>
-        </CardMedia>
-        <CardContent
-          classes={{ root: is360px ? classes.resultCardContentRoot : classes.cardContentRoot }}
-          className={classes.cardContent}
-        >
-          <Box
-            width="100%"
-            display="flex"
-            marginBottom={is360px ? '10px' : '0px'}
-            justifyContent="space-between"
+          </CardMedia>
+          <CardContent
+            classes={{ root: is360px ? classes.resultCardContentRoot : classes.cardContentRoot }}
+            className={classes.cardContent}
           >
-            <Typography
-              className={classes.cardTitle}
-              sx={{ minHeight: isMobile && '80px' }}
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
-            {/* {!is360px && (
+            <Box
+              width="100%"
+              display="flex"
+              marginBottom={is360px ? '10px' : '0px'}
+              justifyContent="space-between"
+            >
+              <Typography
+                className={classes.cardTitle}
+                sx={{ minHeight: isMobile && '80px' }}
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+              {/* {!is360px && (
               <Box display="flex">
                 <Box display="flex" alignItems="center" marginRight="10px">
                   <Favorite className={classes.cardIcons} />
@@ -252,15 +263,15 @@ const MobileBlogCard = ({
                 </Box>
               </Box>
             )} */}
-          </Box>
+            </Box>
 
-          <Box className={classes.resultSocialInteraction}>
-            <Box display="flex" justifyContent="space-between">
-              <Typography className={classes.cardCounts}>
-                {format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')}
-                {readingTime && ` | ${readingTime}`}
-              </Typography>
-              {/* <Box width="80px" display="flex" justifyContent="space-between">
+            <Box className={classes.resultSocialInteraction}>
+              <Box display="flex" justifyContent="space-between">
+                <Typography className={classes.cardCounts}>
+                  {format(parse(publishDate, 'yyyy-MM-dd HH:mm:ss', new Date()), 'dd MMM yyyy')}
+                  {readingTime && ` | ${readingTime}`}
+                </Typography>
+                {/* <Box width="80px" display="flex" justifyContent="space-between">
                   <Box display="flex" alignItems="center" marginRight="10px">
                     <Favorite
                       className={clsx({
@@ -289,16 +300,17 @@ const MobileBlogCard = ({
                     <Typography className={classes.cardCounts}>{commentsCount}</Typography>
                   </Box>
                 </Box> */}
+              </Box>
             </Box>
-          </Box>
-          {subtitle && (
-            <Box>
-              <Typography className={classes.cardSubtitle}>{subtitle}</Typography>
-            </Box>
-          )}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+            {subtitle && (
+              <Box>
+                <Typography className={classes.cardSubtitle}>{subtitle}</Typography>
+              </Box>
+            )}
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Link>
   )
 }
 export default MobileBlogCard

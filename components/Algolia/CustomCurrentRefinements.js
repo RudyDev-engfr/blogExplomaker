@@ -6,17 +6,14 @@ import { SessionContext } from '../../contexts/session'
 
 const CustomCurrentRefinements = props => {
   const [currentAdvancedRefinements, setCurrentAdvancedRefinements] = useState([])
-  const { items, attribute, canRefine, refine } = useCurrentRefinements(props)
-  const { currentActiveFilters, setCurrentActiveFilters } = useContext(SessionContext)
+  const { items, attribute } = useCurrentRefinements(props)
+  const { currentActiveFilters } = useContext(SessionContext)
 
   useEffect(() => {
     const refinementArray = []
-    let refinementNumber
-    let itemName = ''
     items
       .filter(item => item.attribute !== attribute)
       .forEach((item, index) => {
-        itemName = item.name
         item.refinements.forEach(refinement => {
           refinementArray.push(refinement.label)
           console.log('refinement', refinement)

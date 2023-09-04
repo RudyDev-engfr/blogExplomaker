@@ -271,9 +271,12 @@ const BlogCard = ({
             <Image
               src={encodeURI(srcImg)}
               alt={altImg ?? 'blogCard_image'}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+              fill
+              sizes="100vw"
             />
           </Box>
         </CardMedia>
