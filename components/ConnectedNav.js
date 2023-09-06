@@ -1,4 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, createElement } from 'react'
+import { getAlgoliaResults } from '@algolia/autocomplete-js'
+import algoliasearch from 'algoliasearch'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -6,7 +8,7 @@ import Box from '@mui/material/Box'
 import Badge from '@mui/material/Badge'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
-import { useTheme } from '@mui/material'
+import { TextField, useTheme } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -15,6 +17,7 @@ import makeStyles from '@mui/styles/makeStyles'
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined'
 import ContactSupportOutlined from '@mui/icons-material/ContactSupportOutlined'
 import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
+import SearchIcon from '@mui/icons-material/Search'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import clsx from 'clsx'
@@ -31,6 +34,9 @@ import SearchField from './atoms/SearchField'
 import home from '../images/icons/accueil.svg'
 import { auth } from '../lib/firebase'
 import { SessionContext } from '../contexts/session'
+import Autocomplete from './Algolia/Autocomplete'
+import ProductItem from './Algolia/ProductItem'
+import SearchModal from './molecules/SearchModal'
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -134,12 +140,22 @@ const useStyles = makeStyles(theme => ({
   nextLink: {
     textDecoration: 'none',
   },
+  rootInput: {
+    width: '250px',
+    borderRadius: '50px',
+    backgroundColor: '#FFFFFF',
+  },
 }))
+
+const appId = 'QFT8LZMQXO'
+const apiKey = '59e83f8d0cfafe2c0887fe8516f51fec'
+const searchClient = algoliasearch(appId, apiKey)
 
 const ConnectedNav = ({ isBgTransparent }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const [tabValue, setTabValue] = React.useState(0)
+  const [searchModal, setSearchModal] = React.useState(false)
   const { user, setUser } = useContext(SessionContext)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
@@ -305,10 +321,29 @@ const ConnectedNav = ({ isBgTransparent }) => {
               />
             </Box>
           </Link>
-          {router.pathname.indexOf('/results') === -1 &&
+          {/* {router.pathname.indexOf('/results') === -1 &&
             router.pathname.indexOf('/inspiration') !== router.pathname.split('').length - 12 && (
               <SearchField isNavbar />
-            )}
+            )} */}
+          <Box>
+            <Button
+              sx={{
+                textTransform: 'none',
+                '&:hover': {
+                  backgroundColor: theme.palette.primary.ultraLight,
+                },
+                color: theme.palette.grey.grey33,
+                fontSize: '14px',
+                border: '1px solid black',
+              }}
+              disableRipple
+              variant="outlined"
+              startIcon={<SearchIcon />}
+              onClick={() => setSearchModal(true)}
+            >
+              Recherche...
+            </Button>
+          </Box>
           <Box className={classes.headerInnerRight}>
             <Box>
               <Link href="/inspiration" passHref className={classes.nextLink}>
@@ -349,7 +384,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                     }}
                     anchorPosition={{ left: 100, top: 100 }}
                   >
-                    <Link href="/results" passHref rel="nofollow">
+                    <Link href="/results" passHref rel="nofollow" className={classes.nextLink}>
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"
@@ -373,7 +408,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                         Recherche
                       </MenuItem>
                     </Link>
-                    <Link href="/favorites" passHref rel="nofollow">
+                    <Link href="/favorites" passHref rel="nofollow" className={classes.nextLink}>
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"
@@ -392,7 +427,11 @@ const ConnectedNav = ({ isBgTransparent }) => {
                         Favoris
                       </MenuItem>
                     </Link>
-                    <Link href="https://app.explomaker.fr/profile" passHref>
+                    <Link
+                      href="https://app.explomaker.fr/profile"
+                      passHref
+                      className={classes.nextLink}
+                    >
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"
@@ -456,6 +495,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
           </Box>
         </Box>
       </Box>
+      {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
     </Box>
   )
 }

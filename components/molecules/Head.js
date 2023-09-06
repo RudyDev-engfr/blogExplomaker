@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import HeadNext from 'next/head'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { useContext, useEffect } from 'react'
-import { HeadContext } from '../../contexts/head'
+import { useEffect } from 'react'
 // import favicon from '../../images/favicon.svg'
 import theme from '../../styles/theme'
 
@@ -58,7 +56,7 @@ const Head = ({ tags }) => {
           <meta
             name="description"
             content={
-              tags.description ||
+              tags?.description ||
               'Avec Explomaker, planifiez votre voyage parfait en quelques clics. Collaborez avec des amis, découvrez des destinations inspirantes et gérez toutes vos informations en un seul endroit. Essayez notre assistant de voyage virtuel pour une expérience encore plus enrichissante.'
             }
           />

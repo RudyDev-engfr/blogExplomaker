@@ -105,7 +105,7 @@ const DesktopSearch = ({
     },
     {
       header: 'Période de visite',
-      category: 'Période',
+      category: 'periode',
     },
   ]
 

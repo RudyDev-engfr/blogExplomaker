@@ -1,13 +1,10 @@
-import { useState, useEffect, useContext, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { makeStyles, useTheme } from '@mui/styles'
 import { useRouter } from 'next/router'
-
 import algoliasearch from 'algoliasearch'
-
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import IconButton from '@mui/material/IconButton'
-import { useTheme, makeStyles } from '@mui/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 
@@ -16,29 +13,10 @@ import { history } from 'instantsearch.js/es/lib/routers'
 
 import Search from '../components/molecules/Search'
 import GoTopBtn from '../components/GoTopBtn'
+import Head from '../components/molecules/Head'
+import { database } from '../lib/firebase'
 
 const useStyles = makeStyles(theme => ({
-  mainContainer: {
-    padding: '60px 0',
-    background: `url(../../images/BKG.png)`,
-    backgroundSize: 'cover',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '100vw',
-      margin: '0',
-      position: 'relative',
-      top: '-50px',
-    },
-  },
-  resultHeaderContainer: {
-    maxWidth: '1140px',
-    margin: 'auto',
-  },
-  resultsLabel: {
-    marginBottom: '15px',
-    color: theme.palette.secondary.contrastText,
-    fontSize: '22px',
-    fontWeight: '500',
-  },
   searboxRoot: {
     marginRight: '15px',
     position: 'relative',
@@ -85,7 +63,26 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Results = () => {
+export async function getStaticProps() {
+  let metaDoc
+  try {
+    metaDoc = await database.ref().child(`page_structure/recherche`).get()
+  } catch (error) {
+    console.error(error)
+    return { notFound: true }
+  }
+
+  const resultsData = metaDoc.val()
+  console.log('spotData', resultsData)
+  const tags = resultsData?.tags || {}
+
+  return {
+    props: { tags },
+    revalidate: 5000,
+  }
+}
+
+const Results = ({ tags }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -115,6 +112,7 @@ const Results = () => {
 
   return (
     <>
+      <Head tags={tags} />
       <InstantSearch
         searchClient={searchClient}
         indexName="SearchFront"

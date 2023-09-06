@@ -4,7 +4,6 @@ import { useHits } from 'react-instantsearch-hooks-web'
 
 import { useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/styles'
-import makeStyles from '@mui/styles/makeStyles'
 
 import { SessionContext } from '../../contexts/session'
 import MobileSearch from './MobileSearch'

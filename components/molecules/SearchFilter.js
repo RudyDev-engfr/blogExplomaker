@@ -75,10 +75,10 @@ const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
     useContext(SessionContext)
   const router = useRouter()
 
-  const transformItems = items => {
-    setCurrentRefinementsArrayLength(items.length)
-    return items
-  }
+  // const transformItems = items => {
+  //   setCurrentRefinementsArrayLength(items.length)
+  //   return items
+  // }
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -212,7 +212,7 @@ const SearchFilter = ({ modalState, modalStateSetter, hits }) => {
             classNames={{ button: classes.clearRefinementsButton }}
           />
           <Box sx={{ display: 'none' }}>
-            <CurrentRefinements transformItems={transformItems} />
+            <CurrentRefinements />
           </Box>
           {currentHitsArray && (
             <Button
