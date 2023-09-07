@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
+const TrendingDestinations = ({ trendingDestinationsItems, dotListClass, argumentData }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -73,7 +73,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
             variant="subtitle1"
             className={clsx(classes.mobileSubtitle, classes.ultraDark)}
           >
-            Destinations populaires
+            {argumentData?.sur_titre || 'Destinations populaires'}
           </Typography>
         </Box>
         <Box marginBottom="50px">
@@ -82,7 +82,7 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass }) => {
             component="h2"
             className={clsx(classes.mobileTextCenter, classes.mobileTitle)}
           >
-            Les destinations du moment ✈️
+            {argumentData?.titre || 'Les destinations du moment ✈️'}
           </Typography>
         </Box>
       </Box>

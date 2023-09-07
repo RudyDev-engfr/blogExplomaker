@@ -1054,6 +1054,7 @@ const WelcomePage = ({ dataset }) => {
               <TrendingDestinations
                 trendingDestinationsItems={trendingDestinationsItems}
                 dotListClass={classes.customTrendingDestinationsDotBox}
+                argumentData={sliderDestinationsContent}
               />
             )}
           </Box>
@@ -1069,6 +1070,7 @@ const WelcomePage = ({ dataset }) => {
               <TrendingDestinations
                 trendingDestinationsItems={secondTrendingDestinationsItems}
                 dotListClass={classes.customTrendingDestinationsDotBox}
+                argumentData={secondSliderDestinationsContent}
               />
             </Box>
           </Box>
