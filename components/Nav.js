@@ -10,6 +10,7 @@ import makeStyles from '@mui/styles/makeStyles'
 import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
+import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/dist/client/router'
 
 import Modals from './molecules/auth/AuthModals'
@@ -21,6 +22,7 @@ import logoFull from '../images/icons/logoFull.svg'
 import ConnectedNav from './ConnectedNav'
 import SearchField from './atoms/SearchField'
 import { SessionContext } from '../contexts/session'
+import SearchModal from './molecules/SearchModal'
 
 const useStyles = makeStyles(theme => ({
   navLink: {
@@ -146,6 +148,7 @@ const Nav = () => {
   const router = useRouter()
 
   const [isBgTransparent, setIsBgTransparent] = useState(false)
+  const [searchModal, setSearchModal] = useState(false)
 
   useEffect(() => {
     if (router.pathname === '/favorites') {
@@ -247,9 +250,28 @@ const Nav = () => {
                   />
                 </Box>
               </Link>
-              {router.pathname.indexOf('/results') === -1 &&
+              {/* {router.pathname.indexOf('/results') === -1 &&
                 router.pathname.indexOf('/inspiration') !==
-                  router.pathname.split('').length - 12 && <SearchField isNavbar />}
+                  router.pathname.split('').length - 12 && <SearchField isNavbar />} */}
+              <Box>
+                <Button
+                  sx={{
+                    textTransform: 'none',
+                    '&:hover': {
+                      backgroundColor: theme.palette.primary.ultraLight,
+                    },
+                    color: theme.palette.grey.grey33,
+                    fontSize: '14px',
+                    border: '1px solid black',
+                  }}
+                  disableRipple
+                  variant="outlined"
+                  startIcon={<SearchIcon />}
+                  onClick={() => setSearchModal(true)}
+                >
+                  Recherche...
+                </Button>
+              </Box>
               <Box className={classes.headerInnerRight}>
                 <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>
@@ -278,6 +300,7 @@ const Nav = () => {
               </Box>
             </Box>
           </Box>
+          {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
         </Box>
       )}
       <Modals modalState={isAuthModalOpen} modalStateSetter={setIsAuthModalOpen} />
