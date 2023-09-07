@@ -981,7 +981,7 @@ const Home = ({ dataset }) => {
                       classes.mobileSubtitle
                     )}
                   >
-                    L&apos;Assistant IA Explomaker
+                    L&apos;Assistant IA Explomaker votre nouveau pote
                   </Typography>
                 </Box>
                 <Box marginBottom="20px">
