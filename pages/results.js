@@ -180,7 +180,7 @@ const Results = ({ tags }) => {
               position: 'fixed',
               backgroundColor: theme.palette.secondary.contrastText,
               width: '100vw',
-              padding: '15px 24px 0px',
+              padding: '15px 24px 15px 24px',
               zIndex: 900,
             }}
           >
