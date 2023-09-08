@@ -328,6 +328,11 @@ const ConnectedNav = ({ isBgTransparent }) => {
           <ButtonSearch setSearchModal={setSearchModal} />
           <Box className={classes.headerInnerRight}>
             <Box>
+              <Link href="/results" passHref>
+                <Button disableRipple className={clsx(classes.navLink)}>
+                  Exploration
+                </Button>
+              </Link>
               <Link href="/inspiration" passHref className={classes.nextLink}>
                 <Button disableRipple className={classes.navLink}>
                   Inspiration

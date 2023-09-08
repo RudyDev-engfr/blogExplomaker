@@ -256,6 +256,11 @@ const Nav = () => {
                   router.pathname.split('').length - 12 && <SearchField isNavbar />} */}
               <ButtonSearch setSearchModal={setSearchModal} />
               <Box className={classes.headerInnerRight}>
+                <Link href="/results" passHref>
+                  <Button disableRipple className={clsx(classes.navLink)}>
+                    Exploration
+                  </Button>
+                </Link>
                 <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>
                     Inspiration
