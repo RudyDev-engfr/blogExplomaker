@@ -33,7 +33,7 @@ const SearchModal = ({ open, setOpen }) => {
           borderRadius: '10px',
         }}
       >
-        <Autocomplete />
+        <Autocomplete setSearchModal={setOpen} />
       </Box>
     </Modal>
   )

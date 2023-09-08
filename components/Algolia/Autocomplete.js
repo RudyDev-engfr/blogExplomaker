@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function AlgoliaAutocomplete() {
+export default function AlgoliaAutocomplete({ setSearchModal }) {
   const classes = useStyles()
   const theme = useTheme()
   const inputRef = useRef(null)
@@ -74,7 +74,7 @@ export default function AlgoliaAutocomplete() {
     >
       <form className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
         <TextField
-          label="Recherche"
+          label="Destinations, articles, passion"
           variant="filled"
           type="text"
           className="aa-Input"
@@ -131,7 +131,11 @@ export default function AlgoliaAutocomplete() {
                           source,
                         })}
                       >
-                        <Link href={item.url_link} className={classes.nextLink}>
+                        <Link
+                          href={item.url_link}
+                          className={classes.nextLink}
+                          onClick={() => setSearchModal(false)}
+                        >
                           <Box
                             sx={{
                               width: '100%',
@@ -185,6 +189,7 @@ export default function AlgoliaAutocomplete() {
                                 fontWeight: 700,
                                 color: isHovering === itemIndex ? 'white' : 'black',
                                 lineHeight: '28px',
+                                paddingRight: '33px',
                                 '& mark': {
                                   color:
                                     isHovering === itemIndex
