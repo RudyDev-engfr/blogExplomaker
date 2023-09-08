@@ -4,7 +4,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/styles'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRefinementList } from 'react-instantsearch-hooks-web'
 
 const currentRefinement = new Set()
@@ -25,6 +25,14 @@ const CustomRefinementList = props => {
     // toggleShowMore,
   } = useRefinementList(props)
   const theme = useTheme()
+
+  const [currentItemsRefined, setCurrentItemsRefined] = useState([])
+
+  useEffect(() => {
+    if (items.some(item => item?.isRefined)) {
+      setCurrentItemsRefined(items.filter(item => item.isRefined))
+    }
+  }, [items])
 
   function toggle(item) {
     currentRefinement.clear()

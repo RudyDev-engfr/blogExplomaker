@@ -9,9 +9,9 @@ import AlgoliaPanel from '../atoms/AlgoliaPanel'
 
 const useStyles = makeStyles(theme => ({
   panelHeader: {
-    fontSize: '16px',
+    fontSize: '14px',
     color: theme.palette.grey['33'],
-    fontWeight: 600,
+    fontWeight: 500,
     lineHeight: '21px',
     textTransform: 'uppercase',
   },
@@ -71,7 +71,7 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
       <AccordionSummary
         expandIcon={<ArrowRight sx={{ fontSize: '25px', color: 'white' }} />}
         sx={{
-          height: '48px',
+          height: '33px',
           color: 'white',
           backgroundColor: theme.palette.primary.main,
           borderRadius: '5px',
@@ -85,9 +85,16 @@ const DesktopAccordionFilter = ({ category, header, index, expanded, setExpanded
         </Box>
       </AccordionSummary>
       <AccordionDetails
-        sx={{ position: 'absolute', zIndex: '10', backgroundColor: 'white', width: 'max-content' }}
+        sx={{
+          position: 'absolute',
+          zIndex: '10',
+          backgroundColor: 'white',
+          width: 'max-content',
+          maxHeight: '540px',
+          overflowY: 'auto',
+        }}
       >
-        <CustomRefinementList attribute={category} />
+        <CustomRefinementList attribute={category} limit={40} />
       </AccordionDetails>
     </Accordion>
   )

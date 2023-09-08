@@ -114,7 +114,7 @@ const DesktopSearch = ({
       <Box className={classes.greyBackgroundContainer} paddingTop="115px">
         <Box className={classes.mainContainer}>
           <Box>
-            <Box marginBottom="20px" display="flex" justifyContent="space-between" width="100%">
+            <Box display="flex" justifyContent="space-between" width="100%">
               <Typography variant="h1" component="h2">
                 Résultats
               </Typography>
@@ -178,7 +178,7 @@ const DesktopSearch = ({
                 </Badge> */}
               </Box>
             </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gridGap: '15px' }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gridGap: '9px' }}>
               {currentFilters.map(({ header, category }, index) => (
                 <DesktopAccordionFilter
                   isFirstAccordion={false}

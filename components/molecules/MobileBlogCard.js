@@ -137,6 +137,9 @@ const useStyles = makeStyles(theme => ({
     top: '16.5px',
     left: '15px',
   },
+  nextLink: {
+    textDecoration: 'none',
+  },
 }))
 
 const MobileBlogCard = ({
@@ -161,7 +164,12 @@ const MobileBlogCard = ({
   const { user, articlesBookmarkedUpdate, setIsAuthModalOpen } = useContext(SessionContext)
 
   return (
-    <Link passHref target={!matchesXs && '_blank'} href={`${targetLink}`}>
+    <Link
+      passHref
+      target={!matchesXs && '_blank'}
+      href={`${targetLink}`}
+      className={classes.nextLink}
+    >
       <Card
         elevation={0}
         className={clsx(

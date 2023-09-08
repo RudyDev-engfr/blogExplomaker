@@ -42,7 +42,7 @@ export default function AlgoliaAutocomplete() {
                   searchClient,
                   queries: [
                     {
-                      indexName: 'SearchFront',
+                      indexName: 'SearchFrontIntuitiveSearch',
                       query,
                       params: {
                         hitsPerPage: 8,
