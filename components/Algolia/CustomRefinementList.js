@@ -53,7 +53,7 @@ const CustomRefinementList = props => {
             display: 'flex',
             justifyContent: 'space-between',
             padding: '0',
-            paddingTop: '20px',
+            paddingTop: '7px',
           }}
         >
           <Typography

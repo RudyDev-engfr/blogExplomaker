@@ -9,7 +9,7 @@ import { useRefinementList } from 'react-instantsearch-hooks-web'
 
 const currentRefinement = new Set()
 
-const DesktopCustomRefinementList = props => {
+const DesktopCustomRefinementList = ({ onItemsChange, ...props }) => {
   const {
     items,
     // attribute,
@@ -35,6 +35,11 @@ const DesktopCustomRefinementList = props => {
     refine(item.value)
   }
 
+  // Informer le parent de la mise à jour des items
+  useEffect(() => {
+    onItemsChange(items)
+  }, [items, onItemsChange])
+
   return (
     <List component="ul" sx={{ padding: '0', overflowY: 'visible' }}>
       {items.map((item, index) => (
@@ -43,11 +48,22 @@ const DesktopCustomRefinementList = props => {
           key={item.label}
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
             padding: '0',
-            paddingTop: '20px',
+            paddingTop: '7px',
           }}
         >
+          <Checkbox
+            color="primary"
+            checked={item.isRefined}
+            onChange={() => toggle(item)}
+            sx={{
+              width: '30px',
+              height: '30px',
+              '& .MuiSvgIcon-root': { fontSize: 30 },
+              paddingLeft: '10px',
+              marginRight: '7px',
+            }}
+          />
           <Typography
             sx={{
               fontWeight: '400',
@@ -63,23 +79,13 @@ const DesktopCustomRefinementList = props => {
                 fontSize: '1rem',
                 lineHeight: '19px',
                 color: theme.palette.grey['82'],
-                paddingLeft: '10px',
+                paddingLeft: '4px',
               }}
               component="span"
             >
               ({item.count})
             </Typography>
           </Typography>
-          <Checkbox
-            color="primary"
-            checked={item.isRefined}
-            onChange={() => toggle(item)}
-            sx={{
-              width: '30px',
-              height: '30px',
-              '& .MuiSvgIcon-root': { fontSize: 30 },
-            }}
-          />
         </ListItem>
       ))}
     </List>
