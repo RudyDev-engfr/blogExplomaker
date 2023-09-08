@@ -46,7 +46,7 @@ const MyApp = props => {
                 <SessionContextProvider>
                   <Nav />
                   <Component {...pageProps} />
-                  {/* <Footer /> */}
+                  <Footer />
                 </SessionContextProvider>
               </HeadContextProvider>
             </ThemeProvider>

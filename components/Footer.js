@@ -47,15 +47,13 @@ const Footer = () => {
       elevation={0}
       className={clsx(classes.footer, { [classes.page404]: router.pathname === '/404' })}
       sx={{
-        [theme.breakpoints.down('sm')]: {
-          display:
-            (router.pathname === '/inspiration' && matchesXs) ||
-            router.pathname === '/favorites' ||
-            router.pathname === '/results' ||
-            (router.pathname.includes('/spot') && matchesXs)
-              ? 'none'
-              : 'block',
-        },
+        display:
+          (router.pathname === '/inspiration' && matchesXs) ||
+          router.pathname === '/favorites' ||
+          router.pathname.includes('/results') ||
+          (router.pathname.includes('/spot') && matchesXs)
+            ? 'none'
+            : 'block',
       }}
     >
       <Box
