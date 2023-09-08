@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import algoliasearch from 'algoliasearch/lite'
 import { createAutocomplete } from '@algolia/autocomplete-core'
-import { Box, TextField, Typography } from '@mui/material'
+import { Box, TextField, Typography, useFormControl } from '@mui/material'
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia'
 import Link from 'next/link'
 import { makeStyles, useTheme } from '@mui/styles'
-import { Article, FmdGood } from '@mui/icons-material'
+import { Article, FmdGood, Tag } from '@mui/icons-material'
 import { Highlight } from 'react-instantsearch-hooks-web'
 
 const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
@@ -22,12 +22,14 @@ export default function AlgoliaAutocomplete() {
 
   const [autocompleteState, setAutocompleteState] = React.useState({})
   const [isHovering, setIsHovering] = React.useState(false)
+
   const autocomplete = React.useMemo(
     () =>
       createAutocomplete({
         onStateChange({ state }) {
           // (2) Synchronize the Autocomplete state with the React state.
           setAutocompleteState(state)
+          console.log('autocompletestate', state)
         },
         getSources() {
           return [
@@ -59,6 +61,7 @@ export default function AlgoliaAutocomplete() {
             },
           ]
         },
+        openOnFocus: true,
       }),
     []
   )
@@ -75,7 +78,13 @@ export default function AlgoliaAutocomplete() {
           variant="filled"
           type="text"
           className="aa-Input"
+          id="autocomplete-input"
           fullWidth
+          inputRef={input => {
+            if (input != null) {
+              input.focus()
+            }
+          }}
           InputProps={{
             ref: inputRef,
           }}
@@ -84,7 +93,7 @@ export default function AlgoliaAutocomplete() {
               borderTop: 'none',
               borderLeft: 'none',
               borderRight: 'none',
-              borderRadius: 0,
+              borderRadius: '10px 10px 0 0 ',
               backgroundColor: 'transparent',
               '&:hover': {
                 boxShadow: 'none',
@@ -104,7 +113,7 @@ export default function AlgoliaAutocomplete() {
         />
       </form>
       <Box className="aa-Panel" {...autocomplete.getPanelProps({})}>
-        {autocompleteState.isOpen &&
+        {autocompleteState.isOpen ? (
           autocompleteState.collections.map((collection, index) => {
             const { source, items } = collection
 
@@ -145,9 +154,18 @@ export default function AlgoliaAutocomplete() {
                                   marginRight: '24px',
                                 }}
                               />
+                            ) : item.resultats === 'Articles' ? (
+                              <Article
+                                sx={{
+                                  fontSize: '30px',
+                                  color:
+                                    isHovering === itemIndex ? 'white' : theme.palette.primary.main,
+                                  marginRight: '24px',
+                                }}
+                              />
                             ) : (
-                              item.resultats === 'Articles' && (
-                                <Article
+                              item.resultats === 'Tag' && (
+                                <Tag
                                   sx={{
                                     fontSize: '30px',
                                     color:
@@ -186,7 +204,12 @@ export default function AlgoliaAutocomplete() {
                 )}
               </Box>
             )
-          })}
+          })
+        ) : (
+          <Typography sx={{ textAlign: 'center', paddingTop: '15px', fontSize: '18px' }}>
+            Pas de résultat
+          </Typography>
+        )}
       </Box>
     </Box>
   )

@@ -18,6 +18,7 @@ const SearchModal = ({ open, setOpen }) => {
       aria-labelledby="search-modal-title"
       aria-describedby="search-modal-description"
       disableScrollLock
+      disableEnforceFocus
     >
       <Box
         sx={{
@@ -29,6 +30,7 @@ const SearchModal = ({ open, setOpen }) => {
           height: 600,
           backgroundColor: 'background.paper',
           boxShadow: 24,
+          borderRadius: '10px',
         }}
       >
         <Autocomplete />

@@ -1,6 +1,7 @@
 import { Add } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import { useState } from 'react'
 import CustomCurrentRefinements from '../Algolia/CustomCurrentRefinements'
 import CustomRefinementList from '../Algolia/CustomRefinementList'
 import AlgoliaPanel from '../atoms/AlgoliaPanel'
@@ -16,6 +17,12 @@ const useStyles = makeStyles(theme => ({
 }))
 const AccordionFilter = ({ category, header, isFirstAccordion }) => {
   const classes = useStyles()
+
+  const [items, setItems] = useState([])
+
+  const handleItemsChange = newItems => {
+    setItems(newItems)
+  }
   return (
     <Accordion
       sx={{
@@ -28,6 +35,7 @@ const AccordionFilter = ({ category, header, isFirstAccordion }) => {
           borderTopLeftRadius: isFirstAccordion && '20px',
           borderTopRightRadius: isFirstAccordion && '20px',
         },
+        display: items?.length === 0 && 'none',
       }}
     >
       <AccordionSummary
@@ -42,7 +50,7 @@ const AccordionFilter = ({ category, header, isFirstAccordion }) => {
         </Box>
       </AccordionSummary>
       <AccordionDetails>
-        <CustomRefinementList attribute={category} />
+        <CustomRefinementList attribute={category} onItemsChange={handleItemsChange} />
       </AccordionDetails>
     </Accordion>
   )

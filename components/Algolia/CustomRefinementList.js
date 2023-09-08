@@ -9,7 +9,7 @@ import { useRefinementList } from 'react-instantsearch-hooks-web'
 
 const currentRefinement = new Set()
 
-const CustomRefinementList = props => {
+const CustomRefinementList = ({ onItemsChange, ...props }) => {
   const {
     items,
     // attribute,
@@ -33,6 +33,11 @@ const CustomRefinementList = props => {
       setCurrentItemsRefined(items.filter(item => item.isRefined))
     }
   }, [items])
+
+  // Informer le parent de la mise à jour des items
+  useEffect(() => {
+    onItemsChange(items)
+  }, [items, onItemsChange])
 
   function toggle(item) {
     currentRefinement.clear()

@@ -61,27 +61,28 @@ const MobileSearchFilter = ({ modalState, modalStateSetter }) => {
 
   const currentFilters = [
     {
-      header: 'Type de séjours',
+      header: 'Type de résultats',
+      category: 'resultats',
+    },
+    {
+      header: 'Contexte',
       category: 'type_de_sejour',
+    },
+
+    { header: 'Envies', category: 'envies' },
+    { header: 'Profil voyageur', category: 'tu_es_un_voyageur' },
+    { header: 'Durée du séjour', category: 'duree_du_sejour' },
+    { header: 'Région', category: 'en_direction_de' },
+    { header: 'Avis explomaker', category: 'avis_explomaker' },
+    {
+      header: 'Mois',
+      category: 'periode',
     },
     {
       header: "Type d'article",
       category: 'type_d_article',
     },
-    { header: 'Envies', category: 'envies' },
     { header: 'Tags Article', category: 'tags_articles' },
-    { header: 'Tu es un voyageur', category: 'tu_es_un_voyageur' },
-    { header: 'Durée du séjour', category: 'duree_du_sejour' },
-    { header: 'En direction de', category: 'en_direction_de' },
-    { header: 'Avis explomaker', category: 'avis_explomaker' },
-    {
-      header: 'Type de résultats',
-      category: 'resultats',
-    },
-    {
-      header: 'Période de visite',
-      category: 'periode',
-    },
   ]
 
   return (

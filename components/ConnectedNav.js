@@ -8,7 +8,7 @@ import Box from '@mui/material/Box'
 import Badge from '@mui/material/Badge'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
-import { TextField, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -17,7 +17,6 @@ import makeStyles from '@mui/styles/makeStyles'
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined'
 import ContactSupportOutlined from '@mui/icons-material/ContactSupportOutlined'
 import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
-import SearchIcon from '@mui/icons-material/Search'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import clsx from 'clsx'
@@ -37,6 +36,7 @@ import { SessionContext } from '../contexts/session'
 import Autocomplete from './Algolia/Autocomplete'
 import ProductItem from './Algolia/ProductItem'
 import SearchModal from './molecules/SearchModal'
+import ButtonSearch from './atoms/ButtonSearch'
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -325,25 +325,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
             router.pathname.indexOf('/inspiration') !== router.pathname.split('').length - 12 && (
               <SearchField isNavbar />
             )} */}
-          <Box>
-            <Button
-              sx={{
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.ultraLight,
-                },
-                color: theme.palette.grey.grey33,
-                fontSize: '14px',
-                border: '1px solid black',
-              }}
-              disableRipple
-              variant="outlined"
-              startIcon={<SearchIcon />}
-              onClick={() => setSearchModal(true)}
-            >
-              Recherche...
-            </Button>
-          </Box>
+          <ButtonSearch setSearchModal={setSearchModal} />
           <Box className={classes.headerInnerRight}>
             <Box>
               <Link href="/inspiration" passHref className={classes.nextLink}>

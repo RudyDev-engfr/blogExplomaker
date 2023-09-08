@@ -23,6 +23,7 @@ import ConnectedNav from './ConnectedNav'
 import SearchField from './atoms/SearchField'
 import { SessionContext } from '../contexts/session'
 import SearchModal from './molecules/SearchModal'
+import ButtonSearch from './atoms/ButtonSearch'
 
 const useStyles = makeStyles(theme => ({
   navLink: {
@@ -253,25 +254,7 @@ const Nav = () => {
               {/* {router.pathname.indexOf('/results') === -1 &&
                 router.pathname.indexOf('/inspiration') !==
                   router.pathname.split('').length - 12 && <SearchField isNavbar />} */}
-              <Box>
-                <Button
-                  sx={{
-                    textTransform: 'none',
-                    '&:hover': {
-                      backgroundColor: theme.palette.primary.ultraLight,
-                    },
-                    color: theme.palette.grey.grey33,
-                    fontSize: '14px',
-                    border: '1px solid black',
-                  }}
-                  disableRipple
-                  variant="outlined"
-                  startIcon={<SearchIcon />}
-                  onClick={() => setSearchModal(true)}
-                >
-                  Recherche...
-                </Button>
-              </Box>
+              <ButtonSearch setSearchModal={setSearchModal} />
               <Box className={classes.headerInnerRight}>
                 <Link href="/inspiration" passHref>
                   <Button disableRipple className={clsx(classes.navLink)}>

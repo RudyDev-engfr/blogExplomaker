@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react'
+import { SearchBox } from 'react-instantsearch-hooks-web'
 import { makeStyles, useTheme } from '@mui/styles'
 import { Badge, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
+import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
@@ -40,6 +42,45 @@ const useStyles = makeStyles(theme => ({
   },
   articlesResultContainer: {
     paddingBottom: '80px',
+  },
+  searboxRoot: {
+    marginRight: '15px',
+    position: 'relative',
+  },
+  searchInput: {
+    minWidth: '400px',
+    minHeight: '45px',
+    borderRadius: '10px',
+    padding: '15px',
+    paddingLeft: '40px',
+    fontSize: '17px',
+    border: `2px solid ${theme.palette.grey.e5}`,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '80vw',
+      backgroundColor: theme.palette.grey.f2,
+      // minWidth: 'unset',
+    },
+    '&:focus-visible': {
+      border: `2px solid ${theme.palette.grey['82']}`,
+      outline: 'none',
+    },
+  },
+  searchSubmit: {
+    // display: 'none',
+    position: 'absolute',
+    left: '15px',
+    top: '13px',
+    backgroundColor: theme.palette.secondary.contrastText,
+    border: 'none',
+    color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.grey.f2,
+      width: '20px',
+      height: '20px',
+    },
+  },
+  searchReset: {
+    display: 'none',
   },
   filterButton: {
     textTransform: 'none',
@@ -86,27 +127,28 @@ const DesktopSearch = ({
 
   const currentFilters = [
     {
-      header: 'Type de séjours',
+      header: 'Type de résultats',
+      category: 'resultats',
+    },
+    {
+      header: 'Contexte',
       category: 'type_de_sejour',
+    },
+
+    { header: 'Envies', category: 'envies' },
+    { header: 'Profil voyageur', category: 'tu_es_un_voyageur' },
+    { header: 'Durée du séjour', category: 'duree_du_sejour' },
+    { header: 'Région', category: 'en_direction_de' },
+    { header: 'Avis explomaker', category: 'avis_explomaker' },
+    {
+      header: 'Mois',
+      category: 'periode',
     },
     {
       header: "Type d'article",
       category: 'type_d_article',
     },
-    { header: 'Envies', category: 'envies' },
     { header: 'Tags Article', category: 'tags_articles' },
-    { header: 'Tu es un voyageur', category: 'tu_es_un_voyageur' },
-    { header: 'Durée du séjour', category: 'duree_du_sejour' },
-    { header: 'En direction de', category: 'en_direction_de' },
-    { header: 'Avis explomaker', category: 'avis_explomaker' },
-    {
-      header: 'Type de résultats',
-      category: 'resultats',
-    },
-    {
-      header: 'Période de visite',
-      category: 'periode',
-    },
   ]
 
   return (
@@ -114,9 +156,9 @@ const DesktopSearch = ({
       <Box className={classes.greyBackgroundContainer} paddingTop="115px">
         <Box className={classes.mainContainer}>
           <Box>
-            <Box display="flex" justifyContent="space-between" width="100%">
+            <Box display="flex" justifyContent="center" width="100%">
               <Typography variant="h1" component="h2">
-                Résultats
+                Exploration
               </Typography>
               <Box display="flex">
                 {/* <TextField
@@ -178,7 +220,33 @@ const DesktopSearch = ({
                 </Badge> */}
               </Box>
             </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gridGap: '9px' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                paddingTop: '15px',
+                paddingBottom: '15px',
+                justifyContent: 'center',
+              }}
+            >
+              <SearchBox
+                searchAsYouType
+                classNames={{
+                  root: classes.searboxRoot,
+                  input: classes.searchInput,
+                  submit: classes.searchSubmit,
+                  reset: classes.searchReset,
+                }}
+                submitIconComponent={() => <SearchIcon />}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gridGap: '9px',
+                justifyContent: 'center',
+              }}
+            >
               {currentFilters.map(({ header, category }, index) => (
                 <DesktopAccordionFilter
                   isFirstAccordion={false}
@@ -238,6 +306,24 @@ const DesktopSearch = ({
                     </Button>
                   </Box>
                 )}
+                {/* {currentSpots.length > isLoadingMoreSpots * 20 + 1 && (
+                  <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <Button
+                      sx={{
+                        textTransform: 'none',
+                        height: '32px',
+                        borderRadius: '5px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                      }}
+                      variant="contained"
+                      // eslint-disable-next-line no-return-assign, no-param-reassign
+                      onClick={() => setIsLoadingMoreSpots(prevState => (prevState += 1))}
+                    >
+                      Charger plus
+                    </Button>
+                  </Box>
+                )} */}
                 {isShowingMoreSpots && (
                   <Box
                     sx={{
