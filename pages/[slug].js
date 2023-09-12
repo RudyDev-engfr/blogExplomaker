@@ -611,7 +611,11 @@ const useStyles = makeStyles(theme => ({
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: 'evg' } }, { params: { slug: 'evjf' } }],
+    paths: [
+      { params: { slug: 'evg' } },
+      { params: { slug: 'evjf' } },
+      { params: { slug: 'citytrip' } },
+    ],
     fallback: 'blocking',
   }
 }

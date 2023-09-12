@@ -56,7 +56,6 @@ export const ArticlesSlugsArray = [
   { params: { slug: 'activites-improbables-a-faire-en-voyage' } },
   { params: { slug: 'briefing-pour-voyager-moins-cher' } },
   { params: { slug: 'top-des-destinations-encore-hors-des-sentiers-battus' } },
-  { params: { slug: 'guide-demarrage-explomaker' } },
 ]
 
 export const spotsSlugsArray = [
