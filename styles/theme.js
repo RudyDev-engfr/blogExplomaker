@@ -142,10 +142,10 @@ const commonSettings = createTheme({
   ],
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
+      xs: 600,
+      sm: 960,
+      md: 1280,
+      lg: 1440,
       xl: 1920,
     },
   },

@@ -50,7 +50,7 @@ const AccordionFilter = ({ category, header, isFirstAccordion }) => {
         </Box>
       </AccordionSummary>
       <AccordionDetails>
-        <CustomRefinementList attribute={category} onItemsChange={handleItemsChange} />
+        <CustomRefinementList attribute={category} onItemsChange={handleItemsChange} limit={100} />
       </AccordionDetails>
     </Accordion>
   )

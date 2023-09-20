@@ -68,14 +68,16 @@ const TrendingDestinations = ({ trendingDestinationsItems, dotListClass, argumen
       <Box
         className={clsx(classes.mobileSizing, classes.mobileFlexColumn, classes.mobileAlignCenter)}
       >
-        <Box marginBottom="20px">
-          <Typography
-            variant="subtitle1"
-            className={clsx(classes.mobileSubtitle, classes.ultraDark)}
-          >
-            {argumentData?.sur_titre || 'Destinations populaires'}
-          </Typography>
-        </Box>
+        {argumentData?.sur_titre && (
+          <Box marginBottom="20px">
+            <Typography
+              variant="subtitle1"
+              className={clsx(classes.mobileSubtitle, classes.ultraDark)}
+            >
+              {argumentData?.sur_titre || 'Destinations populaires'}
+            </Typography>
+          </Box>
+        )}
         <Box marginBottom="50px">
           <Typography
             variant="h1"
