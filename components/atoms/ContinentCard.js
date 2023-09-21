@@ -3,7 +3,7 @@ import { makeStyles, useTheme } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import { useRouter } from 'next/router'
-import { useMediaQuery } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +48,7 @@ const ContinentCard = ({
         className={clsx(classes.mainContainer, { [classes.mainContainerOversized]: isOversized })}
         onMouseEnter={() => setIsHovering(index)}
         onMouseLeave={() => setIsHovering(false)}
-        onClick={() => router.push(`results?${url}`)}
+        onClick={() => router.push(`exploration?${url}`)}
       >
         <Image
           src={isHovering === index ? continentHoverImg : continentImg}

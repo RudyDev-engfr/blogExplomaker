@@ -665,7 +665,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                 }}
                 onClick={() =>
                   router.push(`
-            /results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
+            /exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
               currentCategory.target_url
             )}`)
                 }

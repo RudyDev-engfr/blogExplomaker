@@ -1,4 +1,4 @@
-import { IconButton, Modal } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
 import { makeStyles, useTheme } from '@mui/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useCallback } from 'react'
 
 import { useHits } from 'react-instantsearch-hooks-web'
 
-import { useMediaQuery } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/styles'
 
 import { SessionContext } from '../../contexts/session'

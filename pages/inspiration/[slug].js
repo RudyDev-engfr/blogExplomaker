@@ -172,6 +172,8 @@ export default function Article({ dataset, articleData }) {
                     date={dataset.creation_date}
                     readingTime={dataset.reading_time}
                     tags={dataset.meta}
+                    profileName={dataset.creator.name}
+                    avatarSrc={dataset.creator.picture}
                   />
                 </Box>
                 {!matchesXs && (

@@ -1,12 +1,10 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
 import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { makeStyles, useTheme } from '@mui/styles'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -48,7 +46,7 @@ const ThematicCard = ({ title, srcImg, altImg, link }) => {
 
   return (
     <Link
-      href={`/results?${link}`}
+      href={`/exploration?${link}`}
       passHref
       target={!matchesXs && '_blank'}
       className={classes.nextLink}

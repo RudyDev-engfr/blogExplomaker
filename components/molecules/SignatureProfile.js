@@ -44,7 +44,7 @@ const SignatureProfile = ({
               {tags.map(tag => (
                 <Link
                   passHref
-                  href={`/results?SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                  href={`/exploration?SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
                     tag.name
                   )}`}
                 >

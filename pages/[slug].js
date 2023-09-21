@@ -2002,7 +2002,7 @@ const WelcomePage = ({ dataset }) => {
               </Box>
               <Link
                 passHref
-                href="/results?SearchFront%5BrefinementList%5D%5Bavis_explomaker%5D%5B0%5D=Nos%20coups%20de%20coeur"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Bavis_explomaker%5D%5B0%5D=Nos%20coups%20de%20coeur"
                 target="_blank"
                 className={classes.nextLink}
               >

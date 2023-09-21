@@ -39,7 +39,7 @@ const Head = ({ tags }) => {
         />
 
         <meta name="agd-partner-manual-verification" />
-
+        {tags['og:url'] && <link rel="canonical" href={encodeURI(tags['og:url'])} />}
         <>
           <title>
             {tags?.title || 'Explomaker - Planification de voyage simplifiée et personnalisée'}

@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Box from '@mui/material/Box'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'

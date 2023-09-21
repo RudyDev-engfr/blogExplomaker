@@ -4,12 +4,11 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import IconButton from '@mui/material/IconButton'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { useMediaQuery, useTheme } from '@mui/material'
 import Flight from '@mui/icons-material/Flight'
 import Copyright from '@mui/icons-material/Copyright'
 import Facebook from '@mui/icons-material/Facebook'
 import Divider from '@mui/material/Divider'
-import { useTheme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import { useRouter } from 'next/dist/client/router'
 import clsx from 'clsx'
@@ -137,7 +136,7 @@ const Footer = () => {
             >
               <Typography variant="h4" className={classes.footerTitle}>
                 <Link
-                  href="results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
+                  href="exploration?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
                   className={classes.footerLink}
                   underline="none"
                   rel="nofollow"
@@ -147,7 +146,7 @@ const Footer = () => {
               </Typography>
               <Link
                 variant="body2"
-                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Actualit%C3%A9s"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Actualit%C3%A9s"
                 className={classes.footerLink}
                 rel="nofollow"
               >
@@ -155,7 +154,7 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Inspiration"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Inspiration"
                 className={classes.footerLink}
                 rel="nofollow"
               >
@@ -163,7 +162,7 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Exploration"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Exploration"
                 className={classes.footerLink}
                 rel="noffollow"
               >
@@ -171,7 +170,7 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Pr%C3%A9paration+de+voyage"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=Pr%C3%A9paration+de+voyage"
                 className={classes.footerLink}
                 rel="nofollow"
               >
@@ -179,7 +178,7 @@ const Footer = () => {
               </Link>
               <Link
                 variant="body2"
-                href="/results?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=R%C3%A9cits+de+voyages"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=R%C3%A9cits+de+voyages"
                 className={classes.footerLink}
                 rel="nofollow"
               >

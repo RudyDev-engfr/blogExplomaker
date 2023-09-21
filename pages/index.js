@@ -9,7 +9,9 @@ import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { FormControl, FormLabel, useTheme } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import { useTheme } from '@mui/styles'
 import ButtonBase from '@mui/material/ButtonBase'
 import makeStyles from '@mui/styles/makeStyles'
 import Add from '@mui/icons-material/Add'
@@ -2016,7 +2018,7 @@ const Home = ({ dataset }) => {
               </Box>
               <Link
                 passHref
-                href="/results?SearchFront%5BrefinementList%5D%5Bavis_explomaker%5D%5B0%5D=Nos%20coups%20de%20coeur"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Bavis_explomaker%5D%5B0%5D=Nos%20coups%20de%20coeur"
                 target="_blank"
                 className={classes.nextLink}
               >

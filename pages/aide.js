@@ -1,7 +1,9 @@
-import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
 import { makeStyles, useTheme } from '@mui/styles'
 import Image from 'next/image'
-
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import WPGBlocks from '../helper/react-gutenberg'
 

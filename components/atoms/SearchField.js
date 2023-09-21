@@ -64,7 +64,7 @@ const SearchField = ({
 
   const handleSubmit = event => {
     event.preventDefault()
-    router.push(`/results?SearchFront%5Bquery%5D=${searchValue}`)
+    router.push(`/exploration?SearchFront%5Bquery%5D=${searchValue}`)
   }
 
   return (
@@ -122,8 +122,8 @@ const SearchField = ({
                     onClick={() =>
                       router.push(
                         searchValue !== ''
-                          ? `results?SearchFront%5Bquery%5D=${searchValue}`
-                          : '/results'
+                          ? `exploration?SearchFront%5Bquery%5D=${searchValue}`
+                          : '/exploration'
                       )
                     }
                   >

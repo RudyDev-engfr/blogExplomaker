@@ -82,7 +82,7 @@ export async function getStaticProps() {
   }
 }
 
-const Results = ({ tags }) => {
+const Exploration = ({ tags }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -217,4 +217,4 @@ const Results = ({ tags }) => {
   )
 }
 
-export default Results
+export default Exploration

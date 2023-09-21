@@ -1,5 +1,6 @@
-import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import Link from 'next/link'

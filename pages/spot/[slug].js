@@ -3,9 +3,10 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { Tooltip, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
+import Tooltip from '@mui/material/Tooltip'
 import makeStyles from '@mui/styles/makeStyles'
 import AccountBox from '@mui/icons-material/AccountBox'
 import AvTimer from '@mui/icons-material/AvTimer'
@@ -1173,7 +1174,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                           {dataset.meta_envies &&
                             dataset.meta_envies.map(tag => (
                               <Link
-                                href={`/results??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
+                                href={`/exploration??SearchFront%5BrefinementList%5D%5Benvies%5D%5B0%5D=${encodeURI(
                                   tag.name
                                 )}`}
                                 className={classes.nextLink}
@@ -2175,7 +2176,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
             >
               <Link
                 passHref
-                href="/results?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
+                href="/exploration?SearchFront%5BrefinementList%5D%5Bresultats%5D%5B0%5D=Articles"
                 className={classes.nextLink}
                 target="_blank"
               >
