@@ -49,7 +49,7 @@ const Footer = () => {
         display:
           (router.pathname === '/inspiration' && matchesXs) ||
           router.pathname === '/favorites' ||
-          router.pathname.includes('/results') ||
+          router.pathname.includes('/exploration') ||
           (router.pathname.includes('/spot') && matchesXs)
             ? 'none'
             : 'block',

@@ -320,14 +320,14 @@ const ConnectedNav = ({ isBgTransparent }) => {
               />
             </Box>
           </Link>
-          {/* {router.pathname.indexOf('/results') === -1 &&
+          {/* {router.pathname.indexOf('/exploration') === -1 &&
             router.pathname.indexOf('/inspiration') !== router.pathname.split('').length - 12 && (
               <SearchField isNavbar />
             )} */}
           <ButtonSearch setSearchModal={setSearchModal} />
           <Box className={classes.headerInnerRight}>
             <Box>
-              <Link href="/results" passHref>
+              <Link href="/exploration" passHref>
                 <Button disableRipple className={clsx(classes.navLink)}>
                   Exploration
                 </Button>
@@ -370,7 +370,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                     }}
                     anchorPosition={{ left: 100, top: 100 }}
                   >
-                    <Link href="/results" passHref rel="nofollow" className={classes.nextLink}>
+                    <Link href="/exploration" passHref rel="nofollow" className={classes.nextLink}>
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"

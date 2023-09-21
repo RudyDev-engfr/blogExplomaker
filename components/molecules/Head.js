@@ -39,7 +39,7 @@ const Head = ({ tags }) => {
         />
 
         <meta name="agd-partner-manual-verification" />
-        {tags['og:url'] && <link rel="canonical" href={encodeURI(tags['og:url'])} />}
+        {tags?.['og:url'] && <link rel="canonical" href={encodeURI(tags['og:url'])} />}
         <>
           <title>
             {tags?.title || 'Explomaker - Planification de voyage simplifiée et personnalisée'}
@@ -56,23 +56,23 @@ const Head = ({ tags }) => {
           <meta
             property="og:title"
             content={
-              tags['og:title'] || 'Explomaker - Votre assistant de planification de voyage ultime'
+              tags?.['og:title'] || 'Explomaker - Votre assistant de planification de voyage ultime'
             }
           />
-          <meta property="og:type" content={tags['og:type'] || 'website'} />
+          <meta property="og:type" content={tags?.['og:type'] || 'website'} />
           <meta
             property="og:description"
             content={
-              tags['og:description'] ||
+              tags?.['og:description'] ||
               'Découvrez Explomaker, une application de planification de voyage innovante qui simplifie le processus de planification, offre des suggestions personnalisées et centralise toutes vos informations de voyage.'
             }
           />
-          <meta property="og:url" content={encodeURI(tags['og:url'])} />
-          <meta property="og:site_name" content={tags['og:site_name'] || 'Explomaker'} />
+          <meta property="og:url" content={encodeURI(tags?.['og:url'])} />
+          <meta property="og:site_name" content={tags?.['og:site_name'] || 'Explomaker'} />
           <meta
             property="og:image"
             content={
-              tags['og:image'] ||
+              tags?.['og:image'] ||
               'https://storage.googleapis.com/explomaker-data-stateless/2018/12/5f6f7f1e-explomaker-app-logo.jpg'
             }
           />

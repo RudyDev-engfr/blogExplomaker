@@ -241,10 +241,10 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
   useEffect(() => {
     if (typeof favoritesArticles !== 'undefined' || favoritesArticles !== {}) {
       const favoritesArticlesKeys = Object.keys(favoritesArticles)
-      const tempPopularThemeArray = favoritesArticlesKeys.map(
+      const tempFavoritesArticlesArray = favoritesArticlesKeys.map(
         currentKey => favoritesArticles[currentKey]
       )
-      setCurrentFavoritesArticles(tempPopularThemeArray)
+      setCurrentFavoritesArticles(tempFavoritesArticlesArray)
     }
   }, [favoritesArticles])
 

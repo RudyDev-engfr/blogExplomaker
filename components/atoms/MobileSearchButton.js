@@ -12,7 +12,7 @@ const MobileSearchButton = () => {
   return (
     <>
       <IconButton
-        onClick={() => router.push('/results')}
+        onClick={() => router.push('/exploration')}
         sx={{
           position: 'fixed',
           bottom: '110px',
