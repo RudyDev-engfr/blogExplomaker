@@ -63,11 +63,13 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
         .filter(spot => spot.publication.website !== 'false')
         .reduce((acc, { meta_continent: metaContinentArray, target_url: targetUrl, ...rest }) => {
           // Récupérer la valeur de metaContinent à partir de l'index 0 du tableau
-          const metaContinent = metaContinentArray[0]
-          if (!acc[metaContinent]) {
-            acc[metaContinent] = []
+          if (metaContinentArray && metaContinentArray.length > 0) {
+            const metaContinent = metaContinentArray[0]
+            if (!acc[metaContinent]) {
+              acc[metaContinent] = []
+            }
+            acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
           }
-          acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
           return acc
         }, {})
     )
@@ -103,23 +105,25 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
       <Box className={classes.mainContainer}>
         <Box className={classes.continentContainer}>
           <Typography>Destinations</Typography>
-          {/* {spots
-            ?.filter(spot => spot.publication.website === 'true')
+          {spots
+            ?.filter(spot => spot.publication.website !== 'false')
             // Grouper par metaContinent
             .reduce(
               (acc, { meta_continent: metaContinentArray, target_url: targetUrl, ...rest }) => {
-                // Récupérer la valeur de metaContinent à partir de l'index 0 du tableau
-                const metaContinent = metaContinentArray[0]
-                if (!acc[metaContinent]) {
-                  acc[metaContinent] = []
+                // Vérifier si metaContinentArray est défini et a une valeur à l'index 0
+                if (metaContinentArray && metaContinentArray.length > 0) {
+                  const metaContinent = metaContinentArray[0]
+                  if (!acc[metaContinent]) {
+                    acc[metaContinent] = []
+                  }
+                  acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
                 }
-                acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
                 return acc
               },
               {}
             )
             // Convertir l'objet en tableau pour le tri
-            .map((metaContinent, groupedSpots) => ({ metaContinent, groupedSpots }))
+            .map(metaContinent => ({ metaContinent, groupedSpots: acc[metaContinent] }))
             // Trier par metaContinent si nécessaire
             .sort((a, b) => a.metaContinent - b.metaContinent)
             .map(({ metaContinent, groupedSpots }) => (
@@ -131,7 +135,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
                   </Link>
                 ))}
               </div>
-            ))} */}
+            ))}
         </Box>
         <Box className={classes.articlesContainer}>
           <Typography>Articles</Typography>
