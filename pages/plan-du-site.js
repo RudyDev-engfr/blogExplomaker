@@ -105,7 +105,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
       <Box className={classes.mainContainer}>
         <Box className={classes.continentContainer}>
           <Typography>Destinations</Typography>
-          {spots
+          {/* {spots
             ?.filter(spot => spot.publication.website !== 'false')
             // Grouper par metaContinent
             .reduce(
@@ -135,7 +135,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
                   </Link>
                 ))}
               </div>
-            ))}
+            ))} */}
         </Box>
         <Box className={classes.articlesContainer}>
           <Typography>Articles</Typography>
