@@ -248,6 +248,8 @@ const useStyles = makeStyles(theme => ({
       transition: 'all 0.3s',
     },
     [theme.breakpoints.down('sm')]: {
+      maxWidth: '450px',
+      width: 'calc(100vw - 60px)',
       marginRight: '0',
       left: '0px',
       bottom: '120px',
@@ -401,6 +403,9 @@ const useStyles = makeStyles(theme => ({
   blogList: {
     maxWidth: '550px',
     borderRadius: '20px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 'unset',
+    },
   },
   buttonBlogList: {
     textTransform: 'none',
@@ -435,6 +440,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '80px',
       top: '20%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
     },
   },
   destinationBox: {
@@ -514,7 +525,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     maxWidth: '490px',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '235px',
+      maxWidth: 'unset',
     },
   },
   formNewsletter: {
@@ -537,7 +548,7 @@ const useStyles = makeStyles(theme => ({
   },
   mobileSizing: {
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '84%',
+      maxWidth: 'calc(100vw - 60px)',
     },
   },
   mobileFlexColumn: {
@@ -587,8 +598,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+      maxWidth: 'unset',
       maxHeight: '300px',
       borderRadius: '0',
+    },
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      height: '450px',
+      maxHeight: 'unset',
     },
   },
   thematicGridContainer: {
@@ -1114,7 +1130,7 @@ const WelcomePage = ({ dataset }) => {
                   <ThematicCard
                     key={thematicName}
                     title={thematicName}
-                    srcImg={`${picture?.src?.original}`}
+                    srcImg={`${picture?.src?.large}`}
                     link={link}
                   />
                 )
@@ -1158,7 +1174,16 @@ const WelcomePage = ({ dataset }) => {
                     alignItems="center"
                     className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
                   >
-                    <Box sx={{ position: 'relative', width: '100vw', height: '300px' }}>
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '300px',
+                        '@media (min-width: 600px) and (max-width: 960px)': {
+                          height: '450px',
+                        },
+                      }}
+                    >
                       <Carousel
                         infinite={false}
                         navButtonsAlwaysInvisible
@@ -1170,8 +1195,13 @@ const WelcomePage = ({ dataset }) => {
                           <Box
                             key={spot.picture.src.id}
                             minWidth="100%"
-                            height="300px"
-                            sx={{ position: 'relative' }}
+                            sx={{
+                              position: 'relative',
+                              height: '300px',
+                              '@media (min-width: 600px) and (max-width: 960px)': {
+                                height: '450px',
+                              },
+                            }}
                           >
                             <Image
                               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
@@ -1474,19 +1504,31 @@ const WelcomePage = ({ dataset }) => {
                   </Box>
                 )}
               </Box>
-              <Image
-                src={`https://storage.googleapis.com/explomaker-data-stateless/${secondArgumentContent?.picture.src.original}`}
-                width={matchesXs ? '360' : '537'}
-                height={matchesXs ? '360' : '537'}
-                quality={100}
-                alt="planning_illustration"
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                  borderRadius: '20px',
-                  alignSelf: 'flex-start',
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '537px',
+                  height: '537px',
+                  [theme.breakpoints.down('sm')]: { width: '360px', height: '360px' },
+                  '@media (min-width: 600px) and (max-width: 960px)': {
+                    width: '70vw',
+                  },
                 }}
-              />
+              >
+                <Image
+                  src={`https://storage.googleapis.com/explomaker-data-stateless/${secondArgumentContent?.picture.src.large}`}
+                  quality={100}
+                  fill
+                  alt="planning_illustration"
+                  style={{
+                    maxWidth: '100%',
+                    borderRadius: '20px',
+                    alignSelf: 'flex-start',
+                    objectFit: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -1700,20 +1742,33 @@ const WelcomePage = ({ dataset }) => {
               justifyContent="space-between"
               className={clsx(classes.mobileAlignCenter, classes.mobileReverseRow)}
             >
-              <Image
-                src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                  fifthArgumentContent?.picture.src?.original
-                )}`}
-                width={matchesXs ? '360' : '500'}
-                height={matchesXs ? '360' : '562'}
-                quality={100}
-                alt="collab_illustration"
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                  borderRadius: '20px',
+              <Box
+                sx={{
+                  width: '537px',
+                  height: '537px',
+                  position: 'relative',
+                  [theme.breakpoints.down('sm')]: {
+                    width: '360px',
+                    height: '360px',
+                    '@media (min-width: 600px) and (max-width: 960px)': {
+                      width: '70vw',
+                    },
+                  },
                 }}
-              />
+              >
+                <Image
+                  src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
+                    fifthArgumentContent?.picture.src?.original
+                  )}`}
+                  fill
+                  quality={100}
+                  alt="collab_illustration"
+                  style={{
+                    maxWidth: '100%',
+                    borderRadius: '20px',
+                  }}
+                />
+              </Box>
               <Box
                 maxWidth="570px"
                 display="flex"
@@ -1969,6 +2024,7 @@ const WelcomePage = ({ dataset }) => {
                 marginBottom="50px"
                 flexWrap="wrap"
                 className={classes.mobileAlignCenter}
+                sx={{ [theme.breakpoints.down('sm')]: { gridGap: '15px' } }}
               >
                 {articlesSelection?.elements.length > 0 &&
                   articlesSelection?.elements.map(

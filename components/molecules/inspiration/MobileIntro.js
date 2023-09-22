@@ -16,19 +16,25 @@ const useStyles = makeStyles(theme => ({
     fontFamily: theme.typography.fontFamily,
   },
   buttonPrimary: {
-    padding: `${theme.spacing(2.5)} 25px`,
+    padding: `20px 25px`,
     borderRadius: '50px',
     width: 'calc(100vw - 60px)',
     boxShadow: '0 3px 15px 0 #009D8C33',
     textTransform: 'none',
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      maxWidth: '350px',
+    },
   },
   buttonUltraLight: {
     width: 'calc(100vw - 60px)',
     backgroundColor: theme.palette.primary.ultraLight,
     color: theme.palette.primary.main,
     textTransform: 'none',
-    padding: `${theme.spacing(2.5)} 25px`,
+    padding: `20px 25px`,
     borderRadius: '50px',
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      maxWidth: '350px',
+    },
   },
 }))
 const MobileIntro = ({ spotlight, metaContinentRef }) => {

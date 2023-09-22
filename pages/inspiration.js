@@ -419,7 +419,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
                     <ArticlesCarousel
                       currentArticles={currentSpotlightArticles}
-                      dotListClass={classes.carouselNotCentered}
+                      // dotListClass={classes.carouselNotCentered}
                     />
                   </Box>
                 </Box>
@@ -473,7 +473,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   <SpotCarousel
                     currentSpots={spotlight.unmissable}
                     isShowingMoreSpots={isShowingMoreSpots}
-                    dotListClass={classes.carouselNotCentered}
+                    // dotListClass={classes.carouselNotCentered}
                   />
                 </Box>
               </Box>
@@ -593,46 +593,47 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               <Box sx={{ position: 'relative', maxWidth: '100vw', marginBottom: '50px' }}>
                 <ArticlesCarousel
                   currentArticles={currentFavoritesArticles}
-                  dotListClass={classes.carouselNotCentered}
+                  // dotListClass={classes.carouselNotCentered}
                 />
               </Box>
             ) : (
-              <ArticlesList
-                data={currentFavoritesArticles}
-                isShowingMoreArticles={isShowingMoreFavoritesArticles}
-                isSmallSize
-                numberOfArticles={3}
-                numberOfMaxArticles={9}
-              />
+              <>
+                <ArticlesList
+                  data={currentFavoritesArticles}
+                  isShowingMoreArticles={isShowingMoreFavoritesArticles}
+                  isSmallSize
+                  numberOfArticles={3}
+                  numberOfMaxArticles={9}
+                />{' '}
+                <Box display="flex" justifyContent="center" sx={{ paddingTop: '15px' }}>
+                  {currentFavoritesArticles.length > 3 &&
+                    (!isShowingMoreFavoritesArticles ? (
+                      <Button
+                        variant="contained"
+                        className={classes.buttonPrimary}
+                        onClick={() => setIsShowingMoreFavoritesArticles(true)}
+                        sx={{ width: '13%', minWidth: '150px' }}
+                      >
+                        Voir tout
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        className={classes.buttonPrimary}
+                        onClick={() => setIsShowingMoreFavoritesArticles(false)}
+                        sx={{ width: '13%', minWidth: '150px' }}
+                      >
+                        Voir moins
+                      </Button>
+                    ))}
+                </Box>
+              </>
             )}
-
-            <Box display="flex" justifyContent="center" sx={{ paddingTop: '15px' }}>
-              {currentFavoritesArticles.length > 3 &&
-                (!isShowingMoreFavoritesArticles ? (
-                  <Button
-                    variant="contained"
-                    className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreFavoritesArticles(true)}
-                    sx={{ width: '13%', minWidth: '150px' }}
-                  >
-                    Voir tout
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    className={classes.buttonPrimary}
-                    onClick={() => setIsShowingMoreFavoritesArticles(false)}
-                    sx={{ width: '13%', minWidth: '150px' }}
-                  >
-                    Voir moins
-                  </Button>
-                ))}
-            </Box>
           </Box>
         </Box>
         {/* Fin de la partie 6 */}
         {/* Partie 7 */}
-        <Box
+        {/* <Box
           sx={{
             width: !matchesXs ? '1140px' : '100vw',
             padding: matchesXs && '30px',
@@ -662,6 +663,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
                   padding: '15px 20px',
                   color: theme.palette.grey.grey33,
                   marginBottom: '20px',
+                  '@media (min-width: 600px) and (max-width: 960px)': {},
                 }}
                 onClick={() =>
                   router.push(`
@@ -674,7 +676,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
               </Button>
             ))}
           </Box>
-        </Box>
+        </Box> */}
         {/* fin de la Partie 7 */}
         {/* partie 8 */}
         <Box sx={{ backgroundColor: theme.palette.grey.f7, margin: 'auto' }}>
@@ -738,7 +740,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             <Box sx={{ position: 'relative', maxWidth: '100vw' }}>
               <ArticlesCarousel
                 currentArticles={currentMonthInspiration}
-                dotListClass={classes.carouselNotCentered}
+                // dotListClass={classes.carouselNotCentered}
               />
             </Box>
           ) : (
@@ -784,7 +786,7 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
             marginBottom: matchesXs ? '180px' : '60px',
           }}
         >
-          <CTA />
+          <CTA imageDisplayed={!matchesXs} />
         </Box>
       </Box>
     </>

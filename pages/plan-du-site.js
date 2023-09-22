@@ -54,6 +54,27 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
   const [spots, setSpots] = useState([])
   const [articles, setArticles] = useState([])
   const [homePages, setHomePages] = useState([])
+  const [sortedAndRenderedSpots, setSortedAndRenderedSpots] = useState([])
+
+  useEffect(() => {
+    const groupedByMetaContinent = spots?.filter(spot => spot.publication.website === 'true')
+    // ... (la logique de réduction/groupage que nous avons déjà discutée)
+
+    const sortedAndRendered = Object.entries(groupedByMetaContinent)
+      .sort((a, b) => a[0] - b[0])
+      .map(([metaContinent, groupedSpots]) => (
+        <div key={metaContinent}>
+          <Typography variant="h6">{metaContinentRef[metaContinent]}</Typography>
+          {groupedSpots.map(({ targetUrl, title }) => (
+            <Link key={targetUrl} href={targetUrl} passHref className={classes.nextLink}>
+              <Typography>{title}</Typography>
+            </Link>
+          ))}
+        </div>
+      ))
+
+    setSortedAndRenderedSpots(sortedAndRendered)
+  }, [spots])
 
   useEffect(() => {
     console.log('homePages', homePages)
@@ -105,37 +126,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
       <Box className={classes.mainContainer}>
         <Box className={classes.continentContainer}>
           <Typography>Destinations</Typography>
-          {/* {spots
-            ?.filter(spot => spot.publication.website !== 'false')
-            // Grouper par metaContinent
-            .reduce(
-              (acc, { meta_continent: metaContinentArray, target_url: targetUrl, ...rest }) => {
-                // Vérifier si metaContinentArray est défini et a une valeur à l'index 0
-                if (metaContinentArray && metaContinentArray.length > 0) {
-                  const metaContinent = metaContinentArray[0]
-                  if (!acc[metaContinent]) {
-                    acc[metaContinent] = []
-                  }
-                  acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
-                }
-                return acc
-              },
-              {}
-            )
-            // Convertir l'objet en tableau pour le tri
-            .map(metaContinent => ({ metaContinent, groupedSpots: acc[metaContinent] }))
-            // Trier par metaContinent si nécessaire
-            .sort((a, b) => a.metaContinent - b.metaContinent)
-            .map(({ metaContinent, groupedSpots }) => (
-              <div key={metaContinent}>
-                <Typography variant="h6">{metaContinentRef[metaContinent]}</Typography>
-                {groupedSpots.map(({ targetUrl, title }) => (
-                  <Link key={targetUrl} href={targetUrl} passHref className={classes.nextLink}>
-                    <Typography>{title}</Typography>
-                  </Link>
-                ))}
-              </div>
-            ))} */}
+          {sortedAndRenderedSpots}
         </Box>
         <Box className={classes.articlesContainer}>
           <Typography>Articles</Typography>

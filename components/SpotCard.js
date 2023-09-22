@@ -46,6 +46,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '500',
     color: '#333333',
     textAlign: 'left',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 'unset',
+    },
   },
   arrowList: {
     color: '#DFDFDF',

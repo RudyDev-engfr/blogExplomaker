@@ -25,9 +25,10 @@ import { SessionContext } from '../../contexts/session'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '300px',
-    height: '295px',
+    height: '300px',
     borderRadius: '20px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
+    position: 'relative',
   },
   resultRoot: {
     width: '360px',
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
   rootMobile: {
     width: 'calc(100vw - 60px)',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.10)',
+    position: 'relative',
   },
   likeButton: {
     zIndex: '100',
@@ -73,7 +75,6 @@ const useStyles = makeStyles(theme => ({
     display: 'grid',
     gridTemplate: '171px 95px / 1fr',
     alignItems: 'start',
-    alignContent: 'space-between',
   },
   cardActionAreaFocusHighlight: {
     backgroundColor: theme.palette.secondary.contrastText,
@@ -87,6 +88,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
+    position: 'relative',
   },
   cardTitle: {
     fontSize: '18px',
@@ -107,6 +109,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: '12px',
     lineHeight: '14px',
     color: '#828282',
+    position: 'absolute',
+    bottom: '0',
   },
   resultCardIcons: {
     fontSize: '16px',
@@ -120,8 +124,9 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     gridTemplate: 'max-content min-content / 1fr',
     alignContent: 'space-between',
+    position: 'relative',
+    minHeight: '120px',
   },
-  resultSocialInteraction: {},
   resultCardActionAreaRoot: {
     display: 'grid',
     gridTemplate: 'min-content 1fr / 1fr',
@@ -140,6 +145,11 @@ const useStyles = makeStyles(theme => ({
   },
   nextLink: {
     textDecoration: 'none',
+  },
+  resultSocialInteraction: {
+    position: 'absolute',
+    bottom: '-5px',
+    width: '100%',
   },
 }))
 
@@ -272,7 +282,6 @@ const MobileBlogCard = ({
               </Box>
             )} */}
             </Box>
-
             <Box className={classes.resultSocialInteraction}>
               <Box display="flex" justifyContent="space-between">
                 <Typography className={classes.cardCounts}>

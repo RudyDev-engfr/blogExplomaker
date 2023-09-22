@@ -52,6 +52,8 @@ const useStyles = makeStyles(theme => ({
     width: 'calc(100vw - 60px)',
     height: '305px',
     top: '0',
+    background:
+      'linear-gradient(180deg, rgba(31, 31, 25, 0) 50%, rgb(31,31,25,0.6) 100%) !important',
   },
   cardMedia: {
     position: 'absolute',
@@ -197,9 +199,9 @@ const CountryTile = ({
             <Box
               className={clsx(classes.shadowVeil, {
                 [classes.largeShadowVeil]: isLarge,
-                [classes.shadow]: categoryColor === 1,
-                [classes.shadowRed]: categoryColor === 2,
-                [classes.shadowBlue]: categoryColor === 3,
+                // [classes.shadow]: categoryColor === 1,
+                // [classes.shadowRed]: categoryColor === 2,
+                // [classes.shadowBlue]: categoryColor === 3,
               })}
             />
             <Box sx={{ position: 'relative' }} height="100%" width="100%">

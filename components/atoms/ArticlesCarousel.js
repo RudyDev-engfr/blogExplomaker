@@ -34,11 +34,17 @@ const ArticlesCarousel = ({ currentArticles, dotListClass }) => {
         },
         mobile: {
           breakpoint: {
-            max: 640,
+            max: 660,
             min: 0,
           },
           items: 1,
-          partialVisibilityGutter: 40,
+        },
+        tablet: {
+          breakpoint: {
+            max: 960,
+            min: 660,
+          },
+          items: 2,
         },
       }}
       slidesToSlide={1}

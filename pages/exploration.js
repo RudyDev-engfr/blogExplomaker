@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '40px',
     fontSize: '17px',
     [theme.breakpoints.down('sm')]: {
-      minWidth: '80vw',
+      minWidth: 'calc(100vw - 72px)',
       backgroundColor: theme.palette.grey.f2,
       // minWidth: 'unset',
     },

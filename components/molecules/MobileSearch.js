@@ -179,7 +179,7 @@ const MobileSearch = ({
               fontWeight: '500',
             }}
             variant="contained"
-            onClick={() => setValue(1)}
+            onClick={() => setValue(0)}
           >
             Voir tout
           </Button>
@@ -229,7 +229,7 @@ const MobileSearch = ({
                 return (
                   <Button
                     variant="contained"
-                    onClick={() => setValue(1)}
+                    onClick={() => setValue(0)}
                     sx={{ width: '230px', height: '305px', borderRadius: '20px' }}
                   >
                     Voir tout
@@ -279,7 +279,7 @@ const MobileSearch = ({
               fontWeight: '500',
             }}
             variant="contained"
-            onClick={() => setValue(2)}
+            onClick={() => setValue(1)}
           >
             Voir Tout
           </Button>
@@ -292,12 +292,12 @@ const MobileSearch = ({
               data={currentArticles}
               isShowingMoreArticles={isShowingMoreArticles}
               isAlgolia
-              numberOfArticles={value === 0 ? 5 : value === 2 && isLoadingMoreArticles * 5}
+              numberOfArticles={value === 0 ? 5 : value === 1 && isLoadingMoreArticles * 5}
             />
           )}
         </Box>
         {currentArticles.length > 5 &&
-          value === 2 &&
+          value === 1 &&
           currentArticles.length > isLoadingMoreArticles * 5 + 1 && (
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
               <Button
@@ -333,20 +333,20 @@ const MobileSearch = ({
         }}
       >
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-          <Tab label="Tout" {...a11yProps(0)} classes={{ root: classes.tabRoot }} />
+          {/* <Tab label="Tout" {...a11yProps(0)} classes={{ root: classes.tabRoot }} /> */}
           <Tab
             label={`Destinations(${currentSpots.length})`}
-            {...a11yProps(1)}
+            {...a11yProps(0)}
             classes={{ root: classes.tabRoot }}
           />
           <Tab
             label={`Articles(${currentArticles.length})`}
-            {...a11yProps(2)}
+            {...a11yProps(1)}
             classes={{ root: classes.tabRoot }}
           />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      {/* <TabPanel value={value} index={0}>
         <Box
           marginBottom="32px"
           display="flex"
@@ -387,14 +387,13 @@ const MobileSearch = ({
         </Box>
         <SpotIntegration />
         <ArticleIntegration />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </TabPanel> */}
+      <TabPanel value={value} index={0}>
         <Box
           marginBottom="32px"
           display="flex"
           justifyContent="space-between"
-          width="100%"
-          sx={{ paddingTop: '145px' }}
+          sx={{ paddingTop: '145px', width: 'calc(100vw - 60px)' }}
         >
           <Typography
             component="h2"
@@ -430,7 +429,7 @@ const MobileSearch = ({
         </Box>
         <AllSpotIntegration />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         <Box
           marginBottom="32px"
           display="flex"

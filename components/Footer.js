@@ -62,8 +62,8 @@ const Footer = () => {
         py={matchesXs ? 0 : 10}
         marginBottom={matchesXs && '60px'}
       >
-        <Grid container spacing={matchesXs ? 0 : 4} mb={3}>
-          <Grid item md={3} sm={6}>
+        <Grid container spacing={4} mb={3}>
+          <Grid item md={3} sm={12}>
             <Typography variant="h4" className={classes.footerTitle}>
               Explomaker
             </Typography>
@@ -98,7 +98,7 @@ const Footer = () => {
               </Link>
             </Box>
           </Grid>
-          <Grid item md={3} sm={6}>
+          <Grid item md={3} xs={4}>
             <Box
               display="flex"
               flexDirection="column"
@@ -127,7 +127,7 @@ const Footer = () => {
               </Link>
             </Box>
           </Grid>
-          <Grid item md={3} sm={6}>
+          <Grid item md={3} xs={4}>
             <Box
               display="flex"
               flexDirection="column"
@@ -186,7 +186,7 @@ const Footer = () => {
               </Link>
             </Box>
           </Grid>
-          <Grid item md={3} sm={6}>
+          <Grid item md={3} xs={4}>
             <Box
               display="flex"
               flexDirection="column"

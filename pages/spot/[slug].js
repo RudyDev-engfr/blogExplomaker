@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   mobileBlogCardContainer: {
     backgroundColor: theme.palette.grey.f2,
-    padding: '100px 0 50px 30px',
+    padding: '100px 0 50px',
   },
   greyBackground: {
     backgroundColor: theme.palette.grey.f2,
@@ -114,14 +114,27 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     borderRadius: '20px',
     backgroundColor: theme.palette.grey.f7,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      borderRadius: 'unset',
+    },
   },
   boxCTATitle: {
     fontSize: '28px',
     lineHeiht: '34px',
     fontWeight: '500',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
   boxCTAText: {
     color: theme.palette.grey['4f'],
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
   boxCTAButton: {
     textTransform: 'none',
@@ -131,7 +144,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '18px',
     lineHeight: '21px',
     [theme.breakpoints.down('sm')]: {
-      width: '70%',
+      minWidth: '250px',
     },
   },
   flagSquared: {
@@ -250,6 +263,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      alignItems: 'center',
       padding: '0',
       top: '0',
       paddingTop: '60px',
@@ -323,6 +337,9 @@ const useStyles = makeStyles(theme => ({
     gridGap: '20px',
     [theme.breakpoints.down('sm')]: {
       gridTemplate: '1fr 1fr 1fr 1fr / 1fr',
+    },
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      gridTemplate: '1fr 1fr / 1fr 1fr',
     },
   },
   infoBox: {
@@ -500,10 +517,12 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     backgroundColor: theme.palette.primary.ultraLight,
     [theme.breakpoints.down('sm')]: {
-      padding: '45px 20px 20px 20px',
-      width: '90%',
+      padding: '45px 20px',
+      width: 'calc(100vw - 60px)',
+      maxWidth: 'unset',
       margin: 'auto',
       maxHeight: 'unset',
+      minHeight: 'unset',
     },
   },
   reasonCardTitle: {
@@ -516,6 +535,7 @@ const useStyles = makeStyles(theme => ({
       lineHeight: '26px',
       fontFamily: 'Rubik',
       marginBottom: '15px',
+      textAlign: 'center',
     },
   },
   reasonCarouselNumber: {
@@ -551,7 +571,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50px',
     padding: '20px 60px',
     [theme.breakpoints.down('sm')]: {
-      width: '70%',
+      minWidth: '250px',
       textTransform: 'none',
       letterSpacing: '0',
       padding: '18px 22px',
@@ -572,7 +592,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '50%',
     [theme.breakpoints.down('sm')]: {
       maxWidth: 'unset',
-      marginBottom: '60px',
     },
   },
   imageContainerCTA2: {
@@ -580,6 +599,7 @@ const useStyles = makeStyles(theme => ({
     height: '560px',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
+      display: 'none',
       width: '100%',
       height: 'unset',
     },
@@ -676,7 +696,8 @@ const useStyles = makeStyles(theme => ({
     left: '0',
     [theme.breakpoints.down('sm')]: {
       marginBottom: '30px',
-      left: '35%',
+      left: '50%',
+      transform: 'translateX(-50%)',
     },
   },
   image: {
@@ -1078,22 +1099,27 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
               width="100%"
             >
               {matchesXs ? (
-                <Box className={classes.mobileCountryAside}>
-                  <Box
-                    width="100%"
-                    height="220px"
-                    marginBottom="30px"
-                    sx={{ position: 'relative' }}
-                  >
-                    <Image
-                      src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.large}`}
-                      className={classes.image}
-                      alt="mobileCountryAside_image"
-                      fill
-                      sizes="100vw"
-                    />
-                  </Box>
-                  {dataset.flag_square && (
+                // <Box className={classes.mobileCountryAside}>
+                <Box
+                  sx={{
+                    position: 'relative',
+                    marginBottom: '30px',
+                    width: 'calc(100vw - 60px)',
+                    height: '350px',
+                    '@media (max-width: 600px)': {
+                      height: '220px',
+                    },
+                  }}
+                >
+                  <Image
+                    src={`https://storage.googleapis.com/explomaker-data-stateless/${dataset.picture_main.src.large}`}
+                    className={classes.image}
+                    alt="mobileCountryAside_image"
+                    fill
+                    sizes="100vw"
+                  />
+                  {/* </Box> */}
+                  {/* {dataset.flag_square && (
                     <Box className={classes.flagSquared}>
                       <Box sx={{ position: 'relative', width: '30px', height: '30px' }}>
                         <Image
@@ -1106,12 +1132,11 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                         />
                       </Box>
                     </Box>
-                  )}
-                  <Box>
+                  )} */}
+                  {/* <Box>
                     <Typography className={classes.mobileCountryAsideTitle}>
                       {dataset.title}({dataset.gps.country_short})
                     </Typography>
-                    {/* TODO rendre dynamique */}
                     <Box display="flex" flexDirection="column" width="330px" padding="20px">
                       <Box display="flex" alignItems="center">
                         {dataset?.capital && (
@@ -1138,7 +1163,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                         )}
                       </Box>
                     </Box>
-                  </Box>
+                  </Box> */}
                 </Box>
               ) : (
                 <Box sx={{ maxWidth: '280px' }}>
@@ -1428,7 +1453,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
       </Box>
       {/* Fin de la partie 1 */}
       {/* Partie 2 */}
-      <Box marginBottom="100px">
+      <Box marginBottom="100px" sx={{ paddingTop: matchesXs && '40px' }}>
         <Box className={clsx(classes.mainContainer, classes.mobileSizing)} sx={{ margin: 0 }}>
           {dataset.unmissable && (
             <Box sx={{ display: matchesXs ? 'block' : 'flex' }} flexDirection="column">
@@ -1500,7 +1525,17 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                         <Box display="block" alignItems="center" key={postSlug} width="100%">
                           <Box className={classes.mobileCountryGalleryImgContainer}>
                             {!isShowingMap && typeof picture !== 'undefined' && (
-                              <Box sx={{ position: 'relative' }}>
+                              <Box
+                                sx={{
+                                  position: 'relative',
+                                  [theme.breakpoints.down('sm')]: {
+                                    height: '200px',
+                                  },
+                                  '@media (min-width: 600px) and (max-width: 960px)': {
+                                    height: '350px',
+                                  },
+                                }}
+                              >
                                 <Image
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
                                     picture.src?.large
@@ -1518,7 +1553,16 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                       ))}
                     </Carousel>
                     {isShowingMap && (
-                      <Box height="200px" width="100%" sx={{ position: 'relative' }}>
+                      <Box
+                        sx={{
+                          width: '100%',
+                          position: 'relative',
+                          [theme.breakpoints.down('sm')]: {
+                            height: '200px',
+                          },
+                          '@media (min-width: 600px) and (max-width: 960px)': { height: '350px' },
+                        }}
+                      >
                         <Map
                           latitude={dataset.gps.lat}
                           longitude={dataset.gps.lng}
@@ -1742,7 +1786,8 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                     arrows={false}
                     focusOnSelect={false}
                     infinite
-                    showDots={false}
+                    showDots
+                    customDot={<TrendingDestinationsDotBox carouselArray={reasonsCarousel} />}
                     renderDotsOutside
                     keyBoardControl
                     minimumTouchDrag={80}
@@ -1941,6 +1986,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
             color="primary"
             className={classes.globalSubtitle}
             textAlign={!matchesXs ? 'center' : 'left'}
+            sx={{ marginBottom: '10px' }}
           >
             Panorama
           </Typography>
@@ -2004,11 +2050,16 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                     const encodedURI = encodeURI(src.large)
                     return (
                       <Box
-                        width="100%"
-                        minWidth="300px"
-                        minHeight="200px"
-                        maxHeight="200px"
-                        sx={{ position: 'relative' }}
+                        sx={{
+                          position: 'relative',
+                          minWidth: '100vw',
+                          minHeight: '200px',
+                          maxHeight: '200px',
+                          '@media (min-width: 500px) and (max-width: 960px)': {
+                            minHeight: '350px',
+                            maxHeight: '350px',
+                          },
+                        }}
                         key={id}
                       >
                         <Image
@@ -2155,7 +2206,7 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
               {matchesXs ? (
                 <ArticlesCarousel
                   currentArticles={currentLinkedPosts}
-                  dotListClass={classes.articlesCarouselDots}
+                  // dotListClass={classes.articlesCarouselDots}
                 />
               ) : (
                 <ArticlesList
@@ -2218,16 +2269,18 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
                   t’accompagne avant, pendant et après ton séjour.
                 </Typography>
               </Box>
-              <Link
-                passHref
-                href="https://app.explomaker.fr"
-                className={classes.nextLink}
-                target="_blank"
-              >
-                <Button variant="contained" className={classes.globalButton}>
-                  Créer mon séjour
-                </Button>
-              </Link>
+              <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <Link
+                  passHref
+                  href="https://app.explomaker.fr"
+                  className={classes.nextLink}
+                  target="_blank"
+                >
+                  <Button variant="contained" className={classes.globalButton}>
+                    Créer mon séjour
+                  </Button>
+                </Link>
+              </Box>
             </Box>
             <Box className={classes.imageContainerCTA2}>
               <Image

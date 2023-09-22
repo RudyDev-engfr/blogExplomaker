@@ -31,6 +31,9 @@ const ArticlesList = ({
         justifyItems: matchesXs && 'center',
         gridGap: '15px',
         paddingTop: '15px',
+        '@media (min-width: 675px) and (max-width: 960px)': {
+          gridTemplate: 'repeat(auto-fill, 360px) / repeat(2, 1fr)',
+        },
       }}
     >
       {isAlgolia
@@ -73,6 +76,7 @@ const ArticlesList = ({
             .map(
               ({
                 title,
+                short_title: shortTitle,
                 picture: pictureMain,
                 target_url: targetUrl,
                 creation_date: creationDate,
@@ -82,7 +86,7 @@ const ArticlesList = ({
                 <MobileBlogCard
                   srcImg={pictureMain.src?.original}
                   targetLink={targetUrl}
-                  title={title}
+                  title={shortTitle}
                   key={targetUrl}
                   publishDate={creationDate ?? '17 Déc 2020 | 6min'}
                   is360px={!matchesXs}

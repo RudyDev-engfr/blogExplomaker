@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
   },
 }))
-const CTA = () => {
+const CTA = ({ imageDisplayed }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <Box sx={{ display: !matchesXs ? 'flex' : 'block', justifyContent: 'space-between' }}>
-      <Box sx={{ maxWidth: '400px' }}>
+      <Box>
         <Typography
           variant="h6"
           color="primary.ultraDark"
@@ -66,16 +66,18 @@ const CTA = () => {
           </Button>
         </Link>
       </Box>
-      <Image
-        src={illustrationPlanning}
-        width={matchesXs ? '360' : '537'}
-        quality={100}
-        alt="planning_illustration"
-        style={{
-          maxWidth: '100%',
-          height: 'auto',
-        }}
-      />
+      {imageDisplayed && (
+        <Image
+          src={illustrationPlanning}
+          width={matchesXs ? '360' : '537'}
+          quality={100}
+          alt="planning_illustration"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
+      )}
     </Box>
   )
 }

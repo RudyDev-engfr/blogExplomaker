@@ -6,10 +6,10 @@ import React from 'react'
 
 const useStyles = makeStyles(theme => ({
   indicatorsCountryGallery: {
-    height: '6px',
-    width: '6px',
+    height: '15px',
+    width: '15px',
     borderRadius: '50px',
-    backgroundColor: theme.palette.primary.ultraLight,
+    backgroundColor: theme.palette.grey.df,
   },
   activeColor: {
     backgroundColor: theme.palette.primary.main,

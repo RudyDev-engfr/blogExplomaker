@@ -288,7 +288,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '255px',
-    height: '264px',
+    height: '290px',
     padding: '35px 25px',
     borderRadius: '20px',
     position: 'relative',
@@ -300,6 +300,8 @@ const useStyles = makeStyles(theme => ({
       transition: 'all 0.3s',
     },
     [theme.breakpoints.down('sm')]: {
+      maxWidth: '450px',
+      width: 'calc(100vw - 60px)',
       marginRight: '0',
       left: '0px',
       bottom: '120px',
@@ -397,6 +399,9 @@ const useStyles = makeStyles(theme => ({
   collaborationBox: {
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      alignItems: 'center',
+    },
   },
   workingBox: {
     display: 'grid',
@@ -406,7 +411,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'start',
     marginBottom: '50px',
     [theme.breakpoints.down('sm')]: {
-      gridTemplate: 'repeat(3, 1fr) / 360px',
+      gridTemplate: 'repeat(3, 1fr) / 70vw',
     },
   },
   workingEmoji: {
@@ -452,6 +457,10 @@ const useStyles = makeStyles(theme => ({
   blogList: {
     maxWidth: '550px',
     borderRadius: '20px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 'unset',
+      width: 'calc(100vw - 60px)',
+    },
   },
   buttonBlogList: {
     textTransform: 'none',
@@ -486,6 +495,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '80px',
       top: '20%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
     },
   },
   destinationBox: {
@@ -566,7 +581,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     maxWidth: '490px',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '235px',
+      maxWidth: 'calc(100vw - 60px - 60px - 20px)',
     },
   },
   formNewsletter: {
@@ -589,7 +604,7 @@ const useStyles = makeStyles(theme => ({
   },
   mobileSizing: {
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '84%',
+      maxWidth: 'calc(100vw - 60px)',
     },
   },
   mobileFlexColumn: {
@@ -639,8 +654,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+      maxWidth: 'unset',
       maxHeight: '300px',
       borderRadius: '0',
+    },
+    '@media (min-width: 600px) and (max-width: 960px)': {
+      height: '450px',
+      maxHeight: 'unset',
     },
   },
   mobileAdaptedProject: {
@@ -740,16 +760,16 @@ const Home = ({ dataset }) => {
 
   const travelBox = [
     {
-      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_01.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_01.photo.src.large}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_02.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_02.photo.src.large}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_03.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_03.photo.src.large}`,
     },
     {
-      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_04.photo.src.original}`,
+      srcImg: `https://storage.googleapis.com/explomaker-data-stateless/${dataset.publicPresentation.groupe_04.photo.src.large}`,
     },
   ]
 
@@ -1252,12 +1272,17 @@ const Home = ({ dataset }) => {
             >
               <Image
                 src={illustrationCollab}
-                width={matchesXs ? '360' : '562'}
+                width={!matchesXs && '562'}
                 quality={100}
                 alt="collab_illustration"
+                sizes="(max-width: 960px) 100vw"
                 style={{
                   maxWidth: '100%',
                   height: 'auto',
+                  '@media (max-width: 960px)': {
+                    minWidth: '80vw !important',
+                    maxWidth: 'unset',
+                  },
                 }}
               />
               <Box
@@ -1290,7 +1315,13 @@ const Home = ({ dataset }) => {
                 </Box>
                 <Box className={classes.collaborationBox}>
                   {itemsCollaborate.map(({ Icon, label, text }) => (
-                    <Box display="flex" alignItems="center" key={label} marginBottom="40px">
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      key={label}
+                      marginBottom="40px"
+                      sx={{ [theme.breakpoints.down('sm')]: { width: 'calc(100vw - 60px)' } }}
+                    >
                       <Box className={classes.collaborationBackground}>
                         <Icon className={classes.collaborationIcon} />
                       </Box>
@@ -1373,7 +1404,7 @@ const Home = ({ dataset }) => {
                               <Box sx={{ position: 'relative', height: '335px', width: '100vw' }}>
                                 <Image
                                   src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                    photo.src.original
+                                    photo.src.large
                                   )}`}
                                   quality={100}
                                   className={classes.mobileAdaptedProject}
@@ -1527,9 +1558,16 @@ const Home = ({ dataset }) => {
                         <Typography className={classes.workingEmoji}>{emoji}</Typography>
                       </Box>
                       <Box marginBottom="10px">
-                        <Typography variant="h6">
+                        <Typography
+                          variant="h6"
+                          sx={{ [theme.breakpoints.down('sm')]: { textAlign: 'center' } }}
+                        >
                           {label}
-                          <Box component="span" className={classes.textPrimary}>
+                          <Box
+                            component="span"
+                            className={classes.textPrimary}
+                            sx={{ [theme.breakpoints.down('sm')]: { textAlign: 'center' } }}
+                          >
                             {coloredLabel}
                           </Box>
                         </Typography>
@@ -1686,7 +1724,7 @@ const Home = ({ dataset }) => {
                     component="h2"
                     className={clsx(classes.mobileTitle, classes.mobileTextCenter)}
                   >
-                    Articles tout chaud 🔥
+                    Articles tout chauds 🔥
                   </Typography>
                 </Box>
               </Box>
@@ -1703,7 +1741,7 @@ const Home = ({ dataset }) => {
                   <BlogCard
                     bigTitle={hotArticles[0].title}
                     category={hotArticles[0].sub_type[0].name}
-                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${hotArticles[0].picture.src.original}`}
+                    srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${hotArticles[0].picture.src.large}`}
                     altImg=""
                     date={hotArticles[0].creation_date}
                     readingTime={hotArticles[0].reading_time}
@@ -1824,7 +1862,16 @@ const Home = ({ dataset }) => {
                     alignItems="center"
                     className={clsx(classes.mobileAlignCenter, classes.mobileFlexColumn)}
                   >
-                    <Box sx={{ position: 'relative', width: '100vw', height: '300px' }}>
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '300px',
+                        '@media (min-width: 600px) and (max-width: 960px)': {
+                          height: '450px',
+                        },
+                      }}
+                    >
                       <Carousel
                         infinite={false}
                         navButtonsAlwaysInvisible
@@ -1835,12 +1882,17 @@ const Home = ({ dataset }) => {
                           <Box
                             key={spot.picture.src.id}
                             minWidth="100%"
-                            height="300px"
-                            sx={{ position: 'relative' }}
+                            sx={{
+                              position: 'relative',
+                              height: '300px',
+                              '@media (min-width: 600px) and (max-width: 960px)': {
+                                height: '450px',
+                              },
+                            }}
                           >
                             <Image
                               src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                spot.picture.src.original
+                                spot.picture.src.large
                               )}`}
                               alt="trendingSpot_image"
                               className={classes.focusImg}
@@ -1919,7 +1971,7 @@ const Home = ({ dataset }) => {
                             >
                               <Image
                                 src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                                  spot.picture.src.original
+                                  spot.picture.src.large
                                 )}`}
                                 alt="spotPicture_image"
                                 className={classes.focusImg}
@@ -1985,6 +2037,7 @@ const Home = ({ dataset }) => {
                 marginBottom="50px"
                 flexWrap="wrap"
                 className={classes.mobileAlignCenter}
+                sx={{ gridGap: '30px' }}
               >
                 {currentHeartStrokes.length > 0 &&
                   currentHeartStrokes.map(
@@ -2004,7 +2057,7 @@ const Home = ({ dataset }) => {
                           title={title.substring(0, 89)}
                           category={subType ? subType[0].name : 'Demacia'}
                           srcImg={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(
-                            picture.src.original
+                            picture.src.large
                           )}`}
                           publishDate={creationDate}
                           readingTime={readingTime}
