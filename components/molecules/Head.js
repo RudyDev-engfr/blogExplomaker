@@ -80,7 +80,6 @@ const Head = ({ tags }) => {
           {/* Other metadata */}
           <meta name="theme-color" content={theme.palette.primary.main} />
         </>
-        {console.log('showmetags', tags)}
       </HeadNext>
     </div>
   )

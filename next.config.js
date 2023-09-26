@@ -49,4 +49,13 @@ module.exports = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/results',
+        destination: '/exploration',
+        permanent: true, // Ceci utilisera une redirection 301, mais vous pouvez mettre false pour une redirection 302
+      },
+    ]
+  },
 }
