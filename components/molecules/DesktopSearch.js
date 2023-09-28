@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { SearchBox } from 'react-instantsearch-hooks-web'
 import { makeStyles, useTheme } from '@mui/styles'
 import { Badge, useMediaQuery } from '@mui/material'
@@ -15,6 +15,7 @@ import SpotList from './SpotList'
 import ArticlesList from './ArticlesList'
 import { SessionContext } from '../../contexts/session'
 import DesktopAccordionFilter from './DesktopAccordionFilter'
+import LoadMoreButton from '../atoms/LoadMoreButton'
 
 const useStyles = makeStyles(theme => ({
   greyBackgroundContainer: {
@@ -122,6 +123,8 @@ const DesktopSearch = ({
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const [expanded, setExpanded] = useState([])
+  const [isLoadingMoreSpots, setIsLoadingMoreSpots] = useState(1)
+  const [isLoadingMoreArticles, setIsLoadingMoreArticles] = useState(1)
   const { currentHitsArray, currentRefinementsArrayLength, setCurrentRefinementsArrayLength } =
     useContext(SessionContext)
 
@@ -150,6 +153,16 @@ const DesktopSearch = ({
     },
     { header: 'Tags Article', category: 'tags_articles' },
   ]
+
+  useEffect(() => {
+    if (currentSpots) {
+      setIsLoadingMoreSpots(1)
+      console.log('les spots que je regarde', currentSpots)
+    }
+    if (currentArticles) {
+      setIsLoadingMoreArticles(1)
+    }
+  }, [currentSpots, currentArticles])
 
   return (
     <>
@@ -268,21 +281,25 @@ const DesktopSearch = ({
             >
               {currentSpots.length > 0 && (
                 <Typography variant="h3" component="h2">
-                  Spots({currentSpots.length > 16 ? '16+' : currentSpots.length})
+                  Spots({currentSpots?.length})
                 </Typography>
               )}
             </Box>
-            {!matchesXs && currentSpots.length > 0 && (
+            {currentSpots.length > 0 && (
               <>
                 <Box className={classes.spotResultContainer}>
                   <SpotList
                     data={currentSpots}
                     isShowingMoreSpots={isShowingMoreSpots}
                     isAlgolia
-                    numberOfSpots={8}
+                    numberOfSpots={
+                      isLoadingMoreSpots === 0
+                        ? 5
+                        : isLoadingMoreSpots >= 1 && isLoadingMoreSpots * 8
+                    }
                   />
                 </Box>
-                {currentSpots.length > 4 && !isShowingMoreSpots && (
+                {/* {currentSpots.length > 4 && !isShowingMoreSpots && (
                   <Box
                     sx={{
                       width: '100%',
@@ -305,26 +322,11 @@ const DesktopSearch = ({
                       Voir plus
                     </Button>
                   </Box>
-                )}
-                {/* {currentSpots.length > isLoadingMoreSpots * 20 + 1 && (
-                  <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Button
-                      sx={{
-                        textTransform: 'none',
-                        height: '32px',
-                        borderRadius: '5px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                      }}
-                      variant="contained"
-                      // eslint-disable-next-line no-return-assign, no-param-reassign
-                      onClick={() => setIsLoadingMoreSpots(prevState => (prevState += 1))}
-                    >
-                      Charger plus
-                    </Button>
-                  </Box>
                 )} */}
-                {isShowingMoreSpots && (
+                {currentSpots.length > isLoadingMoreSpots * 20 + 1 && (
+                  <LoadMoreButton setterMoreItems={setIsLoadingMoreSpots} />
+                )}
+                {/* {isShowingMoreSpots && (
                   <Box
                     sx={{
                       width: '100%',
@@ -347,7 +349,7 @@ const DesktopSearch = ({
                       Voir moins
                     </Button>
                   </Box>
-                )}
+                )} */}
               </>
             )}
             <Box
@@ -368,12 +370,18 @@ const DesktopSearch = ({
                   data={currentArticles}
                   isShowingMoreArticles={isShowingMoreArticles}
                   isAlgolia
-                  numberOfArticles={9}
-                  numberOfMaxArticles={29}
+                  numberOfArticles={
+                    isLoadingMoreArticles === 0
+                      ? 9
+                      : isLoadingMoreArticles >= 1 && isLoadingMoreArticles * 6
+                  }
                 />
               )}
             </Box>
-            {currentArticles.length > 9 && !isShowingMoreArticles && (
+            {currentArticles.length > 9 && (
+              <LoadMoreButton setterMoreItems={setIsLoadingMoreArticles} />
+            )}
+            {/* {currentArticles.length > 9 && !isShowingMoreArticles && (
               <Box
                 sx={{
                   width: '100%',
@@ -420,7 +428,7 @@ const DesktopSearch = ({
                   Voir moins
                 </Button>
               </Box>
-            )}
+            )} */}
           </Box>
         </Box>
       </Box>
