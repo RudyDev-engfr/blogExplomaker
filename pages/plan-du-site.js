@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import { database } from '../lib/firebase'
 import Head from '../components/molecules/Head'
 
@@ -43,14 +43,23 @@ const useStyles = makeStyles(theme => ({
     width: '1140px',
     margin: 'auto',
     paddingTop: '115px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100vw',
+      textAlign: 'center',
+    },
   },
   nextLink: {
     textDecoration: 'none',
   },
+  continentContainer: {
+    marginBottom: '40px',
+  },
+  articlesContainer: { width: '100vw' },
 }))
 
 const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentRef }) => {
   const classes = useStyles()
+  const theme = useTheme()
   const [spots, setSpots] = useState([])
   const [articles, setArticles] = useState([])
   const [homePages, setHomePages] = useState([])
@@ -97,60 +106,97 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
   //   console.log('sortedAndRenderedSpots', sortedAndRenderedSpots)
   // }, [sortedAndRenderedSpots])
 
-  // useEffect(() => {
-  //   console.log('homePages', homePages)
-  //   console.log(
-  //     'spots',
-  //     spots
-  //       .filter(spot => spot.publication.website !== 'false')
-  //       .reduce((acc, { meta_continent: metaContinentArray, target_url: targetUrl, ...rest }) => {
-  //         // Récupérer la valeur de metaContinent à partir de l'index 0 du tableau
-  //         if (metaContinentArray && metaContinentArray.length > 0) {
-  //           const metaContinent = metaContinentArray[0]
-  //           if (!acc[metaContinent]) {
-  //             acc[metaContinent] = []
-  //           }
-  //           acc[metaContinent].push({ metaContinent, targetUrl, ...rest })
-  //         }
-  //         return acc
-  //       }, {})
-  //   )
-  //   console.log('articles', articles)
-  // }, [spots, articles, homePages])
+  useEffect(() => {
+    console.log('homePages', homePages)
+    console.log('articles', articles)
+    console.log('spots', spots)
+  }, [spots, articles, homePages])
 
-  // useEffect(() => {
-  //   if (typeof homePageDataset !== 'undefined' || homePageDataset !== {}) {
-  //     const homePagesKeys = Object.keys(homePageDataset)
-  //     const tempHomePagesArray = homePagesKeys.map(currentKey => homePageDataset[currentKey])
-  //     setHomePages(tempHomePagesArray)
-  //   }
+  useEffect(() => {
+    if (typeof homePageDataset !== 'undefined' || homePageDataset !== {}) {
+      const homePagesKeys = Object.keys(homePageDataset)
+      const tempHomePagesArray = homePagesKeys.map(currentKey => homePageDataset[currentKey])
+      setHomePages(tempHomePagesArray)
+    }
 
-  //   if (typeof spotDataset !== 'undefined' || spotDataset !== {}) {
-  //     const spotsKeys = Object.keys(spotDataset)
-  //     const tempSpotsArray = spotsKeys.map(currentKey => spotDataset[currentKey])
-  //     setSpots(tempSpotsArray)
-  //   }
+    if (typeof spotDataset !== 'undefined' || spotDataset !== {}) {
+      const spotsKeys = Object.keys(spotDataset)
+      const tempSpotsArray = spotsKeys.map(currentKey => spotDataset[currentKey])
+      setSpots(tempSpotsArray.filter(spot => spot.publication.website !== 'false'))
+    }
 
-  //   if (typeof articleDataset !== 'undefined' || articleDataset !== {}) {
-  //     const articlesKeys = Object.keys(articleDataset)
-  //     const tempArticlesArray = articlesKeys.map(currentKey => articleDataset[currentKey])
-  //     setArticles(tempArticlesArray)
-  //   }
-  //   console.log('homePageDataset', homePageDataset)
-  //   console.log('spotDataset', spotDataset)
-  //   console.log('articleDataset', articleDataset)
-  // }, [homePageDataset, spotDataset, articleDataset])
+    if (typeof articleDataset !== 'undefined' || articleDataset !== {}) {
+      const articlesKeys = Object.keys(articleDataset)
+      const tempArticlesArray = articlesKeys.map(currentKey => articleDataset[currentKey])
+      setArticles(tempArticlesArray)
+    }
+    console.log('homePageDataset', homePageDataset)
+    console.log('spotDataset', spotDataset)
+    console.log('articleDataset', articleDataset)
+  }, [homePageDataset, spotDataset, articleDataset])
 
   return (
     <>
       <Head />
       <Box className={classes.mainContainer}>
+        <Box className={classes.homePageContainer}>
+          <Typography sx={{ fontSize: '28px', fontWeight: 600, marginBottom: '15px' }}>
+            Occasions
+          </Typography>
+          {/* {homePages?.map(({ target_url: targetUrl, title }) => (
+            <Box>
+              <Link className={classes.nextLink} href={targetUrl} passHref>
+                <Typography sx={{ '&:hover': { textDecoration: 'underline' } }}>{title}</Typography>
+              </Link>
+            </Box>
+          ))} */}
+        </Box>
         <Box className={classes.continentContainer}>
-          <Typography>Destinations</Typography>
-          {sortedAndRenderedSpots}
+          <Typography sx={{ fontSize: '28px', fontWeight: 600, marginBottom: '15px' }}>
+            Destinations
+          </Typography>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplate: 'auto / repeat(3, 380px)',
+              [theme.breakpoints.down('sm')]: { gridTemplate: 'auto / 100vw' },
+            }}
+          >
+            {spots?.map(({ target_url: targetUrl, title }) => (
+              <Box>
+                <Link className={classes.nextLink} href={targetUrl} passHref>
+                  <Typography sx={{ '&:hover': { textDecoration: 'underline' } }}>
+                    {title}
+                  </Typography>
+                </Link>
+              </Box>
+            ))}
+          </Box>
         </Box>
         <Box className={classes.articlesContainer}>
-          <Typography>Articles</Typography>
+          <Typography sx={{ fontSize: '28px', fontWeight: 600, marginBottom: '15px' }}>
+            Articles
+          </Typography>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplate: 'auto / 100vw',
+              gridRowGap: '10px',
+              gridColumnGap: '50px',
+            }}
+          >
+            {articles.map(({ target_url: targetUrl, title }) => (
+              <Box sx={{ height: '50px', [theme.breakpoints.down('sm')]: { height: 'unset' } }}>
+                <Link className={classes.nextLink} href={targetUrl} passHref>
+                  <Typography
+                    sx={{ '&:hover': { textDecoration: 'underline' }, lineHeight: '25px' }}
+                  >
+                    {title}
+                  </Typography>
+                </Link>
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Box>
     </>

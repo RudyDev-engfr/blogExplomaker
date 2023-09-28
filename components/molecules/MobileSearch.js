@@ -18,6 +18,7 @@ import union from '../../images/icons/filtre.svg'
 import MobileSearchFilter from './MobileSearchFilter'
 import TrendingDestinationsDotBox from '../multi-carousel/TrendingDestinationsDotBox'
 import { SessionContext } from '../../contexts/session'
+import LoadMoreButton from '../atoms/LoadMoreButton'
 
 const useStyles = makeStyles(theme => ({
   filterButton: {
@@ -135,22 +136,7 @@ const MobileSearch = ({
           </Box>
         ))}
       {currentSpots.length > isLoadingMoreSpots * 20 + 1 && (
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <Button
-            sx={{
-              textTransform: 'none',
-              height: '32px',
-              borderRadius: '5px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-            variant="contained"
-            // eslint-disable-next-line no-return-assign, no-param-reassign
-            onClick={() => setIsLoadingMoreSpots(prevState => (prevState += 1))}
-          >
-            Charger plus
-          </Button>
-        </Box>
+        <LoadMoreButton setterMoreItems={setIsLoadingMoreSpots} />
       )}
     </>
   )
@@ -299,21 +285,7 @@ const MobileSearch = ({
         {currentArticles.length > 5 &&
           value === 1 &&
           currentArticles.length > isLoadingMoreArticles * 5 + 1 && (
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <Button
-                sx={{
-                  textTransform: 'none',
-                  height: '32px',
-                  borderRadius: '5px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                }}
-                variant="contained"
-                onClick={() => setIsLoadingMoreArticles(prevState => prevState + 1)}
-              >
-                Charger plus
-              </Button>
-            </Box>
+            <LoadMoreButton setterMoreItems={setIsLoadingMoreArticles} />
           )}
       </Box>
     </>
