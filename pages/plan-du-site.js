@@ -7,31 +7,37 @@ import { database } from '../lib/firebase'
 import Head from '../components/molecules/Head'
 
 export const getServerSideProps = async () => {
-  const doc = await database.ref().child(`content`).get()
-  const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()
-  const dictionary = await database.ref().child(`dictionary`).get()
+  try {
+    const doc = await database.ref().child(`content`).get()
+    const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()
+    const dictionary = await database.ref().child(`dictionary`).get()
 
-  let metaContinentRef
+    let metaContinentRef
 
-  if (doc.exists() && homePagesDoc.exists() && dictionary.exists()) {
-    const dataset = doc.val()
-    const homePageDataset = homePagesDoc.val()
-    const spotDataset = dataset.spots
-    const articleDataset = dataset.post
+    if (doc.exists() && homePagesDoc.exists() && dictionary.exists()) {
+      const dataset = doc.val()
+      const homePageDataset = homePagesDoc.val()
+      const spotDataset = dataset.spots
+      const articleDataset = dataset.post
 
-    if (dictionary.exists()) {
-      const metaContinentRefDoc = await database.ref().child('dictionary/meta_continent').get()
-      if (metaContinentRefDoc.exists()) {
-        metaContinentRef = metaContinentRefDoc.val()
-      }
+      if (dictionary.exists()) {
+        const metaContinentRefDoc = await database.ref().child('dictionary/meta_continent').get()
+        if (metaContinentRefDoc.exists()) {
+          metaContinentRef = metaContinentRefDoc.val()
+        }
 
-      return {
-        props: { homePageDataset, spotDataset, articleDataset, metaContinentRef },
+        return {
+          props: { homePageDataset, spotDataset, articleDataset, metaContinentRef },
+        }
       }
     }
-
+    return {
+      props: {},
+    }
+  } catch (error) {
     // Dans le cas où les données n'existent pas, il serait bon de retourner un objet vide
     // ou de gérer cette situation d'une autre manière, selon vos besoins.
+    console.error('Erreur :', error)
     return {
       props: {},
     }

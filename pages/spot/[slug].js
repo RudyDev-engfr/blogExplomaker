@@ -38,7 +38,6 @@ import TrendingDestinationsDotBox from '../../components/multi-carousel/Trending
 import TrendingDestinationsGroupButton from '../../components/multi-carousel/TrendingDestinationsGroupButton'
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
 import CountryAside from '../../components/molecules/spot/CountryAside'
-import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { spotsSlugsArray } from '../../helper/slugsArray'
 import ArticlesList from '../../components/molecules/ArticlesList'
 import ArticlesCarousel from '../../components/atoms/ArticlesCarousel'
@@ -1056,7 +1055,6 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
-      {matchesXs && <MobileSearchButton />}
       {/* Partie 1 */}
       <Box mb={!matchesXs && '90px'}>
         <Box sx={{ position: 'relative' }} className={classes.headerMapBox}>

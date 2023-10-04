@@ -7,23 +7,19 @@ import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { FormControl, FormLabel, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import ButtonBase from '@mui/material/ButtonBase'
 import makeStyles from '@mui/styles/makeStyles'
 import Add from '@mui/icons-material/Add'
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt'
-import ChatBubble from '@mui/icons-material/ChatBubble'
 import Check from '@mui/icons-material/Check'
 import DirectionsBus from '@mui/icons-material/DirectionsBus'
 import EmojiObjects from '@mui/icons-material/EmojiObjects'
 import EventNote from '@mui/icons-material/EventNote'
 import Explore from '@mui/icons-material/Explore'
-import Favorite from '@mui/icons-material/Favorite'
 import Flight from '@mui/icons-material/Flight'
 import HomeIcon from '@mui/icons-material/Home'
-import Poll from '@mui/icons-material/Poll'
 import RestaurantMenu from '@mui/icons-material/RestaurantMenu'
 import clsx from 'clsx'
 import Carousel from 'react-material-ui-carousel'
@@ -38,12 +34,8 @@ import TrendingDestinations from '../components/molecules/TrendingDestinations'
 import Head from '../components/molecules/Head'
 
 import logoFull from '../images/icons/logoFull.svg'
-import illustrationComplete from '../images/ILLUSTRATION_COMPLETE.png'
-import illustrationPlanning from '../images/ILLUSTRATION_PLANNING_1.png'
-import illustrationCollab from '../images/ILLUSTRATION_COLLAB.png'
 import logo from '../images/icons/logo.svg'
 import MobileBlogCard from '../components/molecules/MobileBlogCard'
-import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import ThematicCard from '../components/atoms/ThematicCard'
 
 const tiles = [
@@ -464,51 +456,11 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.primary.ultraLight,
     },
   },
-  buttonNewsletter: {
-    borderRadius: '29px',
-    boxShadow: '0 3px 15px 0 rgba(0, 157, 140, 0.2)',
-    textTransform: 'none',
-    width: '35%',
-    padding: '14px 25px',
-    [theme.breakpoints.down('sm')]: {
-      width: '62%',
-    },
-  },
+
   v5MuiBUttonFix: {
     // TODO Mui v5 error ?
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
-  },
-  paperNewsletter: {
-    position: 'relative',
-    top: '115px',
-    display: 'flex',
-    width: '70%',
-    maxWidth: '830px',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '40px 0 60px 0',
-    borderRadius: '30px',
-    [theme.breakpoints.down('sm')]: {
-      top: '0',
-      justifyContent: 'center',
-    },
-  },
-  shadowBoxNewsletter: {
-    filter: 'blur(80px)',
-    background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 19.27%, rgba(0, 0, 0, 0.24) 100%)',
-  },
-  inputNewsletter: {
-    width: '400px',
-    borderRadius: '29px',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '275px',
-      marginBottom: '20px',
-      backgroundColor: theme.palette.secondary.contrastText,
-    },
-  },
-  fs34: {
-    fontSize: '2.125rem',
   },
   planificationContainer: {
     display: 'flex',
@@ -527,10 +479,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       maxWidth: 'unset',
     },
-  },
-  formNewsletter: {
-    display: 'flex',
-    alignItems: 'center',
   },
 
   // Responsive Part
@@ -745,7 +693,6 @@ const WelcomePage = ({ dataset }) => {
           scrollUp={() => refScrollUp.current.scrollIntoView({ behavior: 'smooth' })}
         />
       )}
-      {matchesXs && <MobileSearchButton />}
       <Box className={classes.fullWidthContainer}>
         <Box className={classes.greenBackgroundContainer}>
           <Box className={classes.mainContainer}>

@@ -46,7 +46,6 @@ import DesktopIntro from '../components/molecules/inspiration/DesktopIntro'
 import MobileIntro from '../components/molecules/inspiration/MobileIntro'
 import ArticlesCarousel from '../components/atoms/ArticlesCarousel'
 import SpotCarousel from '../components/atoms/SpotCarousel'
-import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import CTA from '../components/molecules/CTA'
 import Head from '../components/molecules/Head'
 
@@ -329,7 +328,6 @@ const Inspiration = ({ dataset, metaContinentRef }) => {
     <>
       {dataset?.tags && <Head tags={dataset.tags} />}
       <Box>
-        {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
           <Image
             src={!matchesXs ? headerImg : mobileHeaderImg}

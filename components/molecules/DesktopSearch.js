@@ -379,7 +379,9 @@ const DesktopSearch = ({
               )}
             </Box>
             {currentArticles.length > 9 && (
-              <LoadMoreButton setterMoreItems={setIsLoadingMoreArticles} />
+              <Box sx={{ paddingBottom: '15px' }}>
+                <LoadMoreButton setterMoreItems={setIsLoadingMoreArticles} />
+              </Box>
             )}
             {/* {currentArticles.length > 9 && !isShowingMoreArticles && (
               <Box

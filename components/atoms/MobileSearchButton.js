@@ -1,18 +1,17 @@
 import IconButton from '@mui/material/IconButton'
-import { makeStyles, useTheme } from '@mui/styles'
+import { useTheme } from '@mui/styles'
 import SearchIcon from '@mui/icons-material/Search'
-import { useRouter } from 'next/router'
-
-const useStyles = makeStyles(theme => ({}))
+import { useContext } from 'react'
+import { SessionContext } from '../../contexts/session'
 
 const MobileSearchButton = () => {
-  const router = useRouter()
   const theme = useTheme()
+  const { setSearchModal } = useContext(SessionContext)
 
   return (
     <>
       <IconButton
-        onClick={() => router.push('/exploration')}
+        onClick={() => setSearchModal(true)}
         sx={{
           position: 'fixed',
           bottom: '110px',

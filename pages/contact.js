@@ -5,7 +5,6 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
-import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import WPGBlocks from '../helper/react-gutenberg'
 
 import headerImg from '../images/Kenya 2.png'
@@ -108,7 +107,6 @@ const Contact = ({ dataset }) => {
       {dataset?.tags && <Head tags={dataset.tags} />}
 
       <Box>
-        {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
           <Image
             src={!matchesXs ? headerImg : mobileHeaderImg}

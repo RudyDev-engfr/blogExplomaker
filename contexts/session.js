@@ -9,6 +9,7 @@ const SessionContextProvider = ({ children }) => {
   const [needFetch, setNeedFetch] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState('')
   const [currentHitsArray, setCurrentHitsArray] = useState()
+  const [searchModal, setSearchModal] = useState(false)
 
   // currentHitsArray is the array of results from Algolia
   const [currentRefinementsArrayLength, setCurrentRefinementsArrayLength] = useState(0)
@@ -142,6 +143,8 @@ const SessionContextProvider = ({ children }) => {
         setCurrentHitsArray,
         currentRefinementsArrayLength,
         setCurrentRefinementsArrayLength,
+        searchModal,
+        setSearchModal,
       }}
     >
       {children}

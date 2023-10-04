@@ -21,6 +21,8 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
   const classes = useStyles()
   const theme = useTheme()
   const inputRef = useRef(null)
+  const formRef = React.useRef(null)
+  const panelRef = React.useRef(null)
 
   const [autocompleteState, setAutocompleteState] = React.useState({})
   const [isHovering, setIsHovering] = React.useState(false)
@@ -68,13 +70,39 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
     []
   )
 
+  React.useEffect(() => {
+    if (!(formRef.current && panelRef.current && inputRef.current)) {
+      return
+    }
+
+    const { onTouchStart, onTouchMove, onMouseDown } = autocomplete.getEnvironmentProps({
+      formElement: formRef.current,
+      panelElement: panelRef.current,
+      inputElement: inputRef.current,
+    })
+
+    window.addEventListener('touchstart', onTouchStart)
+    window.addEventListener('touchmove', onTouchMove)
+    window.addEventListener('mousedown', onMouseDown)
+
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('mousedown', onMouseDown)
+    }
+  }, [autocomplete, autocomplete.getEnvironmentProps, autocompleteState.isOpen])
+
   return (
     <Box
       sx={{ '.aa-DetachedSearchButton': { display: 'none' }, height: '100%', width: '100%' }}
       {...autocomplete.getRootProps({})}
       className="aa-Autocomplete"
     >
-      <form className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
+      <form
+        ref={formRef}
+        className="aa-Form"
+        {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+      >
         <TextField
           label="Destinations, articles, passion"
           variant="filled"
@@ -114,7 +142,7 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
           {...autocomplete.getInputProps({})}
         />
       </form>
-      <Box className="aa-Panel" {...autocomplete.getPanelProps({})}>
+      <Box className="aa-Panel" {...autocomplete.getPanelProps({})} ref={panelRef}>
         {autocompleteState.isOpen ? (
           autocompleteState.collections.map((collection, index) => {
             const { source, items } = collection

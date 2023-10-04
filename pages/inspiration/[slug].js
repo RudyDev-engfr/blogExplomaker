@@ -15,7 +15,6 @@ import mobileHeaderImg from '../../images/tom-pavlakos-NQuDiZISPtk-unsplash2.png
 
 // import { testArticle } from '../../helper/testArticle'
 import { database } from '../../lib/firebase'
-import MobileSearchButton from '../../components/atoms/MobileSearchButton'
 import { ArticlesSlugsArray } from '../../helper/slugsArray'
 import ButtonLike from '../../components/atoms/ButtonLike'
 import ButtonBookmark from '../../components/atoms/ButtonBookmark'
@@ -149,7 +148,6 @@ export default function Article({ dataset, articleData }) {
     <>
       <Head tags={articleData} />
       <Box>
-        {matchesXs && <MobileSearchButton />}
         <Box className={classes.headerMapBox}>
           <Image
             src={`https://storage.googleapis.com/explomaker-data-stateless/${encodeURI(

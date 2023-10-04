@@ -1,5 +1,4 @@
-import React, { useContext, createElement } from 'react'
-import { getAlgoliaResults } from '@algolia/autocomplete-js'
+import React, { useContext } from 'react'
 import algoliasearch from 'algoliasearch'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -8,7 +7,7 @@ import Box from '@mui/material/Box'
 import Badge from '@mui/material/Badge'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
-import { useTheme, useMediaQuery } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -18,6 +17,7 @@ import ContactSupportOutlined from '@mui/icons-material/ContactSupportOutlined'
 import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useTheme } from '@mui/styles'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
@@ -28,12 +28,9 @@ import logoGrey from '../images/icons/logoGrey.svg'
 import inspi from '../images/icons/inspiLine.svg'
 import profil from '../images/icons/profil.svg'
 import favorite from '../images/icons/favorite.svg'
-import SearchField from './atoms/SearchField'
 import home from '../images/icons/accueil.svg'
 import { auth } from '../lib/firebase'
 import { SessionContext } from '../contexts/session'
-import Autocomplete from './Algolia/Autocomplete'
-import ProductItem from './Algolia/ProductItem'
 import SearchModal from './molecules/SearchModal'
 import ButtonSearch from './atoms/ButtonSearch'
 
@@ -154,8 +151,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const [tabValue, setTabValue] = React.useState(0)
-  const [searchModal, setSearchModal] = React.useState(false)
-  const { user, setUser } = useContext(SessionContext)
+  const { user, setUser, searchModal, setSearchModal } = useContext(SessionContext)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -297,6 +293,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
           sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
         />
       </Tabs>
+      {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
     </Paper>
   ) : (
     <Box
@@ -481,7 +478,9 @@ const ConnectedNav = ({ isBgTransparent }) => {
           </Box>
         </Box>
       </Box>
-      {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
+      <Box sx={{ position: 'relative' }}>
+        {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
+      </Box>
     </Box>
   )
 }

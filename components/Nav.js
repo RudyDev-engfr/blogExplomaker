@@ -19,6 +19,7 @@ import home from '../images/icons/accueil.svg'
 import inspi from '../images/icons/inspiLine.svg'
 import profil from '../images/icons/profil.svg'
 import logoFull from '../images/icons/logoFull.svg'
+import logoGrey from '../images/icons/logoGrey.svg'
 import ConnectedNav from './ConnectedNav'
 import SearchField from './atoms/SearchField'
 import { SessionContext } from '../contexts/session'
@@ -128,28 +129,34 @@ const useStyles = makeStyles(theme => ({
     bottom: '0',
     width: '100%',
     height: '90px',
-    padding: theme.spacing(1.5),
+    padding: '12px',
     zIndex: '100',
   },
   tabs: {
     '& button': { textTransform: 'none' },
+    display: 'grid',
+    gridTemplate: '90px / repeat(5, 1fr)',
   },
   icons: {
     color: 'rgba(79, 79, 79, 0.5)',
     fontSize: '9px',
     fontWeight: '800',
   },
+  nextLink: {
+    textDecoration: 'none',
+    fontSize: '9px',
+  },
 }))
 
 const Nav = () => {
   const classes = useStyles()
-  const { user, isAuthModalOpen, setIsAuthModalOpen } = useContext(SessionContext)
+  const { user, isAuthModalOpen, setIsAuthModalOpen, searchModal, setSearchModal } =
+    useContext(SessionContext)
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
 
   const [isBgTransparent, setIsBgTransparent] = useState(false)
-  const [searchModal, setSearchModal] = useState(false)
 
   useEffect(() => {
     if (router.pathname === '/favorites') {
@@ -174,14 +181,14 @@ const Nav = () => {
                   alt="home_logo"
                   style={{
                     maxWidth: '100%',
-                    height: 'auto',
+                    height: '25px',
                   }}
                 />
               }
               label={
-                <Link passHref href="/">
+                <Link passHref href="/" className={classes.nextLink}>
                   <Box component="span" className={classes.icons}>
-                    Home
+                    Présentation
                   </Box>
                 </Link>
               }
@@ -195,14 +202,56 @@ const Nav = () => {
                   alt="Inspiration_logo"
                   style={{
                     maxWidth: '100%',
-                    height: 'auto',
+                    height: '25px',
                   }}
                 />
               }
               label={
-                <Link passHref href="/inspiration">
+                <Link passHref href="/inspiration" className={classes.nextLink}>
                   <Box component="span" className={classes.icons}>
                     Inspi
+                  </Box>
+                </Link>
+              }
+            />
+            <Tab
+              icon={
+                <Image
+                  src={inspi}
+                  width={25}
+                  height={25}
+                  alt="Exploration_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: '25px',
+                  }}
+                />
+              }
+              label={
+                <Link passHref href="/exploration" className={classes.nextLink}>
+                  <Box component="span" className={classes.icons}>
+                    Explo
+                  </Box>
+                </Link>
+              }
+            />
+            <Tab
+              icon={
+                <Image
+                  src={logoGrey}
+                  width={25}
+                  height={25}
+                  alt="MyTrips_logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: '25px',
+                  }}
+                />
+              }
+              label={
+                <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
+                  <Box component="span" className={classes.icons}>
+                    Séjours
                   </Box>
                 </Link>
               }

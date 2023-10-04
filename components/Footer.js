@@ -125,6 +125,9 @@ const Footer = () => {
               <Link variant="body2" href="https://explomaker.fr/cgu" className={classes.footerLink}>
                 Conditions générales
               </Link>
+              <Link variant="body2" href="/plan-du-site" className={classes.footerLink}>
+                Plan du site
+              </Link>
             </Box>
           </Grid>
           <Grid item md={3} xs={4}>

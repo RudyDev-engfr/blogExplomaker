@@ -17,11 +17,12 @@ import '../styles/global.css'
 import '../styles/algolia.css'
 import '../helper/react-gutenberg/default.css'
 import Loader from '../components/atoms/Loader'
+import MobileSearchLayout from '../components/molecules/MobileSearchLayout'
 
 const mapsLibraries = ['places']
 
 const MyApp = props => {
-  const { Component, pageProps } = props
+  const { Component, pageProps, router } = props
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyBJepvl7rY64ocX_24S1FnqYFyEHTRNBFU',
     libraries: mapsLibraries,
@@ -44,9 +45,11 @@ const MyApp = props => {
               <CssBaseline />
               <HeadContextProvider>
                 <SessionContextProvider>
-                  <Nav />
-                  <Component {...pageProps} />
-                  <Footer />
+                  <MobileSearchLayout currentPath={router.pathname}>
+                    <Nav />
+                    <Component {...pageProps} />
+                    <Footer />
+                  </MobileSearchLayout>
                 </SessionContextProvider>
               </HeadContextProvider>
             </ThemeProvider>

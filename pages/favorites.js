@@ -15,7 +15,6 @@ import MobileBlogCard from '../components/molecules/MobileBlogCard'
 import { SessionContext } from '../contexts/session'
 import NoneFavorite from '../components/molecules/NoneFavorite'
 import { useAuth } from '../lib/firebase'
-import MobileSearchButton from '../components/atoms/MobileSearchButton'
 import TrendingDestinationsDotBox from '../components/multi-carousel/TrendingDestinationsDotBox'
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +57,6 @@ const MySpots = ({ currentSpots, isLoading }) => {
 
   return (
     <>
-      {matchesXs && <MobileSearchButton />}
       <Typography variant="h2" className={classes.favoritesTitles} mb={2}>
         Mes spots
       </Typography>
