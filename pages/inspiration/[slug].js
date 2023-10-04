@@ -1,9 +1,11 @@
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/styles'
 import { useEffect } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 
 import WPGBlocks from '../../helper/react-gutenberg'
@@ -87,8 +89,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
   categoryBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    textTransform: 'none',
     backgroundColor: theme.palette.primary.ultraLight,
-    display: 'inline-block',
     padding: '8px 15px',
     borderRadius: '30px',
     marginBottom: '32px',
@@ -190,18 +194,24 @@ export default function Article({ dataset, articleData }) {
                 [theme.breakpoints.down('sm')]: { maxWidth: 'calc(100vw - 60px)' },
               }}
             >
-              <Box display="flex" justifyContent="center" className={classes.categoryBox}>
-                <Typography
-                  sx={{
-                    fontSize: matchesXs ? '14px' : '12px',
-                    fontWeight: '500',
-                    color: theme.palette.primary.main,
-                    lineHeight: matchesXs ? '14px' : '16px',
-                  }}
-                >
-                  {dataset.sub_type[0].name}
-                </Typography>
-              </Box>
+              <Link
+                href={`/exploration?SearchFront%5BrefinementList%5D%5Btype_d_article%5D%5B0%5D=${encodeURI(
+                  dataset.sub_type[0].name
+                )}`}
+              >
+                <Button className={classes.categoryBox}>
+                  <Typography
+                    sx={{
+                      fontSize: matchesXs ? '14px' : '12px',
+                      fontWeight: '500',
+                      color: theme.palette.primary.main,
+                      lineHeight: matchesXs ? '14px' : '16px',
+                    }}
+                  >
+                    {dataset.sub_type[0].name}
+                  </Typography>
+                </Button>
+              </Link>
               <Typography variant="h1">{dataset.title}</Typography>
               <WPGBlocks blocks={dataset.blocks} />
             </Box>
