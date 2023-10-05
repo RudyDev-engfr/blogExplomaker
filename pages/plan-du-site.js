@@ -6,7 +6,7 @@ import { makeStyles, useTheme } from '@mui/styles'
 import { database } from '../lib/firebase'
 import Head from '../components/molecules/Head'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
     const doc = await database.ref().child(`content`).get()
     const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()

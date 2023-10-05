@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 // import favicon from '../../images/favicon.svg'
 import theme from '../../styles/theme'
 
-const Head = ({ tags }) => {
+const Head = ({ tags, children }) => {
   // const { headData: tags } = useContext(HeadContext)
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Head = ({ tags }) => {
               'Avec Explomaker, planifiez votre voyage parfait en quelques clics. Collaborez avec des amis, découvrez des destinations inspirantes et gérez toutes vos informations en un seul endroit. Essayez notre assistant de voyage virtuel pour une expérience encore plus enrichissante.'
             }
           />
-
+          {children}
           {/* Open Graph metadata */}
           <meta
             property="og:title"
