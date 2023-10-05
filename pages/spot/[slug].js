@@ -828,7 +828,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { dataset, periodeVisited, homePage, slug, tags },
-    revalidate: 1,
+    revalidate: 50000,
   }
 }
 

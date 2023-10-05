@@ -7,8 +7,9 @@ import Typography from '@mui/material/Typography'
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia'
 import Link from 'next/link'
 import { makeStyles, useTheme } from '@mui/styles'
-import { Article, FmdGood, Tag } from '@mui/icons-material'
+import { Article, Close, FmdGood, Tag } from '@mui/icons-material'
 import { Highlight } from 'react-instantsearch-hooks-web'
+import { IconButton, useMediaQuery } from '@mui/material'
 
 const searchClient = algoliasearch('QFT8LZMQXO', '59e83f8d0cfafe2c0887fe8516f51fec')
 const useStyles = makeStyles(theme => ({
@@ -20,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 export default function AlgoliaAutocomplete({ setSearchModal }) {
   const classes = useStyles()
   const theme = useTheme()
+  const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
   const inputRef = useRef(null)
   const formRef = React.useRef(null)
   const panelRef = React.useRef(null)
@@ -94,10 +96,23 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
 
   return (
     <Box
-      sx={{ '.aa-DetachedSearchButton': { display: 'none' }, height: '100%', width: '100%' }}
+      sx={{
+        '.aa-DetachedSearchButton': { display: 'none' },
+        height: '100%',
+        width: '100%',
+        position: 'relative',
+      }}
       {...autocomplete.getRootProps({})}
       className="aa-Autocomplete"
     >
+      {matchesXs && (
+        <IconButton
+          sx={{ position: 'absolute', top: '0', right: '0', zIndex: 1001 }}
+          onClick={() => setSearchModal(false)}
+        >
+          <Close sx={{ fontSize: '25px' }} />
+        </IconButton>
+      )}
       <form
         ref={formRef}
         className="aa-Form"
@@ -125,6 +140,9 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
               borderRight: 'none',
               borderRadius: '10px 10px 0 0 ',
               backgroundColor: 'transparent',
+              [theme.breakpoints.down('sm')]: {
+                borderRadius: 'unset',
+              },
               '&:hover': {
                 boxShadow: 'none',
               },
@@ -175,6 +193,9 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
                               alignItems: 'center',
                               backgroundColor:
                                 isHovering === itemIndex ? theme.palette.primary.main : 'white',
+                              [theme.breakpoints.down('sm')]: {
+                                height: '15vh',
+                              },
                             }}
                             onMouseEnter={() => setIsHovering(itemIndex)}
                             onMouseLeave={() => setIsHovering(false)}
@@ -241,7 +262,14 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
             )
           })
         ) : (
-          <Typography sx={{ textAlign: 'center', paddingTop: '15px', fontSize: '18px' }}>
+          <Typography
+            sx={{
+              textAlign: 'center',
+              paddingTop: '15px',
+              fontSize: '18px',
+              [theme.breakpoints.down('sm')]: { height: '10vh', backgroundColor: 'white' },
+            }}
+          >
             Pas de résultat
           </Typography>
         )}

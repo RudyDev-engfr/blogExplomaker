@@ -23,6 +23,10 @@ const securityHeaders = [
     key: 'X-Content-Type-Options',
     value: 'nosniff',
   },
+  {
+    key: 'Cache-Control',
+    value: 'public, s-maxage=31536000, stale-while-revalidate',
+  },
 ]
 
 module.exports = {

@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '10px',
     [theme.breakpoints.down('sm')]: {
       width: '100vw',
-      height: '100vh',
+      height: 'calc(100vh + 15px)',
       zIndex: 100001,
       top: '0',
       left: '0',

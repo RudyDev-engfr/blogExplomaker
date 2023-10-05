@@ -6,7 +6,7 @@ import { makeStyles, useTheme } from '@mui/styles'
 import { database } from '../lib/firebase'
 import Head from '../components/molecules/Head'
 
-export const getStaticProps = async () => {
+const getServerSideProps = async () => {
   try {
     const doc = await database.ref().child(`content`).get()
     const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()
@@ -69,7 +69,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
   const [spots, setSpots] = useState([])
   const [articles, setArticles] = useState([])
   const [homePages, setHomePages] = useState([])
-  const [sortedAndRenderedSpots, setSortedAndRenderedSpots] = useState([])
+  // const [sortedAndRenderedSpots, setSortedAndRenderedSpots] = useState([])
 
   // useEffect(() => {
   //   let sortedAndRendered
@@ -119,6 +119,9 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
   }, [spots, articles, homePages])
 
   useEffect(() => {
+    console.log(
+      'je rentre dans le useEffect qui surveille les data arrivées avec getServerSideProps'
+    )
     if (typeof homePageDataset !== 'undefined' || homePageDataset !== {}) {
       const homePagesKeys = Object.keys(homePageDataset)
       const tempHomePagesArray = homePagesKeys.map(currentKey => homePageDataset[currentKey])
@@ -140,6 +143,12 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
     console.log('spotDataset', spotDataset)
     console.log('articleDataset', articleDataset)
   }, [homePageDataset, spotDataset, articleDataset])
+
+  useEffect(() => {
+    console.log('spots', spots)
+    console.log('articles', articles)
+    console.log('homepages', homePages)
+  }, [articles, spots, homePages])
 
   return (
     <>
