@@ -139,7 +139,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { dataset, dictionary, homePage, slug, articleData },
-    revalidate: 1,
+    revalidate: 50000,
   }
 }
 

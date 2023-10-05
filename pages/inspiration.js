@@ -183,7 +183,7 @@ export async function getStaticProps() {
 
   return {
     props: { dataset, metaContinentRef },
-    revalidate: 5000,
+    revalidate: 50000,
   }
 }
 

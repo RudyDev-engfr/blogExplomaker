@@ -78,7 +78,7 @@ export async function getStaticProps() {
 
   return {
     props: { tags },
-    revalidate: 5000,
+    revalidate: 50000,
   }
 }
 
