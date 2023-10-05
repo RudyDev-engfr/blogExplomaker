@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '100vw',
       height: 'calc(100vh + 15px)',
-      zIndex: 100001,
+      zIndex: 10001,
       top: '0',
       left: '0',
       transform: 'unset',
