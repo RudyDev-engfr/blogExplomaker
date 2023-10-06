@@ -6,43 +6,62 @@ import { makeStyles, useTheme } from '@mui/styles'
 import { database } from '../lib/firebase'
 import Head from '../components/molecules/Head'
 
-const getServerSideProps = async () => {
-  try {
-    const doc = await database.ref().child(`content`).get()
-    const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()
-    const dictionary = await database.ref().child(`dictionary`).get()
+// export async function getServerSideProps() {
+//   try {
+//     const doc = await database.ref().child(`content`).get()
+//     const homePagesDoc = await database.ref().child(`page_structure/home_pages`).get()
+//     const dictionary = await database.ref().child(`dictionary`).get()
 
-    let metaContinentRef
+//     let metaContinentRef
 
-    if (doc.exists() && homePagesDoc.exists() && dictionary.exists()) {
-      const dataset = doc.val()
-      const homePageDataset = homePagesDoc.val()
-      const spotDataset = dataset.spots
-      const articleDataset = dataset.post
+//     if (doc.exists() && homePagesDoc.exists() && dictionary.exists()) {
+//       console.log('its ok ça va générer le contenu')
+//       const dataset = doc.val()
+//       const homePageDataset = homePagesDoc.val()
+//       const spotDataset = dataset.spots
+//       const articleDataset = dataset.post
 
-      if (dictionary.exists()) {
-        const metaContinentRefDoc = await database.ref().child('dictionary/meta_continent').get()
-        if (metaContinentRefDoc.exists()) {
-          metaContinentRef = metaContinentRefDoc.val()
-        }
+//       const homePageArray = []
+//       // const homePageArray = Object.values(homePageDataset).map(item => ({
+//       //   target_url: item.target_url,
+//       //   title: item.title,
+//       // }))
 
-        return {
-          props: { homePageDataset, spotDataset, articleDataset, metaContinentRef },
-        }
-      }
-    }
-    return {
-      props: {},
-    }
-  } catch (error) {
-    // Dans le cas où les données n'existent pas, il serait bon de retourner un objet vide
-    // ou de gérer cette situation d'une autre manière, selon vos besoins.
-    console.error('Erreur :', error)
-    return {
-      props: {},
-    }
-  }
-}
+//       const spotArray = Object.values(spotDataset).map(item => ({
+//         target_url: item.target_url,
+//         title: item.title,
+//       }))
+
+//       const articleArray = Object.values(articleDataset).map(item => ({
+//         target_url: item.target_url,
+//         title: item.title,
+//       }))
+
+//       if (dictionary.exists()) {
+//         const metaContinentRefDoc = await database.ref().child('dictionary/meta_continent').get()
+//         if (metaContinentRefDoc.exists()) {
+//           metaContinentRef = metaContinentRefDoc.val()
+//         }
+
+//         return {
+//           props: { homePageArray, spotArray, articleArray, metaContinentRef },
+//         }
+//       }
+//     }
+//     console.log('presque dead')
+//     return {
+//       props: {},
+//     }
+//   } catch (error) {
+//     // Dans le cas où les données n'existent pas, il serait bon de retourner un objet vide
+//     // ou de gérer cette situation d'une autre manière, selon vos besoins.
+//     console.log('dead')
+//     console.error('Erreur :', error)
+//     return {
+//       notFound: true, // Vous pouvez utiliser notFound pour retourner une page 404
+//     }
+//   }
+// }
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -63,7 +82,13 @@ const useStyles = makeStyles(theme => ({
   articlesContainer: { width: '100vw' },
 }))
 
-const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentRef }) => {
+export async function getServerSideProps(context) {
+  return {
+    props: { message: 'Hello World' }, // will be passed to the page component as props
+  }
+}
+
+const SitePlan = ({ homePageArray, spotArray, articleArray, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()
   const [spots, setSpots] = useState([])
@@ -118,37 +143,31 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
     console.log('spots', spots)
   }, [spots, articles, homePages])
 
-  useEffect(() => {
-    console.log(
-      'je rentre dans le useEffect qui surveille les data arrivées avec getServerSideProps'
-    )
-    if (typeof homePageDataset !== 'undefined' || homePageDataset !== {}) {
-      const homePagesKeys = Object.keys(homePageDataset)
-      const tempHomePagesArray = homePagesKeys.map(currentKey => homePageDataset[currentKey])
-      setHomePages(tempHomePagesArray)
-    }
+  // useEffect(() => {
+  //   console.log(
+  //     'je rentre dans le useEffect qui surveille les data arrivées avec getServerSideProps'
+  //   )
+  //   if (typeof homePageDataset !== 'undefined' || homePageDataset !== {}) {
+  //     const homePagesKeys = Object.keys(homePageDataset)
+  //     const tempHomePagesArray = homePagesKeys.map(currentKey => homePageDataset[currentKey])
+  //     setHomePages(tempHomePagesArray)
+  //   }
 
-    if (typeof spotDataset !== 'undefined' || spotDataset !== {}) {
-      const spotsKeys = Object.keys(spotDataset)
-      const tempSpotsArray = spotsKeys.map(currentKey => spotDataset[currentKey])
-      setSpots(tempSpotsArray.filter(spot => spot.publication.website !== 'false'))
-    }
+  //   if (typeof spotDataset !== 'undefined' || spotDataset !== {}) {
+  //     const spotsKeys = Object.keys(spotDataset)
+  //     const tempSpotsArray = spotsKeys.map(currentKey => spotDataset[currentKey])
+  //     setSpots(tempSpotsArray.filter(spot => spot.publication.website !== 'false'))
+  //   }
 
-    if (typeof articleDataset !== 'undefined' || articleDataset !== {}) {
-      const articlesKeys = Object.keys(articleDataset)
-      const tempArticlesArray = articlesKeys.map(currentKey => articleDataset[currentKey])
-      setArticles(tempArticlesArray)
-    }
-    console.log('homePageDataset', homePageDataset)
-    console.log('spotDataset', spotDataset)
-    console.log('articleDataset', articleDataset)
-  }, [homePageDataset, spotDataset, articleDataset])
-
-  useEffect(() => {
-    console.log('spots', spots)
-    console.log('articles', articles)
-    console.log('homepages', homePages)
-  }, [articles, spots, homePages])
+  //   if (typeof articleDataset !== 'undefined' || articleDataset !== {}) {
+  //     const articlesKeys = Object.keys(articleDataset)
+  //     const tempArticlesArray = articlesKeys.map(currentKey => articleDataset[currentKey])
+  //     setArticles(tempArticlesArray)
+  //   }
+  //   console.log('homePageDataset', homePageDataset)
+  //   console.log('spotDataset', spotDataset)
+  //   console.log('articleDataset', articleDataset)
+  // }, [homePageDataset, spotDataset, articleDataset])
 
   return (
     <>
@@ -177,7 +196,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
               [theme.breakpoints.down('sm')]: { gridTemplate: 'auto / 100vw' },
             }}
           >
-            {spots?.map(({ target_url: targetUrl, title }) => (
+            {spotArray?.map(({ target_url: targetUrl, title }) => (
               <Box>
                 <Link className={classes.nextLink} href={targetUrl} passHref>
                   <Typography sx={{ '&:hover': { textDecoration: 'underline' } }}>
@@ -200,7 +219,7 @@ const SitePlan = ({ homePageDataset, spotDataset, articleDataset, metaContinentR
               gridColumnGap: '50px',
             }}
           >
-            {articles.map(({ target_url: targetUrl, title }) => (
+            {articleArray.map(({ target_url: targetUrl, title }) => (
               <Box sx={{ height: '50px', [theme.breakpoints.down('sm')]: { height: 'unset' } }}>
                 <Link className={classes.nextLink} href={targetUrl} passHref>
                   <Typography

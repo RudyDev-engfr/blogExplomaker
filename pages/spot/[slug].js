@@ -832,7 +832,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
+const Spot = ({ dataset, periodeVisited, homePage, tags, message }) => {
   const classes = useStyles()
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
@@ -885,6 +885,10 @@ const Spot = ({ dataset, periodeVisited, homePage, tags }) => {
     }
     setCurrentLanguages(tempLanguageString)
   }, [dataset])
+
+  useEffect(() => {
+    console.log(message)
+  }, [message])
 
   useEffect(() => {
     const tempTimeline = []

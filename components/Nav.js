@@ -134,8 +134,6 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     '& button': { textTransform: 'none' },
-    display: 'grid',
-    gridTemplate: '90px / repeat(5, 1fr)',
   },
   icons: {
     color: 'rgba(79, 79, 79, 0.5)',
@@ -192,6 +190,7 @@ const Nav = () => {
                   </Box>
                 </Link>
               }
+              sx={{ maxWidth: '20vw', minWidth: '75px' }}
             />
             <Tab
               icon={
@@ -213,6 +212,7 @@ const Nav = () => {
                   </Box>
                 </Link>
               }
+              sx={{ minWidth: '75px', maxWidth: '20vw' }}
             />
             <Tab
               icon={
@@ -234,6 +234,7 @@ const Nav = () => {
                   </Box>
                 </Link>
               }
+              sx={{ maxWidth: '20vw', minWidth: '75px' }}
             />
             <Tab
               icon={
@@ -255,6 +256,7 @@ const Nav = () => {
                   </Box>
                 </Link>
               }
+              sx={{ maxWidth: '20vw', minWidth: '75px' }}
             />
             <Tab
               icon={
@@ -274,6 +276,7 @@ const Nav = () => {
                   Connexion
                 </Box>
               }
+              sx={{ maxWidth: '20vw', minWidth: '75px' }}
               onClick={() => setIsAuthModalOpen('login')}
             />
           </Tabs>

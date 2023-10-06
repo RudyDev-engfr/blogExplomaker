@@ -135,6 +135,7 @@ const useStyles = makeStyles(theme => ({
   },
   nextLink: {
     textDecoration: 'none',
+    fontSize: '9px',
   },
   rootInput: {
     width: '250px',
@@ -190,12 +191,12 @@ const ConnectedNav = ({ isBgTransparent }) => {
               alt="home_logo"
               style={{
                 maxWidth: '100%',
-                height: 'auto',
+                height: '25px',
               }}
             />
           }
           label={
-            <Link passHref href="/">
+            <Link passHref href="/" className={classes.nextLink}>
               <Box component="span" className={classes.icons}>
                 Home
               </Box>
@@ -212,7 +213,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
               height={25}
               alt="Inspiration_logo"
               style={{
-                maxWidth: '100%',
+                maxWidth: '25px',
                 height: 'auto',
               }}
             />
@@ -234,7 +235,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
               height={25}
               alt="homePage_logo"
               style={{
-                maxWidth: '100%',
+                maxWidth: '25px',
                 height: 'auto',
               }}
             />
