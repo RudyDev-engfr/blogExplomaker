@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import algoliasearch from 'algoliasearch'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -11,13 +11,13 @@ import { useMediaQuery } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import makeStyles from '@mui/styles/makeStyles'
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined'
 import ContactSupportOutlined from '@mui/icons-material/ContactSupportOutlined'
 import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useTheme } from '@mui/styles'
+import TravelExplore from '@mui/icons-material/TravelExplore'
+import { useTheme, makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
@@ -35,34 +35,6 @@ import SearchModal from './molecules/SearchModal'
 import ButtonSearch from './atoms/ButtonSearch'
 
 const useStyles = makeStyles(theme => ({
-  header: {
-    backgroundColor: '#fff',
-    padding: '20px 0',
-    transition: '0.3s all linear',
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    right: '0',
-    zIndex: '1000',
-    boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.03)',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
-  },
-  headerInner: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  headerInnerRight: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  autocontainerNav: {
-    maxWidth: '1140px',
-    padding: '0px 15px',
-    margin: '0 auto',
-  },
   navLink: {
     position: 'relative',
     fontSize: '14px',
@@ -90,6 +62,34 @@ const useStyles = makeStyles(theme => ({
     '&:hover::before': {
       width: '100%',
     },
+  },
+  header: {
+    backgroundColor: '#fff',
+    padding: '20px 0',
+    transition: '0.3s all linear',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0',
+    zIndex: '1000',
+    boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.03)',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  headerInner: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  headerInnerRight: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  autocontainerNav: {
+    maxWidth: '1140px',
+    padding: '0px 15px',
+    margin: '0 auto',
   },
   profilBtn: {
     display: 'flex',
@@ -122,16 +122,16 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     bottom: '0',
     width: '100vw',
-    height: '80px',
+    height: '90px',
     zIndex: '100',
   },
   icons: {
-    color: 'rgba(79, 79, 79, 0.5)',
     fontSize: '9px',
     fontWeight: '800',
   },
   tabs: {
-    '& button': { textTransform: 'none', padding: '9px' },
+    '& button': { textTransform: 'none', padding: '10px' },
+    width: '100vw',
   },
   nextLink: {
     textDecoration: 'none',
@@ -151,7 +151,7 @@ const searchClient = algoliasearch(appId, apiKey)
 const ConnectedNav = ({ isBgTransparent }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
-  const [tabValue, setTabValue] = React.useState(0)
+  const [currentMobileNavTab, setCurrentMobileNavTab] = React.useState(0)
   const { user, setUser, searchModal, setSearchModal } = useContext(SessionContext)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
@@ -160,7 +160,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
     setAnchorEl(null)
   }
   const handleChange = (event, newValue) => {
-    setTabValue(newValue)
+    setCurrentMobileNavTab(newValue)
   }
   const logoutHandler = () => {
     auth.signOut().then(() => {
@@ -173,126 +173,156 @@ const ConnectedNav = ({ isBgTransparent }) => {
   const theme = useTheme()
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'))
 
+  useEffect(() => {
+    if (router.pathname === '/') {
+      setCurrentMobileNavTab(0)
+    } else if (router.pathname.includes('/inspiration')) {
+      setCurrentMobileNavTab(1)
+    } else if (router.pathname.includes('/exploration')) {
+      setCurrentMobileNavTab(2)
+    } else {
+      setCurrentMobileNavTab(false)
+    }
+  }, [router.pathname])
+
   return matchesXs ? (
     <Paper variant="outlined" square className={classes.xsNav}>
       <Tabs
         centered
-        variant="fullWidth"
+        fullWidth
         className={classes.tabs}
-        value={tabValue}
+        value={currentMobileNavTab}
         onChange={handleChange}
       >
-        <Tab
-          icon={
-            <Image
-              src={home}
-              width={25}
-              height={25}
-              alt="home_logo"
-              style={{
-                maxWidth: '100%',
-                height: '25px',
-              }}
-            />
-          }
-          label={
-            <Link passHref href="/" className={classes.nextLink}>
+        <Link passHref href="/" className={classes.nextLink}>
+          <Tab
+            icon={
+              <Image
+                src={home}
+                width={25}
+                height={25}
+                alt="home_logo"
+                style={{
+                  maxWidth: '100%',
+                  height: '25px',
+                }}
+              />
+            }
+            label={
               <Box component="span" className={classes.icons}>
                 Home
               </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
-        />
-
-        <Tab
-          icon={
-            <Image
-              src={inspi}
-              width={25}
-              height={25}
-              alt="Inspiration_logo"
-              style={{
-                maxWidth: '25px',
-                height: 'auto',
-              }}
-            />
-          }
-          label={
-            <Link passHref href="/inspiration" className={classes.nextLink}>
+            }
+            sx={{
+              maxWidth: 'calc(20vw - 2px)',
+              minWidth: '70px',
+              color: theme.palette.grey.grey33,
+            }}
+            value={0}
+            onClick={() => setCurrentMobileNavTab(0)}
+          />
+        </Link>
+        <Link passHref href="/inspiration" className={classes.nextLink}>
+          <Tab
+            icon={
+              <Image
+                src={inspi}
+                width={25}
+                height={25}
+                alt="Inspiration_logo"
+                style={{
+                  maxWidth: '25px',
+                  height: '25px',
+                }}
+              />
+            }
+            label={
               <Box component="span" className={classes.icons}>
                 Inspi
               </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
-        />
-        <Tab
-          icon={
-            <Image
-              src={logoGrey}
-              width={25}
-              height={25}
-              alt="homePage_logo"
-              style={{
-                maxWidth: '25px',
-                height: 'auto',
-              }}
-            />
-          }
-          label={
-            <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
+            }
+            sx={{
+              maxWidth: 'calc(20vw - 2px)',
+              minWidth: '70px',
+              color: theme.palette.grey.grey33,
+            }}
+            value={1}
+            onClick={() => setCurrentMobileNavTab(1)}
+          />
+        </Link>
+        <Link passHref href="/exploration" rel="nofollow" className={classes.nextLink}>
+          <Tab
+            icon={<TravelExplore sx={{ fontSize: '25px' }} />}
+            label={
+              <Box component="span" className={classes.icons}>
+                Exploration
+              </Box>
+            }
+            sx={{
+              maxWidth: 'calc(20vw - 2px)',
+              minWidth: '70px',
+              color: theme.palette.grey.grey33,
+            }}
+            value={2}
+            onClick={() => setCurrentMobileNavTab(2)}
+          />
+        </Link>
+        <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
+          <Tab
+            icon={
+              <Image
+                src={logoGrey}
+                width={25}
+                height={25}
+                alt="homePage_logo"
+                style={{
+                  maxWidth: '25px',
+                  height: '25px',
+                }}
+              />
+            }
+            label={
               <Box component="span" className={classes.icons}>
                 Séjours
               </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
-        />
-        <Tab
-          icon={
-            <Image
-              src={favorite}
-              width={25}
-              height={25}
-              alt="favorite_logo"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
-          }
-          label={
-            <Link passHref href="/favorites" rel="nofollow" className={classes.nextLink}>
-              <Box component="span" className={classes.icons}>
-                Favoris
-              </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
-        />
-        <Tab
-          icon={
-            <Image
-              src={profil}
-              width={25}
-              height={25}
-              alt="profile_logo"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
-          }
-          label={
-            <Link passHref href="https://app.explomaker.fr/profile" className={classes.nextLink}>
+            }
+            sx={{
+              maxWidth: 'calc(20vw - 2px)',
+              minWidth: '70px',
+              color: theme.palette.grey.grey33,
+            }}
+            value={3}
+            onClick={() => setCurrentMobileNavTab(3)}
+          />
+        </Link>
+        <Link passHref href="https://app.explomaker.fr/profile" className={classes.nextLink}>
+          <Tab
+            icon={
+              <Image
+                src={profil}
+                width={25}
+                height={25}
+                alt="profile_logo"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            }
+            label={
               <Box component="span" className={classes.icons}>
                 Profil
               </Box>
-            </Link>
-          }
-          sx={{ justifyContent: 'space-evenly', minWidth: 'unset' }}
-        />
+            }
+            sx={{
+              maxWidth: 'calc(20vw - 2px)',
+              minWidth: '70px',
+              color: theme.palette.grey.grey33,
+            }}
+            value={4}
+            onClick={() => setCurrentMobileNavTab(4)}
+          />
+        </Link>
       </Tabs>
       {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
     </Paper>

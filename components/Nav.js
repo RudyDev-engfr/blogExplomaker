@@ -11,13 +11,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import SearchIcon from '@mui/icons-material/Search'
+import TravelExplore from '@mui/icons-material/TravelExplore'
 import { useRouter } from 'next/dist/client/router'
 
 import Modals from './molecules/auth/AuthModals'
 
 import home from '../images/icons/accueil.svg'
 import inspi from '../images/icons/inspiLine.svg'
-import profil from '../images/icons/profil.svg'
+import profil from '../images/icons/notConnectedProfile.svg'
 import logoFull from '../images/icons/logoFull.svg'
 import logoGrey from '../images/icons/logoGrey.svg'
 import ConnectedNav from './ConnectedNav'
@@ -129,20 +130,20 @@ const useStyles = makeStyles(theme => ({
     bottom: '0',
     width: '100%',
     height: '90px',
-    padding: '12px',
+    padding: '10px',
     zIndex: '100',
   },
   tabs: {
     '& button': { textTransform: 'none' },
   },
   icons: {
-    color: 'rgba(79, 79, 79, 0.5)',
     fontSize: '9px',
     fontWeight: '800',
   },
   nextLink: {
     textDecoration: 'none',
     fontSize: '9px',
+    color: 'unset',
   },
 }))
 
@@ -155,10 +156,20 @@ const Nav = () => {
   const router = useRouter()
 
   const [isBgTransparent, setIsBgTransparent] = useState(false)
+  const [currentMobileNavTab, setCurrentMobileNavTab] = useState()
 
   useEffect(() => {
     if (router.pathname === '/favorites') {
       setIsBgTransparent(true)
+    }
+    if (router.pathname === '/') {
+      setCurrentMobileNavTab(0)
+    } else if (router.pathname.includes('/inspiration')) {
+      setCurrentMobileNavTab(1)
+    } else if (router.pathname.includes('/exploration')) {
+      setCurrentMobileNavTab(2)
+    } else {
+      setCurrentMobileNavTab(false)
     }
   }, [router.pathname])
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -169,101 +180,94 @@ const Nav = () => {
         <ConnectedNav isBgTransparent={isBgTransparent} />
       ) : matchesXs ? (
         <Paper variant="outlined" square className={classes.xsNav}>
-          <Tabs centered variant="fullWidth" className={classes.tabs}>
-            <Tab
-              icon={
-                <Image
-                  src={home}
-                  width={25}
-                  height={25}
-                  alt="home_logo"
-                  style={{
-                    maxWidth: '100%',
-                    height: '25px',
-                  }}
-                />
-              }
-              label={
-                <Link passHref href="/" className={classes.nextLink}>
+          <Tabs value={currentMobileNavTab} centered variant="fullWidth" className={classes.tabs}>
+            <Link passHref href="/" className={classes.nextLink}>
+              <Tab
+                icon={
+                  <Image
+                    src={home}
+                    width={30}
+                    height={30}
+                    alt="home_logo"
+                    style={{
+                      maxWidth: '100%',
+                      height: '30px',
+                    }}
+                  />
+                }
+                label={
                   <Box component="span" className={classes.icons}>
                     Présentation
                   </Box>
-                </Link>
-              }
-              sx={{ maxWidth: '20vw', minWidth: '75px' }}
-            />
-            <Tab
-              icon={
-                <Image
-                  src={inspi}
-                  width={25}
-                  height={25}
-                  alt="Inspiration_logo"
-                  style={{
-                    maxWidth: '100%',
-                    height: '25px',
-                  }}
-                />
-              }
-              label={
-                <Link passHref href="/inspiration" className={classes.nextLink}>
+                }
+                sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
+                value={0}
+              />
+            </Link>
+            <Link passHref href="/inspiration" className={classes.nextLink}>
+              <Tab
+                icon={
+                  <Image
+                    src={inspi}
+                    width={30}
+                    height={30}
+                    alt="Inspiration_logo"
+                    style={{
+                      maxWidth: '100%',
+                      height: '30px',
+                    }}
+                  />
+                }
+                value={1}
+                label={
                   <Box component="span" className={classes.icons}>
                     Inspi
                   </Box>
-                </Link>
-              }
-              sx={{ minWidth: '75px', maxWidth: '20vw' }}
-            />
-            <Tab
-              icon={
-                <Image
-                  src={inspi}
-                  width={25}
-                  height={25}
-                  alt="Exploration_logo"
-                  style={{
-                    maxWidth: '100%',
-                    height: '25px',
-                  }}
-                />
-              }
-              label={
-                <Link passHref href="/exploration" className={classes.nextLink}>
+                }
+                sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
+              />
+            </Link>
+            <Link passHref href="/exploration" className={classes.nextLink}>
+              <Tab
+                icon={<TravelExplore sx={{ fontSize: '30px' }} />}
+                label={
                   <Box component="span" className={classes.icons}>
                     Explo
                   </Box>
-                </Link>
-              }
-              sx={{ maxWidth: '20vw', minWidth: '75px' }}
-            />
-            <Tab
-              icon={
-                <Image
-                  src={logoGrey}
-                  width={25}
-                  height={25}
-                  alt="MyTrips_logo"
-                  style={{
-                    maxWidth: '100%',
-                    height: '25px',
-                  }}
-                />
-              }
-              label={
-                <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
+                }
+                sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
+                value={2}
+              />
+            </Link>
+            <Link passHref href="https://app.explomaker.fr" className={classes.nextLink}>
+              <Tab
+                icon={
+                  <Image
+                    src={logoGrey}
+                    width={30}
+                    height={30}
+                    alt="MyTrips_logo"
+                    style={{
+                      maxWidth: '100%',
+                      height: '30px',
+                    }}
+                  />
+                }
+                label={
                   <Box component="span" className={classes.icons}>
                     Séjours
                   </Box>
-                </Link>
-              }
-              sx={{ maxWidth: '20vw', minWidth: '75px' }}
-            />
+                }
+                sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
+                value={3}
+              />
+            </Link>
             <Tab
               icon={
                 <Image
                   src={profil}
-                  width={25}
-                  height={25}
+                  width={30}
+                  height={30}
                   alt="profile_logo"
                   style={{
                     maxWidth: '100%',
@@ -276,8 +280,9 @@ const Nav = () => {
                   Connexion
                 </Box>
               }
-              sx={{ maxWidth: '20vw', minWidth: '75px' }}
+              sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
               onClick={() => setIsAuthModalOpen('login')}
+              value={4}
             />
           </Tabs>
         </Paper>

@@ -82,12 +82,6 @@ const useStyles = makeStyles(theme => ({
   articlesContainer: { width: '100vw' },
 }))
 
-export async function getServerSideProps(context) {
-  return {
-    props: { message: 'Hello World' }, // will be passed to the page component as props
-  }
-}
-
 const SitePlan = ({ homePageArray, spotArray, articleArray, metaContinentRef }) => {
   const classes = useStyles()
   const theme = useTheme()

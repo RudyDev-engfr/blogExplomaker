@@ -248,6 +248,10 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
                                       : `${theme.palette.primary.main} !important`,
                                   backgroundColor: 'unset',
                                 },
+                                [theme.breakpoints.down('sm')]: {
+                                  fontSize: '18px',
+                                  fontWeight: 500,
+                                },
                               }}
                             >
                               <Highlight hit={item} attribute="titre" />
