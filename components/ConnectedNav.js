@@ -124,6 +124,7 @@ const useStyles = makeStyles(theme => ({
     width: '100vw',
     height: '90px',
     zIndex: '100',
+    padding: '10px',
   },
   icons: {
     fontSize: '9px',
@@ -138,7 +139,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '9px',
   },
   rootInput: {
-    width: '250px',
+    width: '330px',
     borderRadius: '50px',
     backgroundColor: '#FFFFFF',
   },
@@ -187,30 +188,24 @@ const ConnectedNav = ({ isBgTransparent }) => {
 
   return matchesXs ? (
     <Paper variant="outlined" square className={classes.xsNav}>
-      <Tabs
-        centered
-        fullWidth
-        className={classes.tabs}
-        value={currentMobileNavTab}
-        onChange={handleChange}
-      >
+      <Tabs centered className={classes.tabs} value={currentMobileNavTab} onChange={handleChange}>
         <Link passHref href="/" className={classes.nextLink}>
           <Tab
             icon={
               <Image
                 src={home}
-                width={25}
-                height={25}
+                width={33}
+                height={33}
                 alt="home_logo"
                 style={{
                   maxWidth: '100%',
-                  height: '25px',
+                  height: '33px',
                 }}
               />
             }
             label={
               <Box component="span" className={classes.icons}>
-                Home
+                Présentation
               </Box>
             }
             sx={{
@@ -227,12 +222,12 @@ const ConnectedNav = ({ isBgTransparent }) => {
             icon={
               <Image
                 src={inspi}
-                width={25}
-                height={25}
+                width={33}
+                height={33}
                 alt="Inspiration_logo"
                 style={{
-                  maxWidth: '25px',
-                  height: '25px',
+                  maxWidth: '33px',
+                  height: '33px',
                 }}
               />
             }
@@ -252,7 +247,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
         </Link>
         <Link passHref href="/exploration" rel="nofollow" className={classes.nextLink}>
           <Tab
-            icon={<TravelExplore sx={{ fontSize: '25px' }} />}
+            icon={<TravelExplore sx={{ fontSize: '33px' }} />}
             label={
               <Box component="span" className={classes.icons}>
                 Exploration
@@ -272,12 +267,12 @@ const ConnectedNav = ({ isBgTransparent }) => {
             icon={
               <Image
                 src={logoGrey}
-                width={25}
-                height={25}
+                width={33}
+                height={33}
                 alt="homePage_logo"
                 style={{
-                  maxWidth: '25px',
-                  height: '25px',
+                  maxWidth: '33px',
+                  height: '33px',
                 }}
               />
             }
@@ -300,8 +295,8 @@ const ConnectedNav = ({ isBgTransparent }) => {
             icon={
               <Image
                 src={profil}
-                width={25}
-                height={25}
+                width={33}
+                height={33}
                 alt="profile_logo"
                 style={{
                   maxWidth: '100%',
@@ -324,7 +319,6 @@ const ConnectedNav = ({ isBgTransparent }) => {
           />
         </Link>
       </Tabs>
-      {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
     </Paper>
   ) : (
     <Box

@@ -195,7 +195,7 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
                               backgroundColor:
                                 isHovering === itemIndex ? theme.palette.primary.main : 'white',
                               [theme.breakpoints.down('sm')]: {
-                                height: '15vh',
+                                height: '12vh',
                               },
                             }}
                             onMouseEnter={() => setIsHovering(itemIndex)}

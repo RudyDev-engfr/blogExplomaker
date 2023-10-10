@@ -1,49 +1,49 @@
-[debug] [2023-10-09T16:20:11.725Z] ----------------------------------------------------------------------
-[debug] [2023-10-09T16:20:11.726Z] Command:       /Users/kanachou/.nvm/versions/node/v18.12.1/bin/node /usr/local/bin/firebase emulators:start --import=./emulators.backup
-[debug] [2023-10-09T16:20:11.727Z] CLI Version:   11.16.1
-[debug] [2023-10-09T16:20:11.727Z] Platform:      darwin
-[debug] [2023-10-09T16:20:11.727Z] Node Version:  v18.12.1
-[debug] [2023-10-09T16:20:11.729Z] Time:          Mon Oct 09 2023 18:20:11 GMT+0200 (Central European Summer Time)
-[debug] [2023-10-09T16:20:11.729Z] ----------------------------------------------------------------------
+[debug] [2023-10-10T12:19:19.055Z] ----------------------------------------------------------------------
+[debug] [2023-10-10T12:19:19.056Z] Command:       /Users/kanachou/.nvm/versions/node/v18.12.1/bin/node /usr/local/bin/firebase emulators:start --import=./emulators.backup
+[debug] [2023-10-10T12:19:19.057Z] CLI Version:   11.16.1
+[debug] [2023-10-10T12:19:19.057Z] Platform:      darwin
+[debug] [2023-10-10T12:19:19.057Z] Node Version:  v18.12.1
+[debug] [2023-10-10T12:19:19.059Z] Time:          Tue Oct 10 2023 14:19:19 GMT+0200 (Central European Summer Time)
+[debug] [2023-10-10T12:19:19.059Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2023-10-09T16:20:11.782Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-10-09T16:20:11.782Z] > authorizing via signed-in user (rudy.prevaud@gmail.com)
-[debug] [2023-10-09T16:20:11.932Z] java version "11.0.16.1" 2022-08-18 LTS
-
-[debug] [2023-10-09T16:20:11.933Z] Java(TM) SE Runtime Environment 18.9 (build 11.0.16.1+1-LTS-1)
+[debug] [2023-10-10T12:19:19.140Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-10T12:19:19.141Z] > authorizing via signed-in user (rudy.prevaud@gmail.com)
+[debug] [2023-10-10T12:19:19.228Z] java version "11.0.16.1" 2022-08-18 LTS
+[debug] [2023-10-10T12:19:19.229Z] 
+Java(TM) SE Runtime Environment 18.9 (build 11.0.16.1+1-LTS-1)
 Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.16.1+1-LTS-1, mixed mode)
 
-[debug] [2023-10-09T16:20:11.949Z] Parsed Java major version: 11
+[debug] [2023-10-10T12:19:19.231Z] Parsed Java major version: 11
 [info] i  emulators: Starting emulators: auth, functions, firestore, database {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, database"}}
-[debug] [2023-10-09T16:20:12.783Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:12.783Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:12.783Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:12.784Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:12.784Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:12.784Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}]},"metadata":{"message":"assigned listening specs for emulators"}}
-[debug] [2023-10-09T16:20:12.793Z] [hub] writing locator at /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/hub-explomaker-3010b.json
-[debug] [2023-10-09T16:20:13.023Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:13.023Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2023-10-09T16:20:13.023Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[debug] [2023-10-10T12:19:20.311Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.311Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.312Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.312Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.312Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.312Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-10-10T12:19:20.320Z] [hub] writing locator at /var/folders/kr/khz79dj14bxg33yn0wd3r6rh0000gn/T/hub-explomaker-3010b.json
+[debug] [2023-10-10T12:19:20.681Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.682Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-10-10T12:19:20.682Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
 [warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: hosting, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mhosting, pubsub, storage\u001b[22m"}}
 [warn] ⚠  Your requested "node" version "14" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"14\" doesn't match your global version \"18\". Using node@18 from host."}}
-[debug] [2023-10-09T16:20:13.030Z] defaultcredentials: writing to file /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json
-[debug] [2023-10-09T16:20:13.032Z] Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json"}}
-[debug] [2023-10-09T16:20:13.033Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig [none]
-[debug] [2023-10-09T16:20:13.481Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig 200
-[debug] [2023-10-09T16:20:13.481Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig {"projectId":"explomaker-3010b","databaseURL":"https://explomaker-3010b.firebaseio.com","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"}
+[debug] [2023-10-10T12:19:20.698Z] defaultcredentials: writing to file /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json
+[debug] [2023-10-10T12:19:20.704Z] Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/kanachou/.config/firebase/rudy_prevaud_gmail.com_application_default_credentials.json"}}
+[debug] [2023-10-10T12:19:20.709Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig [none]
+[debug] [2023-10-10T12:19:21.158Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig 200
+[debug] [2023-10-10T12:19:21.158Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b/adminSdkConfig {"projectId":"explomaker-3010b","databaseURL":"https://explomaker-3010b.firebaseio.com","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"}
 [info] i  firestore: Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata {"metadata":{"emulator":{"name":"firestore"},"message":"Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata"}}
 [warn] ⚠  firestore: Did not find a Cloud Firestore rules file specified in a firebase.json config file. {"metadata":{"emulator":{"name":"firestore"},"message":"Did not find a Cloud Firestore rules file specified in a firebase.json config file."}}
 [warn] ⚠  firestore: The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration. {"metadata":{"emulator":{"name":"firestore"},"message":"The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration."}}
-[debug] [2023-10-09T16:20:13.494Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2023-10-09T16:20:13.494Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
-[debug] [2023-10-09T16:20:13.494Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","explomaker-3010b","--seed_from_export","/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"explomaker-3010b\",\"--seed_from_export\",\"/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[debug] [2023-10-10T12:19:21.175Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-10-10T12:19:21.175Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2023-10-10T12:19:21.175Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","explomaker-3010b","--seed_from_export","/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"explomaker-3010b\",\"--seed_from_export\",\"/Users/kanachou/Documents/blogExplomaker/emulators.backup/firestore_export/firestore_export.overall_export_metadata\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
 [info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
-[debug] [2023-10-09T16:20:14.271Z] Oct 09, 2023 6:20:14 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+[debug] [2023-10-10T12:19:22.096Z] Oct 10, 2023 2:19:22 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
 INFO: Started WebSocket server on ws://127.0.0.1:9150
- {"metadata":{"emulator":{"name":"firestore"},"message":"Oct 09, 2023 6:20:14 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
-[debug] [2023-10-09T16:20:14.281Z] API endpoint: http:// {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://"}}
-[debug] [2023-10-09T16:20:14.281Z] 127.0.0.1:8080
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Oct 10, 2023 2:19:22 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
+[debug] [2023-10-10T12:19:22.111Z] API endpoint: http:// {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://"}}
+[debug] [2023-10-10T12:19:22.112Z] 127.0.0.1:8080
 If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
 
    export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
@@ -52,44 +52,43 @@ Dev App Server is now running.
 
  {"metadata":{"emulator":{"name":"firestore"},"message":"127.0.0.1:8080\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nDev App Server is now running.\n\n"}}
 [info] ✔  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
-[debug] [2023-10-09T16:20:14.510Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b [none]
-[debug] [2023-10-09T16:20:14.729Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b 200
-[debug] [2023-10-09T16:20:14.729Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b {"projectId":"explomaker-3010b","projectNumber":"607806486683","displayName":"explomaker","name":"projects/explomaker-3010b","resources":{"hostingSite":"explomaker-3010b","realtimeDatabaseInstance":"explomaker-3010b","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_9365cd56-a130-436c-9d7e-515c65fabb4b"}
-[debug] [2023-10-09T16:20:14.730Z] database rules config:  [{"instance":"explomaker-3010b","rules":"/Users/kanachou/Documents/blogExplomaker/database.rules.json"}]
-[debug] [2023-10-09T16:20:14.734Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
-[debug] [2023-10-09T16:20:14.735Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2023-10-09T16:20:14.735Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
-[debug] [2023-10-09T16:20:14.735Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning","--functions_emulator_host","127.0.0.1","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\",\"--functions_emulator_host\",\"127.0.0.1\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[debug] [2023-10-10T12:19:22.192Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b [none]
+[debug] [2023-10-10T12:19:22.523Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b 200
+[debug] [2023-10-10T12:19:22.523Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/explomaker-3010b {"projectId":"explomaker-3010b","projectNumber":"607806486683","displayName":"explomaker","name":"projects/explomaker-3010b","resources":{"hostingSite":"explomaker-3010b","realtimeDatabaseInstance":"explomaker-3010b","storageBucket":"explomaker-3010b.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_9365cd56-a130-436c-9d7e-515c65fabb4b"}
+[debug] [2023-10-10T12:19:22.524Z] database rules config:  [{"instance":"explomaker-3010b","rules":"/Users/kanachou/Documents/blogExplomaker/database.rules.json"}]
+[debug] [2023-10-10T12:19:22.528Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-10-10T12:19:22.528Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-10-10T12:19:22.528Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-10-10T12:19:22.528Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning","--functions_emulator_host","127.0.0.1","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\",\"--functions_emulator_host\",\"127.0.0.1\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
 [info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
-[debug] [2023-10-09T16:20:15.100Z] WARNING: An illegal reflective access operation has occurred
+[debug] [2023-10-10T12:19:23.074Z] WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release {"metadata":{"emulator":{"name":"database"},"message":"WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release"}}
-[debug] [2023-10-09T16:20:15.101Z] 
- {"metadata":{"emulator":{"name":"database"},"message":"\n"}}
-[debug] [2023-10-09T16:20:15.435Z] 18:20:15.435 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
- {"metadata":{"emulator":{"name":"database"},"message":"18:20:15.435 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
-[debug] [2023-10-09T16:20:15.527Z] 18:20:15.527 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
- {"metadata":{"emulator":{"name":"database"},"message":"18:20:15.527 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
+WARNING: All illegal access operations will be denied in a future release
+ {"metadata":{"emulator":{"name":"database"},"message":"WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/kanachou/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n"}}
+[debug] [2023-10-10T12:19:24.049Z] 14:19:24.047 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"14:19:24.047 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2023-10-10T12:19:24.310Z] 14:19:24.304 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+ {"metadata":{"emulator":{"name":"database"},"message":"14:19:24.304 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
 [info] i  database: Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/database_export/explomaker-3010b.json {"metadata":{"emulator":{"name":"database"},"message":"Importing data from /Users/kanachou/Documents/blogExplomaker/emulators.backup/database_export/explomaker-3010b.json"}}
-[debug] [2023-10-09T16:20:15.955Z] 18:20:15.955 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 87ms, init: 0ms
- {"metadata":{"emulator":{"name":"database"},"message":"18:20:15.955 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 87ms, init: 0ms\n"}}
+[debug] [2023-10-10T12:19:25.016Z] 14:19:25.015 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 170ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"14:19:25.015 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - explomaker-3010b successfully activated FBKV (SurveyIdle(0)) wait: 170ms, init: 0ms\n"}}
 [info] i  auth: Importing config from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/config.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing config from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/config.json"}}
 [info] i  auth: Importing accounts from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/accounts.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing accounts from /Users/kanachou/Documents/blogExplomaker/emulators.backup/auth_export/accounts.json"}}
-[debug] [2023-10-09T16:20:18.886Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2023-10-09T16:20:18.886Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
-[debug] [2023-10-09T16:20:18.886Z] Starting Emulator UI with command {"binary":"node","args":["/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[debug] [2023-10-10T12:19:37.566Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-10-10T12:19:37.567Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-10-10T12:19:37.567Z] Starting Emulator UI with command {"binary":"node","args":["/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/kanachou/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
 [info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
-[debug] [2023-10-09T16:20:18.949Z] Web / API server started at 127.0.0.1:4000
+[debug] [2023-10-10T12:19:37.756Z] Web / API server started at 127.0.0.1:4000
  {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
-[debug] [2023-10-09T16:20:18.949Z] Web / API server started at ::1:4000
+[debug] [2023-10-10T12:19:37.756Z] Web / API server started at ::1:4000
  {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
 [info] i  functions: Watching "/Users/kanachou/Documents/blogExplomaker/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/kanachou/Documents/blogExplomaker/functions\" for Cloud Functions..."}}
-[debug] [2023-10-09T16:20:19.147Z] Validating nodejs source
+[debug] [2023-10-10T12:19:37.844Z] Validating nodejs source
 [warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
 [warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
-[debug] [2023-10-09T16:20:19.821Z] > [functions] package.json contents: {
+[debug] [2023-10-10T12:19:40.496Z] > [functions] package.json contents: {
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
@@ -125,22 +124,22 @@ WARNING: All illegal access operations will be denied in a future release {"meta
   },
   "private": true
 }
-[debug] [2023-10-09T16:20:19.821Z] Building nodejs source
-[debug] [2023-10-09T16:20:19.821Z] Analyzing nodejs backend spec
-[debug] [2023-10-09T16:20:19.822Z] Could not find functions.yaml. Must use http discovery
-[debug] [2023-10-09T16:20:19.973Z] Serving at port 9005
+[debug] [2023-10-10T12:19:40.496Z] Building nodejs source
+[debug] [2023-10-10T12:19:40.496Z] Analyzing nodejs backend spec
+[debug] [2023-10-10T12:19:40.498Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-10-10T12:19:40.727Z] Serving at port 9005
 
-[debug] [2023-10-09T16:20:20.006Z] Got response from /__/functions.yaml {"endpoints":{"getFavorites":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"getFavorites"}},"specVersion":"v1alpha1","requiredAPIs":[]}
-[debug] [2023-10-09T16:20:20.009Z] shutdown requested via /__/quitquitquit
+[debug] [2023-10-10T12:19:40.794Z] Got response from /__/functions.yaml {"endpoints":{"getFavorites":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"getFavorites"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-10-10T12:19:40.807Z] shutdown requested via /__/quitquitquit
 
 [info] ✔  functions: Loaded functions definitions from source: getFavorites. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: getFavorites."}}
 [info] ✔  functions[us-central1-getFavorites]: http function initialized (http://127.0.0.1:5001/explomaker-3010b/us-central1/getFavorites). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/explomaker-3010b/us-central1/getFavorites)."}}
-[debug] [2023-10-09T16:20:20.013Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=explomaker-3010b
-[debug] [2023-10-09T16:20:20.013Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": false\n  }\n}\n"
-[debug] [2023-10-09T16:20:20.030Z] 18:20:20.030 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
- {"metadata":{"emulator":{"name":"database"},"message":"18:20:20.030 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active\n"}}
-[debug] [2023-10-09T16:20:20.040Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
-[debug] [2023-10-09T16:20:20.040Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[debug] [2023-10-10T12:19:40.839Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=explomaker-3010b
+[debug] [2023-10-10T12:19:40.839Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": false\n  }\n}\n"
+[debug] [2023-10-10T12:19:40.911Z] 14:19:40.911 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"14:19:40.911 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace explomaker-3010b status Active to Active\n"}}
+[debug] [2023-10-10T12:19:40.946Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-10-10T12:19:40.947Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
 [info] 
 ┌─────────────────────────────────────────────────────────────┐
 │ ✔  All emulators ready! It is now safe to connect your app. │
@@ -163,3 +162,9 @@ WARNING: All illegal access operations will be denied in a future release {"meta
 
 Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
  
+[debug] [2023-10-10T12:23:36.923Z] Oct 10, 2023 2:23:36 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Oct 10, 2023 2:23:36 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2023-10-10T12:23:38.088Z] Oct 10, 2023 2:23:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Oct 10, 2023 2:23:38 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}

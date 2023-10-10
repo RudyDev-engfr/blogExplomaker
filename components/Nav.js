@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     left: '0',
     right: '0',
     zIndex: '1000',
-    boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.03)',
+    boxShadow: '0px 4px 33px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.03)',
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
@@ -128,13 +128,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     position: 'fixed',
     bottom: '0',
-    width: '100%',
+    width: '100vw',
     height: '90px',
     padding: '10px',
     zIndex: '100',
   },
   tabs: {
-    '& button': { textTransform: 'none' },
+    '& button': { textTransform: 'none', padding: '9px' },
   },
   icons: {
     fontSize: '9px',
@@ -180,18 +180,18 @@ const Nav = () => {
         <ConnectedNav isBgTransparent={isBgTransparent} />
       ) : matchesXs ? (
         <Paper variant="outlined" square className={classes.xsNav}>
-          <Tabs value={currentMobileNavTab} centered variant="fullWidth" className={classes.tabs}>
+          <Tabs value={currentMobileNavTab} centered className={classes.tabs}>
             <Link passHref href="/" className={classes.nextLink}>
               <Tab
                 icon={
                   <Image
                     src={home}
-                    width={30}
-                    height={30}
+                    width={33}
+                    height={33}
                     alt="home_logo"
                     style={{
                       maxWidth: '100%',
-                      height: '30px',
+                      height: '33px',
                     }}
                   />
                 }
@@ -209,12 +209,12 @@ const Nav = () => {
                 icon={
                   <Image
                     src={inspi}
-                    width={30}
-                    height={30}
+                    width={33}
+                    height={33}
                     alt="Inspiration_logo"
                     style={{
                       maxWidth: '100%',
-                      height: '30px',
+                      height: '33px',
                     }}
                   />
                 }
@@ -229,10 +229,10 @@ const Nav = () => {
             </Link>
             <Link passHref href="/exploration" className={classes.nextLink}>
               <Tab
-                icon={<TravelExplore sx={{ fontSize: '30px' }} />}
+                icon={<TravelExplore sx={{ fontSize: '33px' }} />}
                 label={
                   <Box component="span" className={classes.icons}>
-                    Explo
+                    Exploration
                   </Box>
                 }
                 sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
@@ -244,12 +244,12 @@ const Nav = () => {
                 icon={
                   <Image
                     src={logoGrey}
-                    width={30}
-                    height={30}
+                    width={33}
+                    height={33}
                     alt="MyTrips_logo"
                     style={{
                       maxWidth: '100%',
-                      height: '30px',
+                      height: '33px',
                     }}
                   />
                 }
@@ -266,12 +266,12 @@ const Nav = () => {
               icon={
                 <Image
                   src={profil}
-                  width={30}
-                  height={30}
+                  width={33}
+                  height={33}
                   alt="profile_logo"
                   style={{
                     maxWidth: '100%',
-                    height: 'auto',
+                    height: '33px',
                   }}
                 />
               }
@@ -329,18 +329,11 @@ const Nav = () => {
                   </Button>
                 </Link>
                 <Button
-                  disableRipple
-                  className={clsx(classes.navLink, classes.colorPrimaryMain)}
+                  disableElevation
+                  className={classes.createAccountBtn}
                   onClick={() => setIsAuthModalOpen('login')}
                 >
                   Connexion
-                </Button>
-                <Button
-                  disableElevation
-                  className={classes.createAccountBtn}
-                  onClick={() => setIsAuthModalOpen('signup')}
-                >
-                  Créer mon compte
                 </Button>
               </Box>
             </Box>
