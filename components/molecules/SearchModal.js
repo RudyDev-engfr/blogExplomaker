@@ -38,7 +38,6 @@ const SearchModal = ({ open, setOpen }) => {
       onClose={handleClose}
       aria-labelledby="search-modal-title"
       aria-describedby="search-modal-description"
-      disableScrollLock
       disableEnforceFocus
     >
       <Box className={classes.searchModalContent}>

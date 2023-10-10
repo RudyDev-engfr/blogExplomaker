@@ -106,14 +106,6 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
       {...autocomplete.getRootProps({})}
       className="aa-Autocomplete"
     >
-      {matchesXs && (
-        <IconButton
-          sx={{ position: 'absolute', top: '0', right: '0', zIndex: 1001 }}
-          onClick={() => setSearchModal(false)}
-        >
-          <Close sx={{ fontSize: '25px' }} />
-        </IconButton>
-      )}
       <form
         ref={formRef}
         className="aa-Form"
@@ -142,7 +134,7 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
               borderRadius: '10px 10px 0 0 ',
               backgroundColor: 'transparent',
               [theme.breakpoints.down('sm')]: {
-                borderRadius: 'unset',
+                borderRadius: '20px 20px 0 0',
               },
               '&:hover': {
                 boxShadow: 'none',
@@ -167,8 +159,11 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
             const { source, items } = collection
 
             return (
-              // eslint-disable-next-line react/no-array-index-key
-              <Box key={`source-${index}`} className="aa-Source">
+              <Box
+                // eslint-disable-next-line react/no-array-index-key
+                key={`source-${index}`}
+                className="aa-Source"
+              >
                 {items.length > 0 && (
                   <ul className="aa-List" {...autocomplete.getListProps()}>
                     {items.map((item, itemIndex) => (
@@ -195,7 +190,7 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
                               backgroundColor:
                                 isHovering === itemIndex ? theme.palette.primary.main : 'white',
                               [theme.breakpoints.down('sm')]: {
-                                height: '12vh',
+                                height: '8vh',
                               },
                             }}
                             onMouseEnter={() => setIsHovering(itemIndex)}
@@ -250,7 +245,8 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
                                   backgroundColor: 'unset',
                                 },
                                 [theme.breakpoints.down('sm')]: {
-                                  fontSize: '18px',
+                                  fontSize: '16px',
+                                  lineHeight: '20px',
                                   fontWeight: 500,
                                 },
                               }}

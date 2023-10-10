@@ -25,6 +25,7 @@ import Link from 'next/link'
 
 import logoFull from '../images/logoFull.svg'
 import logoGrey from '../images/icons/logoGrey.svg'
+import logoGreyDesktop from '../images/icons/logoGreyDesktop.svg'
 import inspi from '../images/icons/inspiLine.svg'
 import profil from '../images/icons/profil.svg'
 import favorite from '../images/icons/favorite.svg'
@@ -233,7 +234,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
             }
             label={
               <Box component="span" className={classes.icons}>
-                Inspi
+                Inspiration
               </Box>
             }
             sx={{
@@ -402,7 +403,7 @@ const ConnectedNav = ({ isBgTransparent }) => {
                           marginRight="14px"
                         >
                           <Image
-                            src={logoGrey}
+                            src={logoGreyDesktop}
                             width={24}
                             height={24}
                             quality={100}
@@ -477,7 +478,11 @@ const ConnectedNav = ({ isBgTransparent }) => {
                       Déconnexion
                     </MenuItem>
                     <Divider />
-                    <Link href="https://app.explomaker.fr/help" passHref>
+                    <Link
+                      href="https://app.explomaker.fr/help"
+                      passHref
+                      className={classes.nextLink}
+                    >
                       <MenuItem onClick={handleClose}>
                         <Box
                           component="span"

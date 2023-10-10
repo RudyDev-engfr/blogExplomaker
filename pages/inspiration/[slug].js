@@ -73,6 +73,11 @@ const useStyles = makeStyles(theme => ({
       margin: '32px 0 10px 0',
       width: '100%',
     },
+    '& h1': {
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '28px',
+      },
+    },
     '& img': {
       borderRadius: '20px',
       [theme.breakpoints.down('sm')]: {

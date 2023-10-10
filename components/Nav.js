@@ -221,7 +221,7 @@ const Nav = () => {
                 value={1}
                 label={
                   <Box component="span" className={classes.icons}>
-                    Inspi
+                    Inspiration
                   </Box>
                 }
                 sx={{ maxWidth: 'calc(20vw - 2px)', minWidth: '70px' }}
