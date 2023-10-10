@@ -35,7 +35,6 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
         onStateChange({ state }) {
           // (2) Synchronize the Autocomplete state with the React state.
           setAutocompleteState(state)
-          console.log('autocompletestate', state)
         },
         getSources() {
           return [
@@ -73,26 +72,28 @@ export default function AlgoliaAutocomplete({ setSearchModal }) {
   )
 
   React.useEffect(() => {
-    if (!(formRef.current && panelRef.current && inputRef.current)) {
-      return
+    if (matchesXs) {
+      if (!(formRef.current && panelRef.current && inputRef.current)) {
+        return
+      }
+
+      const { onTouchStart, onTouchMove, onMouseDown } = autocomplete.getEnvironmentProps({
+        formElement: formRef.current,
+        panelElement: panelRef.current,
+        inputElement: inputRef.current,
+      })
+
+      window.addEventListener('touchstart', onTouchStart)
+      window.addEventListener('touchmove', onTouchMove)
+      window.addEventListener('mousedown', onMouseDown)
+
+      return () => {
+        window.removeEventListener('touchstart', onTouchStart)
+        window.removeEventListener('touchmove', onTouchMove)
+        window.removeEventListener('mousedown', onMouseDown)
+      }
     }
-
-    const { onTouchStart, onTouchMove, onMouseDown } = autocomplete.getEnvironmentProps({
-      formElement: formRef.current,
-      panelElement: panelRef.current,
-      inputElement: inputRef.current,
-    })
-
-    window.addEventListener('touchstart', onTouchStart)
-    window.addEventListener('touchmove', onTouchMove)
-    window.addEventListener('mousedown', onMouseDown)
-
-    return () => {
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove', onTouchMove)
-      window.removeEventListener('mousedown', onMouseDown)
-    }
-  }, [autocomplete, autocomplete.getEnvironmentProps, autocompleteState.isOpen])
+  }, [autocomplete, autocomplete.getEnvironmentProps, autocompleteState.isOpen, matchesXs])
 
   return (
     <Box

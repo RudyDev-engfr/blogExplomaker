@@ -34,7 +34,7 @@ const MobileSearchLayout = ({ children, currentPath }) => {
         </IconButton>
       )}
       {children}
-      {searchModal && <SearchModal open={searchModal} setOpen={setSearchModal} />}
+      {searchModal && matchesXs && <SearchModal open={searchModal} setOpen={setSearchModal} />}
     </Box>
   )
 }
